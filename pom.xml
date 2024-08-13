@@ -60,6 +60,11 @@
             <version>4.5.14</version>
         </dependency>
         <dependency>
+            <groupId>com.microsoft.sqlserver</groupId>
+            <artifactId>mssql-jdbc</artifactId>
+            <version>11.2.2.jre8</version>
+        </dependency>
+        <dependency>
             <groupId>org.example</groupId>
             <artifactId>menamobile-appium</artifactId>
             <version>1.0-SNAPSHOT</version>

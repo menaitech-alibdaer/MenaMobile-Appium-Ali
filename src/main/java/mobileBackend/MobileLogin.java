@@ -1,11 +1,13 @@
-import bases.BasePage;
+package mobileBackend;
+
+import bases.MobileBasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
-public class Login extends BasePage {
+public class MobileLogin extends MobileBasePage {
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_button")
     @iOSXCUITFindBy()
@@ -67,6 +69,7 @@ public class Login extends BasePage {
         setText(employeeCodeF, employeeCode);
         clickOn(passwordF);
         setText(passwordF, password);
+        hold(300);
         clickOn(loginBtn);
         waitLoadingElement();
 

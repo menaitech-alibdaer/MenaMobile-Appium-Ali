@@ -17,13 +17,13 @@ import java.util.List;
 
 import static java.time.Duration.ofMillis;
 
-public class BasePage {
+public class MobileBasePage {
 
     protected AppiumDriver appiumDriver;
     int second = 20;
 
-    public BasePage() {
-        this.appiumDriver = BaseTest.getAppiumDriver();
+    public MobileBasePage() {
+        this.appiumDriver = MobileBaseTest.getAppiumDriver();
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
     }
 

@@ -1,14 +1,12 @@
-import bases.BasePage;
+package mobileBackend;
+
+import bases.MobileBasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
-public class MainScreen extends BasePage {
+public class MainScreen extends MobileBasePage {
 
 
     @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")

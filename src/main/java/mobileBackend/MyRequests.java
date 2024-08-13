@@ -1,9 +1,11 @@
-import bases.BasePage;
+package mobileBackend;
+
+import bases.MobileBasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 
-public class MyRequests extends BasePage {
+public class MyRequests extends MobileBasePage {
 
     @AndroidFindBy(accessibility = "Vacations")
     WebElement vacationsRequestBtn;
