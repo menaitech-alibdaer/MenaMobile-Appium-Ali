@@ -90,7 +90,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(200);
         alert.accept();
         closeIFrame();
@@ -127,7 +127,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -148,7 +148,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(200);
         alert.accept();
         closeIFrame();
@@ -194,7 +194,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -212,7 +212,7 @@ public class SpecialSalaryReport extends WebBase {
         setText(empCode, employeeCode, Keys.TAB);
         hold(1000);
         if(checkAlertIfPresent()){
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(200);
             alert.accept();
             closeIFrame();
@@ -222,7 +222,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         if(checkAlertIfPresent()){
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(200);
             alert.accept();
             closeIFrame();
@@ -256,7 +256,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -274,7 +274,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         if(checkAlertIfPresent()){
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(200);
             alert.accept();
             closeIFrame();
@@ -310,7 +310,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -329,7 +329,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         if(checkAlertIfPresent()){
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(200);
             alert.accept();
             closeIFrame();
@@ -393,7 +393,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -411,7 +411,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         if(checkAlertIfPresent()){
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(200);
             alert.accept();
             closeIFrame();
@@ -447,7 +447,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -467,7 +467,7 @@ public class SpecialSalaryReport extends WebBase {
         normalSelect(select_year, year);
         hold(200);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(200);
         alert.accept();
         closeIFrame();
@@ -510,7 +510,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -529,7 +529,7 @@ public class SpecialSalaryReport extends WebBase {
         yearSelect.selectByVisibleText(year);
         hold(200);
         if(checkAlertIfPresent()){
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(200);
             alert.accept();
             closeIFrame();
@@ -585,7 +585,7 @@ public class SpecialSalaryReport extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -626,7 +626,7 @@ public class SpecialSalaryReport extends WebBase {
     }
 
     public String getEmployeeCode(){
-        return getDriver().findElement(By.xpath("//font[text()='Employee Code']/following::font[2]")).getText().trim();
+        return driver.findElement(By.xpath("//font[text()='Employee Code']/following::font[2]")).getText().trim();
     }
     public String month(){
         return monthE.getText().trim();
@@ -639,7 +639,7 @@ public class SpecialSalaryReport extends WebBase {
 //                .findFirst()
 //                .orElseThrow(() -> new NoSuchElementException("Target element not found. Column: " + columnName));
 //        int targetIndex = rowContains.equalsIgnoreCase("Report Total") ? reportHeader.indexOf(targetElement) - 1 : reportHeader.indexOf(targetElement);
-//        targetElement = getDriver().findElement(By.xpath(String.format("//td[contains(text(), '%s')]/following-sibling::td[%s]", rowContains, targetIndex)));
+//        targetElement = driver.findElement(By.xpath(String.format("//td[contains(text(), '%s')]/following-sibling::td[%s]", rowContains, targetIndex)));
 //        return targetElement;
 //    }
 
@@ -649,7 +649,7 @@ public class SpecialSalaryReport extends WebBase {
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Target element not found. Column: " + columnName));
         int targetIndex = reportHeader.indexOf(targetElement);
-        targetElement = getDriver().findElement(By.xpath(String.format("//td[text()='%s']/following-sibling::td[%s]", rowContains, targetIndex)));
+        targetElement = driver.findElement(By.xpath(String.format("//td[text()='%s']/following-sibling::td[%s]", rowContains, targetIndex)));
         return targetElement.getText().trim();
     }
 
@@ -659,7 +659,7 @@ public class SpecialSalaryReport extends WebBase {
 //                .findFirst()
 //                .orElseThrow(() -> new NoSuchElementException("Target element not found. Column: " + month));
 //        int targetIndex = reportHeader.indexOf(targetElement);
-//        targetElement = getDriver().findElement(By.xpath(String.format("//td[text()='%s']/following-sibling::td[%s]", rowContains, targetIndex)));
+//        targetElement = driver.findElement(By.xpath(String.format("//td[text()='%s']/following-sibling::td[%s]", rowContains, targetIndex)));
 //        return targetElement.getText().trim();
 //    }
 
@@ -669,7 +669,7 @@ public class SpecialSalaryReport extends WebBase {
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Target element not found. Column: " + columnName));
         int targetIndex = reportHeader.indexOf(targetElement) + 1;
-        targetElement = getDriver().findElement(By.xpath(String.format("//td[@style='text-align:right' and text()='%s']/..//td[%s]", month, targetIndex)));
+        targetElement = driver.findElement(By.xpath(String.format("//td[@style='text-align:right' and text()='%s']/..//td[%s]", month, targetIndex)));
         return targetElement.getText().trim();
     }
 
@@ -679,7 +679,7 @@ public class SpecialSalaryReport extends WebBase {
 //                .findFirst()
 //                .orElseThrow(() -> new NoSuchElementException("Target element not found. Column: " + columnName));
 //        int targetIndex = reportHeader.indexOf(targetElement) + 1;
-//        targetElement = getDriver().findElement(with(By.xpath(String.format("//td[@style='text-align:right' and text()='%s']/..//td[%s]", month, targetIndex))).below(By.xpath("//td[contains(text(), '"+employeeCode+"')]")));
+//        targetElement = driver.findElement(with(By.xpath(String.format("//td[@style='text-align:right' and text()='%s']/..//td[%s]", month, targetIndex))).below(By.xpath("//td[contains(text(), '"+employeeCode+"')]")));
 //        return targetElement.getText().trim();
 //    }
 
@@ -689,7 +689,7 @@ public class SpecialSalaryReport extends WebBase {
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("Target element not found. Column: " + columnName));
         int targetIndex = reportHeader.indexOf(targetElement);
-        targetElement = getDriver().findElement(By.xpath(String.format("//tr[@class='reportGroupHeader']//td[contains(text(), '"+currency+"')]/following::tr[2]/td[text()='%s']/following-sibling::td[%s]", rowContains, targetIndex)));
+        targetElement = driver.findElement(By.xpath(String.format("//tr[@class='reportGroupHeader']//td[contains(text(), '"+currency+"')]/following::tr[2]/td[text()='%s']/following-sibling::td[%s]", rowContains, targetIndex)));
         return targetElement.getText().trim();
     }
 

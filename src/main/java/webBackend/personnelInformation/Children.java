@@ -1677,7 +1677,7 @@ public class Children extends WebBase {
         hold(500);
         clickOn(convertHijriBtn);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
 
         int day = Integer.parseInt(hijriDate.substring(0,2));
@@ -1938,9 +1938,9 @@ public class Children extends WebBase {
         scrollToElement(checkPicture);
 
         if(flag.equals("1")){
-            softAssert.assertTrue(checkElementIfNotAppear(getDriver().findElements(By.xpath("//span[contains(@id, 'select2-nationality')]"))), "The Nationality Field appear, it should be NOT Appear!");
+            softAssert.assertTrue(checkElementIfNotAppear(driver.findElements(By.xpath("//span[contains(@id, 'select2-nationality')]"))), "The Nationality Field appear, it should be NOT Appear!");
         }else{
-            softAssert.assertTrue(getDriver().findElements(By.xpath("//span[contains(@id, 'select2-nationality')]")).size()>0, "The Nationality Field Still NOT Appear!");
+            softAssert.assertTrue(driver.findElements(By.xpath("//span[contains(@id, 'select2-nationality')]")).size()>0, "The Nationality Field Still NOT Appear!");
         }
         MssqlConnect.sqlQuery("update adm_branch set is_equality = 0 where branch_code = 'auto_a1'");
         softAssert.assertAll();

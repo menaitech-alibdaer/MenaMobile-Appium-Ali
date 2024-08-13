@@ -373,7 +373,7 @@ public class EmployeeTermination extends WebBase {
             clickOn(menuPost);
             hold(300);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             alert.accept();
             closeIFrame();
             hold(300);
@@ -435,7 +435,7 @@ public class EmployeeTermination extends WebBase {
             clickOn(menuPost);
             hold(300);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             alert.accept();
             closeIFrame();
             hold(300);
@@ -607,7 +607,7 @@ public class EmployeeTermination extends WebBase {
             clickOn(menuPost);
             hold(300);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             alert.accept();
             closeIFrame();
             hold(300);
@@ -722,7 +722,7 @@ public class EmployeeTermination extends WebBase {
         clickOn(menuDelete);
         hold(300);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         alert.accept();
         closeIFrame();
         hold(300);
@@ -765,7 +765,7 @@ public class EmployeeTermination extends WebBase {
         clickOn(viewReport);
         hold(800);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
 
@@ -1297,7 +1297,7 @@ public class EmployeeTermination extends WebBase {
         clickOn(payPreviousMonthSalaryE);
         hold(500);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
 
@@ -1342,7 +1342,7 @@ public class EmployeeTermination extends WebBase {
         waitElementClickable(previousPrintBtn);
         clickOn(previousPrintBtn);
         hold(700);
-        parentWindow2 = getDriver().getWindowHandle();
+        parentWindow2 = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(RSIFrame);
@@ -1588,460 +1588,460 @@ public class EmployeeTermination extends WebBase {
     ///////////// Detailed Report Functions ///////////
 
     public String detailed_employeeCode(){
-        String str = getDriver().findElement(By.xpath("(//td[contains(text(), 'Name')])[1]/following-sibling::td[1]")).getText().trim();
+        String str = driver.findElement(By.xpath("(//td[contains(text(), 'Name')])[1]/following-sibling::td[1]")).getText().trim();
         String getCode = StringUtils.substringBefore(str, "/");
         return getCode.trim();
     }
     public String detailed_hiringDate(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Hiring Date')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Hiring Date')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_nationality(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Nationality')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Nationality')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_directManagerName(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Direct Manager Name')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Direct Manager Name')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_departments(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Departments')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Departments')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_nationalCode(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'National Code')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'National Code')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_division(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Division')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Division')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_position(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Position')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Position')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_terminationCategory(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Termination Category')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Termination Category')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_reasonsForResignation(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Reasons For Resignation')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Reasons For Resignation')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_date(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Date') and @width='20%'])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Date') and @width='20%'])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_noticePeriodStartDate(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Notice Period Start Date')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Notice Period Start Date')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_unit(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Unit')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Unit')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_terminationDate(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Termination Date')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Termination Date')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_sections(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Sections')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Sections')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_sponsorship_SubCategory(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Sponsorship(Sub Category)')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Sponsorship(Sub Category)')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_site(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Site')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Site')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_project(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Project')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Project')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_terminationReason(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Termination Reason')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Termination Reason')])[1]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_contractType(){
-        return getDriver().findElement(By.xpath("(//td[contains(text(), 'Contract Type')])[1]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td[contains(text(), 'Contract Type')])[1]/following-sibling::td[1]")).getText().trim();
     }
 
 
     public String detailed_salaryDetails(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Details')]/../../..//strong[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Details')]/../../..//strong[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_salaryDetails_types(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Details')]/../../..//td[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Details')]/../../..//td[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_bankInformation(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Bank Information')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Bank Information')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
     }
 
     public String detailed_salarySlip(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
     }
 
     public String detailed_salarySlip_DaysPaid(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//strong[contains(text(), 'Days Paid')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//strong[contains(text(), 'Days Paid')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_salarySlip_TotalIncome(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//strong[contains(text(), 'Total Income')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//strong[contains(text(), 'Total Income')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_salarySlip_TotalDeductions(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//strong[contains(text(), 'Total Deductions')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//strong[contains(text(), 'Total Deductions')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_salarySlip_NetSalary(){
-        String net = getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Net Salary')]")).getText();
+        String net = driver.findElement(By.xpath("//td//strong[contains(text(), 'Net Salary')]")).getText();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String detailed_salarySlip_Absence_Days(){
-        String net = getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//td[contains(text(), 'Absence')]")).getText();
+        String net = driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//td[contains(text(), 'Absence')]")).getText();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String detailed_salarySlip_VacationsCompensation_Days(){
-        String net = getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//td[contains(text(), 'Vacations Compensation')]")).getText();
+        String net = driver.findElement(By.xpath("//td//strong[contains(text(), 'Salary Slip')]/../../..//td[contains(text(), 'Vacations Compensation')]")).getText();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String detailed_otherDues(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Other Dues')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Other Dues')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
     }
 
     public String detailed_otherDues_TotalDues(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Other Dues')]/../../..//strong[contains(text(), 'Total Dues')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Other Dues')]/../../..//strong[contains(text(), 'Total Dues')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_otherDues_TotalDeductions(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Other Dues')]/../../..//strong[contains(text(), 'Total Deductions')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Other Dues')]/../../..//strong[contains(text(), 'Total Deductions')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_otherDues_IndemnityBasedOnArticle77(){
-        return getDriver().findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td[contains(text(), 'Indemnity Based On Article 77')]/following::td[1])[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td[contains(text(), 'Indemnity Based On Article 77')]/following::td[1])[1]")).getText().trim();
     }
 
     public String detailed_otherDues_IndemnityBasedOnArticle77_deduction(){
-        return getDriver().findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td[contains(text(), 'Indemnity Based On Article 77')]/following::td[1])[2]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td[contains(text(), 'Indemnity Based On Article 77')]/following::td[1])[2]")).getText().trim();
     }
 
     public String detailed_otherDues_NetOtherDues(){
-        String net = getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Net Other Dues')]")).getText();
+        String net = driver.findElement(By.xpath("//td//strong[contains(text(), 'Net Other Dues')]")).getText();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String detailed_Total(){
-        return getDriver().findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td//strong[contains(text(), 'Total')])[last()]")).getText();
-//        String net = getDriver().findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td//strong[contains(text(), 'Total')])[last()]")).getText();
+        return driver.findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td//strong[contains(text(), 'Total')])[last()]")).getText();
+//        String net = driver.findElement(By.xpath("(//td//strong[contains(text(), 'Other Dues')]/../../..//td//strong[contains(text(), 'Total')])[last()]")).getText();
 //        return net.replaceAll("[^0-9\\.]", "");
     }
 
 
     public String detailed_MonthlyIncome(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Monthly Income')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Monthly Income')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_MonthlyIncome_Total(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Monthly Income')]/../../..//td//strong[text()='Total']/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Monthly Income')]/../../..//td//strong[text()='Total']/following::td[1]")).getText().trim();
     }
 
     public String detailed_MonthlyDeductions(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Monthly Deductions')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Monthly Deductions')]/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
     }
     public String detailed_MonthlyDeductions_Total(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Monthly Deductions')]/../../..//td//strong[text()='Total']/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Monthly Deductions')]/../../..//td//strong[text()='Total']/following::td[1]")).getText().trim();
     }
 
 
     public String detailed_extraSalaries(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Extra Salaries - Details')]/../../..//td[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Extra Salaries - Details')]/../../..//td[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_extraSalaries_DaysPaid(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Extra Salaries - Details')]/../../..//strong[contains(text(), 'Days Paid')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Extra Salaries - Details')]/../../..//strong[contains(text(), 'Days Paid')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_extraSalaries_Month(){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Extra Salaries - Details')]/../../..//strong[contains(text(), 'Month')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Extra Salaries - Details')]/../../..//strong[contains(text(), 'Month')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_servicePeriodDetails(String item){
-        return getDriver().findElement(By.xpath("//td//strong[contains(text(), 'Service Period Details')]/../../..//td[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td//strong[contains(text(), 'Service Period Details')]/../../..//td[contains(text(), '"+item+"')]/following::td[1]")).getText().trim();
     }
 
     public String detailed_servicePeriodDetails_Total(){
-        return getDriver().findElement(By.xpath("(//td//strong[contains(text(), 'Service Period Details')]/../../..//strong[contains(text(), 'Service Period')])[2]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[contains(text(), 'Service Period Details')]/../../..//strong[contains(text(), 'Service Period')])[2]/following::td[1]")).getText().trim();
     }
 
     /////////////  Summary Report Functions ///////////
 
     public String summary_employeeInformation(String item){
-        return getDriver().findElement(By.xpath("//td[@class='leftToRight' and text()='"+item+"']/following-sibling::td[2]")).getText().trim();
+        return driver.findElement(By.xpath("//td[@class='leftToRight' and text()='"+item+"']/following-sibling::td[2]")).getText().trim();
     }
 
     public String summary_employeeInformation_ar(String item){
         if(item.equalsIgnoreCase("تاريخ الإنهاء") || item.equalsIgnoreCase("الرقم الوطني")){
-            return getDriver().findElement(By.xpath("//td[@class='RightToleft' and contains(text(), '"+item+"')]/following-sibling::td[2]")).getText().trim();
+            return driver.findElement(By.xpath("//td[@class='RightToleft' and contains(text(), '"+item+"')]/following-sibling::td[2]")).getText().trim();
         }else{
-            return getDriver().findElement(By.xpath("//td[contains(@style, 'text-align:right') and contains(text(), '"+item+"')]/following-sibling::td[2]")).getText().trim();
+            return driver.findElement(By.xpath("//td[contains(@style, 'text-align:right') and contains(text(), '"+item+"')]/following-sibling::td[2]")).getText().trim();
         }
     }
 
     public String summary_SalaryDetails(String item){
         if(item.equalsIgnoreCase("Total")){
-            return getDriver().findElement(By.xpath("//td[@class='leftToRight']//strong[text()='Salary Details']/..//table//strong[text()='Total']/following::td[1]")).getText().trim();
+            return driver.findElement(By.xpath("//td[@class='leftToRight']//strong[text()='Salary Details']/..//table//strong[text()='Total']/following::td[1]")).getText().trim();
         }else{
-            return getDriver().findElement(By.xpath("//td[@class='leftToRight']//strong[text()='Salary Details']/..//table//td[text()='"+item+"']/following-sibling::td[1]")).getText().trim();
+            return driver.findElement(By.xpath("//td[@class='leftToRight']//strong[text()='Salary Details']/..//table//td[text()='"+item+"']/following-sibling::td[1]")).getText().trim();
         }
     }
 
     public String summary_SalaryDetails_ar(String item){
         if(item.equalsIgnoreCase("الإجمالي")){
-            return getDriver().findElement(By.xpath("//td[contains(@style, 'text-align:right')]//strong[text()='تفاصيل الراتب']/..//table//strong[text()='الإجمالي']/following::td[1]")).getText().trim();
+            return driver.findElement(By.xpath("//td[contains(@style, 'text-align:right')]//strong[text()='تفاصيل الراتب']/..//table//strong[text()='الإجمالي']/following::td[1]")).getText().trim();
         }else{
-            return getDriver().findElement(By.xpath("//td[contains(@style, 'text-align:right')]//strong[text()='تفاصيل الراتب']/..//table//td[text()='"+item+"']/following-sibling::td[1]")).getText().trim();
+            return driver.findElement(By.xpath("//td[contains(@style, 'text-align:right')]//strong[text()='تفاصيل الراتب']/..//table//td[text()='"+item+"']/following-sibling::td[1]")).getText().trim();
         }
     }
 
     public String summary_Salary_Amount(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_Salary_From(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/..//td[text()='From']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/..//td[text()='From']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_Salary_To(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/..//td[text()='To']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/..//td[text()='To']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_Salary_Days(){
-        String net = getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/..//td[text()='To']/following-sibling::td[2]")).getText().trim();
+        String net = driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Salary']/..//td[text()='To']/following-sibling::td[2]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_Salary_Amount_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الراتب']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الراتب']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_Salary_From_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الراتب']/..//td[text()='من']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الراتب']/..//td[text()='من']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_Salary_To_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الراتب']/..//td[text()='إلى']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الراتب']/..//td[text()='إلى']/following-sibling::td[1]")).getText().trim();
     }
 
     public String summary_LeaveDays_Amount(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_LeaveDays_From(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/..//td[text()='From']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/..//td[text()='From']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_LeaveDays_To(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/..//td[text()='To']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/..//td[text()='To']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_LeaveDays_Days(){
-        String net = getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/..//td[text()='To']/following-sibling::td[2]")).getText().trim();
+        String net = driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Leave Days']/..//td[text()='To']/following-sibling::td[2]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_LeaveDays_Amount_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='بدل أجازة']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='بدل أجازة']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_LeaveDays_From_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='بدل أجازة']/..//td[text()='من']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='بدل أجازة']/..//td[text()='من']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_LeaveDays_To_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='بدل أجازة']/..//td[text()='إلى']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='بدل أجازة']/..//td[text()='إلى']/following-sibling::td[1]")).getText().trim();
     }
 
     public String summary_IndemnityDate_Amount(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_IndemnityDate_From(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/..//td[text()='From']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/..//td[text()='From']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_IndemnityDate_To(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/..//td[text()='To']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/..//td[text()='To']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_IndemnityDate_Days(){
-        String net = getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/..//td[text()='To']/following-sibling::td[2]")).getText().trim();
+        String net = driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Date']/..//td[text()='To']/following-sibling::td[2]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_IndemnityDate_Amount_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مكافأة نهاية الخدمة']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مكافأة نهاية الخدمة']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_IndemnityDate_From_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مكافأة نهاية الخدمة']/..//td[text()='من']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مكافأة نهاية الخدمة']/..//td[text()='من']/following-sibling::td[1]")).getText().trim();
     }
     public String summary_IndemnityDate_To_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مكافأة نهاية الخدمة']/..//td[text()='إلى']/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مكافأة نهاية الخدمة']/..//td[text()='إلى']/following-sibling::td[1]")).getText().trim();
     }
 
     public String summary_OtherIndemnity(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Other Indemnity']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Other Indemnity']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_OtherIndemnity_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مستحقات أخرى']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='مستحقات أخرى']/following-sibling::td)[1]")).getText().trim();
     }
 
     public String summary_IndemnityBasedOnArticle77(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Based On Article 77']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Based On Article 77']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_IndemnityBasedOnArticle77_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'المادة 77')]/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'المادة 77')]/following-sibling::td)[1]")).getText().trim();
     }
 
     public String summary_Overtime(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Overtime']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Overtime']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_Overtime_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='العمل الإضافي']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='العمل الإضافي']/following-sibling::td)[1]")).getText().trim();
     }
 
     public String summary_TotalOtherIndemnity(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight']//strong[text()='Total Other Indemnity']/following::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight']//strong[text()='Total Other Indemnity']/following::td)[1]")).getText().trim();
     }
     public String summary_TotalOtherIndemnity_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right')]//strong[contains(text(), 'اجمالي المستحقات')]/following::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right')]//strong[contains(text(), 'اجمالي المستحقات')]/following::td)[1]")).getText().trim();
     }
 
     public String summary_GOSI(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='GOSI']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='GOSI']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_GOSI_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='التامينات الاجتماعية']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='التامينات الاجتماعية']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_Loans(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Loans']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Loans']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_Loans_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='السلفيات']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='السلفيات']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_LoansUnpaidInstallment(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Loans Unpaid Installment']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Loans Unpaid Installment']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_LoansUnpaidInstallment_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='اقساط السلف المتبقية']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='اقساط السلف المتبقية']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_AbsentDays_Days(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Absent Days')])[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Absent Days')])[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_AbsentDays_Days_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'أيام الغياب')])[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'أيام الغياب')])[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_AbsentDays_Amount(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Absent Days')]/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Absent Days')]/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_AbsentDays_Amount_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'أيام الغياب')]/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'أيام الغياب')]/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_IndemnityBasedOnArticle77_deduction(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Based On Article 77']/following-sibling::td)[2]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Indemnity Based On Article 77']/following-sibling::td)[2]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_IndemnityBasedOnArticle77_deduction_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'المادة 77')]/following-sibling::td)[2]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'المادة 77')]/following-sibling::td)[2]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_HousingDuesDeduction(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Housing Dues Deduction']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Housing Dues Deduction']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_HousingDuesDeduction_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='اقتطاع مستحقات السكن']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='اقتطاع مستحقات السكن']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_OtherDeductions(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Other Deductions']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Other Deductions']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_OtherDeductions_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='استقطاعات']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='استقطاعات']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_TotalDeductions(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight']//strong[text()='Total Deductions']/following::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight']//strong[text()='Total Deductions']/following::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_TotalDeductions_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right')]//strong[text()='اجمالي الاستقطاعات']/following::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right')]//strong[text()='اجمالي الاستقطاعات']/following::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_findByType(String type){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='"+type+"']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='"+type+"']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_findByType_ar(String type){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='"+type+"']/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='"+type+"']/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_Total(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Total']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and text()='Total']/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_Total_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الصافي']/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and text()='الصافي']/following-sibling::td)[1]")).getText().trim();
     }
 
     public String summary_Cash(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Cash / Cheque No')]/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Cash / Cheque No')]/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
     public String summary_Cash_ar(){
-        String net = getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'الصافي نقدا')]/following-sibling::td)[1]")).getText().trim();
+        String net = driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'الصافي نقدا')]/following-sibling::td)[1]")).getText().trim();
         return net.replaceAll("[^0-9\\.]", "");
     }
 
     public String summary_BankName(){
-        return getDriver().findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Bank Name')]/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='ltr']//td[@class='leftToRight' and contains(text(), 'Bank Name')]/following-sibling::td)[1]")).getText().trim();
     }
     public String summary_BankName_ar(){
-        return getDriver().findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'اسم البنك')]/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'اسم البنك')]/following-sibling::td)[1]")).getText().trim();
     }
 
     public String summary_Date(){
-        return getDriver().findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Total']/../..//td[contains(text(), 'Date')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='ltr']//td[@class='leftToRight' and text()='Total']/../..//td[contains(text(), 'Date')]/following-sibling::td[1]")).getText().trim();
     }
     public String summary_Date_ar(){
-        return getDriver().findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'بتاريخ')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table[@dir='rtl']//td[contains(@style, 'text-align:right') and contains(text(), 'بتاريخ')]/following-sibling::td[1]")).getText().trim();
     }
 
     ////////// previous month locator ///////////
 
     public String previousSalariesDetails(String year, String month, String item){
-        return getDriver().findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//td[contains(text(), '"+item+"')]/following-sibling::td[1]")).getText().trim();
     }
     public String previousSalariesDetails_DaysPaid(String year, String month){
-        return getDriver().findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Days Paid')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Days Paid')]/following::td[1]")).getText().trim();
     }
     public String previousSalariesDetails_TotalIncome(String year, String month){
-        return getDriver().findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Total Income')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Total Income')]/following::td[1]")).getText().trim();
     }
     public String previousSalariesDetails_TotalDeductions(String year, String month){
-        return getDriver().findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Total Deductions')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Total Deductions')]/following::td[1]")).getText().trim();
     }
     public String previousSalariesDetails_NetSalary(String year, String month){
-        return getDriver().findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Net Salary')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//table//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../..//strong[contains(text(), 'Net Salary')]/following::td[1]")).getText().trim();
     }
 
     ///////// previous month - print table locator /////
 
     public String previousSalariesDetails_Print(String year, String month, String item){
-        return getDriver().findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//td[contains(text(), '"+item+"')]/following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//td[contains(text(), '"+item+"')]/following-sibling::td)[1]")).getText().trim();
     }
     public String previousSalariesDetails_Print_TotalIncome(String year, String month){
-        return getDriver().findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Total Income')]/../following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Total Income')]/../following-sibling::td)[1]")).getText().trim();
     }
     public String previousSalariesDetails_Print_TotalDeductions(String year, String month){
-        return getDriver().findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Total Deductions')]/../following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Total Deductions')]/../following-sibling::td)[1]")).getText().trim();
     }
     public String previousSalariesDetails_Print_NetSalary(String year, String month){
-        return getDriver().findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Net Salary')]/../following-sibling::td)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Net Salary')]/../following-sibling::td)[1]")).getText().trim();
     }
     public String previousSalariesDetails_Print_DaysPaid(String year, String month){
-        return getDriver().findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Days Paid')]/../following::strong)[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//td//strong[text()='Year']/following::strong[text()='"+year+"']/following::strong[text()='"+month+"']/../../following-sibling::tr//strong[contains(text(), 'Days Paid')]/../following::strong)[1]")).getText().trim();
     }
 
 

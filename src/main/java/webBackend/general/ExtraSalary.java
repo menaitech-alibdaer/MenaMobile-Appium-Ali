@@ -120,7 +120,7 @@ public class ExtraSalary extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -213,7 +213,7 @@ public class ExtraSalary extends WebBase {
     }
 
     public String fixedAllowanceByEmpName(String employeeName){
-        return getDriver().findElement(By.xpath("//td[contains(text(), '"+employeeName+"')]/following::td[5]")).getText().trim();
+        return driver.findElement(By.xpath("//td[contains(text(), '"+employeeName+"')]/following::td[5]")).getText().trim();
     }
 
 }

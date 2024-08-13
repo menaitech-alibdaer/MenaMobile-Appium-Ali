@@ -36,7 +36,7 @@ public class Listener implements ITestListener {
         }
 
         try {
-            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.getDriver()));
+            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.driver));
         }catch (Exception ignored){
             System.out.println("Screenshot Ignored!");
         }
@@ -55,7 +55,7 @@ public class Listener implements ITestListener {
         }
 
         try {
-            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.getDriver()));
+            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.driver));
         }catch (Exception ignored){
             System.out.println("Screenshot Ignored!");
         }

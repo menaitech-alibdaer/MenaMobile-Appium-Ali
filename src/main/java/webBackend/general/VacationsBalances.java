@@ -103,7 +103,7 @@ public class VacationsBalances extends WebBase {
         setText(empCode, employeeCode, Keys.TAB);
         hold(500);
         elementWaitAdvanced(By.name("vacation_code[1]"));
-        return getDriver().findElement(By.xpath("(//option[text()='"+vacationCode+"' and @selected]/following::input)[3]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//option[text()='"+vacationCode+"' and @selected]/following::input)[3]")).getAttribute("value");
 
     }
 

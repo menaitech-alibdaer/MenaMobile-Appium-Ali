@@ -92,7 +92,7 @@ public class OffCycleSalarySlip extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -113,16 +113,16 @@ public class OffCycleSalarySlip extends WebBase {
     }
 
     public String getValue(String name){
-        return getDriver().findElement(By.xpath("//font[contains(text(), '"+name+"')]/following::font[1]")).getText().trim();
+        return driver.findElement(By.xpath("//font[contains(text(), '"+name+"')]/following::font[1]")).getText().trim();
     }
     public String basicSalary(){
-        return getDriver().findElement(By.xpath("//font[contains(text(), 'Basic Salary')]/following::font[2]")).getText().trim();
+        return driver.findElement(By.xpath("//font[contains(text(), 'Basic Salary')]/following::font[2]")).getText().trim();
     }
     public String daysPaid(){
-        return getDriver().findElement(By.xpath("//font[contains(text(), 'Days Paid')]/following::font[2]")).getText().trim();
+        return driver.findElement(By.xpath("//font[contains(text(), 'Days Paid')]/following::font[2]")).getText().trim();
     }
     public String netSalary(){
-        return getDriver().findElement(By.xpath("(//font[contains(text(), 'Net Salary')])[1]/following::font[1]")).getText().trim();
+        return driver.findElement(By.xpath("(//font[contains(text(), 'Net Salary')])[1]/following::font[1]")).getText().trim();
     }
 
 }

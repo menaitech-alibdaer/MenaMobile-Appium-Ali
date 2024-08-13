@@ -509,8 +509,8 @@ public class Education extends WebBase {
 
         softAssert.assertTrue(startDateE.getAttribute("validation").contains("required"), "Start Date Should be Mandatory!");
         softAssert.assertTrue(endDateE.getAttribute("validation").contains("required"), "End Date Should be Mandatory!");
-        softAssert.assertTrue(getDriver().findElement(By.id("degree")).getAttribute("validation").contains("required"), "Qualification Should be Mandatory!");
-        softAssert.assertTrue(getDriver().findElement(By.id("major")).getAttribute("validation").contains("required"), "Major Should be Mandatory!");
+        softAssert.assertTrue(driver.findElement(By.id("degree")).getAttribute("validation").contains("required"), "Qualification Should be Mandatory!");
+        softAssert.assertTrue(driver.findElement(By.id("major")).getAttribute("validation").contains("required"), "Major Should be Mandatory!");
 
         clickOn(saveBtn);
         hold(500);

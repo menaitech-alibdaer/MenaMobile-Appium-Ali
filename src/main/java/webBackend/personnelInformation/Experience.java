@@ -155,7 +155,7 @@ public class Experience extends WebBase {
         employeeCode = empCode.getAttribute("value");
 
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -252,7 +252,7 @@ public class Experience extends WebBase {
         employeeCode = empCode.getAttribute("value");
 
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -344,7 +344,7 @@ public class Experience extends WebBase {
 
         employeeCode = empCode.getAttribute("value");
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -426,7 +426,7 @@ public class Experience extends WebBase {
         employeeCode = empCode.getAttribute("value");
 
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -506,7 +506,7 @@ public class Experience extends WebBase {
 
         employeeCode = empCode.getAttribute("value");
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -564,7 +564,7 @@ public class Experience extends WebBase {
         hold(500);
         employeeCode = empCode.getAttribute("value");
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -629,7 +629,7 @@ public class Experience extends WebBase {
 
         employeeCode = empCode.getAttribute("value");
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 
@@ -684,7 +684,7 @@ public class Experience extends WebBase {
 
         employeeCode = empCode.getAttribute("value");
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
         hold(500);
 

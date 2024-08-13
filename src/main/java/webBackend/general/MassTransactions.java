@@ -102,13 +102,13 @@ public class MassTransactions extends WebBase {
         clickOn(updateBtn);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         if(alert.getText().contains("No Transactions Have Been Calculated")){
             Assert.fail("No Transactions Have Been Calculated!");
         }
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         setLog("Mass Transactions - Update Family Allowance - Employee Code: "+employeeCode+" - Start Date: "+startDate+" - End Date: "+endDate);
 
@@ -125,7 +125,7 @@ public class MassTransactions extends WebBase {
 
         Select dyList = new Select(dynamicListE);
         dyList.selectByVisibleText(dynamicList);
-        scrollToElement(getDriver().findElement(By.id("Rang_from")));
+        scrollToElement(driver.findElement(By.id("Rang_from")));
         clickOn(otherOptionsE);
 
         Select tranType = new Select(otherOptions_TransactionTypeE);
@@ -145,7 +145,7 @@ public class MassTransactions extends WebBase {
         clickOn(calculateBtn);
 
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(300);
@@ -174,7 +174,7 @@ public class MassTransactions extends WebBase {
 
         Select dyList = new Select(dynamicListE);
         dyList.selectByVisibleText(dynamicList);
-        scrollToElement(getDriver().findElement(By.id("Rang_from")));
+        scrollToElement(driver.findElement(By.id("Rang_from")));
         clickOn(otherOptionsE);
 
         Select tranType = new Select(otherOptions_TransactionTypeE);
@@ -193,7 +193,7 @@ public class MassTransactions extends WebBase {
         clickOn(calculateBtn);
 
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(300);

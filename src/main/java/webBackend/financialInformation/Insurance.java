@@ -633,7 +633,7 @@ public class Insurance extends WebBase {
                 clickOn(extraGL_SaveBtn);
                 hold(300);
                 clickOn(closePopup);
-                getDriver().switchTo().parentFrame();
+                driver.switchTo().parentFrame();
                 hold(500);
 
             }

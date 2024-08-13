@@ -650,8 +650,8 @@ public class Other extends WebBase {
 
         softAssert.assertEquals(cardIdE.getAttribute("value"), rand, "- Card ID");
         softAssert.assertTrue(rosterE.isSelected(), "Roster NOT Selected");
-        softAssert.assertEquals(getDriver().findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[2]")).getAttribute("aria-disabled"), "true", "- Shift Type NOT Disabled");
-        softAssert.assertEquals(getDriver().findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[3]")).getAttribute("aria-disabled"), "true", "- Shift NOT Disabled");
+        softAssert.assertEquals(driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[2]")).getAttribute("aria-disabled"), "true", "- Shift Type NOT Disabled");
+        softAssert.assertEquals(driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[3]")).getAttribute("aria-disabled"), "true", "- Shift NOT Disabled");
         softAssert.assertAll();
 
     }
@@ -1091,7 +1091,7 @@ public class Other extends WebBase {
         softAssert.assertEquals(showEmployeeMobileE.isSelected(), false, "Show Employee Mobile In Phone Directory");
         softAssert.assertEquals(citizenE.isSelected(), false, "Citizen");
         softAssert.assertEquals(lecturerCheckbox.isSelected(), false, "Lecturer Checkbox");
-        softAssert.assertTrue(getDriver().findElement(By.xpath("//span[contains(@aria-labelledby, 'select2-train_place')]")).isDisplayed() , "Lecturer Site NOT Disabled!");
+        softAssert.assertTrue(driver.findElement(By.xpath("//span[contains(@aria-labelledby, 'select2-train_place')]")).isDisplayed() , "Lecturer Site NOT Disabled!");
         softAssert.assertEquals(salarySlipAndSmsLanguageE.getText(), "System Language", "Salary Slip and SMS Sending Language");
         softAssert.assertAll();
 

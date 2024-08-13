@@ -424,7 +424,7 @@ public class Requests extends WebBase {
     public void openRequestDetails(String rowNumber){
         hold(500);
         elementWaitAdvanced(By.id("row_1"));
-        clickOn(getDriver().findElement(By.xpath("//tr[contains(@id, 'row_"+rowNumber+"')]")));
+        clickOn(driver.findElement(By.xpath("//tr[contains(@id, 'row_"+rowNumber+"')]")));
         hold(300);
 
         setLog("open Request Details");

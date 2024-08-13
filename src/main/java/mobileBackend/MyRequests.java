@@ -8,7 +8,7 @@ import org.openqa.selenium.WebElement;
 public class MyRequests extends MobileBasePage {
 
     @AndroidFindBy(accessibility = "Vacations")
-    WebElement vacationsRequestBtn;
+    public WebElement vacationsRequestBtn;
     @AndroidFindBy(accessibility = "Overtime")
     WebElement overtimeRequestBtn;
     @AndroidFindBy(accessibility = "Choose")
@@ -253,7 +253,7 @@ public class MyRequests extends MobileBasePage {
             waitLoadingElement();
             hold(500);
             //waitForElementToBeVisible(AppiumBy.accessibilityId("Got it!"));
-            clickOn(gotItBtn);
+            //clickOn(gotItBtn);
             hold(500);
         }
 

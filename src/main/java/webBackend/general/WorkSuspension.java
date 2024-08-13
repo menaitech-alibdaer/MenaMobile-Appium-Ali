@@ -70,7 +70,7 @@ public class WorkSuspension extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(500);

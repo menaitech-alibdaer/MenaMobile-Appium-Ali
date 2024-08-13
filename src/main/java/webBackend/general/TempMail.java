@@ -23,8 +23,8 @@ public class TempMail extends WebBase {
 
         String email;
         hold(300);
-        parentWindow = getDriver().getWindowHandle();
-        getDriver().switchTo().newWindow(WindowType.TAB);
+        parentWindow = driver.getWindowHandle();
+        driver.switchTo().newWindow(WindowType.TAB);
         goToURL("https://www.minuteinbox.com/");
         hold(300);
         elementWaitAdvanced(By.id("email"));
@@ -32,7 +32,7 @@ public class TempMail extends WebBase {
         clickOn(plusDayBtn);
         hold(500);
         elementWaitAdvanced(By.id("email"));
-        getDriver().close();
+        driver.close();
         backToParentWindow(parentWindow);
         return email;
 
@@ -41,8 +41,8 @@ public class TempMail extends WebBase {
     public void goToEmail(){
 
         hold(300);
-        parentWindow = getDriver().getWindowHandle();
-        getDriver().switchTo().newWindow(WindowType.TAB);
+        parentWindow = driver.getWindowHandle();
+        driver.switchTo().newWindow(WindowType.TAB);
         goToURL("https://www.minuteinbox.com/");
         hold(300);
         elementWaitAdvanced(By.id("email"));

@@ -1206,14 +1206,14 @@ public class AddressAndContacts extends WebBase {
         hold(4000);
 
         implicitWaitChanging(1000);
-        softAssert.assertTrue(getDriver().findElement(By.id("province_prefix")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.id("select2-town-container")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.id("town_prefix")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.id("select2-real_estate_number-container")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.id("real_estate_prefix")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.id("select2-telephone1-container")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.id("telephone1_prefix")).isDisplayed());
-        softAssert.assertTrue(getDriver().findElement(By.name("birth_place_address")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("province_prefix")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("select2-town-container")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("town_prefix")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("select2-real_estate_number-container")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("real_estate_prefix")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("select2-telephone1-container")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.id("telephone1_prefix")).isDisplayed());
+        softAssert.assertTrue(driver.findElement(By.name("birth_place_address")).isDisplayed());
 
         MssqlConnect.sqlQuery("update adm_branch set country_profile = 1 where branch_code = 'auto_a1'");
         softAssert.assertAll();

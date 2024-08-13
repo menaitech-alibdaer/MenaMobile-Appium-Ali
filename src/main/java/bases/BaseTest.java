@@ -3,12 +3,9 @@ package bases;
 import io.appium.java_client.AppiumDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 
@@ -24,34 +21,43 @@ import static utilities.VersionGetter.*;
 public class BaseTest {
 
     private static final ThreadLocal<AppiumDriver> appiumDriver = new ThreadLocal<>();
-    //AppiumServerControl appiumServerControl;
+    private static final ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
     public static AppiumDriver getAppiumDriver() {
         return appiumDriver.get();
     }
 
-    public SoftAssert softAssert = null;
-    public static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
     public void setDriver(WebDriver drivers) {
         driver.set(drivers);
     }
-    public WebDriver getDriver() {
+    public static WebDriver getDriver() {
         return driver.get();
     }
-    public BaseTest() {
-        PageFactory.initElements(getDriver(), this);
-    }
-    int secondWait = 50;
-    @FindBy(className = "select2-search__field")
-    WebElement selectSearchField;
+
+    public SoftAssert softAssert = null;
     public String menaMeURL = null;
     public String versionURL = null;
-    private static String checkBranch = "branch";
 
     private String iniBrowser = null;
     private String iniPlatform = null;
-    private TestType testType = null;
+    public TestType testType = null;
 
+
+    @BeforeClass(alwaysRun = true)
+    @Parameters({"version", "lite"})
+    public void setVersion(@Optional("JUL") String version, @Optional("false") boolean lite){
+
+        if(version.equalsIgnoreCase("AUG")){
+            versionSetter("AUG");
+        }else if(version.equalsIgnoreCase("OCT")){
+            versionSetter("OCT");
+        }else if(version.equalsIgnoreCase("JUL")){
+            versionSetter("JUL");
+        }
+
+        liteSetter(lite);
+
+    }
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"platform", "iniBrowser"})
@@ -59,6 +65,9 @@ public class BaseTest {
 
         iniBrowser = browser;
         iniPlatform = platform;
+
+        softAssert = null;
+        softAssert = new SoftAssert();
 
     }
 
@@ -69,6 +78,7 @@ public class BaseTest {
             softAssert = null;
             if(getDriver() != null) {
                 getDriver().quit();
+                driver.remove();
             }
         }catch (Exception e){
             softAssert = null; //// optional ///
@@ -88,14 +98,14 @@ public class BaseTest {
 
     }
 
-    private enum TestType{
+    public enum TestType{
         WEB,
         MOBILE,
     }
 
     ////////////////////////////////////////////////////
 
-    public void initializeDriver(String platform){
+    public void initializeAppiumDriver(String platform){
         DesiredCapabilities caps = new DesiredCapabilities();
 
         if (platform.equalsIgnoreCase("Android")) {
@@ -148,11 +158,11 @@ public class BaseTest {
         }
     }
 
-    public void webDriverRunner(){
+    public void webInitialize(){
 
         testType = TestType.WEB;
 
-        setDriver(driver.get());
+        setDriver(getDriver());
         ChromeOptions options = new ChromeOptions();
 
         if (iniBrowser.equalsIgnoreCase("chrome")){
@@ -194,14 +204,14 @@ public class BaseTest {
 
     }
 
-    public void mobileDriverRunner(){
+    public void mobileInitialize(){
 
         testType = TestType.MOBILE;
 
         if(iniPlatform.equalsIgnoreCase("Android")){
-            initializeDriver("Android");
+            initializeAppiumDriver("Android");
         }else{
-            initializeDriver("IOS");
+            initializeAppiumDriver("IOS");
         }
 
     }

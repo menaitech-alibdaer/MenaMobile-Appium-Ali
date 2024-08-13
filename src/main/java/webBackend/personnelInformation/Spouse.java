@@ -885,7 +885,7 @@ public class Spouse extends WebBase {
         hold(300);
         clickOn(spousePage);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters = new SystemParameters();
         systemParameters.minimumAgeForMarriage("0");
@@ -1295,7 +1295,7 @@ public class Spouse extends WebBase {
         hold(500);
         clickOn(convertHijriBtn);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         clickOn(saveBtn);
 
@@ -1377,16 +1377,16 @@ public class Spouse extends WebBase {
                 "", false, "", true, "", "", "", "", "", false);
 
         if(flag.equals("0")){
-            softAssert.assertTrue(checkElementIfNotAppear(getDriver().findElements(By.id("national_expire_date"))));
-            softAssert.assertTrue(checkElementIfNotAppear(getDriver().findElements(By.id("passport_number"))));
-            softAssert.assertTrue(checkElementIfNotAppear(getDriver().findElements(By.id("residence_expiry_date"))));
-            softAssert.assertTrue(checkElementIfNotAppear(getDriver().findElements(By.id("residence_number"))));
+            softAssert.assertTrue(checkElementIfNotAppear(driver.findElements(By.id("national_expire_date"))));
+            softAssert.assertTrue(checkElementIfNotAppear(driver.findElements(By.id("passport_number"))));
+            softAssert.assertTrue(checkElementIfNotAppear(driver.findElements(By.id("residence_expiry_date"))));
+            softAssert.assertTrue(checkElementIfNotAppear(driver.findElements(By.id("residence_number"))));
             MssqlConnect.sqlQuery("update adm_branch set is_gulf = 1 where branch_code = 'auto_a1'");
         } else if (flag.equals("1")) {
-            softAssert.assertFalse(getDriver().findElements(By.id("national_expire_date")).isEmpty());
-            softAssert.assertFalse(getDriver().findElements(By.id("passport_number")).isEmpty());
-            softAssert.assertFalse(getDriver().findElements(By.id("residence_expiry_date")).isEmpty());
-            softAssert.assertFalse(getDriver().findElements(By.id("residence_number")).isEmpty());
+            softAssert.assertFalse(driver.findElements(By.id("national_expire_date")).isEmpty());
+            softAssert.assertFalse(driver.findElements(By.id("passport_number")).isEmpty());
+            softAssert.assertFalse(driver.findElements(By.id("residence_expiry_date")).isEmpty());
+            softAssert.assertFalse(driver.findElements(By.id("residence_number")).isEmpty());
         }
         softAssert.assertAll();
     }
@@ -1400,7 +1400,7 @@ public class Spouse extends WebBase {
                 "", false, "", true, "", "", "", "", "", false);
 
         if(flag.equals("5")){
-            softAssert.assertFalse(getDriver().findElements(By.id("flexhandicappedCheckCheckedx")).isEmpty());
+            softAssert.assertFalse(driver.findElements(By.id("flexhandicappedCheckCheckedx")).isEmpty());
             if(!handicappedE.isSelected()){
                 clickOn(handicappedE);
                 hold(300);
@@ -1412,7 +1412,7 @@ public class Spouse extends WebBase {
             }
 
         }else{
-            softAssert.assertTrue(checkElementIfNotAppear(getDriver().findElements(By.id("flexhandicappedCheckCheckedx"))));
+            softAssert.assertTrue(checkElementIfNotAppear(driver.findElements(By.id("flexhandicappedCheckCheckedx"))));
         }
         MssqlConnect.sqlQuery("update adm_branch set country_profile = 1 where branch_code = 'auto_a1'");
         softAssert.assertAll();

@@ -49,7 +49,7 @@ public class EmployeesUpgrade extends WebBase {
         clickOn(menuPost);
         hold(300);
         closeIFrame();
-        String parentWindow = getDriver().getWindowHandle();
+        String parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(300);
         elementWaitAdvanced(By.id("oDiv"));

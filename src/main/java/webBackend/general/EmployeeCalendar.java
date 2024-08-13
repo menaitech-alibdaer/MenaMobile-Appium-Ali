@@ -226,7 +226,7 @@ public class EmployeeCalendar extends WebBase {
         elementWaitAdvanced(By.id("dropdownMenuButton1"));
         clickOn(yearsDropdown);
         hold(300);
-        clickOn(getDriver().findElement(By.id("li_year_"+year)));
+        clickOn(driver.findElement(By.id("li_year_"+year)));
         hold(300);
         elementWaitAdvanced(By.id("dropdownMenuButton1"));
         clickOn(monthDropdown);
@@ -851,7 +851,7 @@ public class EmployeeCalendar extends WebBase {
                 if(i == 21){
                     scrollToElement(day_21);
                 }
-                getDriver().findElement(By.id("day_"+i)).click();
+                driver.findElement(By.id("day_"+i)).click();
                 hold(100);
             }
             hold(300);
@@ -869,7 +869,7 @@ public class EmployeeCalendar extends WebBase {
                 if(i == 21){
                     scrollToElement(day_21);
                 }
-                getDriver().findElement(By.id("vac_col_btn_"+i)).click();
+                driver.findElement(By.id("vac_col_btn_"+i)).click();
                 hold(200);
             }
             scrollToElement(saveBtn);
@@ -895,7 +895,7 @@ public class EmployeeCalendar extends WebBase {
         elementWaitAdvanced(By.id("dropdownMenuButton1"));
         clickOn(yearsDropdown);
         hold(300);
-        clickOn(getDriver().findElement(By.id("li_year_"+year)));
+        clickOn(driver.findElement(By.id("li_year_"+year)));
         hold(300);
         elementWaitAdvanced(By.id("dropdownMenuButton1"));
         clickOn(monthDropdown);
@@ -941,7 +941,7 @@ public class EmployeeCalendar extends WebBase {
                 if(i == 21){
                     scrollToElement(day_21);
                 }
-                getDriver().findElement(By.id("day_"+i)).click();
+                driver.findElement(By.id("day_"+i)).click();
                 hold(100);
             }
             hold(300);
@@ -959,7 +959,7 @@ public class EmployeeCalendar extends WebBase {
                 if(i == 21){
                     scrollToElement(day_21);
                 }
-                getDriver().findElement(By.id("vac_col_btn_"+i)).click();
+                driver.findElement(By.id("vac_col_btn_"+i)).click();
                 hold(200);
             }
             scrollToElement(saveBtn);

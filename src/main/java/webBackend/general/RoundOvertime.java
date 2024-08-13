@@ -50,7 +50,7 @@ public class RoundOvertime extends WebBase {
         clickOn(roundOvertimeBtn);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(300);
         Assert.assertTrue(alert.getText().contains("Overtime Were Rounded Successfully"), "Issue in Round Overtime!");
         alert.accept();

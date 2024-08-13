@@ -93,7 +93,7 @@ public class Languages extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(getDriver().findElement(By.name("Langxxx")).getAttribute("value"), language, "-Issue Language");
+        softAssert.assertEquals(driver.findElement(By.name("Langxxx")).getAttribute("value"), language, "-Issue Language");
         softAssert.assertEquals(readE.getText(), read, "-Issue Read");
         softAssert.assertEquals(writtenE.getText(), written, "-Issue Written");
         softAssert.assertEquals(spokenE.getText(), spoken, "-Issue Spoken");
@@ -144,7 +144,7 @@ public class Languages extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(getDriver().findElement(By.name("Langxxx")).getAttribute("value"), "English", "-Issue Language");
+        softAssert.assertEquals(driver.findElement(By.name("Langxxx")).getAttribute("value"), "English", "-Issue Language");
         softAssert.assertEquals(readE.getText(), "Very Good", "-Issue Read");
         softAssert.assertEquals(writtenE.getText(), "Accepted", "-Issue Written");
         softAssert.assertEquals(spokenE.getText(), "Excellent", "-Issue Spoken");

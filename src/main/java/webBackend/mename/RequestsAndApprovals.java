@@ -196,7 +196,7 @@ public class RequestsAndApprovals extends WebBase {
         clickOn(displayBtn);
         hold(300);
 
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         clickOn(editBtn);
         hold(300);
         goToWindow();

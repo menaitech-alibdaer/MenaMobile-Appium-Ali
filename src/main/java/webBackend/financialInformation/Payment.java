@@ -191,7 +191,7 @@ public class Payment extends WebBase {
                 clickOn(accountBeneficiarySave);
                 hold(300);
                 clickOn(closePopup);
-                getDriver().switchTo().parentFrame();
+                driver.switchTo().parentFrame();
             }
             if(bankCommitment){
                 if(!bankCommitmentCheckbox.isSelected()){
@@ -270,7 +270,7 @@ public class Payment extends WebBase {
                 hold(300);
                 clickOn(convertValueBtn);
                 hold(500);
-                getDriver().switchTo().parentFrame();
+                driver.switchTo().parentFrame();
 
             }
             if(!currency.isEmpty()){
@@ -356,7 +356,7 @@ public class Payment extends WebBase {
                 clickOn(accountBeneficiarySave);
                 hold(300);
                 clickOn(closePopup);
-                getDriver().switchTo().parentFrame();
+                driver.switchTo().parentFrame();
             }
         }
 

@@ -95,7 +95,7 @@ public class ManagerGeneral extends WebBase {
         hold(100);
         clickOn(displayBtn);
         hold(500);
-        clickOn(getDriver().findElement(By.xpath("(//table[@id = 'requests-table']//tbody//td[text()='"+workflowID+"'])[1]")));
+        clickOn(driver.findElement(By.xpath("(//table[@id = 'requests-table']//tbody//td[text()='"+workflowID+"'])[1]")));
         hold(300);
         goToFrame(workflow_iframe);
 
@@ -111,7 +111,7 @@ public class ManagerGeneral extends WebBase {
         hold(100);
         clickOn(displayBtn);
         hold(500);
-        clickOn(getDriver().findElement(By.xpath("(//table[@id = 'requests-table']//tbody//tr//td[2])[1]")));
+        clickOn(driver.findElement(By.xpath("(//table[@id = 'requests-table']//tbody//tr//td[2])[1]")));
         hold(300);
         goToFrame(workflow_iframe);
 
@@ -126,7 +126,7 @@ public class ManagerGeneral extends WebBase {
         clickOn(approveBtn);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         alert.accept();
         hold(1000);
         closeIFrame();
@@ -142,7 +142,7 @@ public class ManagerGeneral extends WebBase {
         clickOn(declineBtn);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         alert.accept();
         hold(500);
         closeIFrame();

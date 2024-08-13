@@ -23,7 +23,7 @@ public class MobileBasePage {
     int second = 20;
 
     public MobileBasePage() {
-        this.appiumDriver = MobileBaseTest.getAppiumDriver();
+        this.appiumDriver = BaseTest.getAppiumDriver();
         PageFactory.initElements(new AppiumFieldDecorator(appiumDriver), this);
     }
 

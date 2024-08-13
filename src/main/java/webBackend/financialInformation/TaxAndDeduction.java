@@ -1482,7 +1482,7 @@ public class TaxAndDeduction extends WebBase {
         clickOn(saveBtnInPopup);
         hold(1500);
         clickOn(closePopup);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(500);
 
         if(!type2.isEmpty()){
@@ -1539,7 +1539,7 @@ public class TaxAndDeduction extends WebBase {
             clickOn(saveBtnInPopup);
             hold(1500);
             clickOn(closePopup);
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             hold(500);
         }
 

@@ -48,7 +48,7 @@ public class UpdateSocialSecuritySalary extends WebBase {
         clickOn(updateBtn);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(500);

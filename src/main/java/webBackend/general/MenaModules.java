@@ -78,11 +78,11 @@ public class MenaModules extends WebBase {
             if(module.equalsIgnoreCase("MenaPAY")){
                 clickOn(menaPay_oct);
                 elementWait(logo);
-                Assert.assertTrue(getDriver().getTitle().contains("Payroll & Personnel"),"Can't access to MenaPAY");
+                Assert.assertTrue(driver.getTitle().contains("Payroll & Personnel"),"Can't access to MenaPAY");
             } else if (module.equalsIgnoreCase("MenaHR")) {
                 clickOn(menaHR_oct);
                 elementWait(logo);
-                Assert.assertTrue(getDriver().getTitle().contains("Human Resources"),"Can't access to MenaHR");
+                Assert.assertTrue(driver.getTitle().contains("Human Resources"),"Can't access to MenaHR");
             }
 
         }

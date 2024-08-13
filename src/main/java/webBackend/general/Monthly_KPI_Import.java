@@ -51,7 +51,7 @@ public class Monthly_KPI_Import extends WebBase {
         clickOn(importTransactionsBtn);
         hold(500);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         elementWait(allowanceTypeE);
@@ -68,7 +68,7 @@ public class Monthly_KPI_Import extends WebBase {
         elementWait(doneImg);
         hold(500);
         String getBatchNumber = getBatchNumberE.getText().trim();
-        getDriver().close();
+        driver.close();
         hold(300);
         backToParentWindow(parentWindow);
 

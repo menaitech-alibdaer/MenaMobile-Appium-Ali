@@ -183,7 +183,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -237,7 +237,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -308,7 +308,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -370,7 +370,7 @@ public class EmployeesTransactions extends WebBase {
             hold(500);
             clickOn(menuSave);
             hold(300);
-            checkAlert = getDriver().switchTo().alert();
+            checkAlert = driver.switchTo().alert();
 
         }else{
 
@@ -388,7 +388,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -445,7 +445,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -507,7 +507,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -583,7 +583,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -655,7 +655,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -727,7 +727,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -744,7 +744,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(guarantorBtn);
         hold(500);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         elementWait(addBtn);
@@ -774,7 +774,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(guarantorBtn);
         hold(500);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
     }
@@ -910,7 +910,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -961,7 +961,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -1016,7 +1016,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -1065,7 +1065,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -1079,7 +1079,7 @@ public class EmployeesTransactions extends WebBase {
 
         boolean check = false;
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         if(textAlert.equalsIgnoreCase(alert.getText().trim())){
             check = true;
@@ -1105,7 +1105,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -1126,7 +1126,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
         hold(3500);
@@ -1204,7 +1204,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -1261,7 +1261,7 @@ public class EmployeesTransactions extends WebBase {
             clickOn(menuPost);
             hold(500);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(3500);
@@ -1279,7 +1279,7 @@ public class EmployeesTransactions extends WebBase {
         clickOn(vacationInAdvanceBtn);
         hold(500);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         elementWait(vacationInAdvanceCalculateBtn);
@@ -1295,10 +1295,10 @@ public class EmployeesTransactions extends WebBase {
     }
 
     public String OI_CheckAmountByTransactionType(String transactionType){
-        return getDriver().findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_amount')]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_amount')]")).getAttribute("value");
     }
     public String OI_CheckDateByTransactionType(String transactionType){
-        return getDriver().findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_date')]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_date')]")).getAttribute("value");
     }
 
 }

@@ -98,12 +98,12 @@ public class ChangeTransactions extends WebBase {
             hold(300);
             setText(empCode, Keys.TAB);
         }
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuNew);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(200);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
@@ -165,7 +165,7 @@ public class ChangeTransactions extends WebBase {
             hold(300);
         }
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuSave);
@@ -173,16 +173,16 @@ public class ChangeTransactions extends WebBase {
         clickOn(menuPost);
         hold(300);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(200);
         goToFrame(iframeItems);
         hold(300);
         Assert.assertEquals(checkPostedInTable.getText().trim(), "Yes", "- Transaction NOT Posted");
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         setLog("change location - "+"Employee Code: "+employeeCode);
 
@@ -201,12 +201,12 @@ public class ChangeTransactions extends WebBase {
             hold(300);
             setText(empCode, Keys.TAB);
         }
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuNew);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(300);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
@@ -246,7 +246,7 @@ public class ChangeTransactions extends WebBase {
             hold(300);
         }
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuSave);
@@ -254,16 +254,16 @@ public class ChangeTransactions extends WebBase {
         clickOn(menuPost);
         hold(500);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(200);
         goToFrame(iframeItems);
         hold(300);
         Assert.assertEquals(checkPostedInTable.getText().trim(), "Yes", "- Transaction NOT Posted");
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         setLog("change classification - "+"Employee Code: "+employeeCode);
 
@@ -282,12 +282,12 @@ public class ChangeTransactions extends WebBase {
             hold(300);
             setText(empCode, Keys.TAB);
         }
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuNew);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(300);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
@@ -312,7 +312,7 @@ public class ChangeTransactions extends WebBase {
         setText(directManagerE, Keys.TAB);
         hold(500);
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(300);
         clickOn(menuSave);
@@ -320,16 +320,16 @@ public class ChangeTransactions extends WebBase {
         clickOn(menuPost);
         hold(300);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(200);
         goToFrame(iframeItems);
         hold(300);
         Assert.assertEquals(checkPostedInTable.getText().trim(), "Yes", "- Transaction NOT Posted");
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         setLog("change Direct Manager - "+"Employee Code: "+employeeCode);
 
@@ -348,12 +348,12 @@ public class ChangeTransactions extends WebBase {
             hold(300);
             setText(empCode, Keys.TAB);
         }
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuNew);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(300);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
@@ -383,7 +383,7 @@ public class ChangeTransactions extends WebBase {
         setText(startDateContract, getTransactionDate);
         setText(startDateContract, Keys.TAB);
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(300);
         clickOn(menuSave);
@@ -391,16 +391,16 @@ public class ChangeTransactions extends WebBase {
         clickOn(menuPost);
         hold(300);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(200);
         goToFrame(iframeItems);
         hold(300);
         Assert.assertEquals(checkPostedInTable.getText().trim(), "Yes", "- Transaction NOT Posted");
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         setLog("change Job Contract - "+"Employee Code: "+employeeCode);
 
@@ -454,10 +454,10 @@ public class ChangeTransactions extends WebBase {
         clickOn(menuPost);
         hold(300);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(200);
         goToFrame(iframeItems);

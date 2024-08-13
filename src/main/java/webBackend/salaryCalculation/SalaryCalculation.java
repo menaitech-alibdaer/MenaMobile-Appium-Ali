@@ -142,7 +142,7 @@ public class SalaryCalculation extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -238,7 +238,7 @@ public class SalaryCalculation extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -321,7 +321,7 @@ public class SalaryCalculation extends WebBase {
         clickOn(MenuShowButton);
         hold(300);
         closeIFrame();
-        parentWindow = getDriver().getWindowHandle();
+        parentWindow = driver.getWindowHandle();
         goToWindow();
         hold(500);
         goToFrame(reportIFrame);
@@ -342,7 +342,7 @@ public class SalaryCalculation extends WebBase {
         goToFrame(menuFrame);
         clickOn(menuDelete);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         alert.accept();
         hold(300);
         closeIFrame();
@@ -456,22 +456,22 @@ public class SalaryCalculation extends WebBase {
 
     public String fixedAllowanceByEmpName(String employeeName){
         ////// use this method when retrieve salary slip for multiple employees
-        return getDriver().findElement(By.xpath("//td[contains(text(), '"+employeeName+"')]/following::td[5]")).getText().trim();
+        return driver.findElement(By.xpath("//td[contains(text(), '"+employeeName+"')]/following::td[5]")).getText().trim();
     }
     public String percentAllowanceByEmpName(String employeeName){
         ////// use this method when retrieve salary slip for multiple employees
-        return getDriver().findElement(By.xpath("//td[contains(text(), '"+employeeName+"')]/following::td[6]")).getText().trim();
+        return driver.findElement(By.xpath("//td[contains(text(), '"+employeeName+"')]/following::td[6]")).getText().trim();
     }
 
     public String reasonByEmpCode(String employeeCode){
-        return getDriver().findElement(By.xpath("//font[text()='"+employeeCode+"']/following::font[1]")).getText().trim();
+        return driver.findElement(By.xpath("//font[text()='"+employeeCode+"']/following::font[1]")).getText().trim();
     }
 
     public boolean checkReportTableIfAppear(){
         return checkElementIfPresent(By.className("reportTable"));
     }
     public String getValue(String name){
-        return getDriver().findElement(By.xpath("//td[contains(text(), '"+name+"')]/following::td[1]")).getText().trim();
+        return driver.findElement(By.xpath("//td[contains(text(), '"+name+"')]/following::td[1]")).getText().trim();
     }
 
 }

@@ -356,18 +356,18 @@ public class SystemParameters extends WebBase {
         goToFrame(frame);
         elementWaitAdvanced(By.className("TabsTableTag"));
         hold(500);
-        clickOn(getDriver().findElement(By.xpath("//a[@href='setup_names.php']")));
+        clickOn(driver.findElement(By.xpath("//a[@href='setup_names.php']")));
         hold(300);
         elementWaitAdvanced(By.id("Site_Desp_e"));
-        scrollToElement(getDriver().findElement(By.name("positions_related_department")));
+        scrollToElement(driver.findElement(By.name("positions_related_department")));
         hold(300);
         if(enableOrNot){
-            if(!getDriver().findElement(By.name("positions_related_department")).isSelected()){
-                clickOn(getDriver().findElement(By.name("positions_related_department")));
+            if(!driver.findElement(By.name("positions_related_department")).isSelected()){
+                clickOn(driver.findElement(By.name("positions_related_department")));
             }
         }else{
-            if(getDriver().findElement(By.name("positions_related_department")).isSelected()){
-                clickOn(getDriver().findElement(By.name("positions_related_department")));
+            if(driver.findElement(By.name("positions_related_department")).isSelected()){
+                clickOn(driver.findElement(By.name("positions_related_department")));
             }
         }
         hold(300);
@@ -500,7 +500,7 @@ public class SystemParameters extends WebBase {
         hold(500);
         clickOn(colorSelector);
         hold(300);
-        clickOn(getDriver().findElement(By.xpath("//td[@bgcolor='#FF0000']")));
+        clickOn(driver.findElement(By.xpath("//td[@bgcolor='#FF0000']")));
         hold(300);
         closeIFrame();
         goToFrame(menuFrame);
@@ -1818,7 +1818,7 @@ public class SystemParameters extends WebBase {
 
         }else{
 
-            parentWindow = getDriver().getWindowHandle();
+            parentWindow = driver.getWindowHandle();
             goToWindow();
             hold(500);
             elementWaitAdvanced(By.name("is_setup_overtime_hours"));
@@ -1862,7 +1862,7 @@ public class SystemParameters extends WebBase {
             clickOn(saveBtn);
             hold(300);
             waitElementClickable(exitBtn);
-            getDriver().close();
+            driver.close();
             backToParentWindow(parentWindow);
             closeIFrame();
 
@@ -1885,7 +1885,7 @@ public class SystemParameters extends WebBase {
         if(employeeCostIsDistributedOnE.isEnabled()){
             select.selectByVisibleText(distributedOn);
         }else{
-            ((JavascriptExecutor) getDriver()).executeScript("arguments[0].disabled = false;", employeeCostIsDistributedOnE);
+            ((JavascriptExecutor) driver).executeScript("arguments[0].disabled = false;", employeeCostIsDistributedOnE);
             hold(300);
             System.out.println("This Option Edited By Inspect javascript");
             select.selectByVisibleText(distributedOn);

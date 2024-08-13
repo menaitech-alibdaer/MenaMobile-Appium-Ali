@@ -84,17 +84,17 @@ public class Biography extends WebBase {
         hold(200);
         setText(bodyBiography, Keys.BACK_SPACE);
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         clickOn(insertImgEng);
         goToFrame(insertImgFrame);
         hold(200);
-        setText(getDriver().findElement(By.id("src")), "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png");
-        setText(getDriver().findElement(By.id("alt")), "Img Description Test English");
-        setText(getDriver().findElement(By.id("title")), "Img Title Test");
+        setText(driver.findElement(By.id("src")), "https://upload.wikimedia.org/wikipedia/commons/thumb/1/11/Test-Logo.svg/783px-Test-Logo.svg.png");
+        setText(driver.findElement(By.id("alt")), "Img Description Test English");
+        setText(driver.findElement(By.id("title")), "Img Title Test");
         hold(500);
-        clickOn(getDriver().findElement(By.id("insert")));
+        clickOn(driver.findElement(By.id("insert")));
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(englishBiographyFrame);
         hold(200);
         setText(bodyBiography, "\n\n\n");
@@ -109,14 +109,14 @@ public class Biography extends WebBase {
         hold(300);
         setText(bodyBiography, Keys.chord(Keys.CONTROL, "a"));
         hold(200);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         clickOn(boldBtn);
         hold(200);
         clickOn(centerText);
         hold(200);
         clickOn(fontSizeList);
         hold(300);
-        clickOn(getDriver().findElement(By.xpath("//table[@id='menu_deriction2_deriction2_fontsizeselect_menu_tbl']//span[@title='4 (14pt)']")));
+        clickOn(driver.findElement(By.xpath("//table[@id='menu_deriction2_deriction2_fontsizeselect_menu_tbl']//span[@title='4 (14pt)']")));
         hold(300);
         clickOn(underLine);
         hold(300);
@@ -127,17 +127,17 @@ public class Biography extends WebBase {
         hold(200);
         setText(bodyBiography, Keys.BACK_SPACE);
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         clickOn(insertImgAr);
         goToFrame(insertImgFrame);
         hold(200);
-        setText(getDriver().findElement(By.id("src")), "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516__340.jpg");
-        setText(getDriver().findElement(By.id("alt")), "Img Description Test Arabic");
-        setText(getDriver().findElement(By.id("title")), "Img Title Test Arabic");
+        setText(driver.findElement(By.id("src")), "https://cdn.pixabay.com/photo/2014/06/03/19/38/board-361516__340.jpg");
+        setText(driver.findElement(By.id("alt")), "Img Description Test Arabic");
+        setText(driver.findElement(By.id("title")), "Img Title Test Arabic");
         hold(500);
-        clickOn(getDriver().findElement(By.id("insert")));
+        clickOn(driver.findElement(By.id("insert")));
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(arabicBiographyFrame);
         hold(200);
         setText(bodyBiography, "\n\n\n");
@@ -149,14 +149,14 @@ public class Biography extends WebBase {
         hold(300);
         setText(bodyBiography, Keys.chord(Keys.CONTROL, "a"));
         hold(200);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         clickOn(boldBtnAr);
         hold(200);
         clickOn(centerTextAr);
         hold(200);
         clickOn(fontSizeListAr);
         hold(300);
-        clickOn(getDriver().findElement(By.xpath("//table[@id='menu_deriction1_deriction1_fontsizeselect_menu_tbl']//span[@title='4 (14pt)']")));
+        clickOn(driver.findElement(By.xpath("//table[@id='menu_deriction1_deriction1_fontsizeselect_menu_tbl']//span[@title='4 (14pt)']")));
         hold(300);
         clickOn(underLineAr);
         hold(500);
@@ -179,9 +179,9 @@ public class Biography extends WebBase {
                 "\n" +
                 " Nulla facilisi. Duis imperdiet imperdiet sapien, sagittis laoreet felis tincidunt vel. Mauris vitae ligula libero. Aliquam pellentesque elit eu felis facilisis condimentum. Fusce vel tellus eget ex laoreet lacinia at sed arcu. Sed vitae auctor diam, ut cursus libero. Praesent ut enim venenatis, tempor erat sit amet, varius felis. Morbi sit amet tincidunt dui. Nunc semper ante et eleifend pellentesque. Donec sed cursus purus. Nam id venenatis lorem, sit amet egestas tellus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Aliquam id sollicitudin massa. Donec augue neque, faucibus at lectus ut, dictum tristique elit. Aenean sit amet tincidunt justo. Sed ut tortor ac enim ultricies lacinia nec id massa.");
 
-        softAssert.assertEquals(VerifyImage(getDriver().findElement(By.xpath("//img[@alt='Img Description Test English']"))), 200);
+        softAssert.assertEquals(VerifyImage(driver.findElement(By.xpath("//img[@alt='Img Description Test English']"))), 200);
 
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(arabicBiographyFrame);
         hold(300);
 
@@ -190,7 +190,7 @@ public class Biography extends WebBase {
                 "ومن هنا وجب على المصمم أن يضع نصوصا مؤقتة على التصميم ليظهر للعميل الشكل كاملاً،دور مولد النص العربى أن يوفر على المصمم عناء البحث عن نص بديل لا علاقة له بالموضوع الذى يتحدث عنه التصميم فيظهر بشكل لا يليق.\n" +
                 "هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.");
 
-        softAssert.assertEquals(VerifyImage(getDriver().findElement(By.xpath("//img[@alt='Img Description Test Arabic']"))), 200);
+        softAssert.assertEquals(VerifyImage(driver.findElement(By.xpath("//img[@alt='Img Description Test Arabic']"))), 200);
         softAssert.assertAll();
 
     }
@@ -224,7 +224,7 @@ public class Biography extends WebBase {
         hold(200);
         setText(bodyBiography, Keys.BACK_SPACE);
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         scrollToElement(arabicBiographyFrame);
         goToFrame(arabicBiographyFrame);
         hold(300);
@@ -232,7 +232,7 @@ public class Biography extends WebBase {
         hold(200);
         setText(bodyBiography, Keys.BACK_SPACE);
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(200);
         scrollToElement(empCode);
         hold(200);
@@ -247,7 +247,7 @@ public class Biography extends WebBase {
 
         softAssert.assertTrue(bodyBiography.getText().trim().isEmpty());
 
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(arabicBiographyFrame);
         hold(300);
 
@@ -287,7 +287,7 @@ public class Biography extends WebBase {
         hold(200);
         setText(bodyBiography, "Nam volutpat est lorem, in euismod dolor luctus vel. Proin malesuada in leo non aliquam. Donec eget mi ac nisi tincidunt dignissim. Praesent a lorem lacus. Nam iaculis a nunc ut dapibus. Vestibulum volutpat fringilla egestas. Donec ut dictum risus, vestibulum blandit sapien. Sed tortor arcu, mollis vel placerat ultricies, commodo vitae metus. Proin in molestie dolor, ut viverra erat. Fusce interdum hendrerit metus.");
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         scrollToElement(arabicBiographyFrame);
         goToFrame(arabicBiographyFrame);
         hold(300);
@@ -297,7 +297,7 @@ public class Biography extends WebBase {
         hold(200);
         setText(bodyBiography, "هذا النص يمكن أن يتم تركيبه على أي تصميم دون مشكلة فلن يبدو وكأنه نص منسوخ، غير منظم، غير منسق، أو حتى غير مفهوم. لأنه مازال نصاً بديلاً ومؤقتاً.");
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(200);
         scrollToElement(empCode);
         hold(200);
@@ -312,7 +312,7 @@ public class Biography extends WebBase {
 
         softAssert.assertEquals(bodyBiography.getText().trim(), "Nam volutpat est lorem, in euismod dolor luctus vel. Proin malesuada in leo non aliquam. Donec eget mi ac nisi tincidunt dignissim. Praesent a lorem lacus. Nam iaculis a nunc ut dapibus. Vestibulum volutpat fringilla egestas. Donec ut dictum risus, vestibulum blandit sapien. Sed tortor arcu, mollis vel placerat ultricies, commodo vitae metus. Proin in molestie dolor, ut viverra erat. Fusce interdum hendrerit metus.");
 
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(arabicBiographyFrame);
         hold(300);
 

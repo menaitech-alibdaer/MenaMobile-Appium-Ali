@@ -571,7 +571,7 @@ public class FinancialPackage extends WebBase {
         hold(500);
         clickOn(convertButton);
         hold(300);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
 
         setLog("convert Currency For Basic Salary: "+salary);
 
@@ -588,7 +588,7 @@ public class FinancialPackage extends WebBase {
         hold(500);
         clickOn(convertButton);
         hold(300);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
 
         setLog("convert Currency For First Allowance: "+amount);
 
@@ -769,7 +769,7 @@ public class FinancialPackage extends WebBase {
             hold(500);
             String parentWindow;
             closeIFrame();
-            parentWindow = getDriver().getWindowHandle();
+            parentWindow = driver.getWindowHandle();
             goToWindow();
             hold(300);
             historyDetailsElements = financialDataOct.historyDetailsElements;
@@ -1166,7 +1166,7 @@ public class FinancialPackage extends WebBase {
         }
         clickOn(annualPackageConvertBtn);
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(500);
 
         setLog("annual Package - basicSalary: "+basicSalary+" - firstAllowanceAmount: "+firstAllowanceAmount+" - secondAllowanceAmount: "+secondAllowanceAmount);

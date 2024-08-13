@@ -942,7 +942,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         selectEmployeeFromAdvanceSearch(DirectManager);
         hold(500);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(400);
         setText(birth_date, BirthDate);
         employeePicture.sendKeys(uploadRandomImage());
@@ -1153,7 +1153,7 @@ public class PersonnelInformation extends WebBase {
             try {
                 empName = personalInformationOct.fNameEng.getAttribute("value") + " " + personalInformationOct.sNameEng.getAttribute("value") + " " + personalInformationOct.tNameEng.getAttribute("value") + " " + personalInformationOct.familyNameEng.getAttribute("value");
             }catch (Exception e){
-                empName = getDriver().findElement(By.xpath("(//label[@class = 'empNameAndStatus'])[1]")).getText().trim();
+                empName = driver.findElement(By.xpath("(//label[@class = 'empNameAndStatus'])[1]")).getText().trim();
             }
 
             employeeCode = empCode.getAttribute("value");
@@ -1395,7 +1395,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         elementWaitAdvanced(By.id("employee_code"));
         hold(300);
-        Actions actions = new Actions(getDriver());
+        Actions actions = new Actions(driver);
         actions.doubleClick(empCode).build().perform();
         hold(100);
         setText(empCode, employeeCode);
@@ -1492,7 +1492,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         softAssert.assertTrue(siteE.isDisplayed(), "- There is Issue, should be continue to employment page");
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1530,7 +1530,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         softAssert.assertTrue(siteE.isDisplayed(), "- There is Issue, should be continue to employment page");
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1571,7 +1571,7 @@ public class PersonnelInformation extends WebBase {
         hold(200);
         clickOn(personalAndEmploymentTab);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1612,7 +1612,7 @@ public class PersonnelInformation extends WebBase {
         hold(200);
         clickOn(personalAndEmploymentTab);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1649,7 +1649,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         softAssert.assertTrue(siteE.isDisplayed(), "- There is Issue, should be continue to employment page");
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1691,7 +1691,7 @@ public class PersonnelInformation extends WebBase {
         hold(200);
         clickOn(personalAndEmploymentTab);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1728,7 +1728,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         softAssert.assertTrue(siteE.isDisplayed(), "- There is Issue, should be continue to employment page");
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1770,7 +1770,7 @@ public class PersonnelInformation extends WebBase {
         hold(200);
         clickOn(personalAndEmploymentTab);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.minimumAgeForHiringCitizenSetup("Jordanian", "No Constraint", "No Constraint",
                 "No Constraint", "No Constraint");
@@ -1961,7 +1961,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(projectManagerSave);
             hold(300);
             clickOn(projectManagerCloseBtn);
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
 
             mainMenu.mainMenu("Settings", "System Parameters");
             systemParameters.checkProjectManagerIsDisabled();
@@ -1990,15 +1990,15 @@ public class PersonnelInformation extends WebBase {
                 }
 
                 clickOn(projectManagerCloseBtn);
-                getDriver().switchTo().defaultContent();
+                driver.switchTo().defaultContent();
                 goToFrame(frame);
                 clickOn(projectManagerBtn);
                 hold(300);
                 goToFrame(iframePopup);
-                softAssert.assertEquals(getDriver().findElement(By.id("oDiv")).getText().trim(),"", "- There is still a record that has not been deleted!");
+                softAssert.assertEquals(driver.findElement(By.id("oDiv")).getText().trim(),"", "- There is still a record that has not been deleted!");
             }
 
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
             goToFrame(frame);
 
             softAssert.assertAll();
@@ -2018,7 +2018,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(projectManagerSave);
             hold(300);
             clickOn(projectManagerCloseBtn);
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
 
             mainMenu.mainMenu("Settings", "System Parameters");
             systemParameters.checkProjectManagerIsDisabled();
@@ -2047,15 +2047,15 @@ public class PersonnelInformation extends WebBase {
                 }
 
                 clickOn(projectManagerCloseBtn);
-                getDriver().switchTo().defaultContent();
+                driver.switchTo().defaultContent();
                 goToFrame(frame);
                 clickOn(projectManagerBtn);
                 hold(500);
                 goToFrame(iframePopup);
-                softAssert.assertEquals(getDriver().findElement(By.id("oDiv")).getText().trim(),"", "- There is still a record that has not been deleted!");
+                softAssert.assertEquals(driver.findElement(By.id("oDiv")).getText().trim(),"", "- There is still a record that has not been deleted!");
             }
 
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
             goToFrame(frame);
 
             softAssert.assertAll();
@@ -2078,7 +2078,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(projectManagerSave);
             hold(300);
             clickOn(projectManagerCloseBtn);
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
 
             mainMenu.mainMenu("Settings", "System Parameters");
             systemParameters.checkProjectManagerIsDisabled();
@@ -2107,15 +2107,15 @@ public class PersonnelInformation extends WebBase {
                 }
 
                 clickOn(projectManagerCloseBtn);
-                getDriver().switchTo().defaultContent();
+                driver.switchTo().defaultContent();
                 goToFrame(frame);
                 clickOn(projectManagerBtn);
                 hold(500);
                 goToFrame(iframePopup);
-                softAssert.assertEquals(getDriver().findElement(By.id("oDiv")).getText().trim(),"", "- There is still a record that has not been deleted!");
+                softAssert.assertEquals(driver.findElement(By.id("oDiv")).getText().trim(),"", "- There is still a record that has not been deleted!");
             }
 
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
             goToFrame(frame);
 
             softAssert.assertAll();
@@ -2163,7 +2163,7 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertEquals(alertText.getText().trim(), "You Do Not Have Permission To Upload Files!");
         hold(300);
         elementWaitAdvanced(By.id("btok"));
-        Actions action = new Actions(getDriver());
+        Actions action = new Actions(driver);
         action.moveToElement(alertOkBtn).click().perform();
         hold(300);
         action.moveToElement(alertOkBtn).click().perform();
@@ -2316,7 +2316,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         clickOn(convertHijriBtn);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         scrollToElement(birth_date);
 
@@ -2628,7 +2628,7 @@ public class PersonnelInformation extends WebBase {
 
         ///// reduce implicit time to find list if empty faster
         implicitWaitChanging(200);
-        List<WebElement> currencyElement = getDriver().findElements(By.id("select2-emp_currency-container"));
+        List<WebElement> currencyElement = driver.findElements(By.id("select2-emp_currency-container"));
         if(flag == 1){
             Assert.assertFalse(currencyElement.isEmpty(), "- Currency Element NOT Appear when the FLAG = "+flag);
         }else{
@@ -2668,7 +2668,7 @@ public class PersonnelInformation extends WebBase {
 
         ///// reduce implicit time to find list if empty faster
         implicitWaitChanging(200);
-        List<WebElement> currencyElement = getDriver().findElements(By.id("select2-emp_rotation_type_1-container"));
+        List<WebElement> currencyElement = driver.findElements(By.id("select2-emp_rotation_type_1-container"));
         if(flag == 1){
             Assert.assertFalse(currencyElement.isEmpty(), "- Job Rotation Element NOT Appear when the FLAG = "+flag);
         }else{
@@ -2718,7 +2718,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(menuPostButton);
             hold(300);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
         }
@@ -2737,14 +2737,14 @@ public class PersonnelInformation extends WebBase {
             setText(employeeCodeSync, employeeCode);
             hold(100);
             employeeCodeSync.sendKeys(Keys.TAB);
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             hold(500);
             Assert.assertTrue(alertActiveEmployeeSync.isDisplayed(), "- Alert 'Please Choose A Terminated Employee' NOT Appear");
         }else if(employeeStatus.equalsIgnoreCase("undefined")){
             setText(employeeCodeSync, "undefinedemp");
             hold(100);
             employeeCodeSync.sendKeys(Keys.TAB);
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             hold(500);
             Assert.assertTrue(alertUndefinedEmployeeSync.isDisplayed(), "- Alert 'Employee Is Undefined!' NOT Appear");
         } else if (employeeStatus.equalsIgnoreCase("inactive")) {
@@ -2797,7 +2797,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(menuPostButton);
             hold(300);
             alertWait();
-            Alert alert = getDriver().switchTo().alert();
+            Alert alert = driver.switchTo().alert();
             hold(500);
             alert.accept();
             hold(300);
@@ -2816,7 +2816,7 @@ public class PersonnelInformation extends WebBase {
         goToFrame(iframePopup);
         clickOn(searchBoxBtn);
         hold(300);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(searchEmployeePopupFrame);
         hold(300);
         clickOn(filterInSearchBox);
@@ -2831,7 +2831,7 @@ public class PersonnelInformation extends WebBase {
             hold(500);
             clickOn(filterInSearchBox);
             hold(500);
-            clickOn(getDriver().findElement(By.xpath("//div[contains(@onclick, 'go_selected_user')][1]")));
+            clickOn(driver.findElement(By.xpath("//div[contains(@onclick, 'go_selected_user')][1]")));
             hold(300);
             backToParentIFrame();
             Assert.assertTrue(alertActiveEmployeeSync.isDisplayed(), "- Alert 'Please Choose A Terminated Employee' NOT Appear");
@@ -2844,9 +2844,9 @@ public class PersonnelInformation extends WebBase {
             hold(500);
             clickOn(filterInSearchBox);
             hold(500);
-            clickOn(getDriver().findElement(By.xpath("//div[contains(@onclick, 'go_selected_user')][1]")));
+            clickOn(driver.findElement(By.xpath("//div[contains(@onclick, 'go_selected_user')][1]")));
             hold(300);
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             goToFrame(iframePopup);
             hold(300);
             Assert.assertTrue(employeeNameSync.getText().isEmpty(), "- Employee Name NOT Appear");
@@ -2882,7 +2882,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         clickOn(saveBtnSyncData);
         hold(200);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(500);
         clickOn(nextButton);
         hold(300);
@@ -2926,7 +2926,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(personalAndEmploymentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -2966,7 +2966,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(personalAndEmploymentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -2997,7 +2997,7 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertTrue(workerSpouse.isEnabled(), " - Spouses");
         softAssert.assertEquals(allowanceAmountSpouse.getAttribute("value"), "10.000", " - Spouses");
         softAssert.assertEquals(notesSpouse.getText(), "testSyncSpouse", " - Spouses");
-        softAssert.assertEquals(getDriver().findElement(By.xpath("//label[contains(@class,'font-size-19 bold mar-left-20px')]")).getText().trim(), "10.000", " - Spouses");
+        softAssert.assertEquals(driver.findElement(By.xpath("//label[contains(@class,'font-size-19 bold mar-left-20px')]")).getText().trim(), "10.000", " - Spouses");
 
     }
 
@@ -3008,7 +3008,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(personalAndEmploymentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3051,7 +3051,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(personalAndEmploymentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3095,7 +3095,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(addressAndContactsTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3122,7 +3122,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(assetsAndDocumentsTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3150,7 +3150,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(learningAndDevelopmentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3188,7 +3188,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(learningAndDevelopmentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3221,7 +3221,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(learningAndDevelopmentTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3260,7 +3260,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(experiencesTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3291,7 +3291,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(addressAndContactsTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3319,7 +3319,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(otherTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3348,7 +3348,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(experiencesTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3391,7 +3391,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(experiencesTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3420,7 +3420,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(addressAndContactsTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3447,7 +3447,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(assetsAndDocumentsTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3477,7 +3477,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(otherTab);
             implicitWaitChanging(10000);
         }catch (Exception e){
-            getDriver().switchTo().parentFrame();
+            driver.switchTo().parentFrame();
             mainMenu = new MainMenu();
             mainMenu.mainMenu("Employees","Personnel Information");
             hold(500);
@@ -3503,7 +3503,7 @@ public class PersonnelInformation extends WebBase {
 
     public void synchronizeDataResidences() {
 
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         mainMenu = new MainMenu();
         mainMenu.mainMenu("Employees","Employees Residences");
         hold(300);
@@ -3562,24 +3562,24 @@ public class PersonnelInformation extends WebBase {
         hold(300);
 
         elementWaitAdvanced(By.name("general_info"));
-        //clickOn(getDriver().findElement(By.name("general_info")));
-        //clickOn(getDriver().findElement(By.name("spouses")));
-        clickOn(getDriver().findElement(By.name("children")));
-        clickOn(getDriver().findElement(By.name("dependents")));
-        clickOn(getDriver().findElement(By.name("contacts")));
-        clickOn(getDriver().findElement(By.name("notes")));
-        clickOn(getDriver().findElement(By.name("education")));
-        clickOn(getDriver().findElement(By.name("skills")));
-        clickOn(getDriver().findElement(By.name("certificates")));
-        clickOn(getDriver().findElement(By.name("job_history")));
-        clickOn(getDriver().findElement(By.name("references")));
-        clickOn(getDriver().findElement(By.name("additional_info")));
-        clickOn(getDriver().findElement(By.name("experiences")));
-        clickOn(getDriver().findElement(By.name("practical_experiences")));
-        clickOn(getDriver().findElement(By.name("addresses")));
-        clickOn(getDriver().findElement(By.name("Attachments")));
-        clickOn(getDriver().findElement(By.name("medical_profile")));
-        clickOn(getDriver().findElement(By.name("residence_details")));
+        //clickOn(driver.findElement(By.name("general_info")));
+        //clickOn(driver.findElement(By.name("spouses")));
+        clickOn(driver.findElement(By.name("children")));
+        clickOn(driver.findElement(By.name("dependents")));
+        clickOn(driver.findElement(By.name("contacts")));
+        clickOn(driver.findElement(By.name("notes")));
+        clickOn(driver.findElement(By.name("education")));
+        clickOn(driver.findElement(By.name("skills")));
+        clickOn(driver.findElement(By.name("certificates")));
+        clickOn(driver.findElement(By.name("job_history")));
+        clickOn(driver.findElement(By.name("references")));
+        clickOn(driver.findElement(By.name("additional_info")));
+        clickOn(driver.findElement(By.name("experiences")));
+        clickOn(driver.findElement(By.name("practical_experiences")));
+        clickOn(driver.findElement(By.name("addresses")));
+        clickOn(driver.findElement(By.name("Attachments")));
+        clickOn(driver.findElement(By.name("medical_profile")));
+        clickOn(driver.findElement(By.name("residence_details")));
 
         String[] randomOption = new String[4];
         String[] sync = {"children", "dependents", "contacts", "notes", "education",
@@ -3600,13 +3600,13 @@ public class PersonnelInformation extends WebBase {
             validate.add(nextRandom);
             System.out.println(sync[nextRandom]);
             randomOption[i] = sync[nextRandom];
-            clickOn(getDriver().findElement(By.name(randomOption[i])));
+            clickOn(driver.findElement(By.name(randomOption[i])));
         }
 
         hold(300);
         clickOn(saveBtnSyncData);
         hold(200);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         hold(500);
         clickOn(nextButton);
         hold(300);
@@ -3717,19 +3717,19 @@ public class PersonnelInformation extends WebBase {
             lockEmployment.click();
         }
         hold(300);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(menuFrame);
         hold(300);
         clickOn(menuPostButton);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(300);
         alert.accept();
         hold(300);
         alertWait();
         hold(300);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         if(personalOrFinancial.equalsIgnoreCase("Personal")){
             mainMenu.mainMenu("Employees", "Personnel Information");
             goToFrame(frame);
@@ -3828,7 +3828,7 @@ public class PersonnelInformation extends WebBase {
             softAssert.assertEquals(checkSaveButton.size(), 0, "- Issue, The Save Button Still Appear in Employment Information!");
             implicitWaitChanging(10000);
             hold(500);
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
             mainMenu.mainMenu("Employees", "Financial Information");
             goToFrame(frame);
             elementWaitAdvanced(By.id("employee_code"));
@@ -3885,7 +3885,7 @@ public class PersonnelInformation extends WebBase {
             softAssert.assertEquals(checkSaveButton.size(), 0, "- Issue, The Save Button Still Appear in Other Page Insurance!");
             implicitWaitChanging(10000);
         }
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Employees", "Lock Employees Data");
         hold(300);
         goToFrame(frame);
@@ -3894,7 +3894,7 @@ public class PersonnelInformation extends WebBase {
         setText(empCodeByName, employeeCode);
         setText(empCodeByName, Keys.TAB);
         hold(300);
-        getDriver().switchTo().parentFrame();
+        driver.switchTo().parentFrame();
         goToFrame(menuFrame);
         hold(300);
         clickOn(menuUnPostButton);
@@ -3906,7 +3906,7 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertEquals(alert.getText(), "Transactions Were Correctly Unlocked", "- Issue, maybe already Unlocked");
         hold(300);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         if(personalOrFinancial.equalsIgnoreCase("Personal")){
             mainMenu.mainMenu("Employees", "Personnel Information");
             goToFrame(frame);
@@ -3929,7 +3929,7 @@ public class PersonnelInformation extends WebBase {
             implicitWaitChanging(10000);
             hold(500);
         }else if (personalOrFinancial.equalsIgnoreCase("Financial")){
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
             mainMenu.mainMenu("Employees", "Financial Information");
             goToFrame(frame);
             elementWaitAdvanced(By.id("employee_code"));
@@ -4006,7 +4006,7 @@ public class PersonnelInformation extends WebBase {
             softAssert.assertFalse(checkSaveButton.isEmpty(), "- Issue, The Save Button NOT Appear in Employment Information!");
             implicitWaitChanging(10000);
             hold(500);
-            getDriver().switchTo().defaultContent();
+            driver.switchTo().defaultContent();
             mainMenu.mainMenu("Employees", "Financial Information");
             goToFrame(frame);
             elementWaitAdvanced(By.id("employee_code"));
@@ -4093,7 +4093,7 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertEquals(employeePictureInSearchBox.size(), 0, "There is Pictures Still Appear");
         implicitWaitChanging(10000);
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Settings", "System Parameters");
         systemParameters.hideEmployeesPicturesInEmployeeSearchPage(false);
         hold(500);
@@ -4137,7 +4137,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "Software Test Engineer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         hold(300);
         mainMenu.mainMenu("Workforce Management", "Employee Termination");
         goToFrame(frame);
@@ -4149,68 +4149,68 @@ public class PersonnelInformation extends WebBase {
         setText(empCode, employeeCode);
         setText(empCode, Keys.TAB);
         hold(300);
-        String endDate = getDriver().findElement(By.id("first_date")).getAttribute("value");
+        String endDate = driver.findElement(By.id("first_date")).getAttribute("value");
         clickOn(terminationType);
         hold(500);
-        clickOn(getDriver().findElement(By.xpath("//*[@id=\"termination_type\"]/option[4]")));
+        clickOn(driver.findElement(By.xpath("//*[@id=\"termination_type\"]/option[4]")));
         hold(500);
         clickOn(calculateSalaryTermination);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         clickOn(menuPostButton);
         hold(300);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(1000);
-        clickOn(getDriver().findElement(By.xpath("//a[contains(@href, 'end_settlements.php')]")));
+        clickOn(driver.findElement(By.xpath("//a[contains(@href, 'end_settlements.php')]")));
         hold(300);
-        clickOn(getDriver().findElement(By.name("is_settled")));
+        clickOn(driver.findElement(By.name("is_settled")));
         hold(500);
-        setText(getDriver().findElement(By.id("settled_date")), endDate);
-        getDriver().switchTo().defaultContent();
+        setText(driver.findElement(By.id("settled_date")), endDate);
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         clickOn(menuPostButton);
         hold(500);
         alertWait();
         hold(500);
         alert.accept();
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(frame);
         hold(1000);
-        clickOn(getDriver().findElement(By.xpath("//div[@class='tabdiv']//a[contains(@href, 'end_services.php')]")));
+        clickOn(driver.findElement(By.xpath("//div[@class='tabdiv']//a[contains(@href, 'end_services.php')]")));
         hold(300);
-        clickOn(getDriver().findElement(By.name("Button3")));
+        clickOn(driver.findElement(By.name("Button3")));
         hold(300);
-        getDriver().switchTo().defaultContent();
-        String CurrectWindow = getDriver().getWindowHandle();
-        for(String winHandle : getDriver().getWindowHandles()){
-            getDriver().switchTo().window(winHandle);
-            System.out.println(getDriver().switchTo().window(winHandle).getTitle());
+        driver.switchTo().defaultContent();
+        String CurrectWindow = driver.getWindowHandle();
+        for(String winHandle : driver.getWindowHandles()){
+            driver.switchTo().window(winHandle);
+            System.out.println(driver.switchTo().window(winHandle).getTitle());
         }
 
-        new Select(getDriver().findElement(By.id("new_branch_code"))).selectByVisibleText("Auto_a2");
-        setText(getDriver().findElement(By.id("site_1")), Keys.TAB);
+        new Select(driver.findElement(By.id("new_branch_code"))).selectByVisibleText("Auto_a2");
+        setText(driver.findElement(By.id("site_1")), Keys.TAB);
         hold(500);
-        setText(getDriver().findElement(By.name("new_employee_code")), employeeCode+"a2");
+        setText(driver.findElement(By.name("new_employee_code")), employeeCode+"a2");
         hold(300);
-        setText(getDriver().findElement(By.name("universal_code")), employeeCode+"a2");
-        clickOn(getDriver().findElement(By.name("button_save")));
+        setText(driver.findElement(By.name("universal_code")), employeeCode+"a2");
+        clickOn(driver.findElement(By.name("button_save")));
         hold(300);
-        clickOn(getDriver().findElement(By.name("button_move")));
+        clickOn(driver.findElement(By.name("button_move")));
         hold(300);
         alertWait();
         hold(500);
         alert.accept();
         hold(500);
-        clickOn(getDriver().findElement(By.name("button_next")));
+        clickOn(driver.findElement(By.name("button_next")));
         hold(500);
-        clickOn(getDriver().findElement(By.name("button_cancel")));
-        getDriver().switchTo().window(CurrectWindow);
+        clickOn(driver.findElement(By.name("button_cancel")));
+        driver.switchTo().window(CurrectWindow);
         hold(500);
         mainMenu.mainMenu("Employees", "Personnel Information");
         hold(300);
@@ -4255,31 +4255,31 @@ public class PersonnelInformation extends WebBase {
         hold(700);
 
         if(!sNameEng.getAttribute("validation").contains("required")){
-            new Actions(getDriver()).doubleClick(sNameEng).perform();
+            new Actions(driver).doubleClick(sNameEng).perform();
             hold(1200);
         }
         if (!tNameEng.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(tNameEng).perform();
+            new Actions(driver).doubleClick(tNameEng).perform();
             hold(1200);
         }
         if (!familyNameEng.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(familyNameEng).perform();
+            new Actions(driver).doubleClick(familyNameEng).perform();
             hold(1200);
         }
         if(!fNameAr.getAttribute("validation").contains("required")){
-            new Actions(getDriver()).doubleClick(fNameAr).perform();
+            new Actions(driver).doubleClick(fNameAr).perform();
             hold(1200);
         }
         if (!sNameAr.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(sNameAr).perform();
+            new Actions(driver).doubleClick(sNameAr).perform();
             hold(1200);
         }
         if (!tNameAr.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(tNameAr).perform();
+            new Actions(driver).doubleClick(tNameAr).perform();
             hold(1200);
         }
         if (!familyNameAr.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(familyNameAr).perform();
+            new Actions(driver).doubleClick(familyNameAr).perform();
             hold(1200);
         }
 
@@ -4340,26 +4340,26 @@ public class PersonnelInformation extends WebBase {
         hold(200);
         setText(familyNameAr, employeeCode+"lastAr");
 
-        softAssert.assertTrue(getDriver().findElement(By.name("social_status")).getAttribute("validation").equals("required"), "- Validation In 'Marital Status' NOT required");
-        softAssert.assertTrue(getDriver().findElement(By.name("sex")).getAttribute("validation").equals("required"), "- Validation In 'Gender' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("social_status")).getAttribute("validation").equals("required"), "- Validation In 'Marital Status' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("sex")).getAttribute("validation").equals("required"), "- Validation In 'Gender' NOT required");
         softAssert.assertTrue(birth_date.getAttribute("validation").contains("required"), "- Validation In 'Birth Date' NOT required");
 
         scrollToElement(birth_date);
 
-        if(!getDriver().findElement(By.name("nationality")).getAttribute("validation").contains("required")){
-            new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_nationality"))).perform();
+        if(!driver.findElement(By.name("nationality")).getAttribute("validation").contains("required")){
+            new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_nationality"))).perform();
             hold(1200);
         }
-        if (!getDriver().findElement(By.name("relegion")).getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_relegion"))).perform();
+        if (!driver.findElement(By.name("relegion")).getAttribute("validation").contains("required")) {
+            new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_relegion"))).perform();
             hold(1200);
         }
         if (!mobileE.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_mobile"))).perform();
+            new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_mobile"))).perform();
             hold(1200);
         }
         if (!emailE.getAttribute("validation").contains("required")) {
-            new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_Email"))).perform();
+            new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_Email"))).perform();
             hold(1200);
         }
 
@@ -4381,8 +4381,8 @@ public class PersonnelInformation extends WebBase {
         selectOption(nationalityE, "Jordanian");
         hold(200);
 
-        softAssert.assertTrue(getDriver().findElement(By.name("nationality")).getAttribute("validation").contains("required"), "- Validation In 'Nationality' NOT required");
-        softAssert.assertTrue(getDriver().findElement(By.name("relegion")).getAttribute("validation").contains("required"), "- Validation In 'Religion' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("nationality")).getAttribute("validation").contains("required"), "- Validation In 'Nationality' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("relegion")).getAttribute("validation").contains("required"), "- Validation In 'Religion' NOT required");
         softAssert.assertTrue(mobileE.getAttribute("validation").contains("required"), "- Validation In 'Mobile' NOT required");
         softAssert.assertTrue(emailE.getAttribute("validation").contains("required"), "- Validation In 'Email' NOT required");
 
@@ -4414,32 +4414,32 @@ public class PersonnelInformation extends WebBase {
         elementWait(siteE);
         softAssert.assertTrue(siteE.isDisplayed(), "There is a problem after click next, should be go to Employment Information");
         hold(500);
-        clickOn(getDriver().findElement(By.xpath("//button[contains(text(), 'Previous')]")));
+        clickOn(driver.findElement(By.xpath("//button[contains(text(), 'Previous')]")));
         hold(300);
 
         scrollToElement(birth_date);
-        new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_Email"))).perform();
+        new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_Email"))).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_mobile"))).perform();
+        new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_mobile"))).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_relegion"))).perform();
+        new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_relegion"))).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(getDriver().findElement(By.id("pay_employees_nationality"))).perform();
+        new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_nationality"))).perform();
         hold(300);
         scrollToElement(empCode);
-        new Actions(getDriver()).doubleClick(familyNameAr).perform();
+        new Actions(driver).doubleClick(familyNameAr).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(tNameAr).perform();
+        new Actions(driver).doubleClick(tNameAr).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(sNameAr).perform();
+        new Actions(driver).doubleClick(sNameAr).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(fNameAr).perform();
+        new Actions(driver).doubleClick(fNameAr).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(familyNameEng).perform();
+        new Actions(driver).doubleClick(familyNameEng).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(tNameEng).perform();
+        new Actions(driver).doubleClick(tNameEng).perform();
         hold(300);
-        new Actions(getDriver()).doubleClick(sNameEng).perform();
+        new Actions(driver).doubleClick(sNameEng).perform();
         hold(300);
 
         softAssert.assertAll();
@@ -4767,26 +4767,26 @@ public class PersonnelInformation extends WebBase {
         clickOn(filterInSearchBox);
         hold(300);
         elementWaitAdvanced(By.id("site_1"));
-        Select Site = new Select(getDriver().findElement(By.id("site_1")));
-        Select Project = new Select(getDriver().findElement(By.id("Project_1")));
-        Select Department = new Select(getDriver().findElement(By.id("department_1")));
-        Select Section = new Select(getDriver().findElement(By.id("section_1")));
-        Select Division = new Select(getDriver().findElement(By.id("division_1")));
-        Select Unit = new Select(getDriver().findElement(By.id("units_1")));
-        Select Sub_Section = new Select(getDriver().findElement(By.id("sub_section_1")));
-        Select Sub_Division = new Select(getDriver().findElement(By.id("sub_division_1")));
-        Select Sub_Unit = new Select(getDriver().findElement(By.id("sub_unit_1")));
-        Select Office = new Select(getDriver().findElement(By.id("office_1")));
-        Select Team = new Select(getDriver().findElement(By.id("team_1")));
-        Select Position = new Select(getDriver().findElement(By.id("position_1")));
-        Select Main_Category = new Select(getDriver().findElement(By.name("FDimension")));
-        Select Sub_Category = new Select(getDriver().findElement(By.name("SDimension")));
-        Select Classification = new Select(getDriver().findElement(By.name("classification")));
-        Select Degree = new Select(getDriver().findElement(By.name("degree")));
-        Select Gender = new Select(getDriver().findElement(By.name("sex_2")));
-        Select Employee_Status = new Select(getDriver().findElement(By.id("emp_status_search")));
-        Select Nationality = new Select(getDriver().findElement(By.name("nationalityx")));
-        Select Citizen = new Select(getDriver().findElement(By.name("citizen")));
+        Select Site = new Select(driver.findElement(By.id("site_1")));
+        Select Project = new Select(driver.findElement(By.id("Project_1")));
+        Select Department = new Select(driver.findElement(By.id("department_1")));
+        Select Section = new Select(driver.findElement(By.id("section_1")));
+        Select Division = new Select(driver.findElement(By.id("division_1")));
+        Select Unit = new Select(driver.findElement(By.id("units_1")));
+        Select Sub_Section = new Select(driver.findElement(By.id("sub_section_1")));
+        Select Sub_Division = new Select(driver.findElement(By.id("sub_division_1")));
+        Select Sub_Unit = new Select(driver.findElement(By.id("sub_unit_1")));
+        Select Office = new Select(driver.findElement(By.id("office_1")));
+        Select Team = new Select(driver.findElement(By.id("team_1")));
+        Select Position = new Select(driver.findElement(By.id("position_1")));
+        Select Main_Category = new Select(driver.findElement(By.name("FDimension")));
+        Select Sub_Category = new Select(driver.findElement(By.name("SDimension")));
+        Select Classification = new Select(driver.findElement(By.name("classification")));
+        Select Degree = new Select(driver.findElement(By.name("degree")));
+        Select Gender = new Select(driver.findElement(By.name("sex_2")));
+        Select Employee_Status = new Select(driver.findElement(By.id("emp_status_search")));
+        Select Nationality = new Select(driver.findElement(By.name("nationalityx")));
+        Select Citizen = new Select(driver.findElement(By.name("citizen")));
 
         Site.selectByVisibleText("Amman");
         hold(300);
@@ -4820,7 +4820,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         Degree.selectByVisibleText("Degree 1");
         hold(300);
-        scrollToElement(getDriver().findElement(By.id("sub_division_1")));
+        scrollToElement(driver.findElement(By.id("sub_division_1")));
         hold(300);
         Gender.selectByVisibleText("Male");
         hold(300);
@@ -4840,7 +4840,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         backToParentIFrame();
         ////// To Close Advance Search POPUP by Javascript /////
-        JavascriptExecutor js = (JavascriptExecutor) getDriver();
+        JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.closeModal()", "");
         hold(300);
         closeIFrame();
@@ -4858,12 +4858,12 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("site_1"));
 
-        Select Site2 = new Select(getDriver().findElement(By.id("site_1")));
-        Select Department2 = new Select(getDriver().findElement(By.id("department_1")));
-        Select Section2 = new Select(getDriver().findElement(By.id("section_1")));
-        Select Division2 = new Select(getDriver().findElement(By.id("division_1")));
-        Select Position2 = new Select(getDriver().findElement(By.id("position_1")));
-        Select Employee_Status2 = new Select(getDriver().findElement(By.id("emp_status_search")));
+        Select Site2 = new Select(driver.findElement(By.id("site_1")));
+        Select Department2 = new Select(driver.findElement(By.id("department_1")));
+        Select Section2 = new Select(driver.findElement(By.id("section_1")));
+        Select Division2 = new Select(driver.findElement(By.id("division_1")));
+        Select Position2 = new Select(driver.findElement(By.id("position_1")));
+        Select Employee_Status2 = new Select(driver.findElement(By.id("emp_status_search")));
         Site2.selectByVisibleText("Amman");
         hold(300);
         Department2.selectByVisibleText("Advance Search Department");
@@ -4874,7 +4874,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         Position2.selectByVisibleText("Advance Search Position");
         hold(300);
-        scrollToElement(getDriver().findElement(By.id("sub_division_1")));
+        scrollToElement(driver.findElement(By.id("sub_division_1")));
         hold(300);
         Employee_Status2.selectByVisibleText("Active Employee");
         hold(500);
@@ -4913,11 +4913,11 @@ public class PersonnelInformation extends WebBase {
         clickOn(filterInSearchBox);
         hold(300);
         elementWaitAdvanced(By.id("site_1"));
-        Select Site = new Select(getDriver().findElement(By.id("site_1")));
+        Select Site = new Select(driver.findElement(By.id("site_1")));
         hold(500);
         Site.selectByVisibleText("Zarqa");
         hold(500);
-        scrollToElement(getDriver().findElement(By.id("sub_division_1")));
+        scrollToElement(driver.findElement(By.id("sub_division_1")));
         hold(300);
         clickOn(searchBtnInSearchBox);
         hold(500);
@@ -4928,9 +4928,9 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertEquals(employeeNameInSearchBox.size(), 0, "- There is an employees in Site 'Zarqa' is appear is search.");
         implicitWaitChanging(10000);
 
-        clickOn(getDriver().findElement(By.id("btn-closex")));
+        clickOn(driver.findElement(By.id("btn-closex")));
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         hold(200);
         goToFrame(frame);
         hold(300);
@@ -4949,9 +4949,9 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("site_1"));
         hold(500);
-        scrollToElement(getDriver().findElement(By.id("sub_division_1")));
+        scrollToElement(driver.findElement(By.id("sub_division_1")));
         hold(300);
-        new Select(getDriver().findElement(By.name("FDimension"))).selectByVisibleText("Execitive Payroll Main Category");
+        new Select(driver.findElement(By.name("FDimension"))).selectByVisibleText("Execitive Payroll Main Category");
         hold(500);
         clickOn(searchBtnInSearchBox);
         hold(500);
@@ -4962,9 +4962,9 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertEquals(employeeNameInSearchBox.size(), 0, "- There is an employees in 'Execitive Payroll Main Category' is appear is search.");
         implicitWaitChanging(10000);
 
-        clickOn(getDriver().findElement(By.id("btn-closex")));
+        clickOn(driver.findElement(By.id("btn-closex")));
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         hold(200);
         goToFrame(frame);
         hold(300);
@@ -4983,9 +4983,9 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("site_1"));
         hold(500);
-        scrollToElement(getDriver().findElement(By.id("sub_division_1")));
+        scrollToElement(driver.findElement(By.id("sub_division_1")));
         hold(300);
-        new Select(getDriver().findElement(By.id("position_1"))).selectByVisibleText("Executive Payroll Position");
+        new Select(driver.findElement(By.id("position_1"))).selectByVisibleText("Executive Payroll Position");
         hold(500);
         clickOn(searchBtnInSearchBox);
         hold(500);
@@ -5028,7 +5028,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         elementWaitDisappear(By.id("LoadingElement"));
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         mainMenu.mainMenu("Employees", "Personnel Information");
         hold(500);
         goToFrame(frame);
@@ -5041,9 +5041,9 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         setText(empCode, Keys.TAB);
         hold(500);
-        softAssert.assertTrue(getDriver().findElement(By.xpath("//label[contains(text(), 'You Are Not Authorized To View This Employee')]")).isDisplayed(), "This Alert: 'You Are Not Authorized To View This Employee' should be Appear");
+        softAssert.assertTrue(driver.findElement(By.xpath("//label[contains(text(), 'You Are Not Authorized To View This Employee')]")).isDisplayed(), "This Alert: 'You Are Not Authorized To View This Employee' should be Appear");
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
 
         clickOn(logout);
         hold(300);

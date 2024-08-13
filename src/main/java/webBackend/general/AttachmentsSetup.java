@@ -43,12 +43,12 @@ public class AttachmentsSetup extends WebBase {
             clickOn(doNotCheckMaximumUploadSize);
         }
         hold(500);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuSave);
         hold(300);
-        getDriver().switchTo().defaultContent();
+        driver.switchTo().defaultContent();
         hold(1500);
 
     }

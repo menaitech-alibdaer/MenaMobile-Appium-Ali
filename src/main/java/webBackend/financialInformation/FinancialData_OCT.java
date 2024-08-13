@@ -638,7 +638,7 @@ public class FinancialData_OCT extends WebBase {
         clickOn(menuSave);
         hold(400);
         alertWait();
-        Alert alert = getDriver().switchTo().alert();
+        Alert alert = driver.switchTo().alert();
         hold(500);
         if(alert.getText().contains(lowerLimitValue)){
             alert.accept();
