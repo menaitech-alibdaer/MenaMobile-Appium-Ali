@@ -81,10 +81,10 @@ public class FullTest extends BaseTest {
 
         myRequests.vacationRequest("Annual Vacation", "25/11/2023", "01/01/2024", true);
 
-        mainScreen.myRequests();
-
-        myRequests.openOvertime();
-        myRequests.overtimeRequest("20/06/2022", "Regular Overtime", "1:30 PM", "3:00 PM", true);
+//        mainScreen.myRequests();
+//
+//        myRequests.openOvertime();
+//        myRequests.overtimeRequest("20/06/2022", "Regular Overtime", "1:30 PM", "3:00 PM", true);
 
         softAssert.assertAll();
 

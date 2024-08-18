@@ -16,6 +16,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import static bases.AppiumChecker.startAppiumIfNotRunning;
+import static bases.EmulatorChecker.startEmulatorIfNotRunning;
+import static utilities.Colors.*;
 import static utilities.VersionGetter.*;
 
 public class BaseTest {
@@ -41,7 +44,6 @@ public class BaseTest {
     private String iniBrowser = null;
     private String iniPlatform = null;
     public TestType testType = null;
-
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
@@ -148,7 +150,7 @@ public class BaseTest {
             caps.setCapability("app", "/path/to/your/app.app");
             URL url = null;
             try {
-                url = new URL("http://127.0.0.1:4723");
+                url = new URL("http://127.0.0.1:4723/wd/hub");
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
@@ -161,6 +163,8 @@ public class BaseTest {
     public void webInitialize(){
 
         testType = TestType.WEB;
+
+        System.out.println(ANSI_GREEN + "Web Driver Work Now!" + ANSI_RESET);
 
         setDriver(getDriver());
         ChromeOptions options = new ChromeOptions();
@@ -207,6 +211,11 @@ public class BaseTest {
     public void mobileInitialize(){
 
         testType = TestType.MOBILE;
+
+        System.out.println(ANSI_BLUE + "Mobile Driver Work Now!" + ANSI_RESET);
+
+//        startEmulatorIfNotRunning();
+//        startAppiumIfNotRunning();
 
         if(iniPlatform.equalsIgnoreCase("Android")){
             initializeAppiumDriver("Android");
