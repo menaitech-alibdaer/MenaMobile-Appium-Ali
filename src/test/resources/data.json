@@ -1,0 +1,14 @@
+{
+
+  "connectivity_1": {
+    "company": "mena",
+    "branch" : "auto_a1",
+    "url"    : "https://qc.menaitech.com/menas01_07_2024/application/hrms/"
+  },
+
+  "vacations": {
+    "Annual Vacation": "Annual Vacation",
+    "Unpaid Vacation": "Unpaid Vacation"
+  }
+
+}

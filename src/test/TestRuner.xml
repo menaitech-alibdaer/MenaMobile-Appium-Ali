@@ -5,15 +5,15 @@
         <listener class-name="bases.Listener" />
     </listeners>
 
-    <test name="TestByXML" parallel="methods" thread-count="1">
+    <test name="TestByXML" parallel="classes" thread-count="2">
         <parameter name="browser" value="chrome" />
         <parameter name="version" value="JUL" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="mobileTest.AppTest" />
-            <class name="webTest.NewEmployeeCreator" />
+            <class name="FullTest" />
+            <class name="FullTest2" />
         </classes>
     </test>
 

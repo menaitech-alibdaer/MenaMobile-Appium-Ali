@@ -7,9 +7,7 @@ import webBackend.financialInformation.FinancialPackage;
 import webBackend.general.*;
 import webBackend.personnelInformation.PersonnelInformation;
 
-import static utilities.MssqlConnect.menaMeRestPassword;
-import static utilities.WebHelper.employeeCodeGetter;
-import static utilities.WebHelper.employeeCodeSetter;
+import static utilities.MssqlConnect.*;
 
 public class FullTest extends BaseTest {
 
@@ -55,23 +53,20 @@ public class FullTest extends BaseTest {
         financial.addAllowances("Fixed Allowance", "100", "", "", "", "");
         financial.addAllowances("Percent Allowance", "5", "", "", "", "");
 
-        employeeCodeSetter(employeeCode);
         menaMeRestPassword(employeeCode);
 
-        softAssert.assertEquals(employeeCode+"55555", employeeCodeGetter());
+        softAssert.assertEquals(employeeCode+"55555", employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
-        employeeCode = employeeCodeGetter();
-
         loginMob = new MobileLogin();
         loginMob.skipPage();
-        loginMob.connectivity("mena", "auto_a1", "https://qc.menaitech.com/menas01_07_2024/application/hrms/");
-        loginMob.login(employeeCode, "1");
+        loginMob.connectivity(data.getValue("connectivity_1", "company"), data.getValue("connectivity_1", "branch"), data.getValue("connectivity_1", "url"));
+        loginMob.login("ixoy81816", "1");
 
         mainScreen = new MainScreen();
-        //mainScreen.ignoreUpdatePopup();
+        mainScreen.ignoreUpdatePopup();
         mainScreen.myRequests();
 
         myRequests = new MyRequests();
@@ -79,7 +74,7 @@ public class FullTest extends BaseTest {
 
         softAssert.assertFalse(myRequests.vacationsRequestBtn.isDisplayed());
 
-        myRequests.vacationRequest("Annual Vacation", "25/11/2023", "01/01/2024", true);
+        myRequests.vacationRequest(data.getValue("vacations", "Annual Vacation"), "25/11/2023", "01/01/2024", true);
 
 //        mainScreen.myRequests();
 //

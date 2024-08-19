@@ -65,6 +65,31 @@ public class MobileBasePage {
         }
     }
 
+    public void clickIfElementPresent(By locator) {
+        WebDriverWait wait = new WebDriverWait(appiumDriver, Duration.ofSeconds(10)); // Timeout of 10 seconds
+
+        try {
+            // Wait until the element is visible and clickable
+            WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+            element.click(); // Click on the element if it appears
+        } catch (Exception e) {
+            // Element not found within the timeout, continue with the test
+            System.out.println("Element not found or not visible, continuing with the test.");
+        }
+    }
+
+    public boolean checkIfUpdateAvailable() {
+        boolean check = false;
+        try {
+            new WebDriverWait(appiumDriver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Update")));
+            check = true;
+        } catch (Exception e) {
+            System.out.println("After wait 5 second, there is NO update popup!");
+        }
+        return check;
+    }
+
 //    public void scrollToElement(WebElement element, boolean toDown) {
 //        boolean isElementFound = false;
 //        while (!isElementFound) {

@@ -243,12 +243,4 @@ public class WebHelper {
 
     }
 
-    public static void employeeCodeSetter(String employeeCode){
-        employeeCodeForMobile = employeeCode;
-    }
-
-    public static String employeeCodeGetter(){
-        return employeeCodeForMobile;
-    }
-
 }

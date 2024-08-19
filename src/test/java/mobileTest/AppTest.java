@@ -6,8 +6,6 @@ import mobileBackend.MainScreen;
 import mobileBackend.MyRequests;
 import org.testng.annotations.Test;
 
-import static utilities.WebHelper.employeeCodeGetter;
-
 public class AppTest extends MobileBaseTest {
 
     MobileLogin login;
@@ -17,8 +15,6 @@ public class AppTest extends MobileBaseTest {
 
     @Test(priority = 2, dependsOnMethods = {"webTest.NewEmployeeCreator.newEmployee"})
     public void simpleLogin() {
-
-        employeeCode = employeeCodeGetter();
 
         login = new MobileLogin();
         login.skipPage();

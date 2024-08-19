@@ -5,6 +5,10 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class MainScreen extends MobileBasePage {
 
@@ -78,18 +82,6 @@ public class MainScreen extends MobileBasePage {
             hold(1000);
         }
     }
-
-//    public boolean checkIfUpdateAvailable(){
-//        boolean check = false;
-//        try {
-//            new WebDriverWait(appiumDriver, Duration.ofSeconds(10)).until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Update")));
-//            check = true;
-//
-//        }catch (Exception ignored){
-//
-//        }
-//        return check;
-//    }
 
     public void myRequests(){
         waitForElementToBeVisible(AppiumBy.accessibilityId("MainButtonSemantics"));
@@ -168,11 +160,12 @@ public class MainScreen extends MobileBasePage {
 //
 //    }
 
-//    public void ignoreUpdatePopup(){
-//        if(checkIfUpdateAvailable()){
-//            clickOn(laterBtn);
-//            hold(500);
-//        }
-//    }
+    public void ignoreUpdatePopup(){
+        waitLoadingElement();
+        if(checkIfUpdateAvailable()){
+            clickOn(laterBtn);
+            hold(500);
+        }
+    }
 
 }

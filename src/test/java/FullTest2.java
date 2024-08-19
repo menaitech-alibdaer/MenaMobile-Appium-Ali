@@ -1,55 +1,34 @@
-package webTest;
-
 import bases.BaseTest;
-import bases.WebBase;
+import mobileBackend.MainScreen;
+import mobileBackend.MobileLogin;
+import mobileBackend.MyRequests;
 import org.testng.annotations.Test;
 import webBackend.financialInformation.FinancialPackage;
-import webBackend.financialInformation.Insurance;
-import webBackend.financialInformation.Payment;
-import webBackend.financialInformation.TaxAndDeduction;
-import webBackend.general.*;
-import webBackend.salaryCalculation.SalaryCalculation;
-import webBackend.personnelInformation.AddressAndContacts;
-import webBackend.personnelInformation.Education;
-import webBackend.personnelInformation.Other;
+import webBackend.general.Login;
+import webBackend.general.MainMenu;
+import webBackend.general.MenaModules;
 import webBackend.personnelInformation.PersonnelInformation;
 
 import static utilities.MssqlConnect.menaMeRestPassword;
+import static utilities.WebHelper.*;
 
-public class NewEmployeeCreator extends BaseTest {
+public class FullTest2 extends BaseTest {
 
     PersonnelInformation personnel;
     FinancialPackage financial;
-    Payment payment;
-    Insurance insurance;
-    TaxAndDeduction tax;
-    SalaryCalculation calculation;
-    Other other;
-    AddressAndContacts address;
-    Education education;
-    EmployeesTransactions transactions;
     Login login;
     MenaModules menaModules;
     MainMenu mainMenu;
-    ExtraSalary extraSalary;
-    EmployeeTermination employeeTermination;
-    PF_Balances pfBalance;
-    NonPayrollBenefitCalculation nonPayrollBenefitCalculation;
-    NonPayrollTransactions nonPayrollTransactions;
-    SpecialSalaryReport specialSalaryReport;
     String employeeCode = null;
-    String emp1;
-    String emp2;
-    String emp3;
-    String OT_amount1 = null;
-    String OT_amount2 = null;
-    String vacationCompensation = null;
-    double value = 0.000;
-    String totalOvertime = null;
+
+    MobileLogin loginMob;
+    MainScreen mainScreen;
+    MyRequests myRequests;
 
     @Test(priority = 1)
-    public void newEmployee(){
+    public void newEmployee2(){
 
+//        /////////////// Web Initialize //////////////
         webInitialize();
 
         login = new Login();
@@ -78,6 +57,35 @@ public class NewEmployeeCreator extends BaseTest {
         financial.addAllowances("Percent Allowance", "5", "", "", "", "");
 
         menaMeRestPassword(employeeCode);
+
+        softAssert.assertEquals(employeeCode+"55555", employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.skipPage();
+        loginMob.connectivity("mena", "auto_a1", "https://qc.menaitech.com/menas01_07_2024/application/hrms/");
+        loginMob.login(employeeCode, "1");
+
+        mainScreen = new MainScreen();
+        mainScreen.ignoreUpdatePopup();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+
+        softAssert.assertFalse(myRequests.vacationsRequestBtn.isDisplayed());
+
+        myRequests.vacationRequest("Annual Vacation", "25/11/2023", "01/01/2024", true);
+
+//        mainScreen.myRequests();
+//
+//        myRequests.openOvertime();
+//        myRequests.overtimeRequest("20/06/2022", "Regular Overtime", "1:30 PM", "3:00 PM", true);
+
+        softAssert.assertAll();
+
 
     }
 
