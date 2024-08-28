@@ -5,10 +5,6 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 public class MainScreen extends MobileBasePage {
 
@@ -20,13 +16,15 @@ public class MainScreen extends MobileBasePage {
     @AndroidFindBy(accessibility = "Sign In")
     WebElement TA_signInBtn;
     @AndroidFindBy(accessibility = "MainButtonSemantics")
-    WebElement requestMenuBtn;
+    public WebElement requestMenuBtn;
     @AndroidFindBy(xpath = "//android.widget.ImageView[@bounds = '[74,275][206,407]']")
     WebElement backBtn;
     @AndroidFindBy(xpath = "//android.widget.ImageView[@bounds = '[874,275][1006,407]']")
     WebElement homeBtn;
     @AndroidFindBy(accessibility = "MenuIcon")
     WebElement sideBarMenu;
+    @AndroidFindBy(accessibility = "Log Out")
+    WebElement logOutBtn;
     @AndroidFindBy(accessibility = "Settings")
     WebElement settingsBtn;
     @AndroidFindBy(accessibility = "Change Password")
@@ -73,7 +71,9 @@ public class MainScreen extends MobileBasePage {
     @AndroidFindBy(xpath = "(//android.widget.ImageView[contains(@content-desc, 'Current')])[2]")
     WebElement toTestScroll111111;
 
-
+    public MainScreen(){
+        ignoreUpdatePopup();
+    }
 
     public void locationPermission(boolean perm){
         waitForElementToBeVisible(By.id("com.android.permissioncontroller:id/permission_allow_foreground_only_button"));
@@ -87,6 +87,14 @@ public class MainScreen extends MobileBasePage {
         waitForElementToBeVisible(AppiumBy.accessibilityId("MainButtonSemantics"));
         clickOn(requestMenuBtn);
         hold(200);
+    }
+
+    public void logout(){
+        clickOn(sideBarMenu);
+        hold(100);
+        clickOn(logOutBtn);
+        waitLoadingElement();
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
     }
 
 //    public void cycle(){
@@ -159,13 +167,5 @@ public class MainScreen extends MobileBasePage {
 //        clickOn(changePasswordBtn);
 //
 //    }
-
-    public void ignoreUpdatePopup(){
-        waitLoadingElement();
-        if(checkIfUpdateAvailable()){
-            clickOn(laterBtn);
-            hold(500);
-        }
-    }
 
 }

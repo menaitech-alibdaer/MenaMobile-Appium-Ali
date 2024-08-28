@@ -5,19 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/TestDataReader.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/FullTest2.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/resources/data.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WebHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/WebHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/TestRuner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRuner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/FullTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FullTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/mobileTest/AppTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/mobileTest/AppTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/webTest/NewEmployeeCreator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/webTest/NewEmployeeCreator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FullTest2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/mobileTest/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/webTest/NewEmployeeCreator.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/data.json" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/data.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -62,6 +63,14 @@
     "TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml.executor": "Run",
     "TestNG.FirstRunTest.test1.executor": "Run",
     "TestNG.FullTest.newEmployee.executor": "Run",
+    "TestNG.LoginTest.executor": "Run",
+    "TestNG.LoginTest.invalidLogin.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP_InvalidCode.executor": "Run",
+    "TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe.executor": "Run",
+    "TestNG.LoginTest.validLoginWithRememberMeAndLogout.executor": "Run",
+    "TestNG.LoginTest.validLoginWithRememberMeAndLogout22222.executor": "Run",
+    "TestNG.MssqlConnect.test.executor": "Run",
     "TestNG.NewEmployeeCreator.newEmployee.executor": "Run",
     "TestNG.NewEmployeeCreator.simpleLogin.executor": "Run",
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
@@ -71,7 +80,7 @@
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.40689656",
-    "settings.editor.selected.configurable": "org.jetbrains.plugins.github.ui.GithubSettingsConfigurable"
+    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -81,8 +90,8 @@
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\java\utilities" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\resources" />
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\apps" />
+      <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\resources" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -91,43 +100,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.FullTest.newEmployee">
-    <configuration name="AppiumChecker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bases.AppiumChecker" />
-      <module name="menamobile-appium" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="EmulatorChecker" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="bases.EmulatorChecker" />
-      <module name="menamobile-appium" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="bases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/TestRuner.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunManager" selected="TestNG.LoginTest">
     <configuration name="FullTest.newEmployee" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
@@ -140,17 +113,52 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NewEmployeeCreator.newEmployee" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginTest.loginWithOTP" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="loginWithOTP" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginTest.loginWithOTP_InvalidCode" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="loginWithOTP_InvalidCode" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MssqlConnect.test" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="webTest.*" />
+          <option name="PATTERN" value="utilities.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="webTest" />
-      <option name="MAIN_CLASS_NAME" value="webTest.NewEmployeeCreator" />
-      <option name="METHOD_NAME" value="newEmployee" />
+      <option name="PACKAGE_NAME" value="utilities" />
+      <option name="MAIN_CLASS_NAME" value="utilities.MssqlConnect" />
+      <option name="METHOD_NAME" value="test" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -160,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.LoginTest" />
         <item itemvalue="TestNG.FullTest.newEmployee" />
-        <item itemvalue="TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" />
-        <item itemvalue="Application.AppiumChecker" />
-        <item itemvalue="Application.EmulatorChecker" />
-        <item itemvalue="TestNG.NewEmployeeCreator.newEmployee" />
+        <item itemvalue="TestNG.LoginTest.loginWithOTP_InvalidCode" />
+        <item itemvalue="TestNG.LoginTest.loginWithOTP" />
+        <item itemvalue="TestNG.MssqlConnect.test" />
       </list>
     </recent_temporary>
   </component>
@@ -265,7 +273,15 @@
       <option name="project" value="LOCAL" />
       <updated>1723980932772</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1724073346665</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1724073346665</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

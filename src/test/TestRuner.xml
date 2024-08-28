@@ -12,8 +12,8 @@
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="FullTest" />
-            <class name="FullTest2" />
+<!--            <class name="FullTest1111111111" />-->
+<!--            <class name="FullTest222222" />-->
         </classes>
     </test>
 

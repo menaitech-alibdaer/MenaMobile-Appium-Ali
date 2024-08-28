@@ -1,5 +1,6 @@
 package bases;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.*;
@@ -13,7 +14,9 @@ import io.appium.java_client.AppiumDriver;
 
 import java.time.Duration;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.time.Duration.ofMillis;
 
@@ -88,6 +91,14 @@ public class MobileBasePage {
             System.out.println("After wait 5 second, there is NO update popup!");
         }
         return check;
+    }
+
+    public void ignoreUpdatePopup(){
+        waitLoadingElement();
+        if(checkIfUpdateAvailable()){
+            clickOn(appiumDriver.findElement(AppiumBy.accessibilityId("Later")));
+            hold(500);
+        }
     }
 
 //    public void scrollToElement(WebElement element, boolean toDown) {
@@ -409,6 +420,16 @@ public class MobileBasePage {
     public void waitLoadingElement(){
         new WebDriverWait(appiumDriver, Duration.ofSeconds(60))
                 .until(ExpectedConditions.invisibilityOfElementLocated(AppiumBy.accessibilityId("LoadingElement")));
+    }
+
+    public void setClipboard(String text){
+        Map<String, Object> params = new HashMap<>();
+        params.put("content", text);
+        appiumDriver.executeScript("mobile: setClipboard", params);
+    }
+
+    public String getClipboard(){
+        return (String) appiumDriver.executeScript("mobile: getClipboard");
     }
 
 }

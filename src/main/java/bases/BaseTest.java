@@ -1,6 +1,8 @@
 package bases;
 
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.ios.IOSDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -17,10 +19,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
-import static bases.AppiumChecker.startAppiumIfNotRunning;
-import static bases.EmulatorChecker.startEmulatorIfNotRunning;
 import static utilities.Colors.*;
 import static utilities.VersionGetter.*;
+import static utilities.WebHelper.hold;
 
 public class BaseTest {
 
@@ -45,6 +46,7 @@ public class BaseTest {
     private String iniBrowser = null;
     private String iniPlatform = null;
     public TestType testType = null;
+    public static int firstRun = 0;
 
     protected TestDataReader data;
 
@@ -79,7 +81,20 @@ public class BaseTest {
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown(){
+    public void driverQuit(){
+
+//        try {
+//            terminateApp();
+//        }catch (Exception ignored){}
+
+        try{
+            if(appiumDriver.get() != null) {
+                appiumDriver.get().quit();
+                appiumDriver.remove();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 
         try {
             softAssert = null;
@@ -90,17 +105,8 @@ public class BaseTest {
         }catch (Exception e){
             softAssert = null; //// optional ///
             e.printStackTrace();
-        }finally {
+        }finally{
             softAssert = null; //// optional ///
-        }
-
-        try{
-            if(appiumDriver.get() != null) {
-                appiumDriver.get().quit();
-                appiumDriver.remove();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
         }
 
     }
@@ -117,7 +123,7 @@ public class BaseTest {
 
         if (platform.equalsIgnoreCase("Android")) {
 
-            //File app = new File("src/main/apps/app-release.apk");
+            //File app = new File("src/main/apps/app.apk");
 
             //caps.setCapability("deviceName", "Ali");
             //caps.setCapability("udid", "emulator-5554");
@@ -126,10 +132,17 @@ public class BaseTest {
             caps.setCapability("platformName", "Android");
             caps.setCapability("platformVersion", "13");
             caps.setCapability("automationName", "UiAutomator2");
-            //caps.setCapability("app", app.getAbsoluteFile());
+            //caps.setCapability("app", "app.apk");
             caps.setCapability("appPackage", "com.menaitech.mename");
             caps.setCapability("appActivity", "com.menaitech.mename.MainActivity");
-            //caps.setCapability("noReset", "true");
+//            if(firstRun == 0){
+//                caps.setCapability("noReset", false);
+//                firstRun++;
+//            }else{
+//                caps.setCapability("noReset", true);
+//            }
+            caps.setCapability("noReset", false);
+            //caps.setCapability("fullReset", true);
             //caps.setCapability("newCommandTimeout", 2);
             caps.setCapability("enforceXPath1", true);
             caps.setCapability("autoGrantPermissions", true);
@@ -144,7 +157,7 @@ public class BaseTest {
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-            AppiumDriver driverInstance = new AppiumDriver(url, caps);
+            AppiumDriver driverInstance = new AndroidDriver(url, caps);
             appiumDriver.set(driverInstance);
 
         } else if (platform.equalsIgnoreCase("iOS")) {
@@ -155,11 +168,11 @@ public class BaseTest {
             caps.setCapability("app", "/path/to/your/app.app");
             URL url = null;
             try {
-                url = new URL("http://127.0.0.1:4723/wd/hub");
+                url = new URL("http://127.0.0.1:4723");
             } catch (MalformedURLException e) {
                 throw new RuntimeException(e);
             }
-            AppiumDriver driverInstance = new AppiumDriver(url, caps);
+            AppiumDriver driverInstance = new IOSDriver(url, caps);
             appiumDriver.set(driverInstance);
 
         }
@@ -208,8 +221,8 @@ public class BaseTest {
         urlSetter(versionGetter());
         versionURL = urlGetter();
         menaMeURL = urlMenaMeGetter();
-        //getDriver().get(urlGetter());
-        getDriver().get("https://qc.menaitech.com/MenaS01_07_2024/application/hrms/");
+        getDriver().get(urlGetter());
+        //getDriver().get("https://qc.menaitech.com/MenaS01_07_2024/application/hrms/");
 
     }
 
@@ -230,6 +243,33 @@ public class BaseTest {
 
     }
 
+    public void terminateApp(){
+
+        if(iniPlatform.equalsIgnoreCase("Android")){
+            Map<String, Object> params = new HashMap<>();
+            params.put("appId", "com.menaitech.mename");
+            appiumDriver.get().executeScript("mobile: terminateApp", params);
+        }else{
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", "com.menaitech.mename"); // Use bundleId for iOS apps
+            appiumDriver.get().executeScript("mobile: terminateApp", params);
+        }
+
+        hold(800);
+    }
+
+    public void launchApp(){
+        if(iniPlatform.equalsIgnoreCase("Android")){
+            Map<String, Object> params = new HashMap<>();
+            params.put("appId", "com.menaitech.mename");
+            appiumDriver.get().executeScript("mobile: activateApp", params);
+        }else{
+            Map<String, Object> params = new HashMap<>();
+            params.put("bundleId", "com.menaitech.mename"); // Use bundleId for iOS apps
+            appiumDriver.get().executeScript("mobile: activateApp", params);
+        }
+        hold(10000);
+    }
 
 
     /////////////////// Multi-thread Method ////////////////////

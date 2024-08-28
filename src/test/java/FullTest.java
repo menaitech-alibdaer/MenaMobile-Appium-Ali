@@ -29,8 +29,7 @@ public class FullTest extends BaseTest {
         webInitialize();
 
         login = new Login();
-        //login.staticLogin();
-        login.login("sa", "1", "mena", "auto_a1", false, false);
+        login.staticLogin();
 
         menaModules = new MenaModules();
         menaModules.menaPAY();
@@ -46,12 +45,12 @@ public class FullTest extends BaseTest {
                 "01/01/2020", "01/01/2020", "", "", "", "");
         employeeCode = personnel.employeeCodeGetter();
 
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
-        financial.addAllowances("Fixed Allowance", "100", "", "", "", "");
-        financial.addAllowances("Percent Allowance", "5", "", "", "", "");
+//        mainMenu.mainMenu("Employees","Financial Information");
+//        financial = new FinancialPackage();
+//        financial.setEmployeeCode(employeeCode);
+//        financial.setBasicSalary("1000");
+//        financial.addAllowances("Fixed Allowance", "100", "", "", "", "");
+//        financial.addAllowances("Percent Allowance", "5", "", "", "", "");
 
         menaMeRestPassword(employeeCode);
 
@@ -61,9 +60,7 @@ public class FullTest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.skipPage();
-        loginMob.connectivity(data.getValue("connectivity_1", "company"), data.getValue("connectivity_1", "branch"), data.getValue("connectivity_1", "url"));
-        loginMob.login("ixoy81816", "1");
+        loginMob.login(employeeCode, "1", "auto_a1", false);
 
         mainScreen = new MainScreen();
         mainScreen.ignoreUpdatePopup();

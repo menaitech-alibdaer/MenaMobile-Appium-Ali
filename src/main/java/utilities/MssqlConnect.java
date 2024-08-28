@@ -4,10 +4,7 @@ import bases.WebBase;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 import static utilities.ExtentReport.setLog;
 import static utilities.VersionGetter.liteGetter;
@@ -17,7 +14,7 @@ public class MssqlConnect extends WebBase {
 
     public static String AUG_database = "menas01_08_2022_sql2016";
     public static String OCT_database = "menas01_10_2020_sql2016";
-    public static String JUL_database = "MenaS01_07_2024";
+    public static String JUL_database = "MenaS01_07_2024_sql2016";
 
     public static void sqlQuery(String Query){
 
@@ -53,6 +50,67 @@ public class MssqlConnect extends WebBase {
         }
 
     }
+
+    public static String selectQuery(String query) {
+        StringBuilder result = new StringBuilder();
+        String db = null;
+
+        // Determine the database name based on the version
+        if (versionGetter().equalsIgnoreCase("OCT")) {
+            db = OCT_database;
+        } else if (versionGetter().equalsIgnoreCase("AUG")) {
+            db = AUG_database;
+        } else if (versionGetter().equalsIgnoreCase("JUL")) {
+            db = JUL_database;
+        }
+
+        String host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+        String username = "qcUser";
+        String password = "P@ssw0rd@qc@789";
+
+        try {
+            // Establish a connection to the database
+            Connection connection = DriverManager.getConnection(host, username, password);
+            Statement statement = connection.createStatement();
+
+            // Execute the SQL query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Retrieve metadata about the result set
+            int columnCount = resultSet.getMetaData().getColumnCount();
+
+            // Process the result set
+            while (resultSet.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    String columnValue = resultSet.getString(i);
+                    result.append(columnValue);
+
+                    if (i < columnCount) {
+                        result.append(", ");
+                    }
+                }
+                result.append("\n");  // Add a newline for each row
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            System.out.println("Database Name: " + db);
+            System.out.println("Query executed: " + query);
+
+            setLog("Database Name: " + db);
+            setLog("Query executed: " + query);
+
+        } catch (SQLException e) {
+            System.out.println("There's an error:");
+            e.printStackTrace();
+        }
+
+        return result.toString();  // Return the result as a string
+    }
+
 
     public static void clientIdChanger(String clientId, String company){
 
@@ -310,6 +368,13 @@ public class MssqlConnect extends WebBase {
                     "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Withhold - Allowance';");
 
         }
+
+    }
+
+    @Test
+    public void test(){
+
+        System.out.println(selectQuery("select mfa_authentication_code from pay_employees where employee_code ='auto_mobile'"));
 
     }
 
