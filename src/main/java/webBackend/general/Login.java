@@ -169,4 +169,10 @@ public class Login extends WebBase {
         ///// Do Not Allow User To View/Download Files
         login("ali6","0795798860","automation","auto_a1",false,false);
     }
+    public void auto_mob1(){
+        setBranch("auto_mob1");
+        queryRestSetup();
+        login("ali","0795798860","automation","auto_mob1",false,false);
+    }
+
 }

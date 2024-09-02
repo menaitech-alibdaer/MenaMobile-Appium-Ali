@@ -1,8 +1,12 @@
 package mobileBackend;
 
 import bases.MobileBasePage;
+import com.beust.ah.A;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.*;
@@ -58,6 +62,12 @@ public class MobileLogin extends MobileBasePage {
     WebElement verifyBtn;
     @AndroidFindBy(accessibility = "Paste")
     WebElement pasteBtn;
+    @AndroidFindBy(accessibility = "Forgot Password!")
+    WebElement forgetPasswordBtn;
+    @AndroidFindBy(accessibility = "Reset")
+    WebElement resetBtn;
+    @AndroidFindBy(accessibility = "Continue")
+    WebElement continueBtn;
 
     public void notificationPermission(boolean perm){
         waitForElementToBeVisible(By.id("com.android.permissioncontroller:id/permission_allow_button"));
@@ -72,6 +82,10 @@ public class MobileLogin extends MobileBasePage {
     }
 
     public void connectivity(String companyCode, String branchCode, String connectivityURL){
+
+        setBranch(branchCode);
+        queryRestSetup();
+
         waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Company Code']"));
         clickOn(companyCodeF);
         setText(companyCodeF, companyCode);
@@ -82,9 +96,6 @@ public class MobileLogin extends MobileBasePage {
         clickOn(connectBtn);
         waitLoadingElement();
 
-        setBranch(branchCode);
-        queryRestSetup();
-
     }
 
     public void login(String employeeCode, String password, String branchCode, boolean rememberMe){
@@ -93,10 +104,6 @@ public class MobileLogin extends MobileBasePage {
             skipPage();
             connectivity("automation", branchCode, urlGetter());
         }else{
-
-//          if(checkIfUpdateAvailable()){
-//              ignoreUpdatePopup();
-//          }
 
             waitLoadingElement();
 
@@ -130,9 +137,6 @@ public class MobileLogin extends MobileBasePage {
                 waitLoadingElement();
             }
 
-            setBranch(branchCode);
-            queryRestSetup();
-
         }
 
         waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Employee Code']"));
@@ -158,7 +162,7 @@ public class MobileLogin extends MobileBasePage {
         return code;
     }
 
-    public void setAuthenticationCode(String code){
+    public void setAuthenticationCode_executeScript(String code){
         waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Authentication')]/following::android.widget.EditText[1]"));
         waitForElementToBeInvisible(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Authentication Code Was Sent')]"));
         hold(1000);
@@ -171,43 +175,33 @@ public class MobileLogin extends MobileBasePage {
             switch (digitChar) {
                 case "0":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "7"));
-                    hold(100);
                     break;
                 case "1":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "8"));
-                    hold(100);
                     break;
                 case "2":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "9"));
-                    hold(100);
                     break;
                 case "3":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "10"));
-                    hold(100);
                     break;
                 case "4":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "11"));
-                    hold(100);
                     break;
                 case "5":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "12"));
-                    hold(100);
                     break;
                 case "6":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "13"));
-                    hold(100);
                     break;
                 case "7":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "14"));
-                    hold(100);
                     break;
                 case "8":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "15"));
-                    hold(100);
                     break;
                 case "9":
                     appiumDriver.executeScript("mobile: pressKey", ImmutableMap.of("keycode", "16"));
-                    hold(100);
                     break;
             }
 
@@ -217,6 +211,63 @@ public class MobileLogin extends MobileBasePage {
         clickOn(verifyBtn);
         waitLoadingElement();
         waitLoadingElement();
+    }
+
+    public void setAuthenticationCode(String code){
+
+        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Authentication')]/following::android.widget.EditText[1]"));
+        waitForElementToBeInvisible(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Authentication Code Was Sent')]"));
+        hold(1000);
+
+        ((AndroidDriver) appiumDriver).isKeyboardShown();
+
+        // Loop through each character in the string
+        for (int i = 0; i < code.length(); i++) {
+            // Get the character at index i
+            String digitChar = String.valueOf(code.charAt(i));
+
+            switch (digitChar) {
+                case "0":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_0));
+                    break;
+                case "1":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_1));
+                    break;
+                case "2":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_2));
+                    break;
+                case "3":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_3));
+                    break;
+                case "4":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_4));
+                    break;
+                case "5":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_5));
+                    break;
+                case "6":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_6));
+                    break;
+                case "7":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_7));
+                    break;
+                case "8":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_8));
+                    break;
+                case "9":
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.DIGIT_9));
+                    break;
+            }
+
+        }
+
+        ((AndroidDriver) appiumDriver).hideKeyboard();
+
+        hold(200);
+        clickOn(verifyBtn);
+        waitLoadingElement();
+        waitLoadingElement();
+
     }
 
     public void loginAfterConnectivity(String employeeCode, String password){
@@ -249,10 +300,22 @@ public class MobileLogin extends MobileBasePage {
         return check;
     }
 
-    public void staticLogin(){
-        setBranch("auto_a1");
-        queryRestSetup();
-        login("ali","0795798860", "auto_a1", false);
+    public void forgetPassword(String employeeCode, String companyCode){
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
+        clickOn(forgetPasswordBtn);
+        waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Employee Code']"));
+        clickOn(employeeCodeF);
+        setText(employeeCodeF, employeeCode);
+        clickOn(companyCodeF);
+        setText(companyCodeF, companyCode);
+        clickOn(resetBtn);
+        waitLoadingElement();
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Continue"));
+        clickOn(continueBtn);
+    }
+
+    public void auto_mobile1(){
+        login("auto_mobile1","1", "auto_mob1", false);
     }
 
 

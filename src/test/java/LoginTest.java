@@ -1,22 +1,22 @@
 import bases.BaseTest;
 import mobileBackend.MainScreen;
 import mobileBackend.MobileLogin;
-import mobileBackend.MyRequests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import webBackend.financialInformation.FinancialPackage;
 import webBackend.general.Login;
 import webBackend.general.MainMenu;
 import webBackend.general.MenaModules;
 import webBackend.personnelInformation.PersonnelInformation;
 
-import static utilities.MssqlConnect.selectQuery;
+import static utilities.MobileHelper.launchApp;
+import static utilities.MobileHelper.terminateApp;
+import static utilities.MssqlConnect.menaMeRestPassword;
 import static utilities.MssqlConnect.sqlQuery;
+import static utilities.WebHelper.emailAddress;
 
 public class LoginTest extends BaseTest {
 
     PersonnelInformation personnel;
-    FinancialPackage financial;
     Login login;
     MenaModules menaModules;
     MainMenu mainMenu;
@@ -24,7 +24,6 @@ public class LoginTest extends BaseTest {
 
     MobileLogin loginMob;
     MainScreen mainScreen;
-    MyRequests myRequests;
 
     @Test(priority = 1, groups = "Login_Mobile")
     public void invalidLogin(){
@@ -33,9 +32,9 @@ public class LoginTest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile", "1111", "auto_a1", false);
+        loginMob.login("auto_mobile1", "1111", "auto_mob1", false);
 
-        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Username Or Password"));
+        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Username Or Password"), "Error Alert Not contains: Wrong Username Or Password, The alert that appears is: "+loginMob.errorAlert.getAttribute("content-desc"));
 
     }
 
@@ -46,7 +45,7 @@ public class LoginTest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile", "1", "auto_a1", true);
+        loginMob.login("auto_mobile1", "1", "auto_mob1", true);
 
         terminateApp();
         launchApp();
@@ -66,7 +65,7 @@ public class LoginTest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile", "1", "auto_a1", true);
+        loginMob.login("auto_mobile1", "1", "auto_mob1", true);
 
         mainScreen = new MainScreen();
         mainScreen.logout();
@@ -81,19 +80,19 @@ public class LoginTest extends BaseTest {
     @Test(priority = 4, groups = "Login_Mobile")
     public void loginWithOTP_ValidCode(){
 
-        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 60 where branch_code='auto_a1'");
+        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 60 where branch_code='auto_mob1'");
 
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile", "1", "auto_a1", false);
+        loginMob.auto_mobile1();
 
-        String code = loginMob.getAuthenticationCode("auto_mobile");
+        String code = loginMob.getAuthenticationCode("auto_mobile1");
         loginMob.setAuthenticationCode(code);
 
-        mainScreen = new MainScreen();
+        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 0 where branch_code='auto_mob1'");
 
-        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 0 where branch_code='auto_a1'");
+        mainScreen = new MainScreen();
 
         Assert.assertTrue(mainScreen.requestMenuBtn.isDisplayed(), "Login Issue, Main Screen Not Appear!");
 
@@ -102,21 +101,55 @@ public class LoginTest extends BaseTest {
     @Test(priority = 5, groups = "Login_Mobile")
     public void loginWithOTP_InvalidCode(){
 
-        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 60 where branch_code='auto_a1'");
+        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 60 where branch_code='auto_mob1'");
 
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile", "1", "auto_a1", false);
+        loginMob.auto_mobile1();
 
         String code = "000000";
         loginMob.setAuthenticationCode(code);
 
-        mainScreen = new MainScreen();
-
-        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 0 where branch_code='auto_a1'");
+        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 0 where branch_code='auto_mob1'");
 
         Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Authentication Code"), "Issue in Authentication Error Alert!");
+
+    }
+
+    @Test(priority = 6, groups = "Login_Mobile")
+    public void checkForgetPassword(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        String email = emailAddress();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", email, "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.skipPage();
+        loginMob.connectivity("automation", "auto_mob1", versionURL);
+        loginMob.forgetPassword(employeeCode, "automation");
 
     }
 

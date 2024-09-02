@@ -21,7 +21,6 @@ import java.util.Map;
 
 import static utilities.Colors.*;
 import static utilities.VersionGetter.*;
-import static utilities.WebHelper.hold;
 
 public class BaseTest {
 
@@ -43,10 +42,9 @@ public class BaseTest {
     public String menaMeURL = null;
     public String versionURL = null;
 
-    private String iniBrowser = null;
-    private String iniPlatform = null;
+    public  static String iniBrowser = null;
+    public static String iniPlatform = null;
     public TestType testType = null;
-    public static int firstRun = 0;
 
     protected TestDataReader data;
 
@@ -82,10 +80,6 @@ public class BaseTest {
 
     @AfterMethod(alwaysRun = true)
     public void driverQuit(){
-
-//        try {
-//            terminateApp();
-//        }catch (Exception ignored){}
 
         try{
             if(appiumDriver.get() != null) {
@@ -135,12 +129,6 @@ public class BaseTest {
             //caps.setCapability("app", "app.apk");
             caps.setCapability("appPackage", "com.menaitech.mename");
             caps.setCapability("appActivity", "com.menaitech.mename.MainActivity");
-//            if(firstRun == 0){
-//                caps.setCapability("noReset", false);
-//                firstRun++;
-//            }else{
-//                caps.setCapability("noReset", true);
-//            }
             caps.setCapability("noReset", false);
             //caps.setCapability("fullReset", true);
             //caps.setCapability("newCommandTimeout", 2);
@@ -230,6 +218,10 @@ public class BaseTest {
 
         testType = TestType.MOBILE;
 
+        urlSetter(versionGetter());
+        versionURL = urlGetter();
+        menaMeURL = urlMenaMeGetter();
+
         System.out.println(ANSI_BLUE + "Mobile Driver Work Now!" + ANSI_RESET);
 
 //        startEmulatorIfNotRunning();
@@ -241,34 +233,6 @@ public class BaseTest {
             initializeAppiumDriver("IOS");
         }
 
-    }
-
-    public void terminateApp(){
-
-        if(iniPlatform.equalsIgnoreCase("Android")){
-            Map<String, Object> params = new HashMap<>();
-            params.put("appId", "com.menaitech.mename");
-            appiumDriver.get().executeScript("mobile: terminateApp", params);
-        }else{
-            Map<String, Object> params = new HashMap<>();
-            params.put("bundleId", "com.menaitech.mename"); // Use bundleId for iOS apps
-            appiumDriver.get().executeScript("mobile: terminateApp", params);
-        }
-
-        hold(800);
-    }
-
-    public void launchApp(){
-        if(iniPlatform.equalsIgnoreCase("Android")){
-            Map<String, Object> params = new HashMap<>();
-            params.put("appId", "com.menaitech.mename");
-            appiumDriver.get().executeScript("mobile: activateApp", params);
-        }else{
-            Map<String, Object> params = new HashMap<>();
-            params.put("bundleId", "com.menaitech.mename"); // Use bundleId for iOS apps
-            appiumDriver.get().executeScript("mobile: activateApp", params);
-        }
-        hold(10000);
     }
 
 

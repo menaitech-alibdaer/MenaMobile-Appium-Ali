@@ -91,6 +91,8 @@ public class Listener implements ITestListener {
         sqlQuery("update adm_company set reports_max_records = 2000 where company_code = 'automation'");
         sqlQuery("update adm_branch set is_gulf = 0 where company_code = 'automation' and branch_code = 'auto_a9'");
 
+        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 60 where branch_code='auto_mob1'");
+
     }
 
     @Override
