@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/Listener.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/TestRuner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRuner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -97,22 +90,24 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LoginTest.checkForgetPassword">
-    <configuration name="C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.LoginTest.invalidLogin">
+    <configuration name="LoginTest.checkForgetPassword" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/TestRuner.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="checkForgetPassword" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.checkForgetPassword" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginTest.invalidLogin" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="checkForgetPassword" />
+      <option name="METHOD_NAME" value="invalidLogin" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -158,11 +153,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.LoginTest.invalidLogin" />
         <item itemvalue="TestNG.LoginTest.checkForgetPassword" />
         <item itemvalue="TestNG.LoginTest.loginWithOTP_ValidCode" />
         <item itemvalue="TestNG.LoginTest.validLoginWithRememberMeAndLogout" />
         <item itemvalue="TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe" />
-        <item itemvalue="TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" />
       </list>
     </recent_temporary>
   </component>
@@ -279,7 +274,15 @@
       <option name="project" value="LOCAL" />
       <updated>1724842854523</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725262401884</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1725262401884</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
