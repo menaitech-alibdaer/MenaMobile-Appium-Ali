@@ -11,9 +11,9 @@ public class VersionGetter {
     @NonNull
     protected static boolean liteVersion = Boolean.parseBoolean(System.getProperty("liteVersion","false"));
     @NonNull
-    protected static String versionURL = "https://qc.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/";
+    protected static String versionURL = "https://nowaf.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/";
     @NonNull
-    protected static String menaMeURL = "https://qc.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/MenaME";
+    protected static String menaMeURL = "https://nowaf.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/MenaME";
     @NonNull
     protected static String browsers = "chrome";
 
@@ -50,16 +50,16 @@ public class VersionGetter {
 
     public static void urlSetter(String version){
         if(version.equalsIgnoreCase("AUG")){
-            versionURL = "https://qc.menaitech.com/menas01_08_2022_sql2016/application/hrms/";
-            menaMeURL = "https://qc.menaitech.com/menas01_08_2022_sql2016/application/hrms/MenaME";
+            versionURL = "https://nowaf.menaitech.com/menas01_08_2022_sql2016/application/hrms/";
+            menaMeURL = "https://nowaf.menaitech.com/menas01_08_2022_sql2016/application/hrms/MenaME";
         }else if(version.equalsIgnoreCase("OCT")){
-            versionURL = "https://qc.menaitech.com/menas01_10_2020_sql2016/application/hrms/";
-            menaMeURL = "https://qc.menaitech.com/menas01_10_2020_sql2016/application/hrms/MenaME";
+            versionURL = "https://nowaf.menaitech.com/menas01_10_2020_sql2016/application/hrms/";
+            menaMeURL = "https://nowaf.menaitech.com/menas01_10_2020_sql2016/application/hrms/MenaME";
         }else if(version.equalsIgnoreCase("JUL")){
-            versionURL = "https://qc.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/";
-            menaMeURL = "https://qc.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/MenaME";
+            versionURL = "https://nowaf.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/";
+            menaMeURL = "https://nowaf.menaitech.com/MenaS01_07_2024_SQL2016/application/hrms/MenaME";
         }else{
-            System.out.println("Run default value URL : https://qc.menaitech.com/menas01_08_2022_sql2016/application/hrms/");
+            System.out.println("Run default value URL : https://nowaf.menaitech.com/menas01_08_2022_sql2016/application/hrms/");
         }
     }
 
