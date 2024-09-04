@@ -48,7 +48,7 @@ public class MainScreen extends MobileBasePage {
     @AndroidFindBy(accessibility = "Got it!")
     WebElement gotItBtn;
     @AndroidFindBy(accessibility = "TransactionIcon")
-    WebElement transactionBtn;
+    WebElement myTransactionBtn;
     @AndroidFindBy(accessibility = "ProfileIcon")
     WebElement profileBtn;
     @AndroidFindBy(accessibility = "Financial")
@@ -67,6 +67,16 @@ public class MainScreen extends MobileBasePage {
     WebElement laterBtn;
     @AndroidFindBy(accessibility = "Update")
     WebElement updateBtn;
+    @AndroidFindBy(accessibility = "Workflow Details")
+    WebElement workflowDetailsText;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
+    public WebElement attachmentInVacationDetails;
+    @AndroidFindBy(accessibility = "Withdraw")
+    WebElement withdrawBtn;
+    @AndroidFindBy(accessibility = "Alright!")
+    WebElement alrightBtn;
+    @AndroidFindBy(accessibility = "Approval Committee")
+    WebElement approvalCommitteeText;
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[contains(@content-desc, 'Current')])[2]")
     WebElement toTestScroll111111;
@@ -95,6 +105,116 @@ public class MainScreen extends MobileBasePage {
         clickOn(logOutBtn);
         waitLoadingElement();
         waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
+    }
+
+    public void myTransactions(String type){
+        clickOn(myTransactionBtn);
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Vacations"));
+    }
+
+    public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
+
+        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(transactionType)));
+        hold(3000);
+        verticalSwipeByPercentages(70, 10, 50);
+
+        if(!transactionDate.isEmpty()){
+            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
+            clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+        }else{
+            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
+            clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+        }
+
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+
+    }
+
+    public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate, boolean withdraw){
+
+        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(transactionType)));
+        hold(3000);
+        verticalSwipeByPercentages(70, 10, 50);
+
+        if(!transactionDate.isEmpty()){
+            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
+            clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+        }else{
+            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
+            clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+        }
+
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+
+        if(withdraw){
+            scrollToElement(withdrawBtn, true);
+            clickOn(withdrawBtn);
+            waitLoadingElement();
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Alright!"));
+            clickOn(alrightBtn);
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        }
+
+    }
+
+    public boolean checkTransactionIfDropped(){
+        try{
+            scrollToElement(workflowDetailsText, true);
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Approval Committee')]/following::android.view.View[contains(@content-desc, 'Dropped')]")).isDisplayed();
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean checkAttachmentInVacationDetails(){
+        hold(1000);
+
+        scrollToElement(workflowDetailsText, true);
+        clickOn(attachmentInVacationDetails);
+        waitLoadingElement();
+        hold(2000);
+        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
+        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+    }
+
+    public String getTransactionDetails(String type){
+
+        String str = null;
+        try{
+            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+        }catch (Exception e){
+            scrollToElement(approvalCommitteeText, true);
+            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+        }
+
+        if(str != null && !str.isEmpty()){
+            // Find the position of the newline character
+            int index = str.indexOf('\n');
+
+            return str.substring(index + 1);
+        }else{
+            return null;
+        }
+
+    }
+
+    public String getTransactionReason(){
+
+        String getReason = null;
+
+        try{
+            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+        }catch (Exception e){
+            scrollToElement(workflowDetailsText, true);
+            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+        }
+
+        int startIndex = getReason.indexOf('\n') + 1;
+        int endIndex = getReason.indexOf('-');
+
+        return getReason.substring(startIndex, endIndex);
+
     }
 
 //    public void cycle(){

@@ -373,9 +373,7 @@ public class MssqlConnect extends WebBase {
 
     @Test
     public void test(){
-
-        System.out.println(selectQuery("select mfa_authentication_code from pay_employees where employee_code ='auto_mobile'"));
-
+        sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='auto_manager'");
     }
 
 }

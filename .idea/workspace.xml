@@ -4,7 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test" />
+    <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testUpload.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FullTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FullTest.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -61,6 +72,9 @@
     "TestNG.NewEmployeeCreator.newEmployee.executor": "Run",
     "TestNG.NewEmployeeCreator.simpleLogin.executor": "Run",
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationAndWithdraw.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachment.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend",
@@ -77,8 +91,8 @@
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\java\utilities" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\apps" />
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\resources" />
+      <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\apps" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="" />
@@ -87,12 +101,30 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LoginTest.invalidLogin">
-    <configuration name="LoginTest.checkForgetPassword" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationAndWithdraw">
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="menamobile-appium" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="checkForgetPassword" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacationTest.requestUnpaidVacationAndWithdraw" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="requestUnpaidVacationAndWithdraw" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -100,11 +132,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.invalidLogin" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.requestUnpaidVacationWithAttachment" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="invalidLogin" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachment" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -112,35 +144,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.loginWithOTP_ValidCode" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.requestUnpaidVacationWithAttachmentAndReason" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="loginWithOTP_ValidCode" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginTest.validLoginWithRememberMeAndCheckRememberMe" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="validLoginWithRememberMeAndCheckRememberMe" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginTest.validLoginWithRememberMeAndLogout" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="validLoginWithRememberMeAndLogout" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachmentAndReason" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -150,11 +158,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.LoginTest.invalidLogin" />
-        <item itemvalue="TestNG.LoginTest.checkForgetPassword" />
-        <item itemvalue="TestNG.LoginTest.loginWithOTP_ValidCode" />
-        <item itemvalue="TestNG.LoginTest.validLoginWithRememberMeAndLogout" />
-        <item itemvalue="TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe" />
+        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationAndWithdraw" />
+        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason" />
+        <item itemvalue="TestNG.LoginTest" />
+        <item itemvalue="Application.test" />
+        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachment" />
       </list>
     </recent_temporary>
   </component>
@@ -295,7 +303,23 @@
       <option name="project" value="LOCAL" />
       <updated>1725262903325</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725263268611</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1725263268611</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725263410841</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1725263410841</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

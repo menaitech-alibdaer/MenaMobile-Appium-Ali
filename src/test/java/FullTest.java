@@ -71,7 +71,7 @@ public class FullTest extends BaseTest {
 
         softAssert.assertFalse(myRequests.vacationsRequestBtn.isDisplayed());
 
-        myRequests.vacationRequest(data.getValue("vacations", "Annual Vacation"), "25/11/2023", "01/01/2024", true);
+        //myRequests.vacationRequest(data.getValue("vacations", "Annual Vacation"), "25/11/2023", "01/01/2024", true);
 
 //        mainScreen.myRequests();
 //
