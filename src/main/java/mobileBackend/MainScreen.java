@@ -110,12 +110,13 @@ public class MainScreen extends MobileBasePage {
     public void myTransactions(String type){
         clickOn(myTransactionBtn);
         waitForElementToBeVisible(AppiumBy.accessibilityId("Vacations"));
+        hold(500);
     }
 
     public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
 
         clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(transactionType)));
-        hold(3000);
+        hold(4000);
         verticalSwipeByPercentages(70, 10, 50);
 
         if(!transactionDate.isEmpty()){
@@ -133,7 +134,7 @@ public class MainScreen extends MobileBasePage {
     public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate, boolean withdraw){
 
         clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(transactionType)));
-        hold(3000);
+        hold(4000);
         verticalSwipeByPercentages(70, 10, 50);
 
         if(!transactionDate.isEmpty()){

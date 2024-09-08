@@ -5,16 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testUpload.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/FullTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FullTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,6 +69,7 @@
     "TestNG.VacationTest.requestUnpaidVacationAndWithdraw.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachment.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
+    "TestNG.VacationTest.testtttttttttt.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend",
@@ -101,7 +96,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationAndWithdraw">
+  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason">
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test" />
       <module name="menamobile-appium" />
@@ -132,18 +127,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.requestUnpaidVacationWithAttachment" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachment" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="VacationTest.requestUnpaidVacationWithAttachmentAndReason" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
@@ -156,13 +139,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="VacationTest.testtttttttttt" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="testtttttttttt" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationAndWithdraw" />
         <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason" />
+        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationAndWithdraw" />
+        <item itemvalue="TestNG.VacationTest.testtttttttttt" />
         <item itemvalue="TestNG.LoginTest" />
         <item itemvalue="Application.test" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachment" />
       </list>
     </recent_temporary>
   </component>
@@ -319,7 +314,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725263410841</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725450913581</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1725450913581</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

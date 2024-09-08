@@ -14,6 +14,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import io.appium.java_client.AppiumDriver;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -55,9 +56,84 @@ public class MobileBasePage {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
+//    public void clickOn(WebElement element){
+//        element.click();
+//        hold(100);
+//    }
+
     public void clickOn(WebElement element){
-        element.click();
-        hold(100);
+        try{
+
+            element.click();
+            hold(100);
+
+        }catch (Exception excep){
+
+            boolean isElementFound = false;
+            int counter = 1;
+            Dimension screenSize = appiumDriver.manage().window().getSize();
+            int screenWidth = screenSize.getWidth();
+            int screenHeight = screenSize.getHeight();
+
+            // Calculate the center of the screen
+            int centerX = screenWidth / 2;
+            int centerY = screenHeight / 2;
+
+            while (!isElementFound) {
+
+                if(counter <= 3){
+
+                    try {
+                        isElementFound = element.isDisplayed();
+
+                        element.click();
+                        hold(100);
+
+                    } catch (Exception e) {
+                        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                        Sequence scroll = new Sequence(finger, 1);
+
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY - 600)); // End point
+
+                        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                        appiumDriver.perform(List.of(scroll));
+                    }
+
+                }else if(counter <= 6){
+
+                    try {
+                        isElementFound = element.isDisplayed();
+
+                        element.click();
+                        hold(100);
+
+                    } catch (Exception e) {
+                        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                        Sequence scroll = new Sequence(finger, 1);
+
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY + 600)); // End point
+
+                        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                        appiumDriver.perform(List.of(scroll));
+                    }
+
+                }else{
+                    Assert.fail("The Element Not Found after trying to find it: "+element);
+                    break;
+                }
+
+                counter++;
+            }
+
+        }
     }
 
     public void setText(WebElement element, String text){

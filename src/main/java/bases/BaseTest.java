@@ -60,6 +60,10 @@ public class BaseTest {
             versionSetter("JUL");
         }
 
+        urlSetter(versionGetter());
+        versionURL = urlGetter();
+        menaMeURL = urlMenaMeGetter();
+
         liteSetter(lite);
 
     }
