@@ -1,4 +1,5 @@
 import io.appium.java_client.AppiumBy;
+import utilities.MobileHelper;
 
 public class test {
 
@@ -20,7 +21,9 @@ public class test {
 //        System.out.println("Minutes: " + minute);
 //        System.out.println("Period: " + period);
 
-        System.out.println(getTransactionReason());
+        //System.out.println(getTransactionReason());
+
+        System.out.println(MobileHelper.encryptSHA1("Ali&$%#@*3658"));
 
     }
 

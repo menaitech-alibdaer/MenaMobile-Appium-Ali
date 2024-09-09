@@ -7,6 +7,7 @@ import org.testng.annotations.Test;
 import java.sql.*;
 
 import static utilities.ExtentReport.setLog;
+import static utilities.MobileHelper.encryptSHA1;
 import static utilities.VersionGetter.liteGetter;
 import static utilities.VersionGetter.versionGetter;
 
@@ -222,6 +223,11 @@ public class MssqlConnect extends WebBase {
 
     public static void menaMeRestPassword(String employeeCode){
         sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='"+employeeCode+"'");
+    }
+
+    public static void menaMeSetPassword(String employeeCode, String password){
+        String sha1 = encryptSHA1(password);
+        sqlQuery("update pay_employees set password='"+sha1+"' where employee_code='"+employeeCode+"'");
     }
 
     public static void restFamilySetup(){

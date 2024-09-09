@@ -2,6 +2,8 @@ package utilities;
 
 import io.appium.java_client.android.AndroidDriver;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -49,6 +51,30 @@ public class MobileHelper {
             getAppiumDriver().executeScript("mobile: activateApp", params);
         }
         hold(10000);
+    }
+
+    public static String encryptSHA1(String input) {
+        try {
+            // Get an instance of the SHA-1 MessageDigest
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+
+            // Update the MessageDigest with the input byte array
+            md.update(input.getBytes());
+
+            // Get the hash's byte array
+            byte[] byteData = md.digest();
+
+            // Convert the byte array into hexadecimal format
+            StringBuilder sb = new StringBuilder();
+            for (byte b : byteData) {
+                sb.append(String.format("%02x", b));
+            }
+
+            // Return the resulting hash as a hex string
+            return sb.toString();
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

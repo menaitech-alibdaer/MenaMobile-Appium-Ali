@@ -6,8 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
     </list>
@@ -54,7 +56,16 @@
     "TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml.executor": "Run",
     "TestNG.FirstRunTest.test1.executor": "Run",
     "TestNG.FullTest.newEmployee.executor": "Run",
+    "TestNG.LoginTest.changePassword_CheckSpicalCarachter.executor": "Run",
+    "TestNG.LoginTest.changePassword_NewPasswordNotSameRetypePassword.executor": "Run",
+    "TestNG.LoginTest.changePassword_Success.executor": "Run",
+    "TestNG.LoginTest.changePassword_WrongOldPassword.executor": "Run",
     "TestNG.LoginTest.checkForgetPassword.executor": "Run",
+    "TestNG.LoginTest.checkNotMenaMeUser.executor": "Run",
+    "TestNG.LoginTest.checkPasswordContainSpecialCharacter.executor": "Run",
+    "TestNG.LoginTest.connectivity_TestWrongBranch.executor": "Run",
+    "TestNG.LoginTest.connectivity_TestWrongCompany.executor": "Run",
+    "TestNG.LoginTest.connectivity_TestWrongURL.executor": "Run",
     "TestNG.LoginTest.executor": "Run",
     "TestNG.LoginTest.invalidLogin.executor": "Run",
     "TestNG.LoginTest.loginWithOTP.executor": "Run",
@@ -99,12 +110,19 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LoginTest.loginWithOTP_ResendCode">
-    <configuration name="LoginTest.loginWithOTP_ResendCode" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.LoginTest.checkPasswordContainSpecialCharacter">
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="menamobile-appium" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LoginTest.changePassword_CheckSpicalCarachter" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="loginWithOTP_ResendCode" />
+      <option name="METHOD_NAME" value="changePassword_CheckSpicalCarachter" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -112,29 +130,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MssqlConnect.test1" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="utilities.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="utilities" />
-      <option name="MAIN_CLASS_NAME" value="utilities.MssqlConnect" />
-      <option name="METHOD_NAME" value="test1" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VacationTest.requestUnpaidVacationAndWithdraw" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginTest.checkPasswordContainSpecialCharacter" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationAndWithdraw" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="checkPasswordContainSpecialCharacter" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -142,11 +142,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.requestUnpaidVacationWithAttachmentAndReason" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginTest.loginWithOTP_ValidCode" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachmentAndReason" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="loginWithOTP_ValidCode" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -154,11 +154,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.testtttttttttt" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoginTest.validLoginWithRememberMeAndCheckRememberMe" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="testtttttttttt" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="validLoginWithRememberMeAndCheckRememberMe" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -168,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.LoginTest.loginWithOTP_ResendCode" />
-        <item itemvalue="TestNG.MssqlConnect.test1" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationAndWithdraw" />
-        <item itemvalue="TestNG.VacationTest.testtttttttttt" />
+        <item itemvalue="TestNG.LoginTest.checkPasswordContainSpecialCharacter" />
+        <item itemvalue="TestNG.LoginTest.loginWithOTP_ValidCode" />
+        <item itemvalue="TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe" />
+        <item itemvalue="Application.test" />
+        <item itemvalue="TestNG.LoginTest.changePassword_CheckSpicalCarachter" />
       </list>
     </recent_temporary>
   </component>
@@ -345,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725796422513</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725865624403</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1725865624403</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

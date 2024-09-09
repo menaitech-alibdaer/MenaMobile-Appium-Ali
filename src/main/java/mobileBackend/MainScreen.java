@@ -29,6 +29,16 @@ public class MainScreen extends MobileBasePage {
     WebElement settingsBtn;
     @AndroidFindBy(accessibility = "Change Password")
     WebElement changePasswordBtn;
+    @AndroidFindBy(accessibility = "Change")
+    WebElement changeBtn;
+    @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Old Password']")
+    WebElement oldPasswordF;
+    @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'New Password']")
+    WebElement newPasswordF;
+    @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Re-type New Password']")
+    WebElement retypeNewPasswordF;
+    @AndroidFindBy(accessibility = "Password doesn't match the new password")
+    public WebElement passwordDoesntMatchTheNewPasswordAlert;
     @AndroidFindBy(accessibility = "Vacations")
     WebElement vacationsRequestBtn;
     @AndroidFindBy(accessibility = "Choose")
@@ -77,6 +87,10 @@ public class MainScreen extends MobileBasePage {
     WebElement alrightBtn;
     @AndroidFindBy(accessibility = "Approval Committee")
     WebElement approvalCommitteeText;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
+    public WebElement attentionAlertPopup;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
+    public WebElement successAlertPopup;
 
     @AndroidFindBy(xpath = "(//android.widget.ImageView[contains(@content-desc, 'Current')])[2]")
     WebElement toTestScroll111111;
@@ -105,6 +119,32 @@ public class MainScreen extends MobileBasePage {
         clickOn(logOutBtn);
         waitLoadingElement();
         waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
+    }
+
+    public void openChangePassword(){
+        clickOn(sideBarMenu);
+        hold(100);
+        clickOn(changePasswordBtn);
+        waitLoadingElement();
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Change"));
+    }
+
+    public void changePassword(String oldPassword, String newPassword, String reTypeNewPassword){
+        clickOn(oldPasswordF);
+        setText(oldPasswordF, oldPassword);
+        clickOn(newPasswordF);
+        setText(newPasswordF, newPassword);
+        clickOn(retypeNewPasswordF);
+        setText(retypeNewPasswordF, reTypeNewPassword);
+        clickOn(changeBtn);
+        hold(2000);
+        waitLoadingElement();
+    }
+
+    public void closeAttentionAlert(){
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Got it!"));
+        clickOn(gotItBtn);
+        hold(200);
     }
 
     public void myTransactions(String type){
@@ -216,6 +256,23 @@ public class MainScreen extends MobileBasePage {
 
         return getReason.substring(startIndex, endIndex);
 
+    }
+
+    public boolean checkIfLoginSuccessfully(){
+
+        boolean check = false;
+
+        waitLoadingElement();
+
+        try{
+            hold(2000);
+            waitLoadingElement();
+            if(requestMenuBtn.isDisplayed()){
+                check = true;
+            }
+        }catch (Exception ignored){}
+
+        return check;
     }
 
 //    public void cycle(){

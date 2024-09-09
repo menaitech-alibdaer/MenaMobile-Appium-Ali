@@ -70,6 +70,8 @@ public class MobileLogin extends MobileBasePage {
     WebElement resetBtn;
     @AndroidFindBy(accessibility = "Continue")
     WebElement continueBtn;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Attention')]")
+    public WebElement alertPopup;
 
     public void notificationPermission(boolean perm){
         waitForElementToBeVisible(By.id("com.android.permissioncontroller:id/permission_allow_button"));
