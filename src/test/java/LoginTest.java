@@ -117,6 +117,28 @@ public class LoginTest extends BaseTest {
 
     }
 
+    @Test(priority = 4, groups = "Login_Mobile")
+    public void loginWithOTP_ResendCode(){
+
+        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 20 where branch_code='auto_mob1'");
+
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.auto_mobile1();
+
+        loginMob.resendCodeOTP();
+        String code = loginMob.getAuthenticationCode("auto_mobile1");
+        loginMob.setAuthenticationCode(code);
+
+        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 0 where branch_code='auto_mob1'");
+
+        mainScreen = new MainScreen();
+
+        Assert.assertTrue(mainScreen.requestMenuBtn.isDisplayed(), "Login Issue, Main Screen Not Appear!");
+
+    }
+
     @Test(priority = 6, groups = "Login_Mobile")
     public void checkForgetPassword(){
 

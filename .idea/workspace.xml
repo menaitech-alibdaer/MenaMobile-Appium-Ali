@@ -6,9 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,11 +59,13 @@
     "TestNG.LoginTest.invalidLogin.executor": "Run",
     "TestNG.LoginTest.loginWithOTP.executor": "Run",
     "TestNG.LoginTest.loginWithOTP_InvalidCode.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP_ResendCode.executor": "Run",
     "TestNG.LoginTest.loginWithOTP_ValidCode.executor": "Run",
     "TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe.executor": "Run",
     "TestNG.LoginTest.validLoginWithRememberMeAndLogout.executor": "Run",
     "TestNG.LoginTest.validLoginWithRememberMeAndLogout22222.executor": "Run",
     "TestNG.MssqlConnect.test.executor": "Run",
+    "TestNG.MssqlConnect.test1.executor": "Run",
     "TestNG.NewEmployeeCreator.newEmployee.executor": "Run",
     "TestNG.NewEmployeeCreator.simpleLogin.executor": "Run",
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
@@ -96,19 +99,31 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason">
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test" />
+  <component name="RunManager" selected="TestNG.LoginTest.loginWithOTP_ResendCode">
+    <configuration name="LoginTest.loginWithOTP_ResendCode" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LoginTest" />
+      <option name="METHOD_NAME" value="loginWithOTP_ResendCode" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="MssqlConnect.test1" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="TEST_OBJECT" value="CLASS" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utilities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="utilities" />
+      <option name="MAIN_CLASS_NAME" value="utilities.MssqlConnect" />
+      <option name="METHOD_NAME" value="test1" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
@@ -153,11 +168,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.LoginTest.loginWithOTP_ResendCode" />
+        <item itemvalue="TestNG.MssqlConnect.test1" />
         <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason" />
         <item itemvalue="TestNG.VacationTest.requestUnpaidVacationAndWithdraw" />
         <item itemvalue="TestNG.VacationTest.testtttttttttt" />
-        <item itemvalue="TestNG.LoginTest" />
-        <item itemvalue="Application.test" />
       </list>
     </recent_temporary>
   </component>
@@ -322,7 +337,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725450913581</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725796422512</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1725796422513</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

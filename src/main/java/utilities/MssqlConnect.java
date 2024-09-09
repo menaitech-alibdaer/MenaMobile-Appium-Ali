@@ -376,5 +376,10 @@ public class MssqlConnect extends WebBase {
         sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='auto_manager'");
     }
 
+    @Test
+    public void test1(){
+        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 10 where branch_code='auto_mob1'");
+    }
+
 }
 

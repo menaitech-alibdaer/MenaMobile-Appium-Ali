@@ -60,6 +60,8 @@ public class MobileLogin extends MobileBasePage {
     WebElement authenticationCodeF;
     @AndroidFindBy(accessibility = "Verify")
     WebElement verifyBtn;
+    @AndroidFindBy(accessibility = "Resend Code")
+    WebElement resendCodeBtn;
     @AndroidFindBy(accessibility = "Paste")
     WebElement pasteBtn;
     @AndroidFindBy(accessibility = "Forgot Password!")
@@ -268,6 +270,14 @@ public class MobileLogin extends MobileBasePage {
         waitLoadingElement();
         waitLoadingElement();
 
+    }
+
+    public void resendCodeOTP(){
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Resend Code"), 60);
+        clickOn(resendCodeBtn);
+        waitLoadingElement();
+        hold(200);
+        clickByLocationElement(authenticationCodeF, -100, 0);
     }
 
     public void loginAfterConnectivity(String employeeCode, String password){

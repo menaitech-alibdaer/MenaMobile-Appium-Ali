@@ -136,6 +136,26 @@ public class MobileBasePage {
         }
     }
 
+    public void clickByLocation(int targetX ,int targetY) {
+
+        Actions actions = new Actions(appiumDriver);
+        actions.moveByOffset(targetX, targetY).click().perform();
+    }
+
+    public void clickByLocationElement(WebElement element, int xOffset ,int yOffset) {
+
+        Actions actions = new Actions(appiumDriver);
+        // Move to the center of the element, then offset the click by xOffset and yOffset
+        actions.moveToElement(element, xOffset, yOffset).click().perform();
+
+        // Example 1: Click 10 pixels to the right and 5 pixels down from the center
+        // clickByLocationElement(element, 10, 5);
+
+        // Example 2: Click 15 pixels to the left and 20 pixels up from the center
+        // clickByLocationElement(element, -15, -20);
+
+    }
+
     public void setText(WebElement element, String text){
         element.sendKeys(text);
         hold(100);
