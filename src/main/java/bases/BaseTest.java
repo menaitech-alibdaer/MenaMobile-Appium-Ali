@@ -50,7 +50,7 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
-    public void setVersion(@Optional("AUG") String version, @Optional("false") boolean lite){
+    public void setVersion(@Optional("JUL") String version, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
