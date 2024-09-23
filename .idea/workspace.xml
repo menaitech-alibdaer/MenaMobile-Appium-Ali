@@ -5,13 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
+      <change afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/Substitutes.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/Listener.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/VacationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,6 +81,23 @@
     "TestNG.NewEmployeeCreator.newEmployee.executor": "Run",
     "TestNG.NewEmployeeCreator.simpleLogin.executor": "Run",
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
+    "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
+    "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationTest.checkPhoneNumberIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkReasonIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkRequestTwoVacationInTheSameDate.executor": "Run",
+    "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired.executor": "Run",
+    "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees.executor": "Run",
+    "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_ForTwoDaysValidation.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_OneDayVacation.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_SuccessValidation_Upload2Attachment.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_ForTwoDaysValidation_withoutUploadAttachment.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_SuccessValidation_Upload2Attachment.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
+    "TestNG.VacationTest.checkValidationForEmployeeWithoutVacationBalance.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationAndWithdraw.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachment.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
@@ -110,19 +128,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LoginTest.checkPasswordContainSpecialCharacter">
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test" />
-      <module name="menamobile-appium" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LoginTest.changePassword_CheckSpicalCarachter" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes">
+    <configuration name="VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="changePassword_CheckSpicalCarachter" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -130,11 +141,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.checkPasswordContainSpecialCharacter" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkRequestAlertWhenDelegateIsMandatory" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="checkPasswordContainSpecialCharacter" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="checkRequestAlertWhenDelegateIsMandatory" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -142,11 +153,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.loginWithOTP_ValidCode" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="loginWithOTP_ValidCode" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="checkRequestVacationWhenSelectDelegateIsNotRequired" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -154,11 +165,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LoginTest.validLoginWithRememberMeAndCheckRememberMe" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LoginTest" />
-      <option name="METHOD_NAME" value="validLoginWithRememberMeAndCheckRememberMe" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="checkRequestVacationWhenSelectDelegateIs_AllEmployees" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacationTest.checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -168,11 +191,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.LoginTest.checkPasswordContainSpecialCharacter" />
-        <item itemvalue="TestNG.LoginTest.loginWithOTP_ValidCode" />
-        <item itemvalue="TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe" />
-        <item itemvalue="Application.test" />
-        <item itemvalue="TestNG.LoginTest.changePassword_CheckSpicalCarachter" />
+        <item itemvalue="TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" />
+        <item itemvalue="TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes" />
+        <item itemvalue="TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees" />
+        <item itemvalue="TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired" />
+        <item itemvalue="TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory" />
       </list>
     </recent_temporary>
   </component>
@@ -353,7 +376,15 @@
       <option name="project" value="LOCAL" />
       <updated>1725865624403</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1725887518376</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1725887518376</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

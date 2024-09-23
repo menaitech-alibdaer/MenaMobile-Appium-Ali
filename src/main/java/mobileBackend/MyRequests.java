@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
+import java.util.List;
 
 import static bases.BaseTest.iniPlatform;
 
@@ -27,6 +28,8 @@ public class MyRequests extends MobileBasePage {
     WebElement vacationsTypeBtn;
     @AndroidFindBy(accessibility = "Choose")
     WebElement typeF;
+    @AndroidFindBy(accessibility = "Choose")
+    WebElement chooseBtn;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='From Date']/following::android.widget.ImageView)[1]")
     WebElement fromDateF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='To Date']/following::android.widget.ImageView)[1]")
@@ -43,6 +46,8 @@ public class MyRequests extends MobileBasePage {
     WebElement attachmentIconBtn;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]")
     WebElement attachmentF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Delegate']/following::android.widget.Button)[1]")
+    WebElement delegateF;
     @AndroidFindBy(accessibility = "Document")
     WebElement documentBtn;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='test.png']")
@@ -55,8 +60,14 @@ public class MyRequests extends MobileBasePage {
     WebElement setMinutes;
     @AndroidFindBy(accessibility = "OK")
     WebElement okBtn;
+    @AndroidFindBy(accessibility = "Try Again")
+    WebElement tryAgainBtn;
     @AndroidFindBy(accessibility = "Submit")
     WebElement submitBtn;
+    @AndroidFindBy(accessibility = "Not Required")
+    WebElement notRequired_checkbox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[@hint='Search by Name...']")
+    WebElement search_delegatePopup;
     @AndroidFindBy(accessibility = "Got it!")
     WebElement gotItBtn;
     @AndroidFindBy(accessibility = "Alright!")
@@ -65,6 +76,21 @@ public class MyRequests extends MobileBasePage {
     WebElement approvalCommitteeText;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
     public WebElement attachmentInVacationDetails;
+    @AndroidFindBy(accessibility = "Please Fill The Reason")
+    public WebElement pleaseFillTheReason_Alert;
+    @AndroidFindBy(accessibility = "Please Insert Phone Number")
+    public WebElement pleaseInsertPhoneNumber_Alert;
+    @AndroidFindBy(accessibility = "The maximum number of attachment is : 2")
+    public WebElement theMaximumNumberOfAttachmentIs2_Alert;
+    @AndroidFindBy(accessibility = "Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1")
+    public WebElement maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1;
+    @AndroidFindBy(accessibility = "Auto Delegation Is Mandatory Before Vacation Request")
+    public WebElement autoDelegationIsMandatoryBeforeVacationRequest_Alert;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'results found')]")
+    public WebElement resultFound;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Code:')]")
+    public List<WebElement> listOfEmployees;
+
 
 //    public void datePicker(String date){
 //
@@ -225,22 +251,27 @@ public class MyRequests extends MobileBasePage {
         waitLoadingElement();
     }
 
-    public void vacationRequest(String vacationType, String fromDate, String toDate, boolean attachment, String reason, boolean submit){
+    public void vacationRequest(String vacationType, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
 
         waitLoadingElement();
         waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
         clickOn(vacationsTypeBtn);
         hold(200);
-        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(vacationType)));
+        clickOn(AppiumBy.accessibilityId(vacationType));
         waitLoadingElement();
-        clickOn(fromDateF);
-        hold(500);
-        datePicker(fromDate);
-        waitLoadingElement();
-        clickOn(toDateF);
-        hold(500);
-        datePicker(toDate);
-        waitLoadingElement();
+        if(!fromDate.isEmpty()){
+            clickOn(fromDateF);
+            hold(500);
+            datePicker(fromDate);
+            waitLoadingElement();
+        }
+        if(!toDate.isEmpty()){
+            clickOn(toDateF);
+            hold(500);
+            datePicker(toDate);
+            waitLoadingElement();
+        }
+
         scrollToElement(submitBtn, true);
 
         if(attachment){
@@ -263,14 +294,18 @@ public class MyRequests extends MobileBasePage {
                 ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
 
                 clickOn(attachmentIconBtn);
-                clickOn(attachmentF);
-                waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
-                clickOn(documentBtn);
-                waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
-                clickOn(imgUploaded);
-                hold(1000);
-                waitLoadingElement();
-                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+
+                for(int i = 0; i < numberOfAttachment; i++){
+
+                    clickOn(attachmentF);
+                    waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                    clickOn(documentBtn);
+                    waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
+                    clickOn(imgUploaded);
+                    hold(1000);
+                    waitLoadingElement();
+                    waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+                }
 
             }else{
 
@@ -305,7 +340,7 @@ public class MyRequests extends MobileBasePage {
 
             }
 
-            scrollToElement(submitBtn, true);
+            verticalSwipeByPercentages(70, 30, 50);
 
         }
 
@@ -327,16 +362,141 @@ public class MyRequests extends MobileBasePage {
 
         }
 
+        if(!delegateTo.isEmpty()){
+            clickOn(delegateF);
+            hold(100);
+            if(delegateTo.equalsIgnoreCase("Not Required")){
+                simpleClick(notRequired_checkbox);
+                hold(300);
+            }else{
+                simpleClick(search_delegatePopup);
+                hold(100);
+                setText(search_delegatePopup, delegateTo);
+                hold(200);
+                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Code:')]"));
+                hold(300);
+                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")));
+                hold(100);
+                simpleClick(chooseBtn);
+                hold(500);
+            }
+        }
+
         if(submit){
             clickOn(submitBtn);
             waitLoadingElement();
             hold(500);
-            clickOn(alrightBtn);
-            hold(500);
+
+            if(!checkAlert){
+                clickOn(alrightBtn);
+                hold(500);
+
+                if(iniPlatform.equalsIgnoreCase("Android")){
+                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+                }
+
+            }
+
+        }
+
+    }
+
+    public void openDelegatePopup(){
+        scrollToElement(submitBtn, true);
+        clickOn(delegateF);
+        hold(100);
+    }
+
+    public void vacationRequest_checkAlertAfterUploadAttachment(String vacationType, String fromDate, String toDate, boolean attachment, int numberOfAttachment, int checkAlertAfterNumber){
+
+        waitLoadingElement();
+        waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
+        clickOn(vacationsTypeBtn);
+        hold(200);
+        clickOn(AppiumBy.accessibilityId(vacationType));
+        waitLoadingElement();
+        clickOn(fromDateF);
+        hold(500);
+        datePicker(fromDate);
+        waitLoadingElement();
+        clickOn(toDateF);
+        hold(500);
+        datePicker(toDate);
+        waitLoadingElement();
+        scrollToElement(submitBtn, true);
+
+        if(attachment){
 
             if(iniPlatform.equalsIgnoreCase("Android")){
-                ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+                // Specify the remote path where you want to push the file on the device
+                String remotePath = "/sdcard/Download/test.png";
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+                // Upload the file to the device
+                ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(attachmentIconBtn);
+
+                for(int i = 1; i <= numberOfAttachment; i++){
+
+                    if(i == checkAlertAfterNumber){
+                        clickOn(attachmentF);
+                        hold(150);
+                        }else{
+                        clickOn(attachmentF);
+                        waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                        clickOn(documentBtn);
+                        waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
+                        clickOn(imgUploaded);
+                        hold(1000);
+                        waitLoadingElement();
+                        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+                    }
+
+                }
+
+            }else{
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+
+                // Specify the remote path where you want to push the file on the iOS device
+                String remotePath = "@com.example.YourApp:documents/test.png";
+
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+
+                // Upload the file to the device
+                ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(attachmentIconBtn);
+                clickOn(attachmentF);
+                waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                clickOn(documentBtn);
+//                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
+//                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.android.documentsui:id/icon_thumb']")));
+//                hold(1000);
+//                waitLoadingElement();
+//                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+
+
             }
+
         }
 
     }
@@ -390,6 +550,27 @@ public class MyRequests extends MobileBasePage {
             hold(500);
         }
 
+    }
+
+    public void closeAlert(){
+        try{
+            simpleClick(alrightBtn);
+        }catch (Exception exce){
+            try {
+                simpleClick(gotItBtn);
+            }catch (Exception exc){
+                try {
+                    simpleClick(okBtn);
+                }catch (Exception ex){
+                    try {
+                        simpleClick(tryAgainBtn);
+                    }catch (Exception e){
+                        System.out.println("I can't click on the suggested buttons!");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
 }

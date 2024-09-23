@@ -56,10 +56,10 @@ public class MobileBasePage {
                 .until(ExpectedConditions.elementToBeClickable(locator));
     }
 
-//    public void clickOn(WebElement element){
-//        element.click();
-//        hold(100);
-//    }
+    public void simpleClick(WebElement element){
+        element.click();
+        hold(100);
+    }
 
     public void clickOn(WebElement element){
         try{
@@ -103,7 +103,7 @@ public class MobileBasePage {
                         appiumDriver.perform(List.of(scroll));
                     }
 
-                }else if(counter <= 6){
+                }else if(counter <= 7){
 
                     try {
                         isElementFound = element.isDisplayed();
@@ -126,7 +126,82 @@ public class MobileBasePage {
                     }
 
                 }else{
-                    Assert.fail("The Element Not Found after trying to find it: "+element);
+                    excep.printStackTrace();
+                    break;
+                }
+
+                counter++;
+            }
+
+        }
+    }
+
+    public void clickOn(By locator){
+        try{
+
+            appiumDriver.findElement(locator).click();
+            hold(100);
+
+        }catch (Exception excep){
+
+            boolean isElementFound = false;
+            int counter = 1;
+            Dimension screenSize = appiumDriver.manage().window().getSize();
+            int screenWidth = screenSize.getWidth();
+            int screenHeight = screenSize.getHeight();
+
+            // Calculate the center of the screen
+            int centerX = screenWidth / 2;
+            int centerY = screenHeight / 2;
+
+            while (!isElementFound) {
+
+                if(counter <= 5){
+
+                    try {
+                        isElementFound =  appiumDriver.findElement(locator).isDisplayed();
+
+                        appiumDriver.findElement(locator).click();
+                        hold(100);
+
+                    } catch (Exception e) {
+                        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                        Sequence scroll = new Sequence(finger, 1);
+
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY - 200)); // End point
+
+                        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                        appiumDriver.perform(List.of(scroll));
+                    }
+
+                }else if(counter <= 11){
+
+                    try {
+                        isElementFound =  appiumDriver.findElement(locator).isDisplayed();
+
+                        appiumDriver.findElement(locator).click();
+                        hold(100);
+
+                    } catch (Exception e) {
+                        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                        Sequence scroll = new Sequence(finger, 1);
+
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY + 200)); // End point
+
+                        scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                        appiumDriver.perform(List.of(scroll));
+                    }
+
+                }else{
+                    Assert.fail("The Element Not Found after trying to find it: "+ appiumDriver.findElement(locator));
                     break;
                 }
 

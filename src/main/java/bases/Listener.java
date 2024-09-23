@@ -92,6 +92,7 @@ public class Listener implements ITestListener {
         sqlQuery("update adm_branch set is_gulf = 0 where company_code = 'automation' and branch_code = 'auto_a9'");
 
         sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 60 where branch_code='auto_mob1'");
+        sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
     }
 
