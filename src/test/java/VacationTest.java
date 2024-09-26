@@ -1049,6 +1049,8 @@ public class VacationTest extends BaseTest {
         String directManager = personnel.employeeCodeGetter();
         menaMeRestPassword(directManager);
 
+        String directManagerName = d_fn + " " + d_ln;
+
         mainMenu.mainMenu("Employees","Personnel Information");
         String fn = firstName();
         String sn = secondName();
@@ -1081,6 +1083,11 @@ public class VacationTest extends BaseTest {
         myRequests.openVacations();
         myRequests.vacationRequest("Unpaid Vacation", "10/01/2023", "10/01/2023",
                 true, 1, "Test Appium Reason", "", true, false);
+
+        mainScreen.myTransactions("Vacations");
+        mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+
+        softAssert.assertEquals(myRequests.getApprovalCommittee(directManagerName), "Pending", "Approval Committee status issue - should be is: Pending");
 
         mainScreen.logout();
 
@@ -1115,6 +1122,17 @@ public class VacationTest extends BaseTest {
         softAssert.assertTrue(manager.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
 
         manager.reject("Appium Comment - Reject");
+
+        mainScreen.logout();
+
+        loginMob.login(employee, "1", "auto_mob1", false);
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions("Vacations");
+        mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+
+        softAssert.assertEquals(myRequests.getApprovalCommittee(directManagerName), "Rejected", "Approval Committee status issue - should be is: Rejected");
+        softAssert.assertEquals(myRequests.getApprovalComments(directManagerName), "Appium Comment - Reject", "Approval Comment issue - should be is: Appium Comment - Reject");
+        softAssert.assertEquals(myRequests.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
 
         softAssert.assertAll();
 
