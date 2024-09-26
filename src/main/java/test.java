@@ -23,7 +23,17 @@ public class test {
 
         //System.out.println(getTransactionReason());
 
-        System.out.println(MobileHelper.encryptSHA1("Ali&$%#@*3658"));
+        String det = "Hanh Christiansen\nApproved\nAppium Comment - Approve\n26.09.2024 12:55PM";
+
+        // Get the string after the third "\n"
+        int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
+        int thirdNewline = det.indexOf("\n", secondNewline + 1);
+        String textAfterThirdNewline = det.substring(thirdNewline + 1);
+
+// Extract only the date part (first 10 characters)
+        String date = textAfterThirdNewline.substring(0, 10);
+
+        System.out.println(date);
 
     }
 

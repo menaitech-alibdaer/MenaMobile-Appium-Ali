@@ -4,6 +4,8 @@ import io.appium.java_client.android.AndroidDriver;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -75,6 +77,12 @@ public class MobileHelper {
         } catch (NoSuchAlgorithmException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static String currentDate_mobile(){
+        DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        LocalDate date = LocalDate.now();
+        return date.format(currentDateFormatter);
     }
 
 }

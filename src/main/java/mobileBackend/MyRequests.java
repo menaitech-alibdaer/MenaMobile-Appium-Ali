@@ -573,4 +573,83 @@ public class MyRequests extends MobileBasePage {
         }
     }
 
+    public String getApprovalCommittee(String managerName){
+        String textAfterNewline = null;
+        String textBetweenNewlines = null;
+        try{
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            if (det != null) {
+                textAfterNewline = det.substring(det.indexOf("\n") + 1);
+            }
+            return textAfterNewline;
+
+        }catch (Exception e){
+            try {
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    textAfterNewline = det.substring(det.indexOf("\n") + 1);
+                }
+                return textAfterNewline;
+            }catch (Exception ex){
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }
+                return textBetweenNewlines;
+            }
+        }
+    }
+
+    public String getApprovalComments(String managerName){
+        String textAfterSecondNewline = null;
+        try{
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            if (det != null) {
+                int firstNewline = det.indexOf("\n");
+                int secondNewline = det.indexOf("\n", firstNewline + 1);
+                textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
+            }
+            return textAfterSecondNewline;
+        }catch (Exception e){
+            scrollToElement(approvalCommitteeText, true);
+            hold(200);
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            if (det != null) {
+                int firstNewline = det.indexOf("\n");
+                int secondNewline = det.indexOf("\n", firstNewline + 1);
+                textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
+            }
+            return textAfterSecondNewline;
+        }
+    }
+
+    public String getApprovalDate(String managerName){
+        String date = null;
+        try {
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            if (det != null) {
+                int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
+                int thirdNewline = det.indexOf("\n", secondNewline + 1);
+                String textAfterThirdNewline = det.substring(thirdNewline + 1);
+                date = textAfterThirdNewline.substring(0, 10);
+            }
+            return date;
+        }catch (Exception e){
+            scrollToElement(approvalCommitteeText, true);
+            hold(200);
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            if (det != null) {
+                int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
+                int thirdNewline = det.indexOf("\n", secondNewline + 1);
+                String textAfterThirdNewline = det.substring(thirdNewline + 1);
+                date = textAfterThirdNewline.substring(0, 10);
+            }
+            return date;
+        }
+    }
+
 }

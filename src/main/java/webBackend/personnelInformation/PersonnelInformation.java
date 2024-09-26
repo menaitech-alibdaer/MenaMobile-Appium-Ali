@@ -830,6 +830,113 @@ public class PersonnelInformation extends WebBase {
 
     }
 
+    public void personalInformation(String firstName, String secondName, String thirdName, String lastName, String MaritalStatus, String Gender, String Nationality,
+                                    String Religion, String Mobile, String Email,
+                                    String DirectManager, String BirthDate){
+
+        if(!versionGetter().equalsIgnoreCase("OCT")){
+
+            //employeeCode = employeeCodeGenerator();
+            employeeCodeSetter(employeeCodeGenerator());
+            System.out.println("Employee Code: "+employeeCode);
+            goToFrame(frame);
+            elementWaitAdvanced(By.id("employee_code"));
+            setText(empCode, employeeCode, Keys.TAB);
+
+            setText(fNameEng, firstName);
+            setText(sNameEng, secondName);
+            setText(tNameEng, thirdName);
+            setText(familyNameEng, lastName);
+            setText(fNameAr, firstName);
+            setText(sNameAr, secondName);
+            setText(tNameAr, thirdName);
+            setText(familyNameAr, lastName);
+
+            selectOption(marital_StatusE, MaritalStatus);
+            maritalStatus = MaritalStatus;
+            selectOption(sexE,Gender);
+            if(!Nationality.isEmpty()){
+                selectOption(nationalityE, Nationality);
+            }
+            if(!Religion.isEmpty()){
+                selectOption(relegionE, Religion);
+            }
+            if(!Mobile.isEmpty()){
+                setText(mobileE, Mobile);
+            }
+            if(!Email.isEmpty()){
+                setText(emailE, Email);
+            }
+            if(!DirectManager.isEmpty()){
+                setText(manager_code, DirectManager);
+                manager_code.sendKeys(Keys.TAB);
+                hold(500);
+            }
+            setText(birth_date, BirthDate);
+            //employeePicture.sendKeys(uploadRandomImage());
+            hold(300);
+            scrollToElement(empCode);
+            clickOn(nextButton);
+
+        }else {
+
+            personalInformationOct = new PersonalInformation_OCT();
+            //employeeCode = employeeCodeGenerator();
+            employeeCodeSetter(employeeCodeGenerator());
+            System.out.println("Employee Code: "+employeeCode);
+            goToFrame(frame);
+            elementWaitAdvanced(By.id("employee_code"));
+            setText(empCode, employeeCode, Keys.TAB);
+
+            empFirstName = firstName();
+            setText(fNameEng, empFirstName);
+            setText(sNameEng, secondName());
+            setText(tNameEng, thirdName());
+            setText(familyNameEng, lastName());
+            setText(fNameAr, firstName());
+            setText(sNameAr, secondName());
+            setText(tNameAr, thirdName());
+            setText(familyNameAr, lastName());
+
+            normalSelect(personalInformationOct.marital_StatusE, MaritalStatus);
+            personalInformationOct.maritalStatus = MaritalStatus;
+            normalSelect(personalInformationOct.sexE,Gender);
+            if(!Nationality.isEmpty()){
+                normalSelect(personalInformationOct.nationalityE, Nationality);
+            }
+            if(!Religion.isEmpty()){
+                normalSelect(personalInformationOct.relegionE, Religion);
+            }
+            if(!Mobile.isEmpty()){
+                setText(personalInformationOct.mobileE, Mobile);
+            }
+            if(!Email.isEmpty()){
+                setText(personalInformationOct.emailE, Email);
+            }
+            if(!DirectManager.isEmpty()){
+                setText(personalInformationOct.manager_code, DirectManager);
+                personalInformationOct.manager_code.sendKeys(Keys.TAB);
+                hold(500);
+            }
+            personalInformationOct.employeePicture.sendKeys(uploadRandomImage());
+
+            setText(personalInformationOct.birth_date, BirthDate);
+
+        }
+
+        setLog("Personal Information"
+                +" - Employee Code: "+employeeCode
+                +" - Marital Status: "+MaritalStatus
+                +" - Gender: "+Gender
+                +" - Nationality: "+Nationality
+                +" - Religion: "+Religion
+                +" - Mobile: "+Mobile
+                +" - Email: "+Email
+                +" - Direct Manager: "+DirectManager
+                +" - Birth Date: "+BirthDate);
+
+    }
+
     public void personalInformationWithoutNext(String MaritalStatus, String Gender, String Nationality,
                                     String Religion, String Mobile, String Email,
                                     String DirectManager, String BirthDate){

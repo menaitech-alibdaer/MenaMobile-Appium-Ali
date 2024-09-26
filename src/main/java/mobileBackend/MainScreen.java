@@ -23,6 +23,8 @@ public class MainScreen extends MobileBasePage {
     WebElement homeBtn;
     @AndroidFindBy(accessibility = "MenuIcon")
     WebElement sideBarMenu;
+    @AndroidFindBy(accessibility = "Manager")
+    WebElement managerBtn;
     @AndroidFindBy(accessibility = "Log Out")
     WebElement logOutBtn;
     @AndroidFindBy(accessibility = "Settings")
@@ -114,9 +116,15 @@ public class MainScreen extends MobileBasePage {
     }
 
     public void logout(){
-        clickOn(sideBarMenu);
+        try {
+            simpleClick(sideBarMenu);
+        }catch (Exception e){
+            horizontalSwipeByPercentages(2, 95, 50);
+            hold(100);
+            scrollToElement(logOutBtn, true);
+        }
         hold(100);
-        clickOn(logOutBtn);
+        simpleClick(logOutBtn);
         waitLoadingElement();
         waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
     }
@@ -273,6 +281,15 @@ public class MainScreen extends MobileBasePage {
         }catch (Exception ignored){}
 
         return check;
+    }
+
+    public void openManager(){
+        waitForElementToBeVisible(AppiumBy.accessibilityId("MenuIcon"));
+        clickOn(sideBarMenu);
+        hold(100);
+        clickOn(managerBtn);
+        waitLoadingElement();
+        waitForElementToBeVisible(AppiumBy.accessibilityId("My Team"));
     }
 
 //    public void cycle(){
