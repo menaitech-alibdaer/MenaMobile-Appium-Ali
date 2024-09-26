@@ -5,15 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonnelInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonnelInformation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/VacationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +125,7 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager">
+  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager">
     <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="test" />
       <module name="menamobile-appium" />
@@ -190,9 +183,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager" />
         <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager" />
         <item itemvalue="Application.test" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager" />
         <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager" />
         <item itemvalue="TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" />
       </list>
@@ -399,7 +392,23 @@
       <option name="project" value="LOCAL" />
       <updated>1727095816968</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1727346251370</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1727346251370</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1727346391183</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1727346391183</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

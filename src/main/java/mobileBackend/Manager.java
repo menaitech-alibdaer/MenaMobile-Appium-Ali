@@ -360,6 +360,7 @@ public class Manager extends MobileBasePage {
     }
 
     public void approve(){
+        verticalSwipeByPercentages(70, 30, 50);
         clickOn(approveBtn);
         hold(200);
         simpleClick(SendBtn);
@@ -368,6 +369,7 @@ public class Manager extends MobileBasePage {
     }
 
     public void reject(String reason){
+        verticalSwipeByPercentages(70, 30, 50);
         clickOn(rejectBtn);
         hold(200);
         simpleClick(commentF);
