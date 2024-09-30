@@ -27,6 +27,14 @@ public class MyRequests extends MobileBasePage {
     @AndroidFindBy(accessibility = "Choose")
     WebElement vacationsTypeBtn;
     @AndroidFindBy(accessibility = "Choose")
+    WebElement sickVacationReasonBtn;
+    @AndroidFindBy(accessibility = "Sick Vacation Reasons")
+    public WebElement sickVacationReasons_title;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Sick Vacation Reasons']/following::android.view.View[@content-desc='*'])[1]")
+    public WebElement sickVacationReasons_mandatory;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Reason')]")
+    public List<WebElement> sickVacationReasonsList;
+    @AndroidFindBy(accessibility = "Choose")
     WebElement typeF;
     @AndroidFindBy(accessibility = "Choose")
     WebElement chooseBtn;
@@ -86,10 +94,16 @@ public class MyRequests extends MobileBasePage {
     public WebElement maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1;
     @AndroidFindBy(accessibility = "Auto Delegation Is Mandatory Before Vacation Request")
     public WebElement autoDelegationIsMandatoryBeforeVacationRequest_Alert;
+    @AndroidFindBy(accessibility = "You Must Fill Sick Vacation Reason")
+    public WebElement youMustFillSickVacationReason_Alert;
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'results found')]")
     public WebElement resultFound;
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Code:')]")
     public List<WebElement> listOfEmployees;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
+    public WebElement attentionAlertPopup;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
+    public WebElement successAlertPopup;
 
 
 //    public void datePicker(String date){
@@ -251,7 +265,7 @@ public class MyRequests extends MobileBasePage {
         waitLoadingElement();
     }
 
-    public void vacationRequest(String vacationType, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
+    public void vacationRequest(String vacationType, String sickVacationReason, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
 
         waitLoadingElement();
         waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
@@ -259,6 +273,14 @@ public class MyRequests extends MobileBasePage {
         hold(200);
         clickOn(AppiumBy.accessibilityId(vacationType));
         waitLoadingElement();
+        if(!sickVacationReason.isEmpty()){
+            waitLoadingElement();
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Sick Vacation Reasons"));
+            clickOn(sickVacationReasonBtn);
+            hold(200);
+            clickOn(AppiumBy.accessibilityId(sickVacationReason));
+            hold(500);
+        }
         if(!fromDate.isEmpty()){
             clickOn(fromDateF);
             hold(500);
@@ -397,6 +419,25 @@ public class MyRequests extends MobileBasePage {
 
             }
 
+        }
+
+    }
+
+    public void vacationRequest_checkSickVacationReasonsField(String vacationType, boolean checkListReasonsTypes){
+        waitLoadingElement();
+        waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
+        clickOn(vacationsTypeBtn);
+        hold(200);
+        clickOn(AppiumBy.accessibilityId(vacationType));
+        waitLoadingElement();
+        waitLoadingElement();
+        hold(2000);
+
+        if(checkListReasonsTypes){
+            waitLoadingElement();
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Sick Vacation Reasons"));
+            clickOn(sickVacationReasonBtn);
+            hold(200);
         }
 
     }

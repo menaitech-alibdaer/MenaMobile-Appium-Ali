@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/VacationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -77,6 +80,7 @@
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
     "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
     "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear.executor": "Run",
     "TestNG.VacationTest.checkPhoneNumberIsMandatory.executor": "Run",
     "TestNG.VacationTest.checkReasonIsMandatory.executor": "Run",
     "TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory.executor": "Run",
@@ -84,6 +88,7 @@
     "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired.executor": "Run",
     "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees.executor": "Run",
     "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation.executor": "Run",
     "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_ForTwoDaysValidation.executor": "Run",
     "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_OneDayVacation.executor": "Run",
     "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_SuccessValidation_Upload2Attachment.executor": "Run",
@@ -92,6 +97,8 @@
     "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_SuccessValidation_Upload2Attachment.executor": "Run",
     "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
     "TestNG.VacationTest.checkValidationForEmployeeWithoutVacationBalance.executor": "Run",
+    "TestNG.VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason.executor": "Run",
+    "TestNG.VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationAndWithdraw.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachment.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
@@ -125,19 +132,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager">
-    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="test" />
-      <module name="menamobile-appium" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation">
+    <configuration name="VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" />
+      <option name="METHOD_NAME" value="checkItemsInSickVacationReasonsFieldIfAllAppear" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -145,11 +145,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager" />
+      <option name="METHOD_NAME" value="checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -157,11 +157,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager" />
+      <option name="METHOD_NAME" value="checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="VacationTest" />
+      <option name="METHOD_NAME" value="requestSickVacationWithChooseSickVacationReason_Successfully" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -183,11 +195,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation" />
+        <item itemvalue="TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear" />
+        <item itemvalue="TestNG.VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason" />
+        <item itemvalue="TestNG.VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully" />
         <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager" />
-        <item itemvalue="Application.test" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager" />
-        <item itemvalue="TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes" />
       </list>
     </recent_temporary>
   </component>
@@ -408,7 +420,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727346391183</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1727347821132</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1727347821132</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

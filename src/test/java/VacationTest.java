@@ -1,4 +1,5 @@
 import bases.BaseTest;
+import io.appium.java_client.AppiumBy;
 import mobileBackend.MainScreen;
 import mobileBackend.Manager;
 import mobileBackend.MobileLogin;
@@ -12,6 +13,7 @@ import webBackend.general.MenaModules;
 import webBackend.general.Substitutes;
 import webBackend.personnelInformation.PersonnelInformation;
 
+import static io.appium.java_client.AppiumBy.accessibilityId;
 import static utilities.MobileHelper.currentDate_mobile;
 import static utilities.MssqlConnect.menaMeRestPassword;
 import static utilities.MssqlConnect.sqlQuery;
@@ -73,7 +75,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Unpaid Vacation", "10/01/2023", "10/01/2023",
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/01/2023", "10/01/2023",
                 true, 1, "Test Appium Reason", "", true, false);
 
         mainScreen.myTransactions("Vacations");
@@ -127,7 +129,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Unpaid Vacation", "11/01/2023", "11/01/2023",
+        myRequests.vacationRequest("Unpaid Vacation", "", "11/01/2023", "11/01/2023",
                 false, 1, "", "", true, false);
 
         mainScreen.myTransactions("Vacations");
@@ -173,7 +175,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Balance - Never Exceed Annual Balance", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Balance - Never Exceed Annual Balance", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
         Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
@@ -215,12 +217,12 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Unpaid Vacation", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Unpaid Vacation", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, false);
 
         mainScreen.myRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Unpaid Vacation", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Unpaid Vacation", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
         softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
@@ -242,7 +244,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Reason Is Mandatory", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Reason Is Mandatory", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
         Assert.assertTrue(myRequests.pleaseFillTheReason_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
@@ -262,7 +264,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Phone Number Is Mandatory", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Phone Number Is Mandatory", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
         Assert.assertTrue(myRequests.pleaseInsertPhoneNumber_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Insert Phone Number!");
@@ -346,7 +348,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "10/10/2023", "11/10/2023",
+        myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "11/10/2023",
                 false, 0, "", "", true, true);
 
         Assert.assertTrue(myRequests.maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1.isDisplayed(), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1");
@@ -388,7 +390,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "10/10/2023", "11/10/2023",
+        myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "11/10/2023",
                 true, 2, "", "", true, true);
 
         Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
@@ -430,7 +432,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "10/10/2023", "10/10/2023",
+        myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "10/10/2023",
                 false, 0, "", "", true, true);
 
         Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
@@ -473,7 +475,7 @@ public class VacationTest extends BaseTest {
         myRequests = new MyRequests();
         myRequests.openVacations();
 
-        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "10/10/2023", "10/10/2023",
+        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "10/10/2023", "10/10/2023",
                 false, 0, "", "", true, false);
 
         mainScreen.myRequests();
@@ -521,12 +523,12 @@ public class VacationTest extends BaseTest {
         myRequests = new MyRequests();
 
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "05/05/2023", "05/05/2023",
                 false, 0, "", "", true, false);
 
         mainScreen.myRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "06/05/2023", "06/05/2023",
+        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "06/05/2023", "06/05/2023",
                 false, 0, "", "", true, true);
 
         softAssert.assertTrue(mainScreen.attentionAlertPopup.isDisplayed(), "Attention Please Alert NOT Appear!");
@@ -570,12 +572,12 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "05/05/2023", "05/05/2023",
                 false, 0, "", "", true, false);
 
         mainScreen.myRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "06/05/2023", "06/05/2023",
+        myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "06/05/2023", "06/05/2023",
                 true, 2, "", "", true, true);
 
         Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
@@ -617,7 +619,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Can Not Be Requested In Future Date", "05/05/2030", "05/05/2030",
+        myRequests.vacationRequest("Can Not Be Requested In Future Date", "", "05/05/2030", "05/05/2030",
                 false, 0, "", "", true, true);
 
         softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Request This Vacation In A Future Date"), "Alert Issue: Shoud be alert appear--> You Can Not Request This Vacation In A Future Date");
@@ -626,7 +628,7 @@ public class VacationTest extends BaseTest {
 
         mainScreen.myRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Can Not Be Requested In Previous Date", "06/05/2023", "06/05/2023",
+        myRequests.vacationRequest("Can Not Be Requested In Previous Date", "", "06/05/2023", "06/05/2023",
                 false, 0, "", "", true, true);
 
         softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("before the current date"), "Alert Issue: Shoud be alert appear--> Transaction Date can`t be before the current date");
@@ -671,7 +673,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("To Test Delegate", "", "",
+        myRequests.vacationRequest("To Test Delegate", "", "", "",
                 false, 0, "", "", true, true);
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
@@ -717,7 +719,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("To Test Delegate", "", "",
+        myRequests.vacationRequest("To Test Delegate", "", "", "",
                 false, 0, "", "Not Required", true, true);
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
@@ -773,7 +775,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("To Test Delegate", "", "",
+        myRequests.vacationRequest("To Test Delegate", "", "", "",
                 false, 0, "", emp2, true, true);
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
@@ -833,7 +835,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("To Test Delegate", "", "",
+        myRequests.vacationRequest("To Test Delegate", "", "", "",
                 false, 0, "", substituteCode, true, true);
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
@@ -964,7 +966,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Unpaid Vacation", "10/01/2023", "10/01/2023",
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/01/2023", "10/01/2023",
                 true, 1, "Test Appium Reason", "", true, false);
 
         mainScreen.myTransactions("Vacations");
@@ -1021,7 +1023,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 17, groups = "Vacations")
     public void requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -1081,7 +1083,7 @@ public class VacationTest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Unpaid Vacation", "10/01/2023", "10/01/2023",
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/01/2023", "10/01/2023",
                 true, 1, "Test Appium Reason", "", true, false);
 
         mainScreen.myTransactions("Vacations");
@@ -1135,6 +1137,199 @@ public class VacationTest extends BaseTest {
         softAssert.assertEquals(myRequests.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
 
         softAssert.assertAll();
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest_checkSickVacationReasonsField("Sick Vacation", false);
+
+        softAssert.assertTrue(myRequests.sickVacationReasons_title.isDisplayed(), "Sick Vacation Reasons title NOT appear!");
+        softAssert.assertTrue(myRequests.sickVacationReasons_mandatory.isDisplayed(), "Sick Vacation Reasons title NOT Mandatory ( * ) not appear!");
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void checkItemsInSickVacationReasonsFieldIfAllAppear(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest_checkSickVacationReasonsField("Sick Vacation", true);
+
+        softAssert.assertEquals(myRequests.sickVacationReasonsList.size(), 4, "Sick Vacation Reasons List NOT Retrieve All Items!");
+        softAssert.assertTrue(getBy(accessibilityId("Reason 1")).isDisplayed(), "Sick Vacation Reasons type = 'Reason 1' NOT appear!");
+        softAssert.assertTrue(getBy(accessibilityId("Reason 2")).isDisplayed(), "Sick Vacation Reasons type = 'Reason 2' NOT appear!");
+        softAssert.assertTrue(getBy(accessibilityId("Reason 3")).isDisplayed(), "Sick Vacation Reasons type = 'Reason 3' NOT appear!");
+        softAssert.assertTrue(getBy(accessibilityId("Reason 4")).isDisplayed(), "Sick Vacation Reasons type = 'Reason 4' NOT appear!");
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Sick Vacation", "", "", "",
+                false, 0, "", "", true, true);
+
+        Assert.assertTrue(myRequests.youMustFillSickVacationReason_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason");
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void requestSickVacationWithChooseSickVacationReason_Successfully(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Sick Vacation", "Reason 2", "", "",
+                false, 0, "", "", true, true);
+
+        Assert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 

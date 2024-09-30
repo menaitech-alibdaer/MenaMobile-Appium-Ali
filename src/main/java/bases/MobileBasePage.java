@@ -612,4 +612,8 @@ public class MobileBasePage {
         ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
     }
 
+    public WebElement getBy(AppiumBy locator){
+        return appiumDriver.findElement(locator);
+    }
+
 }
