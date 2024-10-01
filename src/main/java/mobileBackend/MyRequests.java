@@ -17,6 +17,7 @@ import java.util.Base64;
 import java.util.List;
 
 import static bases.BaseTest.iniPlatform;
+import static io.appium.java_client.AppiumBy.accessibilityId;
 
 public class MyRequests extends MobileBasePage {
 
@@ -82,6 +83,8 @@ public class MyRequests extends MobileBasePage {
     WebElement alrightBtn;
     @AndroidFindBy(accessibility = "Approval Committee")
     WebElement approvalCommitteeText;
+    @AndroidFindBy(accessibility = "Cancel")
+    WebElement cancelBtn;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
     public WebElement attachmentInVacationDetails;
     @AndroidFindBy(accessibility = "Please Fill The Reason")
@@ -104,6 +107,8 @@ public class MyRequests extends MobileBasePage {
     public WebElement attentionAlertPopup;
     @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
     public WebElement successAlertPopup;
+    @AndroidFindBy(accessibility = "Vacation Cannot Be Entered in MenaMe")
+    WebElement vacationCannotBeEnteredInMenaMe_type;
 
 
 //    public void datePicker(String date){
@@ -254,31 +259,54 @@ public class MyRequests extends MobileBasePage {
 //    }
 
     public void openVacations(){
-        waitForElementToBeClickable(AppiumBy.accessibilityId("Vacations"));
+        waitForElementToBeClickable(accessibilityId("Vacations"));
         clickOn(vacationsRequestBtn);
         waitLoadingElement();
     }
 
     public void openOvertime(){
-        waitForElementToBeClickable(AppiumBy.accessibilityId("Overtime"));
+        waitForElementToBeClickable(accessibilityId("Overtime"));
         clickOn(overtimeRequestBtn);
         waitLoadingElement();
+    }
+
+    public boolean checkVacationType(String vacationType){
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(vacationsTypeBtn);
+        hold(200);
+        return scrollToElement(vacationCannotBeEnteredInMenaMe_type , true, 7);
+    }
+
+    public boolean checkElementIfVisible(WebElement element){
+        try {
+            element.isDisplayed();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public boolean checkCancelButtonIfVisible(){
+        scrollToElement(approvalCommitteeText, true);
+        verticalSwipeByPercentages(70, 40, 50);
+        return checkElementIfVisible(cancelBtn);
     }
 
     public void vacationRequest(String vacationType, String sickVacationReason, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
 
         waitLoadingElement();
-        waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
+        waitForElementToBeClickable(accessibilityId("Choose"));
         clickOn(vacationsTypeBtn);
         hold(200);
-        clickOn(AppiumBy.accessibilityId(vacationType));
+        clickOn(accessibilityId(vacationType));
         waitLoadingElement();
         if(!sickVacationReason.isEmpty()){
             waitLoadingElement();
-            waitForElementToBeVisible(AppiumBy.accessibilityId("Sick Vacation Reasons"));
+            waitForElementToBeVisible(accessibilityId("Sick Vacation Reasons"));
             clickOn(sickVacationReasonBtn);
             hold(200);
-            clickOn(AppiumBy.accessibilityId(sickVacationReason));
+            clickOn(accessibilityId(sickVacationReason));
             hold(500);
         }
         if(!fromDate.isEmpty()){
@@ -320,7 +348,7 @@ public class MyRequests extends MobileBasePage {
                 for(int i = 0; i < numberOfAttachment; i++){
 
                     clickOn(attachmentF);
-                    waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                    waitForElementToBeVisible(accessibilityId("Document"));
                     clickOn(documentBtn);
                     waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
                     clickOn(imgUploaded);
@@ -351,7 +379,7 @@ public class MyRequests extends MobileBasePage {
 
                 clickOn(attachmentIconBtn);
                 clickOn(attachmentF);
-                waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                waitForElementToBeVisible(accessibilityId("Document"));
                 clickOn(documentBtn);
 //                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
 //                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.android.documentsui:id/icon_thumb']")));
@@ -425,17 +453,17 @@ public class MyRequests extends MobileBasePage {
 
     public void vacationRequest_checkSickVacationReasonsField(String vacationType, boolean checkListReasonsTypes){
         waitLoadingElement();
-        waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
+        waitForElementToBeClickable(accessibilityId("Choose"));
         clickOn(vacationsTypeBtn);
         hold(200);
-        clickOn(AppiumBy.accessibilityId(vacationType));
+        clickOn(accessibilityId(vacationType));
         waitLoadingElement();
         waitLoadingElement();
         hold(2000);
 
         if(checkListReasonsTypes){
             waitLoadingElement();
-            waitForElementToBeVisible(AppiumBy.accessibilityId("Sick Vacation Reasons"));
+            waitForElementToBeVisible(accessibilityId("Sick Vacation Reasons"));
             clickOn(sickVacationReasonBtn);
             hold(200);
         }
@@ -451,10 +479,10 @@ public class MyRequests extends MobileBasePage {
     public void vacationRequest_checkAlertAfterUploadAttachment(String vacationType, String fromDate, String toDate, boolean attachment, int numberOfAttachment, int checkAlertAfterNumber){
 
         waitLoadingElement();
-        waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
+        waitForElementToBeClickable(accessibilityId("Choose"));
         clickOn(vacationsTypeBtn);
         hold(200);
-        clickOn(AppiumBy.accessibilityId(vacationType));
+        clickOn(accessibilityId(vacationType));
         waitLoadingElement();
         clickOn(fromDateF);
         hold(500);
@@ -494,7 +522,7 @@ public class MyRequests extends MobileBasePage {
                         hold(150);
                         }else{
                         clickOn(attachmentF);
-                        waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                        waitForElementToBeVisible(accessibilityId("Document"));
                         clickOn(documentBtn);
                         waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
                         clickOn(imgUploaded);
@@ -527,7 +555,7 @@ public class MyRequests extends MobileBasePage {
 
                 clickOn(attachmentIconBtn);
                 clickOn(attachmentF);
-                waitForElementToBeVisible(AppiumBy.accessibilityId("Document"));
+                waitForElementToBeVisible(accessibilityId("Document"));
                 clickOn(documentBtn);
 //                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
 //                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.android.documentsui:id/icon_thumb']")));
@@ -543,15 +571,15 @@ public class MyRequests extends MobileBasePage {
     }
 
     public void openLastVacationRequest(){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("My Recent Transactions"));
+        waitForElementToBeVisible(accessibilityId("My Recent Transactions"));
         clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='My Recent Transactions']/following::android.view.View[contains(@content-desc, 'Vacation Request')]")));
         hold(1000);
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
 
     }
 
     public boolean checkAttachmentInVacationDetails(){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
         scrollToElement(approvalCommitteeText, true);
         clickOn(attachmentInVacationDetails);
         waitLoadingElement();
@@ -562,14 +590,14 @@ public class MyRequests extends MobileBasePage {
     public void overtimeRequest(String date, String overtimeType, String fromTime, String toTime, boolean submit){
 
         waitLoadingElement();
-        waitForElementToBeClickable(AppiumBy.accessibilityId("Choose"));
+        waitForElementToBeClickable(accessibilityId("Choose"));
         clickOn(dateF);
         hold(500);
         datePicker(date);
         waitLoadingElement();
         clickOn(typeF);
         hold(200);
-        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(overtimeType)));
+        clickOn(appiumDriver.findElement(accessibilityId(overtimeType)));
         waitLoadingElement();
         scrollToElement(submitBtn, true);
 
@@ -615,32 +643,48 @@ public class MyRequests extends MobileBasePage {
     }
 
     public String getApprovalCommittee(String managerName){
-        String textAfterNewline = null;
         String textBetweenNewlines = null;
         try{
             String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                textAfterNewline = det.substring(det.indexOf("\n") + 1);
+            boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+            if(containsMoreThanOneNewline){
+                textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+            }else{
+                textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
             }
-            return textAfterNewline;
+
+            return textBetweenNewlines;
 
         }catch (Exception e){
             try {
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
                 String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                if (det != null) {
-                    textAfterNewline = det.substring(det.indexOf("\n") + 1);
+                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+                if(containsMoreThanOneNewline){
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }else{
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
                 }
-                return textAfterNewline;
+
+                return textBetweenNewlines;
+
             }catch (Exception ex){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
                 String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                if (det != null) {
+                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+                if(containsMoreThanOneNewline){
                     textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }else{
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
                 }
+
                 return textBetweenNewlines;
+
             }
         }
     }
@@ -671,25 +715,35 @@ public class MyRequests extends MobileBasePage {
     public String getApprovalDate(String managerName){
         String date = null;
         try {
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
             if (det != null) {
-                int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
-                int thirdNewline = det.indexOf("\n", secondNewline + 1);
-                String textAfterThirdNewline = det.substring(thirdNewline + 1);
-                date = textAfterThirdNewline.substring(0, 10);
+                int lastNewline = det.lastIndexOf("\n");
+                String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+                date = textAfterLastNewline.substring(0, 10);
             }
             return date;
         }catch (Exception e){
-            scrollToElement(approvalCommitteeText, true);
-            hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
-                int thirdNewline = det.indexOf("\n", secondNewline + 1);
-                String textAfterThirdNewline = det.substring(thirdNewline + 1);
-                date = textAfterThirdNewline.substring(0, 10);
+            try {
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    int lastNewline = det.lastIndexOf("\n");
+                    String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+                    date = textAfterLastNewline.substring(0, 10);
+                }
+                return date;
+            }catch (Exception ex){
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    int lastNewline = det.lastIndexOf("\n");
+                    String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+                    date = textAfterLastNewline.substring(0, 10);
+                }
+                return date;
             }
-            return date;
         }
     }
 

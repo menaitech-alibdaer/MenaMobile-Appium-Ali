@@ -1,5 +1,4 @@
 import bases.BaseTest;
-import io.appium.java_client.AppiumBy;
 import mobileBackend.MainScreen;
 import mobileBackend.Manager;
 import mobileBackend.MobileLogin;
@@ -7,10 +6,7 @@ import mobileBackend.MyRequests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import webBackend.financialInformation.FinancialPackage;
-import webBackend.general.Login;
-import webBackend.general.MainMenu;
-import webBackend.general.MenaModules;
-import webBackend.general.Substitutes;
+import webBackend.general.*;
 import webBackend.personnelInformation.PersonnelInformation;
 
 import static io.appium.java_client.AppiumBy.accessibilityId;
@@ -27,6 +23,7 @@ public class VacationTest extends BaseTest {
     MenaModules menaModules;
     Substitutes substitutes;
     MainMenu mainMenu;
+    EmployeesTransactions transactions;
     String employeeCode = null;
 
     MobileLogin loginMob;
@@ -134,7 +131,7 @@ public class VacationTest extends BaseTest {
 
         mainScreen.myTransactions("Vacations");
         mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation",
-                "11.01.2023", true);
+                "11.01.2023", true, false);
 
         Assert.assertTrue(mainScreen.checkTransactionIfDropped(), "The Transaction NOT Dropped!");
 
@@ -1330,6 +1327,330 @@ public class VacationTest extends BaseTest {
                 false, 0, "", "", true, true);
 
         Assert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void checkOptionVacationCannotBeEnteredInMenaMe(){
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+
+        Assert.assertFalse(myRequests.checkVacationType("Vacation Cannot Be Entered in MenaMe"), "This type should be NOT appear: Vacation Cannot Be Entered in MenaMe");
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void requestVacationAndApprovedByManagerAndPostTransactionFromSystem(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        String d_fn = firstName();
+        String d_sn = secondName();
+        String d_tn = thirdName();
+        String d_ln = lastName();
+        personnel.personalInformation(d_fn, d_sn, d_tn, d_ln, "Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String directManager = personnel.employeeCodeGetter();
+        menaMeRestPassword(directManager);
+
+        String directManagerName = d_fn + " " + d_ln;
+
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", directManager, "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String employee = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employee);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employee);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employee, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/05/2024", "10/05/2024",
+                false, 0, "", "", true, false);
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+
+        manager = new Manager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Unpaid Vacation");
+        manager.approve();
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Workforce Management", "Employees Transactions Leave");
+
+        transactions = new EmployeesTransactions();
+        transactions.setEmployeeCode(employee);
+        transactions.goToVacation();
+
+        softAssert.assertEquals(transactions.getFromDate(1), "10/05/2024");
+        softAssert.assertEquals(transactions.getToDate(1), "10/05/2024");
+        softAssert.assertEquals(transactions.getVacationType(1), "Unpaid Vacation");
+
+        transactions.post();
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        String d_fn = firstName();
+        String d_sn = secondName();
+        String d_tn = thirdName();
+        String d_ln = lastName();
+        personnel.personalInformation(d_fn, d_sn, d_tn, d_ln, "Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String directManager = personnel.employeeCodeGetter();
+        menaMeRestPassword(directManager);
+
+        String directManagerName = d_fn + " " + d_ln;
+
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", directManager, "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String employee = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employee);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employee);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employee, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/03/2024", "10/03/2024",
+                false, 0, "", "", true, false);
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+
+        manager = new Manager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Unpaid Vacation");
+        manager.approve();
+
+        mainScreen.logout();
+
+        loginMob.login(employee, "1", "auto_mob1", false);
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions("Vacations");
+        mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024", false, true);
+
+        softAssert.assertFalse(myRequests.checkCancelButtonIfVisible(), "Cancel Button Should be NOT Appear After Request To Cancel!!");
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Unpaid Vacation");
+        manager.approve();
+
+        mainScreen.logout();
+
+        loginMob.login(employee, "1", "auto_mob1", false);
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions("Vacations");
+        mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024");
+
+        softAssert.assertEquals(myRequests.getApprovalCommittee(directManagerName), "Cancel", "Approval Committee status issue - should be is: Rejected");
+        softAssert.assertEquals(myRequests.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 16, groups = "Vacations")
+    public void checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        String d_fn = firstName();
+        String d_sn = secondName();
+        String d_tn = thirdName();
+        String d_ln = lastName();
+        personnel.personalInformation(d_fn, d_sn, d_tn, d_ln, "Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String directManager = personnel.employeeCodeGetter();
+        menaMeRestPassword(directManager);
+
+        String directManagerName = d_fn + " " + d_ln;
+
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", directManager, "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String employee = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employee);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employee);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employee, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/03/2024", "10/03/2024",
+                false, 0, "", "", true, false);
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+
+        manager = new Manager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Unpaid Vacation");
+        manager.approve();
+
+        mainScreen.logout();
+
+        loginMob.login(employee, "1", "auto_mob1", false);
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions("Vacations");
+        mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024", false, true);
+
+        softAssert.assertFalse(myRequests.checkCancelButtonIfVisible(), "Cancel Button Should be NOT Appear After Request To Cancel!!");
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Unpaid Vacation");
+        manager.reject();
+
+        mainScreen.logout();
+
+        loginMob.login(employee, "1", "auto_mob1", false);
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions("Vacations");
+        mainScreen.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024");
+
+        softAssert.assertEquals(myRequests.getApprovalCommittee(directManagerName), "Approved", "Approval Committee status issue - should be is: Rejected");
+        softAssert.assertEquals(myRequests.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
+
+        softAssert.assertAll();
 
     }
 

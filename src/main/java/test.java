@@ -23,20 +23,24 @@ public class test {
 
         //System.out.println(getTransactionReason());
 
-        String det = "Hanh Christiansen\nApproved\nAppium Comment - Approve\n26.09.2024 12:55PM";
+        //String det = "Hanh Christiansen\nApproved\nAppium Comment - Approve\n26.09.2024 12:55PM";
+        String det = "Bethel Olson\nCancel\n01.10.2024 3:03PM";
 
-        // Get the string after the third "\n"
-        int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
-        int thirdNewline = det.indexOf("\n", secondNewline + 1);
-        String textAfterThirdNewline = det.substring(thirdNewline + 1);
+        int lastNewline = det.lastIndexOf("\n");
+        String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+        String getDate = textAfterLastNewline.substring(0, 10);
 
-// Extract only the date part (first 10 characters)
-        String date = textAfterThirdNewline.substring(0, 10);
-
-        System.out.println(date);
+        System.out.println(getDate);
 
     }
 
+    public static String extractDate(String det) {
+        // Check if there is a newline before the date
+        int lastNewline = det.lastIndexOf("\n");
+        String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+
+        return textAfterLastNewline.substring(0, 10);
+    }
 
     public static String getTransactionReason(){
         String getReason = "Reason: \n1Ali Ali Ali123Ali-The Transaction Was Submitted Via Mobile Application";

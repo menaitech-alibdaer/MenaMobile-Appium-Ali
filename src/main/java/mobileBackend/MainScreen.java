@@ -85,6 +85,8 @@ public class MainScreen extends MobileBasePage {
     public WebElement attachmentInVacationDetails;
     @AndroidFindBy(accessibility = "Withdraw")
     WebElement withdrawBtn;
+    @AndroidFindBy(accessibility = "Cancel")
+    WebElement cancelBtn;
     @AndroidFindBy(accessibility = "Alright!")
     WebElement alrightBtn;
     @AndroidFindBy(accessibility = "Approval Committee")
@@ -179,7 +181,7 @@ public class MainScreen extends MobileBasePage {
 
     }
 
-    public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate, boolean withdraw){
+    public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate, boolean withdraw, boolean cancel){
 
         clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(transactionType)));
         hold(4000);
@@ -198,6 +200,15 @@ public class MainScreen extends MobileBasePage {
         if(withdraw){
             scrollToElement(withdrawBtn, true);
             clickOn(withdrawBtn);
+            waitLoadingElement();
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Alright!"));
+            clickOn(alrightBtn);
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        }
+
+        if(cancel){
+            scrollToElement(cancelBtn, true);
+            clickOn(cancelBtn);
             waitLoadingElement();
             waitForElementToBeVisible(AppiumBy.accessibilityId("Alright!"));
             clickOn(alrightBtn);

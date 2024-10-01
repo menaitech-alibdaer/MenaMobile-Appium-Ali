@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeesTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeesTransactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/VacationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,9 +85,13 @@
     "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
     "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
     "TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear.executor": "Run",
+    "TestNG.VacationTest.checkOptionVacationCannotBeEnteredInMenaMe.executor": "Run",
     "TestNG.VacationTest.checkPhoneNumberIsMandatory.executor": "Run",
     "TestNG.VacationTest.checkReasonIsMandatory.executor": "Run",
     "TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction.executor": "Run",
+    "TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
+    "TestNG.VacationTest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
     "TestNG.VacationTest.checkRequestTwoVacationInTheSameDate.executor": "Run",
     "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired.executor": "Run",
     "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees.executor": "Run",
@@ -105,6 +113,7 @@
     "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager.executor": "Run",
     "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager.executor": "Run",
+    "TestNG.VacationTest.requestVacationAndApprovedByManagerAndPostTransactionFromSystem.executor": "Run",
     "TestNG.VacationTest.testtttttttttt.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -132,12 +141,19 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation">
-    <configuration name="VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.VacationTest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide">
+    <configuration name="test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="test" />
+      <module name="menamobile-appium" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacationTest.checkRequestToCancelAfterApprovedTransaction" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkItemsInSickVacationReasonsFieldIfAllAppear" />
+      <option name="METHOD_NAME" value="checkRequestToCancelAfterApprovedTransaction" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -145,11 +161,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation" />
+      <option name="METHOD_NAME" value="checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -157,11 +173,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason" />
+      <option name="METHOD_NAME" value="checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -169,23 +185,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.requestVacationAndApprovedByManagerAndPostTransactionFromSystem" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestSickVacationWithChooseSickVacationReason_Successfully" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager" />
+      <option name="METHOD_NAME" value="requestVacationAndApprovedByManagerAndPostTransactionFromSystem" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -195,11 +199,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation" />
-        <item itemvalue="TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear" />
-        <item itemvalue="TestNG.VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason" />
-        <item itemvalue="TestNG.VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully" />
-        <item itemvalue="TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager" />
+        <item itemvalue="TestNG.VacationTest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide" />
+        <item itemvalue="TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide" />
+        <item itemvalue="Application.test" />
+        <item itemvalue="TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction" />
+        <item itemvalue="TestNG.VacationTest.requestVacationAndApprovedByManagerAndPostTransactionFromSystem" />
       </list>
     </recent_temporary>
   </component>
@@ -428,7 +432,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727347821132</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1727692609204</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1727692609204</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

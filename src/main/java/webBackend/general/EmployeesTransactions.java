@@ -1301,4 +1301,16 @@ public class EmployeesTransactions extends WebBase {
         return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_date')]")).getAttribute("value");
     }
 
+    public String getFromDate(int transactionOrder){
+        return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_date')])["+transactionOrder+"]")).getAttribute("value");
+    }
+    public String getToDate(int transactionOrder){
+        return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_end_date')])["+transactionOrder+"]")).getAttribute("value");
+    }
+    public String getVacationType(int transactionOrder){
+        WebElement selectElement = driver.findElement(By.xpath("(//select[contains(@id, 'transaction_internal_type')])["+transactionOrder+"]"));
+        Select select = new Select(selectElement);
+        return select.getFirstSelectedOption().getText();
+    }
+
 }

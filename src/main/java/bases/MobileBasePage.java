@@ -1,6 +1,5 @@
 package bases;
 
-import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
@@ -22,9 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static bases.BaseTest.iniPlatform;
 import static java.time.Duration.ofMillis;
-import static utilities.WebHelper.hold;
 
 public class MobileBasePage {
 
@@ -338,6 +335,54 @@ public class MobileBasePage {
         }
     }
 
+    public boolean scrollToElement(WebElement element, boolean toDown, int times) {
+
+        boolean isElementFound = false;
+        Dimension screenSize = appiumDriver.manage().window().getSize();
+        int screenWidth = screenSize.getWidth();
+        int screenHeight = screenSize.getHeight();
+
+        // Calculate the center of the screen
+        int centerX = screenWidth / 2;
+        int centerY = screenHeight / 2;
+
+        int counter = 1;
+
+        while (!isElementFound) {
+
+            if(counter <= times){
+                try {
+                    isElementFound = element.isDisplayed();
+                } catch (Exception e) {
+                    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                    Sequence scroll = new Sequence(finger, 1);
+                    if(toDown){
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY - 200)); // End point
+                    }else{
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY + 200)); // End point
+                    }
+                    scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                    appiumDriver.perform(List.of(scroll));
+                }
+            }else{
+                break;
+            }
+
+            counter++;
+
+        }
+
+        return isElementFound;
+    }
+
     // Scroll vertically by percentages
     public void verticalSwipeByPercentages(double startPercentage, double endPercentage, double anchorPercentage) {
         Dimension size = appiumDriver.manage().window().getSize();
@@ -612,7 +657,7 @@ public class MobileBasePage {
         ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
     }
 
-    public WebElement getBy(AppiumBy locator){
+    public WebElement getBy(By locator){
         return appiumDriver.findElement(locator);
     }
 
