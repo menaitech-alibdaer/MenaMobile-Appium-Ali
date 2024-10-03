@@ -300,14 +300,27 @@ public class MobileLogin extends MobileBasePage {
 
     }
 
+//    public boolean checkIfFirstRun() {
+//        boolean check = false;
+//        try {
+//            new WebDriverWait(appiumDriver, Duration.ofSeconds(3))
+//                    .until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Skip")));
+//            check = true;
+//        } catch (Exception e) {
+//            System.out.println("After wait 5 second, this is NOT first run for app!");
+//        }
+//        return check;
+//    }
+
     public boolean checkIfFirstRun() {
         boolean check = false;
         try {
-            new WebDriverWait(appiumDriver, Duration.ofSeconds(5))
-                    .until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Skip")));
-            check = true;
+            hold(1000);
+            if(skipBtn.isDisplayed()){
+                check = true;
+            }
         } catch (Exception e) {
-            System.out.println("After wait 5 second, this is NOT first run for app!");
+            System.out.println("this is NOT first run for app!");
         }
         return check;
     }

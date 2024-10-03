@@ -4,12 +4,14 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
+import io.appium.java_client.ios.IOSDriver;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import io.appium.java_client.AppiumDriver;
@@ -21,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static bases.BaseTest.iniPlatform;
 import static java.time.Duration.ofMillis;
 
 public class MobileBasePage {
@@ -38,6 +41,11 @@ public class MobileBasePage {
                 .until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
 
+    public void waitForElementToBeVisible(WebElement element){
+        new WebDriverWait(appiumDriver, Duration.ofSeconds(second))
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+
     public void waitForElementToBeInvisible(By locator){
         new WebDriverWait(appiumDriver, Duration.ofSeconds(second))
                 .until(ExpectedConditions.invisibilityOfElementLocated(locator));
@@ -51,6 +59,11 @@ public class MobileBasePage {
     public void waitForElementToBeClickable(By locator){
         new WebDriverWait(appiumDriver, Duration.ofSeconds(second))
                 .until(ExpectedConditions.elementToBeClickable(locator));
+    }
+
+    public void waitForElementToBeClickable(WebElement element){
+        new WebDriverWait(appiumDriver, Duration.ofSeconds(second))
+                .until(ExpectedConditions.elementToBeClickable(element));
     }
 
     public void simpleClick(WebElement element){
@@ -130,6 +143,22 @@ public class MobileBasePage {
                 counter++;
             }
 
+        }
+    }
+
+    public void clickOn(WebElement element, boolean waitElement){
+        try {
+            element.click();
+        }catch (Exception e){
+            try {
+                if(waitElement){
+                    waitForElementToBeClickable(element);
+                    element.click();
+                }
+            }catch (Exception ex){
+                scrollToElement(element, true);
+                element.click();
+            }
         }
     }
 
@@ -229,8 +258,14 @@ public class MobileBasePage {
     }
 
     public void setText(WebElement element, String text){
-        element.sendKeys(text);
-        hold(100);
+        try {
+            element.sendKeys(text);
+            hold(100);
+        }catch (Exception e){
+            waitForElementToBeVisible(element);
+            element.sendKeys(text);
+            hold(100);
+        }
     }
 
     public void hold(int millis){
@@ -552,20 +587,20 @@ public class MobileBasePage {
 
         if (between > 0) {
             for(int i = 0; i < between; i++){
-                leftRow.click();
+                clickOn(leftRow, true);
             }
 
         }else if(between < 0){
             int backMonth = Math.abs(between);
             for(int i = 0; i < backMonth; i++){
-                rightRow.click();
+                clickOn(rightRow, true);
             }
         }
 
         hold(300);
-        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(String.valueOf(day))));
+        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(String.valueOf(day))), true);
         hold(200);
-        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId("OK")));
+        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId("OK")), true);
         hold(500);
 
     }
@@ -659,6 +694,33 @@ public class MobileBasePage {
 
     public WebElement getBy(By locator){
         return appiumDriver.findElement(locator);
+    }
+
+    public boolean checkElementIfVisible(WebElement element){
+        try {
+            element.isDisplayed();
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    public void closeKeyboard(){
+        hold(200);
+        if(iniPlatform.equalsIgnoreCase("Android")){
+            try{
+                ((AndroidDriver) appiumDriver).hideKeyboard();
+            }catch (Exception ignored){
+                ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+            }
+        }else{
+            try{
+                ((IOSDriver) appiumDriver).hideKeyboard();
+            }catch (Exception ignored){
+                ((IOSDriver) appiumDriver).hideKeyboard("Done");
+            }
+        }
+        hold(200);
     }
 
 }

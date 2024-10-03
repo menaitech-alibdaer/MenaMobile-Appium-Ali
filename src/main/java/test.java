@@ -24,13 +24,10 @@ public class test {
         //System.out.println(getTransactionReason());
 
         //String det = "Hanh Christiansen\nApproved\nAppium Comment - Approve\n26.09.2024 12:55PM";
-        String det = "Bethel Olson\nCancel\n01.10.2024 3:03PM";
 
-        int lastNewline = det.lastIndexOf("\n");
-        String textAfterLastNewline = det.substring(lastNewline + 1).trim();
-        String getDate = textAfterLastNewline.substring(0, 10);
-
-        System.out.println(getDate);
+        String det = "Len Gene Lesch Cronin : \nAli Delegate";
+        String textAfterNewline = det.substring(det.indexOf("\n") + 1);
+        System.out.println(textAfterNewline);
 
     }
 

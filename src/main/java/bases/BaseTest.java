@@ -99,8 +99,8 @@ public class BaseTest {
         try {
             softAssert = null;
             if(getDriver() != null) {
-//                getDriver().quit();
-//                driver.remove();
+                getDriver().quit();
+                driver.remove();
             }
         }catch (Exception e){
             softAssert = null; //// optional ///

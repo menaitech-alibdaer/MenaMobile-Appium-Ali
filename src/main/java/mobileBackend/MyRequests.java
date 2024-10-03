@@ -61,12 +61,6 @@ public class MyRequests extends MobileBasePage {
     WebElement documentBtn;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='test.png']")
     WebElement imgUploaded;
-    @AndroidFindBy(xpath = "//android.widget.SeekBar[contains(@content-desc, 'Select hours')]")
-    WebElement hourF;
-    @AndroidFindBy(xpath = "//android.widget.EditText[1]")
-    WebElement setHour;
-    @AndroidFindBy(xpath = "//android.widget.EditText[2]")
-    WebElement setMinutes;
     @AndroidFindBy(accessibility = "OK")
     WebElement okBtn;
     @AndroidFindBy(accessibility = "Try Again")
@@ -81,12 +75,6 @@ public class MyRequests extends MobileBasePage {
     WebElement gotItBtn;
     @AndroidFindBy(accessibility = "Alright!")
     WebElement alrightBtn;
-    @AndroidFindBy(accessibility = "Approval Committee")
-    WebElement approvalCommitteeText;
-    @AndroidFindBy(accessibility = "Cancel")
-    WebElement cancelBtn;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
-    public WebElement attachmentInVacationDetails;
     @AndroidFindBy(accessibility = "Please Fill The Reason")
     public WebElement pleaseFillTheReason_Alert;
     @AndroidFindBy(accessibility = "Please Insert Phone Number")
@@ -103,8 +91,6 @@ public class MyRequests extends MobileBasePage {
     public WebElement resultFound;
     @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Code:')]")
     public List<WebElement> listOfEmployees;
-    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
-    public WebElement attentionAlertPopup;
     @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
     public WebElement successAlertPopup;
     @AndroidFindBy(accessibility = "Vacation Cannot Be Entered in MenaMe")
@@ -276,21 +262,6 @@ public class MyRequests extends MobileBasePage {
         clickOn(vacationsTypeBtn);
         hold(200);
         return scrollToElement(vacationCannotBeEnteredInMenaMe_type , true, 7);
-    }
-
-    public boolean checkElementIfVisible(WebElement element){
-        try {
-            element.isDisplayed();
-            return true;
-        } catch (Exception e) {
-            return false;
-        }
-    }
-
-    public boolean checkCancelButtonIfVisible(){
-        scrollToElement(approvalCommitteeText, true);
-        verticalSwipeByPercentages(70, 40, 50);
-        return checkElementIfVisible(cancelBtn);
     }
 
     public void vacationRequest(String vacationType, String sickVacationReason, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
@@ -570,23 +541,6 @@ public class MyRequests extends MobileBasePage {
 
     }
 
-    public void openLastVacationRequest(){
-        waitForElementToBeVisible(accessibilityId("My Recent Transactions"));
-        clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='My Recent Transactions']/following::android.view.View[contains(@content-desc, 'Vacation Request')]")));
-        hold(1000);
-        waitForElementToBeVisible(accessibilityId("Requested on"));
-
-    }
-
-    public boolean checkAttachmentInVacationDetails(){
-        waitForElementToBeVisible(accessibilityId("Requested on"));
-        scrollToElement(approvalCommitteeText, true);
-        clickOn(attachmentInVacationDetails);
-        waitLoadingElement();
-        hold(5000);
-        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
-    }
-
     public void overtimeRequest(String date, String overtimeType, String fromTime, String toTime, boolean submit){
 
         waitLoadingElement();
@@ -638,111 +592,6 @@ public class MyRequests extends MobileBasePage {
                         e.printStackTrace();
                     }
                 }
-            }
-        }
-    }
-
-    public String getApprovalCommittee(String managerName){
-        String textBetweenNewlines = null;
-        try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
-
-            if(containsMoreThanOneNewline){
-                textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
-            }else{
-                textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
-            }
-
-            return textBetweenNewlines;
-
-        }catch (Exception e){
-            try {
-                scrollToElement(approvalCommitteeText, true);
-                hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
-
-                if(containsMoreThanOneNewline){
-                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
-                }else{
-                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
-                }
-
-                return textBetweenNewlines;
-
-            }catch (Exception ex){
-                scrollToElement(approvalCommitteeText, true);
-                hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
-
-                if(containsMoreThanOneNewline){
-                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
-                }else{
-                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
-                }
-
-                return textBetweenNewlines;
-
-            }
-        }
-    }
-
-    public String getApprovalComments(String managerName){
-        String textAfterSecondNewline = null;
-        try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                int firstNewline = det.indexOf("\n");
-                int secondNewline = det.indexOf("\n", firstNewline + 1);
-                textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
-            }
-            return textAfterSecondNewline;
-        }catch (Exception e){
-            scrollToElement(approvalCommitteeText, true);
-            hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                int firstNewline = det.indexOf("\n");
-                int secondNewline = det.indexOf("\n", firstNewline + 1);
-                textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
-            }
-            return textAfterSecondNewline;
-        }
-    }
-
-    public String getApprovalDate(String managerName){
-        String date = null;
-        try {
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                int lastNewline = det.lastIndexOf("\n");
-                String textAfterLastNewline = det.substring(lastNewline + 1).trim();
-                date = textAfterLastNewline.substring(0, 10);
-            }
-            return date;
-        }catch (Exception e){
-            try {
-                scrollToElement(approvalCommitteeText, true);
-                hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                if (det != null) {
-                    int lastNewline = det.lastIndexOf("\n");
-                    String textAfterLastNewline = det.substring(lastNewline + 1).trim();
-                    date = textAfterLastNewline.substring(0, 10);
-                }
-                return date;
-            }catch (Exception ex){
-                scrollToElement(approvalCommitteeText, true);
-                hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                if (det != null) {
-                    int lastNewline = det.lastIndexOf("\n");
-                    String textAfterLastNewline = det.substring(lastNewline + 1).trim();
-                    date = textAfterLastNewline.substring(0, 10);
-                }
-                return date;
             }
         }
     }

@@ -5,62 +5,8 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 
-import java.util.List;
-
 public class Manager extends MobileBasePage {
 
-    @AndroidFindBy(accessibility = "Vacations")
-    public WebElement vacationsRequestBtn;
-    @AndroidFindBy(accessibility = "Overtime")
-    WebElement overtimeRequestBtn;
-    @AndroidFindBy(accessibility = "Choose")
-    WebElement vacationsTypeBtn;
-    @AndroidFindBy(accessibility = "Choose")
-    WebElement typeF;
-    @AndroidFindBy(accessibility = "Choose")
-    WebElement chooseBtn;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='From Date']/following::android.widget.ImageView)[1]")
-    WebElement fromDateF;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='To Date']/following::android.widget.ImageView)[1]")
-    WebElement toDateF;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Date']/following::android.widget.ImageView)[1]")
-    WebElement dateF;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='From Time']/following::android.widget.Button)[1]")
-    WebElement fromTimeF;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='To Time']/following::android.widget.Button)[1]")
-    WebElement toTimeF;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Reason']/following::android.widget.EditText)[1]")
-    WebElement reasonF;
-    @AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc, 'Vacation Attachment')]/following::android.widget.ImageView)[1]")
-    WebElement attachmentIconBtn;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]")
-    WebElement attachmentF;
-    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Delegate']/following::android.widget.Button)[1]")
-    WebElement delegateF;
-    @AndroidFindBy(accessibility = "Document")
-    WebElement documentBtn;
-    @AndroidFindBy(xpath = "//android.widget.TextView[@text='test.png']")
-    WebElement imgUploaded;
-    @AndroidFindBy(xpath = "//android.widget.SeekBar[contains(@content-desc, 'Select hours')]")
-    WebElement hourF;
-    @AndroidFindBy(xpath = "//android.widget.EditText[1]")
-    WebElement setHour;
-    @AndroidFindBy(xpath = "//android.widget.EditText[2]")
-    WebElement setMinutes;
-    @AndroidFindBy(accessibility = "OK")
-    WebElement okBtn;
-    @AndroidFindBy(accessibility = "Try Again")
-    WebElement tryAgainBtn;
-    @AndroidFindBy(accessibility = "Submit")
-    WebElement submitBtn;
-    @AndroidFindBy(accessibility = "Not Required")
-    WebElement notRequired_checkbox;
-    @AndroidFindBy(xpath = "//android.widget.ImageView[@hint='Search by Name...']")
-    WebElement search_delegatePopup;
-    @AndroidFindBy(accessibility = "Got it!")
-    WebElement gotItBtn;
-    @AndroidFindBy(accessibility = "Alright!")
-    WebElement alrightBtn;
     @AndroidFindBy(accessibility = "Approval Committee")
     WebElement approvalCommitteeText;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
@@ -69,88 +15,30 @@ public class Manager extends MobileBasePage {
     WebElement approveBtn;
     @AndroidFindBy(accessibility = "Send")
     WebElement SendBtn;
+    @AndroidFindBy(accessibility = "Got it!")
+    WebElement gotItBtn;
+    @AndroidFindBy(accessibility = "OK")
+    WebElement okBtn;
+    @AndroidFindBy(accessibility = "Try Again")
+    WebElement tryAgainBtn;
+    @AndroidFindBy(accessibility = "Alright!")
+    WebElement alrightBtn;
     @AndroidFindBy(className = "android.widget.EditText")
     WebElement commentF;
     @AndroidFindBy(accessibility = "Reject")
     WebElement rejectBtn;
-    @AndroidFindBy(accessibility = "Please Fill The Reason")
-    public WebElement pleaseFillTheReason_Alert;
-    @AndroidFindBy(accessibility = "Please Insert Phone Number")
-    public WebElement pleaseInsertPhoneNumber_Alert;
-    @AndroidFindBy(accessibility = "The maximum number of attachment is : 2")
-    public WebElement theMaximumNumberOfAttachmentIs2_Alert;
-    @AndroidFindBy(accessibility = "Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1")
-    public WebElement maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1;
-    @AndroidFindBy(accessibility = "Auto Delegation Is Mandatory Before Vacation Request")
-    public WebElement autoDelegationIsMandatoryBeforeVacationRequest_Alert;
-    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'results found')]")
-    public WebElement resultFound;
-    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Code:')]")
-    public List<WebElement> listOfEmployees;
-    @AndroidFindBy(id = "com.android.permissioncontroller:id/permission_allow_foreground_only_button")
-    WebElement locationPermission;
-    @AndroidFindBy(xpath = "//android.widget.ScrollView/android.widget.ImageView[2]")
-    WebElement TA_Options;
-    @AndroidFindBy(accessibility = "Sign In")
-    WebElement TA_signInBtn;
-    @AndroidFindBy(accessibility = "MainButtonSemantics")
-    public WebElement requestMenuBtn;
-    @AndroidFindBy(xpath = "//android.widget.ImageView[@bounds = '[74,275][206,407]']")
-    WebElement backBtn;
-    @AndroidFindBy(xpath = "//android.widget.ImageView[@bounds = '[874,275][1006,407]']")
-    WebElement homeBtn;
+    @AndroidFindBy(accessibility = "Consult")
+    WebElement consultBtn;
+    @AndroidFindBy(accessibility = "Delegate")
+    WebElement delegateBtn;
+    @AndroidFindBy(className = "android.widget.EditText")
+    WebElement consult_searchF;
+    @AndroidFindBy(xpath = "//android.widget.EditText[contains(@hint, 'write here')]")
+    WebElement consult_commentF;
+    @AndroidFindBy(accessibility = "Delegate To")
+    WebElement delegateTo_title;
     @AndroidFindBy(accessibility = "MenuIcon")
     WebElement sideBarMenu;
-    @AndroidFindBy(accessibility = "Log Out")
-    WebElement logOutBtn;
-    @AndroidFindBy(accessibility = "Settings")
-    WebElement settingsBtn;
-    @AndroidFindBy(accessibility = "Change Password")
-    WebElement changePasswordBtn;
-    @AndroidFindBy(accessibility = "Change")
-    WebElement changeBtn;
-    @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Old Password']")
-    WebElement oldPasswordF;
-    @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'New Password']")
-    WebElement newPasswordF;
-    @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Re-type New Password']")
-    WebElement retypeNewPasswordF;
-    @AndroidFindBy(accessibility = "Password doesn't match the new password")
-    public WebElement passwordDoesntMatchTheNewPasswordAlert;
-    @AndroidFindBy(accessibility = "Annual Vacation")
-    WebElement annualVacationType;
-    @AndroidFindBy(accessibility = "OK")
-    WebElement calendar_OkBtn;
-    @AndroidFindBy(accessibility = "1")
-    WebElement calendar_1;
-    @AndroidFindBy(accessibility = "TransactionIcon")
-    WebElement myTransactionBtn;
-    @AndroidFindBy(accessibility = "ProfileIcon")
-    WebElement profileBtn;
-    @AndroidFindBy(accessibility = "Financial")
-    WebElement financialBtn;
-    @AndroidFindBy(accessibility = "Salary Slip")
-    WebElement salarySlipBtn;
-    @AndroidFindBy(accessibility = "This Month")
-    WebElement thisMonthBtn;
-    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Employee Contribution')]")
-    WebElement employeeContributionF;
-    @AndroidFindBy(accessibility = "Recent Slip")
-    WebElement recentSlipE;
-    @AndroidFindBy(accessibility = "Non Payroll")
-    WebElement NonPayrollBtn;
-    @AndroidFindBy(accessibility = "Later")
-    WebElement laterBtn;
-    @AndroidFindBy(accessibility = "Update")
-    WebElement updateBtn;
-    @AndroidFindBy(accessibility = "Workflow Details")
-    WebElement workflowDetailsText;
-    @AndroidFindBy(accessibility = "Withdraw")
-    WebElement withdrawBtn;
-    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
-    public WebElement attentionAlertPopup;
-    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
-    public WebElement successAlertPopup;
     @AndroidFindBy(accessibility = "Manager")
     WebElement managerBtn;
     @AndroidFindBy(accessibility = "All")
@@ -159,15 +47,6 @@ public class Manager extends MobileBasePage {
     WebElement approveAllBtn;
     @AndroidFindBy(accessibility = "Attachments")
     WebElement attachments_title;
-
-    public void openManager(){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("MenuIcon"));
-        clickOn(sideBarMenu);
-        hold(100);
-        clickOn(managerBtn);
-        waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.accessibilityId("My Team"));
-    }
 
     public void openMyTeamTransaction(){
         clickOn(myTeamTransactionAll);
@@ -233,32 +112,48 @@ public class Manager extends MobileBasePage {
     }
 
     public String getApprovalCommittee(String managerName){
-        String textAfterNewline = null;
         String textBetweenNewlines = null;
         try{
             String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                textAfterNewline = det.substring(det.indexOf("\n") + 1);
+            boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+            if(containsMoreThanOneNewline){
+                textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+            }else{
+                textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
             }
-            return textAfterNewline;
+
+            return textBetweenNewlines;
 
         }catch (Exception e){
             try {
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
                 String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                if (det != null) {
-                    textAfterNewline = det.substring(det.indexOf("\n") + 1);
+                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+                if(containsMoreThanOneNewline){
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }else{
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
                 }
-                return textAfterNewline;
+
+                return textBetweenNewlines;
+
             }catch (Exception ex){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
                 String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-                if (det != null) {
+                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+                if(containsMoreThanOneNewline){
                     textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }else{
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
                 }
+
                 return textBetweenNewlines;
+
             }
         }
     }
@@ -289,25 +184,35 @@ public class Manager extends MobileBasePage {
     public String getApprovalDate(String managerName){
         String date = null;
         try {
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
             if (det != null) {
-                int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
-                int thirdNewline = det.indexOf("\n", secondNewline + 1);
-                String textAfterThirdNewline = det.substring(thirdNewline + 1);
-                date = textAfterThirdNewline.substring(0, 10);
+                int lastNewline = det.lastIndexOf("\n");
+                String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+                date = textAfterLastNewline.substring(0, 10);
             }
             return date;
         }catch (Exception e){
-            scrollToElement(approvalCommitteeText, true);
-            hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                int secondNewline = det.indexOf("\n", det.indexOf("\n") + 1);
-                int thirdNewline = det.indexOf("\n", secondNewline + 1);
-                String textAfterThirdNewline = det.substring(thirdNewline + 1);
-                date = textAfterThirdNewline.substring(0, 10);
+            try {
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    int lastNewline = det.lastIndexOf("\n");
+                    String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+                    date = textAfterLastNewline.substring(0, 10);
+                }
+                return date;
+            }catch (Exception ex){
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    int lastNewline = det.lastIndexOf("\n");
+                    String textAfterLastNewline = det.substring(lastNewline + 1).trim();
+                    date = textAfterLastNewline.substring(0, 10);
+                }
+                return date;
             }
-            return date;
         }
     }
 
@@ -350,13 +255,14 @@ public class Manager extends MobileBasePage {
     }
 
     public void approve(String comment){
+        verticalSwipeByPercentages(70, 30, 50);
         clickOn(approveBtn);
         hold(200);
         simpleClick(commentF);
         setText(commentF, comment);
         simpleClick(SendBtn);
         waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[@content-desc='My Transaction approvals']"));
+        hold(500);
     }
 
     public void approve(){
@@ -365,7 +271,7 @@ public class Manager extends MobileBasePage {
         hold(200);
         simpleClick(SendBtn);
         waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[@content-desc='My Transaction approvals']"));
+        hold(500);
     }
 
     public void reject(String reason){
@@ -376,15 +282,101 @@ public class Manager extends MobileBasePage {
         setText(commentF, reason);
         simpleClick(SendBtn);
         waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[@content-desc='My Transaction approvals']"));
+        hold(500);
     }
 
     public void reject(){
+        verticalSwipeByPercentages(70, 30, 50);
         clickOn(rejectBtn);
         hold(200);
         simpleClick(SendBtn);
         waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[@content-desc='My Transaction approvals']"));
+        hold(500);
+    }
+
+    public void consult(String employeeName, String comment){
+        verticalSwipeByPercentages(70, 20, 50);
+        clickOn(consultBtn);
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Consult With"));
+        simpleClick(consult_searchF);
+        setText(consult_searchF, employeeName);
+        hold(1000);
+        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]"));
+        simpleClick(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]")));
+        hold(200);
+
+        if(!comment.isEmpty()){
+            simpleClick(consult_commentF);
+            setText(consult_commentF, comment);
+            closeKeyboard();
+        }
+
+        clickOn(consultBtn);
+        waitLoadingElement();
+        closeAlert();
+        hold(200);
+
+    }
+
+    public void delegate(String employeeName, String comment){
+        verticalSwipeByPercentages(70, 20, 50);
+        clickOn(delegateBtn);
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Delegate To"));
+        simpleClick(consult_searchF);
+        setText(consult_searchF, employeeName);
+        hold(1000);
+        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]"));
+        simpleClick(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]")));
+        hold(200);
+        //closeKeyboard();
+        simpleClick(delegateTo_title);
+        hold(200);
+
+        if(!comment.isEmpty()){
+            simpleClick(consult_commentF);
+            setText(consult_commentF, comment);
+            //closeKeyboard();
+            simpleClick(delegateTo_title);
+            hold(200);
+        }
+
+        clickOn(delegateBtn);
+        waitLoadingElement();
+        closeAlert();
+        hold(200);
+
+    }
+
+    public void closeAlert(){
+        try{
+            simpleClick(alrightBtn);
+        }catch (Exception exce){
+            try {
+                simpleClick(gotItBtn);
+            }catch (Exception exc){
+                try {
+                    simpleClick(okBtn);
+                }catch (Exception ex){
+                    try {
+                        simpleClick(tryAgainBtn);
+                    }catch (Exception e){
+                        System.out.println("I can't click on the suggested buttons!");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
+    }
+
+    public String getManagerCommentDelegate(String managerName){
+        scrollToElement(approvalCommitteeText, true);
+        String textAfterNewline = null;
+        String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Manager Comment']/following::android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+        if (det != null) {
+            textAfterNewline = det.substring(det.indexOf("\n") + 1);
+        }
+        return textAfterNewline;
+
     }
 
 }
