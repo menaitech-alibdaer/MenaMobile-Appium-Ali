@@ -13,14 +13,24 @@ public class MyTransactions extends MobileBasePage {
     WebElement approvalCommitteeText;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
     public WebElement attachmentInVacationDetails;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Requested Item']/following::android.widget.ImageView)[1]")
+    public WebElement requestedItem_icon;
     @AndroidFindBy(accessibility = "Attachments")
     WebElement attachments_title;
     @AndroidFindBy(accessibility = "Alright!")
     WebElement alrightBtn;
+    @AndroidFindBy(accessibility = "Got it!")
+    WebElement gotItBtn;
+    @AndroidFindBy(accessibility = "OK")
+    WebElement okBtn;
+    @AndroidFindBy(accessibility = "Try Again")
+    WebElement tryAgainBtn;
     @AndroidFindBy(accessibility = "Cancel")
     WebElement cancelBtn;
     @AndroidFindBy(accessibility = "Workflow Details")
     WebElement workflowDetailsText;
+    @AndroidFindBy(accessibility = "Requested Item")
+    WebElement requestedItem_title;
     @AndroidFindBy(accessibility = "Withdraw")
     WebElement withdrawBtn;
 
@@ -196,6 +206,17 @@ public class MyTransactions extends MobileBasePage {
         waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
     }
 
+    public void withdraw(boolean closeAlert){
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        scrollToElement(withdrawBtn, true);
+        clickOn(withdrawBtn);
+        waitLoadingElement();
+        hold(4000);
+        if(closeAlert){
+            closeAlert();
+        }
+    }
+
     public void cancel(){
         waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
         scrollToElement(cancelBtn, true);
@@ -204,6 +225,27 @@ public class MyTransactions extends MobileBasePage {
         waitForElementToBeVisible(AppiumBy.accessibilityId("Alright!"));
         clickOn(alrightBtn);
         waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+    }
+
+    public void closeAlert(){
+        try{
+            simpleClick(alrightBtn);
+        }catch (Exception exce){
+            try {
+                simpleClick(gotItBtn);
+            }catch (Exception exc){
+                try {
+                    simpleClick(okBtn);
+                }catch (Exception ex){
+                    try {
+                        simpleClick(tryAgainBtn);
+                    }catch (Exception e){
+                        System.out.println("I can't click on the suggested buttons!");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
     public boolean checkAttachmentInVacationDetails(){
@@ -253,6 +295,22 @@ public class MyTransactions extends MobileBasePage {
         int endIndex = getReason.indexOf('-');
 
         return getReason.substring(startIndex, endIndex);
+
+    }
+
+    public void openRequestedItem(){
+        scrollToElement(requestedItem_title, true);
+        clickOn(requestedItem_icon);
+        hold(500);
+        waitForElementToBeVisible(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Status')]"));
+    }
+
+    public boolean checkInRequestedItemIfAppear(String item, String status){
+        try{
+            return appiumDriver.findElement(AppiumBy.accessibilityId(item+"\n"+status)).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
 
     }
 

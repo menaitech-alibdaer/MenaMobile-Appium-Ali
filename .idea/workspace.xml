@@ -5,17 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Notifications.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/test.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/VacationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -86,9 +79,15 @@
     "TestNG.NewEmployeeCreator.simpleLogin.executor": "Run",
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
     "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
+    "TestNG.VacationTest.checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup.executor": "Run",
     "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
     "TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear.executor": "Run",
     "TestNG.VacationTest.checkOptionVacationCannotBeEnteredInMenaMe.executor": "Run",
+    "TestNG.VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement.executor": "Run",
+    "TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation.executor": "Run",
+    "TestNG.VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation.executor": "Run",
+    "TestNG.VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods.executor": "Run",
+    "TestNG.VacationTest.checkOption_preventWithdrawTransactionAfterFirstApproval.executor": "Run",
     "TestNG.VacationTest.checkPhoneNumberIsMandatory.executor": "Run",
     "TestNG.VacationTest.checkReasonIsMandatory.executor": "Run",
     "TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory.executor": "Run",
@@ -123,6 +122,8 @@
     "TestNG.VacationTest.requestVacationAndApprovedByManagerAndPostTransactionFromSystem.executor": "Run",
     "TestNG.VacationTest.requestVacationAndConsultToOtherEmployee.executor": "Run",
     "TestNG.VacationTest.requestVacationAndDelegateToOtherEmployee.executor": "Run",
+    "TestNG.VacationTest.requestVacationContainsDaysOffWithOption_CutDaysOff.executor": "Run",
+    "TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays.executor": "Run",
     "TestNG.VacationTest.testtttttttttt.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
@@ -150,12 +151,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.checkValidation_NeverExceedVacationSuggestedBalance">
-    <configuration name="VacationTest.checkValidationForThisOption_AnnualUpperLimit" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation">
+    <configuration name="VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkValidationForThisOption_AnnualUpperLimit" />
+      <option name="METHOD_NAME" value="checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -163,11 +164,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkValidationForThisOption_MonthlyUpperLimit" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkValidationForThisOption_MonthlyUpperLimit" />
+      <option name="METHOD_NAME" value="checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -175,11 +176,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkValidation_EarnedAfter_HiringDate" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkValidation_EarnedAfter_HiringDate" />
+      <option name="METHOD_NAME" value="checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -187,11 +188,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkValidation_NeverExceedVacationSuggestedBalance" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkValidation_NeverExceedVacationSuggestedBalance" />
+      <option name="METHOD_NAME" value="checkOption_PreventTakingVacationsInSpecificPeriods" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -199,11 +200,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.requestVacationAndDelegateToOtherEmployee" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.requestVacationContainsHolidayWithOption_CutHolidays" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestVacationAndDelegateToOtherEmployee" />
+      <option name="METHOD_NAME" value="requestVacationContainsHolidayWithOption_CutHolidays" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -213,11 +214,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.VacationTest.checkValidation_NeverExceedVacationSuggestedBalance" />
-        <item itemvalue="TestNG.VacationTest.checkValidation_EarnedAfter_HiringDate" />
-        <item itemvalue="TestNG.VacationTest.checkValidationForThisOption_MonthlyUpperLimit" />
-        <item itemvalue="TestNG.VacationTest.checkValidationForThisOption_AnnualUpperLimit" />
-        <item itemvalue="TestNG.VacationTest.requestVacationAndDelegateToOtherEmployee" />
+        <item itemvalue="TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation" />
+        <item itemvalue="TestNG.VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
+        <item itemvalue="TestNG.VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods" />
+        <item itemvalue="TestNG.VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement" />
+        <item itemvalue="TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays" />
       </list>
     </recent_temporary>
   </component>
@@ -462,7 +463,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727791366889</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1727959330786</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1727959330786</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

@@ -182,7 +182,7 @@ public class MobileBasePage {
 
             while (!isElementFound) {
 
-                if(counter <= 5){
+                if(counter <= 10){
 
                     try {
                         isElementFound =  appiumDriver.findElement(locator).isDisplayed();
@@ -204,7 +204,7 @@ public class MobileBasePage {
                         appiumDriver.perform(List.of(scroll));
                     }
 
-                }else if(counter <= 11){
+                }else if(counter <= 18){
 
                     try {
                         isElementFound =  appiumDriver.findElement(locator).isDisplayed();

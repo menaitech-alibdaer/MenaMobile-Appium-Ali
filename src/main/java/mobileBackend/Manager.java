@@ -12,7 +12,7 @@ public class Manager extends MobileBasePage {
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
     public WebElement attachmentInVacationDetails;
     @AndroidFindBy(accessibility = "Approve")
-    WebElement approveBtn;
+    public WebElement approveBtn;
     @AndroidFindBy(accessibility = "Send")
     WebElement SendBtn;
     @AndroidFindBy(accessibility = "Got it!")
@@ -28,9 +28,9 @@ public class Manager extends MobileBasePage {
     @AndroidFindBy(accessibility = "Reject")
     WebElement rejectBtn;
     @AndroidFindBy(accessibility = "Consult")
-    WebElement consultBtn;
+    public WebElement consultBtn;
     @AndroidFindBy(accessibility = "Delegate")
-    WebElement delegateBtn;
+    public WebElement delegateBtn;
     @AndroidFindBy(className = "android.widget.EditText")
     WebElement consult_searchF;
     @AndroidFindBy(xpath = "//android.widget.EditText[contains(@hint, 'write here')]")
@@ -70,6 +70,26 @@ public class Manager extends MobileBasePage {
         }
 
         clickOn(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+employeeCode+"') and contains(@content-desc, '"+transactionType+"')])[1]"));
+        waitLoadingElement();
+        waitForElementToBeVisible(AppiumBy.accessibilityId(transactionType));
+    }
+
+    public void openTransaction(String employeeCode, String transactionType, String transactionDate){
+
+        try{
+            approveAllBtn.isDisplayed();
+        }catch (Exception ignored){
+            clickOn(sideBarMenu);
+            hold(100);
+            clickOn(managerBtn);
+            waitLoadingElement();
+            waitForElementToBeVisible(AppiumBy.accessibilityId("My Team"));
+            clickOn(myTeamTransactionAll);
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Approve All"));
+            hold(300);
+        }
+
+        clickOn(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+employeeCode+"') and contains(@content-desc, '"+transactionType+"') and contains(@content-desc, '"+transactionDate+"')])[1]"));
         waitLoadingElement();
         waitForElementToBeVisible(AppiumBy.accessibilityId(transactionType));
     }

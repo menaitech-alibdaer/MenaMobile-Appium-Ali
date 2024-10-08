@@ -4,6 +4,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import webBackend.financialInformation.FinancialPackage;
 import webBackend.general.*;
+import webBackend.personnelInformation.Other;
 import webBackend.personnelInformation.PersonnelInformation;
 
 import static io.appium.java_client.AppiumBy.accessibilityId;
@@ -16,6 +17,8 @@ public class VacationTest extends BaseTest {
 
     PersonnelInformation personnel;
     FinancialPackage financial;
+    VacationsBalances vacationsBalances;
+    Other other;
     Login login;
     MenaModules menaModules;
     Substitutes substitutes;
@@ -2087,6 +2090,484 @@ public class VacationTest extends BaseTest {
                 false, 0, "", "", true, true);
 
         Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
+
+    }
+
+    @Test(priority = 17, groups = "Vacations")
+    public void checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        String d_fn = firstName();
+        String d_sn = secondName();
+        String d_tn = thirdName();
+        String d_ln = lastName();
+        personnel.personalInformation(d_fn, d_sn, d_tn, d_ln, "Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String directManager = personnel.employeeCodeGetter();
+        menaMeRestPassword(directManager);
+
+        String directManagerName = d_fn + " " + d_ln;
+
+        mainMenu.mainMenu("Employees","Personnel Information");
+        String fn = firstName();
+        String sn = secondName();
+        String tn = thirdName();
+        String ln = lastName();
+        personnel.personalInformation(fn, sn, tn, ln, "Single", "Male", "Jordanian",
+                "", "", "", directManager, "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String employee = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employee);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employee);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employee, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Unpaid Vacation", "", "10/01/2023", "10/01/2023",
+                false, 0, "", "", true, false);
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+
+        manager = new Manager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Unpaid Vacation");
+        manager.scrollToElement(manager.approveBtn, true);
+        softAssert.assertFalse(manager.checkElementIfVisible(manager.delegateBtn), "Delegate Button Should be Not Appear!");
+        softAssert.assertFalse(manager.checkElementIfVisible(manager.consultBtn), "Consult Button Should be Not Appear!");
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 17, groups = "Vacations")
+    public void checkOption_preventWithdrawTransactionAfterFirstApproval(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String directManager = personnel.employeeCodeGetter();
+        menaMeRestPassword(directManager);
+
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", directManager, "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        String employee = personnel.employeeCodeGetter();
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employee);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employee);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employee, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Prevent Withdraw Transaction After First Approval", "", "10/01/2023", "10/01/2023",
+                false, 0, "", "", true, false);
+
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+
+        manager = new Manager();
+        manager.openMyTeamTransaction();
+
+        manager.openTransaction(employee, "Prevent Withdraw Transaction After First Approval", "10.01.2023");
+
+        manager.approve();
+
+        mainScreen.logout();
+
+        loginMob.login(employee, "1", "auto_mob1", false);
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions();
+
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Vacations", "Prevent Withdraw Transaction After First Approval", "10.01.2023");
+        myTransactions.withdraw(false);
+
+        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
+
+    }
+
+    @Test(priority = 17, groups = "Vacations")
+    public void requestVacationContainsDaysOffWithOption_CutDaysOff(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        other = new Other();
+        other.goToShiftDetails();
+        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Test Cut Daysoff", "", "05/09/2024", "08/09/2024",
+                false, 0, "", "", true, false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions();
+
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Vacations", "Test Cut Daysoff", "05.09.2024");
+
+        Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "2.000", "Period Issue!");
+
+    }
+
+    @Test(priority = 17, groups = "Vacations")
+    public void requestVacationContainsHolidayWithOption_CutHolidays(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Test Cut Daysoff", "", "24/12/2024", "25/12/2024",
+                false, 0, "", "", true, false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions();
+
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Vacations", "Test Cut Daysoff", "24.12.2024");
+
+        Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "1.000", "Period Issue!");
+
+    }
+
+    @Test(priority = 17, groups = "Vacations")
+    public void checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_a14_Vacation_In_Advance_KSA();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Workforce Management","Vacations Balances");
+        vacationsBalances = new VacationsBalances();
+        vacationsBalances.addBalance(employeeCode, "Ability to request in advance vacation", "0.000", "35", "2024", "", "", false);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_a14", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Ability to request in advance vacation", "", "02/05/2024", "29/05/2024",
+                false, 0, "", "", true, false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions();
+
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Vacations", "Ability to request in advance vacation", "02.05.2024");
+        System.exit(0);
+        Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "1.000", "Period Issue!");
+
+    }
+
+    @Test(priority = 3, groups = "Vacations")
+    public void checkOption_PreventTakingVacationsInSpecificPeriods(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Prevent Taking Vacations In Specific Periods", "", "01/10/2024", "03/10/2024",
+                false, 0, "", "", true, true);
+
+        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+
+    }
+
+    @Test(priority = 3, groups = "Vacations")
+    public void checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Workforce Management","Vacations Balances");
+        vacationsBalances = new VacationsBalances();
+        vacationsBalances.addBalance(employeeCode, "Annual Vacation", "0.000", "2", "2023", "", "", false);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Annual Vacation", "", "01/03/2023", "02/03/2023",
+                false, 0, "", "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Prevent Submit Vacation Of This Type If Employee Vacation", "", "01/10/2024", "01/10/2024",
+                false, 0, "", "", true, true);
+
+        System.exit(0);
+        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+
+    }
+
+    @Test(priority = 3, groups = "Vacations")
+    public void checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openVacations();
+        myRequests.vacationRequest("Alert Employees To Request Following Items When Submit Vacation", "", "01/10/2024", "01/10/2024",
+                false, 0, "", "", true, true);
+
+        softAssert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
+
+        myRequests.closeAlert();
+
+        mainScreen.myTransactions();
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Vacations", "Alert Employees To Request Following Items When Submit Vacation", "01.10.2024");
+        myTransactions.openRequestedItem();
+
+        softAssert.assertTrue(myTransactions.checkInRequestedItemIfAppear("OR 1", "Pending"), "Requested Item Issue! - should be appear the item name 'OR 1' and status 'Pending'");
+        softAssert.assertAll();
 
     }
 
