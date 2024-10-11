@@ -5,10 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
+      <change afterPath="$PROJECT_DIR$/src/test/java/LeaveRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reports/ExtentReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/ExtentReport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/RetryAnalyzer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/RetryAnalyzer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/TestRuner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRuner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/VacationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,6 +60,17 @@
     "TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml.executor": "Run",
     "TestNG.FirstRunTest.test1.executor": "Run",
     "TestNG.FullTest.newEmployee.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_AlertIfEmployeeLeaveTransactionsFromThisTypeExceeds.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_EarnedAfter_2Month_FromHiringDate_checkValidationWhenRequestBeforeThat.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursLowerLimitHoursPerDay.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerDay.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerMonth.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds.executor": "Run",
+    "TestNG.LeaveRequest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
+    "TestNG.LeaveRequest.checkValidationWhenRequestLeaveOutOfShift.executor": "Run",
+    "TestNG.LeaveRequest.linkEmployeeOnShiftAndRequestLeaveWithinShift.executor": "Run",
     "TestNG.LoginTest.changePassword_CheckSpicalCarachter.executor": "Run",
     "TestNG.LoginTest.changePassword_NewPasswordNotSameRetypePassword.executor": "Run",
     "TestNG.LoginTest.changePassword_Success.executor": "Run",
@@ -125,13 +142,14 @@
     "TestNG.VacationTest.requestVacationContainsDaysOffWithOption_CutDaysOff.executor": "Run",
     "TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays.executor": "Run",
     "TestNG.VacationTest.testtttttttttt.executor": "Run",
+    "com.codeium.enabled": "true",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.40689656",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.repository.indices"
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -151,12 +169,22 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation">
-    <configuration name="VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear">
+    <configuration name="C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/TestRuner.xml" />
+      <option name="TEST_OBJECT" value="SUITE" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement" />
+      <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
+      <option name="METHOD_NAME" value="checkOption_LeaveCannotBeEnteredInMenaME" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -164,11 +192,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation" />
+      <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
+      <option name="METHOD_NAME" value="checkOption_LeaveHoursUpperLimitHoursPerYear" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -176,11 +204,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaveRequest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
+      <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
+      <option name="METHOD_NAME" value="checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -188,23 +216,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationTest.checkPhoneNumberIsMandatory" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="checkOption_PreventTakingVacationsInSpecificPeriods" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VacationTest.requestVacationContainsHolidayWithOption_CutHolidays" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationTest" />
-      <option name="METHOD_NAME" value="requestVacationContainsHolidayWithOption_CutHolidays" />
+      <option name="METHOD_NAME" value="checkPhoneNumberIsMandatory" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -214,11 +230,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation" />
-        <item itemvalue="TestNG.VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
-        <item itemvalue="TestNG.VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods" />
-        <item itemvalue="TestNG.VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement" />
-        <item itemvalue="TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays" />
+        <item itemvalue="TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear" />
+        <item itemvalue="TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" />
+        <item itemvalue="TestNG.LeaveRequest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments" />
+        <item itemvalue="TestNG.LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME" />
+        <item itemvalue="TestNG.VacationTest.checkPhoneNumberIsMandatory" />
       </list>
     </recent_temporary>
   </component>
@@ -471,7 +487,15 @@
       <option name="project" value="LOCAL" />
       <updated>1727959330786</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1728390219275</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1728390219275</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

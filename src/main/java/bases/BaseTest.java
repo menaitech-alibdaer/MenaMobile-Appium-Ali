@@ -1,5 +1,6 @@
 package bases;
 
+import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -11,15 +12,17 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
+import org.testng.annotations.Optional;
 import org.testng.asserts.SoftAssert;
 import utilities.TestDataReader;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 import static utilities.Colors.*;
 import static utilities.VersionGetter.*;
@@ -71,7 +74,7 @@ public class BaseTest {
     }
 
     @BeforeMethod(alwaysRun = true)
-    @Parameters({"platform", "iniBrowser"})
+    @Parameters({"platform", "browser"})
     public void setPlatform(@Optional("Android") String platform, @Optional("chrome") String browser){
 
         data = new TestDataReader("data.json");
@@ -87,15 +90,6 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void driverQuit(){
 
-        try{
-            if(appiumDriver.get() != null) {
-//                appiumDriver.get().quit();
-//                appiumDriver.remove();
-            }
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
         try {
             softAssert = null;
             if(getDriver() != null) {
@@ -105,8 +99,15 @@ public class BaseTest {
         }catch (Exception e){
             softAssert = null; //// optional ///
             e.printStackTrace();
-        }finally{
-            softAssert = null; //// optional ///
+        }
+
+        try{
+            if(appiumDriver.get() != null) {
+                appiumDriver.get().quit();
+                appiumDriver.remove();
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
 
     }

@@ -13,6 +13,8 @@ public class MyTransactions extends MobileBasePage {
     WebElement approvalCommitteeText;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
     public WebElement attachmentInVacationDetails;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachments']/following::android.widget.ImageView)[1]")
+    public WebElement attachmentIconInDetails;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Requested Item']/following::android.widget.ImageView)[1]")
     public WebElement requestedItem_icon;
     @AndroidFindBy(accessibility = "Attachments")
@@ -29,6 +31,8 @@ public class MyTransactions extends MobileBasePage {
     WebElement cancelBtn;
     @AndroidFindBy(accessibility = "Workflow Details")
     WebElement workflowDetailsText;
+    @AndroidFindBy(accessibility = "Additional Information")
+    WebElement additionalInformationText;
     @AndroidFindBy(accessibility = "Requested Item")
     WebElement requestedItem_title;
     @AndroidFindBy(accessibility = "Withdraw")
@@ -42,7 +46,7 @@ public class MyTransactions extends MobileBasePage {
             if (det != null) {
                 textAfterNewline = det.substring(det.indexOf("\n") + 1);
             }
-            return textAfterNewline;
+            return textAfterNewline.trim();
 
         }catch (Exception e){
             try {
@@ -55,7 +59,7 @@ public class MyTransactions extends MobileBasePage {
             if (det != null) {
                 textAfterNewline = det.substring(det.indexOf("\n") + 1);
             }
-            return textAfterNewline;
+            return textAfterNewline.trim();
         }
     }
 
@@ -180,7 +184,7 @@ public class MyTransactions extends MobileBasePage {
 
     public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
 
-        clickOn(AppiumBy.accessibilityId(transactionType));
+        clickOn(accessibilityId(transactionType));
         hold(4000);
         verticalSwipeByPercentages(70, 10, 50);
 
@@ -192,22 +196,36 @@ public class MyTransactions extends MobileBasePage {
             clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
         }
 
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
+
+    }
+
+    public boolean checkTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
+
+        clickOn(accessibilityId(transactionType));
+        hold(4000);
+        verticalSwipeByPercentages(70, 10, 50);
+
+        try{
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")).isDisplayed();
+        }catch (Exception e){
+            return false;
+        }
 
     }
 
     public void withdraw(){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
         scrollToElement(withdrawBtn, true);
         clickOn(withdrawBtn);
         waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Alright!"));
+        waitForElementToBeVisible(accessibilityId("Alright!"));
         clickOn(alrightBtn);
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
     }
 
     public void withdraw(boolean closeAlert){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
         scrollToElement(withdrawBtn, true);
         clickOn(withdrawBtn);
         waitLoadingElement();
@@ -218,13 +236,13 @@ public class MyTransactions extends MobileBasePage {
     }
 
     public void cancel(){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
         scrollToElement(cancelBtn, true);
         clickOn(cancelBtn);
         waitLoadingElement();
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Alright!"));
+        waitForElementToBeVisible(accessibilityId("Alright!"));
         clickOn(alrightBtn);
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Requested on"));
+        waitForElementToBeVisible(accessibilityId("Requested on"));
     }
 
     public void closeAlert(){
@@ -259,6 +277,16 @@ public class MyTransactions extends MobileBasePage {
         return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
     }
 
+    public boolean checkAttachmentInLeaveDetails(){
+        hold(1000);
+        scrollToElement(additionalInformationText, true);
+        clickOn(attachmentIconInDetails);
+        waitLoadingElement();
+        hold(2000);
+        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
+        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+    }
+
     public String getTransactionDetails(String type){
 
         String str = null;
@@ -273,28 +301,51 @@ public class MyTransactions extends MobileBasePage {
             // Find the position of the newline character
             int index = str.indexOf('\n');
 
-            return str.substring(index + 1);
+            return str.substring(index + 1).trim();
         }else{
             return null;
         }
 
     }
 
-    public String getTransactionReason(){
+    public String getTransactionReason(String transactionType){
 
         String getReason = null;
+        int startIndex = 0;
+        int endIndex = 0;
+        String reason = null;
 
-        try{
-            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
-        }catch (Exception e){
-            scrollToElement(workflowDetailsText, true);
-            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+        if(transactionType.equalsIgnoreCase("Vacation")){
+
+            try{
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }catch (Exception e){
+                scrollToElement(workflowDetailsText, true, 4);
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }
+
+            startIndex = getReason.indexOf('\n') + 1;
+            endIndex = getReason.indexOf('-');
+
+            reason = getReason.substring(startIndex, endIndex);
+
+        }else if(transactionType.equalsIgnoreCase("Leave")){
+
+            try{
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }catch (Exception e){
+                scrollToElement(cancelBtn, true, 4);
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }
+
+            startIndex = getReason.indexOf('\n') + 1;
+            endIndex = getReason.indexOf('-');
+
+            reason = getReason.substring(startIndex, endIndex);
+
         }
 
-        int startIndex = getReason.indexOf('\n') + 1;
-        int endIndex = getReason.indexOf('-');
-
-        return getReason.substring(startIndex, endIndex);
+        return reason;
 
     }
 
@@ -307,7 +358,7 @@ public class MyTransactions extends MobileBasePage {
 
     public boolean checkInRequestedItemIfAppear(String item, String status){
         try{
-            return appiumDriver.findElement(AppiumBy.accessibilityId(item+"\n"+status)).isDisplayed();
+            return appiumDriver.findElement(accessibilityId(item+"\n"+status)).isDisplayed();
         }catch (Exception e){
             return false;
         }

@@ -23,6 +23,8 @@ public class MyRequests extends MobileBasePage {
 
     @AndroidFindBy(accessibility = "Vacations")
     public WebElement vacationsRequestBtn;
+    @AndroidFindBy(accessibility = "Leaves")
+    public WebElement leavesRequestBtn;
     @AndroidFindBy(accessibility = "Overtime")
     WebElement overtimeRequestBtn;
     @AndroidFindBy(accessibility = "Choose")
@@ -39,6 +41,8 @@ public class MyRequests extends MobileBasePage {
     WebElement typeF;
     @AndroidFindBy(accessibility = "Choose")
     WebElement chooseBtn;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Leave Date']/following::android.widget.ImageView)[1]")
+    WebElement leaveDateF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='From Date']/following::android.widget.ImageView)[1]")
     WebElement fromDateF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='To Date']/following::android.widget.ImageView)[1]")
@@ -52,9 +56,13 @@ public class MyRequests extends MobileBasePage {
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Reason']/following::android.widget.EditText)[1]")
     WebElement reasonF;
     @AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc, 'Vacation Attachment')]/following::android.widget.ImageView)[1]")
-    WebElement attachmentIconBtn;
+    WebElement vacationAttachmentIconBtn;
+    @AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc, 'To Time')]/following::android.widget.ImageView)[1]")
+    WebElement leaveAttachmentIconBtn;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]")
-    WebElement attachmentF;
+    WebElement vacationAttachmentF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Request Attachment']/following::android.widget.ImageView)[1]")
+    WebElement leaveAttachmentF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Delegate']/following::android.widget.Button)[1]")
     WebElement delegateF;
     @AndroidFindBy(accessibility = "Document")
@@ -93,6 +101,8 @@ public class MyRequests extends MobileBasePage {
     public List<WebElement> listOfEmployees;
     @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
     public WebElement successAlertPopup;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
+    public WebElement attentionAlertPopup;
     @AndroidFindBy(accessibility = "Vacation Cannot Be Entered in MenaMe")
     WebElement vacationCannotBeEnteredInMenaMe_type;
 
@@ -250,6 +260,12 @@ public class MyRequests extends MobileBasePage {
         waitLoadingElement();
     }
 
+    public void openLeaves(){
+        waitForElementToBeClickable(accessibilityId("Leaves"));
+        clickOn(leavesRequestBtn);
+        waitLoadingElement();
+    }
+
     public void openOvertime(){
         waitForElementToBeClickable(accessibilityId("Overtime"));
         clickOn(overtimeRequestBtn);
@@ -261,7 +277,15 @@ public class MyRequests extends MobileBasePage {
         waitForElementToBeClickable(accessibilityId("Choose"));
         clickOn(vacationsTypeBtn);
         hold(200);
-        return scrollToElement(vacationCannotBeEnteredInMenaMe_type , true, 7);
+        return scrollToElement(AppiumBy.accessibilityId(vacationType) , true, 12);
+    }
+
+    public boolean checkLeaveType(String leaveType){
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(chooseBtn);
+        hold(200);
+        return scrollToElement(AppiumBy.accessibilityId(leaveType) , true, 12);
     }
 
     public void vacationRequest(String vacationType, String sickVacationReason, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
@@ -314,11 +338,11 @@ public class MyRequests extends MobileBasePage {
                 // Upload the file to the device
                 ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
 
-                clickOn(attachmentIconBtn);
+                clickOn(vacationAttachmentIconBtn);
 
                 for(int i = 0; i < numberOfAttachment; i++){
 
-                    clickOn(attachmentF);
+                    clickOn(vacationAttachmentF);
                     waitForElementToBeVisible(accessibilityId("Document"));
                     clickOn(documentBtn);
                     waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
@@ -348,8 +372,8 @@ public class MyRequests extends MobileBasePage {
                 // Upload the file to the device
                 ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
 
-                clickOn(attachmentIconBtn);
-                clickOn(attachmentF);
+                clickOn(vacationAttachmentIconBtn);
+                clickOn(vacationAttachmentF);
                 waitForElementToBeVisible(accessibilityId("Document"));
                 clickOn(documentBtn);
 //                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
@@ -409,7 +433,7 @@ public class MyRequests extends MobileBasePage {
             hold(500);
 
             if(!checkAlert){
-                clickOn(alrightBtn);
+                closeAlert();
                 hold(500);
 
                 if(iniPlatform.equalsIgnoreCase("Android")){
@@ -484,15 +508,15 @@ public class MyRequests extends MobileBasePage {
                 // Upload the file to the device
                 ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
 
-                clickOn(attachmentIconBtn);
+                clickOn(vacationAttachmentIconBtn);
 
                 for(int i = 1; i <= numberOfAttachment; i++){
 
                     if(i == checkAlertAfterNumber){
-                        clickOn(attachmentF);
+                        clickOn(vacationAttachmentF);
                         hold(150);
                         }else{
-                        clickOn(attachmentF);
+                        clickOn(vacationAttachmentF);
                         waitForElementToBeVisible(accessibilityId("Document"));
                         clickOn(documentBtn);
                         waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
@@ -524,8 +548,8 @@ public class MyRequests extends MobileBasePage {
                 // Upload the file to the device
                 ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
 
-                clickOn(attachmentIconBtn);
-                clickOn(attachmentF);
+                clickOn(vacationAttachmentIconBtn);
+                clickOn(vacationAttachmentF);
                 waitForElementToBeVisible(accessibilityId("Document"));
                 clickOn(documentBtn);
 //                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
@@ -538,6 +562,146 @@ public class MyRequests extends MobileBasePage {
             }
 
         }
+
+    }
+
+    public void leaveRequest(String leaveType, String leaveDate, String fromTime, String toTime, boolean attachment, String reason, boolean submit, boolean checkAlert){
+
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(chooseBtn);
+        hold(200);
+        clickOn(accessibilityId(leaveType));
+        waitLoadingElement();
+        hold(600);
+        if(!leaveDate.isEmpty()){
+            clickOn(leaveDateF);
+            hold(500);
+            datePicker(leaveDate);
+            waitLoadingElement();
+            hold(500);
+        }
+        if(!fromTime.isEmpty()){
+            clickOn(fromTimeF);
+            hold(500);
+            timePicker(fromTime);
+            waitLoadingElement();
+            hold(500);
+        }
+        if(!toTime.isEmpty()){
+            clickOn(toTimeF);
+            hold(500);
+            timePicker(toTime);
+            waitLoadingElement();
+            hold(500);
+        }
+
+        scrollToElement(submitBtn, true);
+
+        if(attachment){
+
+            if(iniPlatform.equalsIgnoreCase("Android")){
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+                // Specify the remote path where you want to push the file on the device
+                String remotePath = "/sdcard/Download/test.png";
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+                // Upload the file to the device
+                ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(leaveAttachmentIconBtn);
+
+                verticalSwipeByPercentages(70, 50, 50);
+
+                clickOn(leaveAttachmentF);
+                waitForElementToBeVisible(accessibilityId("Document"));
+                clickOn(documentBtn);
+                waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
+                clickOn(imgUploaded);
+                hold(1000);
+                waitLoadingElement();
+                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+
+            }else{
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+
+                // Specify the remote path where you want to push the file on the iOS device
+                String remotePath = "@com.example.YourApp:documents/test.png";
+
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+
+                // Upload the file to the device
+                ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(leaveAttachmentIconBtn);
+                clickOn(leaveAttachmentF);
+                waitForElementToBeVisible(accessibilityId("Document"));
+                clickOn(documentBtn);
+//                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
+//                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.android.documentsui:id/icon_thumb']")));
+//                hold(1000);
+//                waitLoadingElement();
+//                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+
+
+            }
+
+            verticalSwipeByPercentages(70, 30, 50);
+
+        }
+
+        if(!reason.isEmpty()){
+            clickOn(reasonF);
+            setText(reasonF, reason);
+
+            if(iniPlatform.equalsIgnoreCase("Android")){
+                try{
+                    ((AndroidDriver) appiumDriver).hideKeyboard();
+                }catch (Exception ignored){}
+            }else{
+                try{
+                    ((IOSDriver) appiumDriver).hideKeyboard();
+                }catch (Exception ignored){
+                    ((IOSDriver) appiumDriver).hideKeyboard("Done");
+                }
+            }
+
+        }
+
+        if(submit){
+            clickOn(submitBtn);
+            waitLoadingElement();
+            hold(500);
+
+            if(!checkAlert){
+                closeAlert();
+                hold(500);
+
+//                if(iniPlatform.equalsIgnoreCase("Android")){
+//                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+//                }
+
+            }
+
+        }
+
 
     }
 
@@ -593,6 +757,28 @@ public class MyRequests extends MobileBasePage {
                     }
                 }
             }
+        }
+    }
+
+    public boolean checkAlertPopup(String alertText){
+        hold(500);
+        try{
+            return successAlertPopup.getAttribute("content-desc").contains(alertText);
+        }catch (Exception e){
+            try {
+                return attentionAlertPopup.getAttribute("content-desc").contains(alertText);
+            }catch (Exception ex){
+                return false;
+            }
+        }
+    }
+
+    public boolean checkToastAlert(String alertText){
+        hold(800);
+        try {
+            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc").contains(alertText);
+        }catch (Exception e){
+            return false;
         }
     }
 

@@ -156,7 +156,7 @@ public class MobileBasePage {
                     element.click();
                 }
             }catch (Exception ex){
-                scrollToElement(element, true);
+                scrollToElement(element, true, 5);
                 element.click();
             }
         }
@@ -418,6 +418,54 @@ public class MobileBasePage {
         return isElementFound;
     }
 
+    public boolean scrollToElement(By selector, boolean toDown, int times) {
+
+        boolean isElementFound = false;
+        Dimension screenSize = appiumDriver.manage().window().getSize();
+        int screenWidth = screenSize.getWidth();
+        int screenHeight = screenSize.getHeight();
+
+        // Calculate the center of the screen
+        int centerX = screenWidth / 2;
+        int centerY = screenHeight / 2;
+
+        int counter = 1;
+
+        while (!isElementFound) {
+
+            if(counter <= times){
+                try {
+                    isElementFound = appiumDriver.findElement(selector).isDisplayed();
+                } catch (Exception e) {
+                    PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+                    Sequence scroll = new Sequence(finger, 1);
+                    if(toDown){
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY - 200)); // End point
+                    }else{
+                        scroll.addAction(finger.createPointerMove(ofMillis(0),
+                                PointerInput.Origin.viewport(), centerX, centerY)); // Start point
+                        scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
+                        scroll.addAction(finger.createPointerMove(ofMillis(300), // Finger scrolling speed
+                                PointerInput.Origin.viewport(), centerX, centerY + 200)); // End point
+                    }
+                    scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+                    appiumDriver.perform(List.of(scroll));
+                }
+            }else{
+                break;
+            }
+
+            counter++;
+
+        }
+
+        return isElementFound;
+    }
+
     // Scroll vertically by percentages
     public void verticalSwipeByPercentages(double startPercentage, double endPercentage, double anchorPercentage) {
         Dimension size = appiumDriver.manage().window().getSize();
@@ -618,6 +666,7 @@ public class MobileBasePage {
         int minute = Integer.parseInt(timeComponents[1]);
 
         try{
+            hold(500);
             doubleClick(appiumDriver.findElement(AppiumBy.xpath("//android.widget.SeekBar[contains(@content-desc, 'Select hours')]")));
             hold(100);
             WebElement textHour = appiumDriver.findElement(AppiumBy.xpath("//android.widget.EditText[1]"));
@@ -625,7 +674,7 @@ public class MobileBasePage {
             textHour.clear();
             hold(100);
             setText(textHour, String.valueOf(hour));
-            clickOn(textMinutes);
+            clickOn(textMinutes, true);
             textMinutes.clear();
             hold(100);
             setText(textMinutes, String.valueOf(minute));
@@ -638,11 +687,11 @@ public class MobileBasePage {
 
                     WebElement textHour = appiumDriver.findElement(AppiumBy.xpath("//android.widget.EditText[1]"));
                     WebElement textMinutes = appiumDriver.findElement(AppiumBy.xpath("//android.widget.EditText[2]"));
-                    clickOn(textHour);
+                    clickOn(textHour, true);
                     textHour.clear();
                     hold(100);
                     setText(textHour, String.valueOf(hour));
-                    clickOn(textMinutes);
+                    clickOn(textMinutes, true);
                     textMinutes.clear();
                     hold(100);
                     setText(textMinutes, String.valueOf(minute));
@@ -652,15 +701,15 @@ public class MobileBasePage {
                 System.out.println("Keyboard NOT open, i will open now");
 
                 WebElement keyboardBtn = appiumDriver.findElement(AppiumBy.xpath("//android.view.View//android.widget.Button[1]"));
-                clickOn(keyboardBtn);
+                clickOn(keyboardBtn, true);
                 hold(100);
                 WebElement textHour = appiumDriver.findElement(AppiumBy.xpath("//android.widget.EditText[1]"));
                 WebElement textMinutes = appiumDriver.findElement(AppiumBy.xpath("//android.widget.EditText[2]"));
-                clickOn(textHour);
+                clickOn(textHour, true);
                 textHour.clear();
                 hold(100);
                 setText(textHour, String.valueOf(hour));
-                clickOn(textMinutes);
+                clickOn(textMinutes, true);
                 textMinutes.clear();
                 hold(100);
                 setText(textMinutes, String.valueOf(minute));
@@ -668,8 +717,8 @@ public class MobileBasePage {
 
         }
 
-        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(period)));
-        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId("OK")));
+        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId(period)), true);
+        clickOn(appiumDriver.findElement(AppiumBy.accessibilityId("OK")), true);
 
     }
 

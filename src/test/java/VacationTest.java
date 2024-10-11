@@ -82,7 +82,7 @@ public class VacationTest extends BaseTest {
         myTransactions = new MyTransactions();
         myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
 
-        softAssert.assertEquals(myTransactions.getTransactionReason(), "Test Appium Reason", "- Reason Issue!");
+        softAssert.assertEquals(myTransactions.getTransactionReason("Vacation"), "Test Appium Reason", "- Reason Issue!");
         softAssert.assertTrue(myTransactions.attachmentInVacationDetails.isDisplayed(), "Attachment Icon NOT appear!");
         softAssert.assertTrue(myTransactions.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
         softAssert.assertAll();
@@ -181,7 +181,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Balance - Never Exceed Annual Balance", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
+        Assert.assertTrue(myRequests.checkAlertPopup("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
 
     }
 
@@ -228,8 +229,10 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Unpaid Vacation", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("in Same Day"), "The alert NOT contain: in Same Day");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("in Same Day"), "The alert NOT contain: in Same Day");
+        softAssert.assertTrue(myRequests.checkAlertPopup("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
+        softAssert.assertTrue(myRequests.checkAlertPopup("in Same Day"), "The alert NOT contain: in Same Day");
         softAssert.assertAll();
 
     }
@@ -250,7 +253,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Reason Is Mandatory", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
-        Assert.assertTrue(myRequests.pleaseFillTheReason_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
+        //Assert.assertTrue(myRequests.pleaseFillTheReason_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
+        Assert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
 
     }
 
@@ -270,7 +274,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Phone Number Is Mandatory", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
-        Assert.assertTrue(myRequests.pleaseInsertPhoneNumber_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Insert Phone Number!");
+        //Assert.assertTrue(myRequests.pleaseInsertPhoneNumber_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Insert Phone Number!");
+        Assert.assertTrue(myRequests.checkToastAlert("Please Insert Phone Number"), "Alert Issue - shoud lbe appear: Please Insert Phone Number!");
 
     }
 
@@ -312,7 +317,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest_checkAlertAfterUploadAttachment("Document Is Mandatory After 2 Days - Allowed Number = 2", "10/10/2023", "11/10/2023",
                 true, 3, 3);
 
-        Assert.assertTrue(myRequests.theMaximumNumberOfAttachmentIs2_Alert.isDisplayed(), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
+        //Assert.assertTrue(myRequests.theMaximumNumberOfAttachmentIs2_Alert.isDisplayed(), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
+        Assert.assertTrue(myRequests.checkToastAlert("The maximum number of attachment is : 2"), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
 
     }
 
@@ -354,11 +360,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "11/10/2023",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(myRequests.maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1.isDisplayed(), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1");
+        //Assert.assertTrue(myRequests.maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1.isDisplayed(), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1");
+        Assert.assertTrue(myRequests.checkToastAlert("Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1"), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1");
 
     }
 
-    @Test(priority = 8, groups = "Vacations")
+    @Test(priority = 9, groups = "Vacations")
     public void checkTheDocumentIsMandatoryContinuousDays_SuccessValidation_Upload2Attachment(){
 
         /////////////// Web Initialize //////////////
@@ -396,11 +403,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "11/10/2023",
                 true, 2, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 8, groups = "Vacations")
+    @Test(priority = 10, groups = "Vacations")
     public void checkTheDocumentIsMandatoryContinuousDays_RequestOneDayOfVacation(){
 
         /////////////// Web Initialize //////////////
@@ -438,11 +446,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "10/10/2023",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 9, groups = "Vacations")
+    @Test(priority = 11, groups = "Vacations")
     public void checkTheDocumentIsMandatory_AccumulativeDays_UploadExceedTheAllowedNumberOfAttachments(){
 
         /////////////// Web Initialize //////////////
@@ -486,11 +495,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest_checkAlertAfterUploadAttachment("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "11/10/2023", "11/10/2023",
                 true, 3, 3);
 
-        Assert.assertTrue(myRequests.theMaximumNumberOfAttachmentIs2_Alert.isDisplayed(), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
+        //Assert.assertTrue(myRequests.theMaximumNumberOfAttachmentIs2_Alert.isDisplayed(), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
+        Assert.assertTrue(myRequests.checkToastAlert("The maximum number of attachment is : 2"), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
 
     }
 
-    @Test(priority = 10, groups = "Vacations")
+    @Test(priority = 12, groups = "Vacations")
     public void checkTheDocumentIsMandatory_AccumulativeDays_ForTwoDaysValidation_withoutUploadAttachment(){
 
         /////////////// Web Initialize //////////////
@@ -534,13 +544,14 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "06/05/2023", "06/05/2023",
                 false, 0, "", "", true, true);
 
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.isDisplayed(), "Attention Please Alert NOT Appear!");
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Minimum Number Of Allowed Attachments Is(1)"), "Alert Issue: Shoud be alert appear--> Minimum Number Of Allowed Attachments Is(1)]");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.isDisplayed(), "Attention Please Alert NOT Appear!");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Minimum Number Of Allowed Attachments Is(1)"), "Alert Issue: Shoud be alert appear--> Minimum Number Of Allowed Attachments Is(1)]");
+        softAssert.assertTrue(myRequests.checkAlertPopup("Minimum Number Of Allowed Attachments Is(1)"), "Alert Issue: Shoud be alert appear--> Minimum Number Of Allowed Attachments Is(1)]");
         softAssert.assertAll();
 
     }
 
-    @Test(priority = 11, groups = "Vacations")
+    @Test(priority = 13, groups = "Vacations")
     public void checkTheDocumentIsMandatory_AccumulativeDays_SuccessValidation_Upload2Attachment(){
 
         /////////////// Web Initialize //////////////
@@ -583,11 +594,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "06/05/2023", "06/05/2023",
                 true, 2, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 12, groups = "Vacations")
+    @Test(priority = 14, groups = "Vacations")
     public void checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked(){
 
         /////////////// Web Initialize //////////////
@@ -625,7 +637,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Can Not Be Requested In Future Date", "", "05/05/2030", "05/05/2030",
                 false, 0, "", "", true, true);
 
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Request This Vacation In A Future Date"), "Alert Issue: Shoud be alert appear--> You Can Not Request This Vacation In A Future Date");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Request This Vacation In A Future Date"), "Alert Issue: Shoud be alert appear--> You Can Not Request This Vacation In A Future Date");
+        softAssert.assertTrue(myRequests.checkAlertPopup("You Can Not Request This Vacation In A Future Date"), "Alert Issue: Shoud be alert appear--> You Can Not Request This Vacation In A Future Date");
 
         myRequests.closeAlert();
 
@@ -634,12 +647,13 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Can Not Be Requested In Previous Date", "", "06/05/2023", "06/05/2023",
                 false, 0, "", "", true, true);
 
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("before the current date"), "Alert Issue: Shoud be alert appear--> Transaction Date can`t be before the current date");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("before the current date"), "Alert Issue: Shoud be alert appear--> Transaction Date can`t be before the current date");
+        softAssert.assertTrue(myRequests.checkAlertPopup("before the current date"), "Alert Issue: Shoud be alert appear--> Transaction Date can`t be before the current date");
         softAssert.assertAll();
 
     }
 
-    @Test(priority = 13, groups = "Vacations")
+    @Test(priority = 15, groups = "Vacations")
     public void checkRequestAlertWhenDelegateIsMandatory(){
 
         /////////////// Web Initialize //////////////
@@ -681,11 +695,12 @@ public class VacationTest extends BaseTest {
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
-        Assert.assertTrue(myRequests.autoDelegationIsMandatoryBeforeVacationRequest_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: Auto Delegation Is Mandatory Before Vacation Request!");
+        //Assert.assertTrue(myRequests.autoDelegationIsMandatoryBeforeVacationRequest_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: Auto Delegation Is Mandatory Before Vacation Request!");
+        Assert.assertTrue(myRequests.checkToastAlert("Auto Delegation Is Mandatory Before Vacation Request"), "Alert Issue : it should be appear this alert: Auto Delegation Is Mandatory Before Vacation Request!");
 
     }
 
-    @Test(priority = 14, groups = "Vacations")
+    @Test(priority = 16, groups = "Vacations")
     public void checkRequestVacationWhenSelectDelegateIsNotRequired(){
 
         /////////////// Web Initialize //////////////
@@ -727,11 +742,12 @@ public class VacationTest extends BaseTest {
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 15, groups = "Vacations")
+    @Test(priority = 17, groups = "Vacations")
     public void checkRequestVacationWhenSelectDelegateIs_AllEmployees(){
 
         /////////////// Web Initialize //////////////
@@ -783,11 +799,12 @@ public class VacationTest extends BaseTest {
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 15, groups = "Vacations")
+    @Test(priority = 18, groups = "Vacations")
     public void checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes(){
 
         /////////////// Web Initialize //////////////
@@ -843,11 +860,12 @@ public class VacationTest extends BaseTest {
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 15, groups = "Vacations")
+    @Test(priority = 19, groups = "Vacations")
     public void checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes(){
 
         /////////////// Web Initialize //////////////
@@ -909,7 +927,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 20, groups = "Vacations")
     public void requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -1029,7 +1047,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 21, groups = "Vacations")
     public void requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -1148,7 +1166,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 22, groups = "Vacations")
     public void checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation(){
 
         /////////////// Web Initialize //////////////
@@ -1196,7 +1214,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 23, groups = "Vacations")
     public void checkItemsInSickVacationReasonsFieldIfAllAppear(){
 
         /////////////// Web Initialize //////////////
@@ -1247,7 +1265,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 24, groups = "Vacations")
     public void checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason(){
 
         /////////////// Web Initialize //////////////
@@ -1290,11 +1308,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Sick Vacation", "", "", "",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(myRequests.youMustFillSickVacationReason_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason");
+        //Assert.assertTrue(myRequests.youMustFillSickVacationReason_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason");
+        Assert.assertTrue(myRequests.checkToastAlert("You Must Fill Sick Vacation Reason"), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason");
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 25, groups = "Vacations")
     public void requestSickVacationWithChooseSickVacationReason_Successfully(){
 
         /////////////// Web Initialize //////////////
@@ -1337,11 +1356,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Sick Vacation", "Reason 2", "", "",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 26, groups = "Vacations")
     public void checkOptionVacationCannotBeEnteredInMenaMe(){
 
         /////////////// Mobile Initialize //////////////
@@ -1360,7 +1380,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 27, groups = "Vacations")
     public void requestVacationAndApprovedByManagerAndPostTransactionFromSystem(){
 
         /////////////// Web Initialize //////////////
@@ -1451,7 +1471,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 28, groups = "Vacations")
     public void checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
 
         /////////////// Web Initialize //////////////
@@ -1558,7 +1578,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 16, groups = "Vacations")
+    @Test(priority = 29, groups = "Vacations")
     public void checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
 
         /////////////// Web Initialize //////////////
@@ -1665,7 +1685,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 30, groups = "Vacations")
     public void requestVacationAndConsultToOtherEmployee(){
 
         /////////////// Web Initialize //////////////
@@ -1774,7 +1794,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 31, groups = "Vacations")
     public void requestVacationAndDelegateToOtherEmployee(){
 
         /////////////// Web Initialize //////////////
@@ -1900,7 +1920,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 32, groups = "Vacations")
     public void checkValidationForThisOption_AnnualUpperLimit(){
 
         /////////////// Web Initialize //////////////
@@ -1948,11 +1968,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Annual Upper Limit 14", "", "20/08/2023", "25/08/2023",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        Assert.assertTrue(myRequests.checkAlertPopup("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 33, groups = "Vacations")
     public void checkValidationForThisOption_MonthlyUpperLimit(){
 
         /////////////// Web Initialize //////////////
@@ -1995,11 +2016,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Monthly Upper Limit 3", "", "15/05/2023", "17/05/2023",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        Assert.assertTrue(myRequests.checkAlertPopup("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 34, groups = "Vacations")
     public void checkValidation_EarnedAfter_HiringDate(){
 
         /////////////// Web Initialize //////////////
@@ -2037,7 +2059,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Earned After - 3 Month", "", "01/02/2020", "02/02/2020",
                 false, 0, "", "", true, true);
 
-        softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("These Vacations Were Not Earned Yet"), "Alert Issue!!! - The alert NOT contain: These Vacations Were Not Earned Yet!");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("These Vacations Were Not Earned Yet"), "Alert Issue!!! - The alert NOT contain: These Vacations Were Not Earned Yet!");
+        softAssert.assertTrue(myRequests.checkAlertPopup("These Vacations Were Not Earned Yet"), "Alert Issue!!! - The alert NOT contain: These Vacations Were Not Earned Yet!");
 
         myRequests.closeAlert();
 
@@ -2046,12 +2069,13 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Earned After - 3 Month", "", "01/05/2020", "02/05/2020",
                 false, 0, "", "", true, true);
 
-        softAssert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //softAssert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        softAssert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         softAssert.assertAll();
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 35, groups = "Vacations")
     public void checkValidation_NeverExceedVacationSuggestedBalance(){
 
         /////////////// Web Initialize //////////////
@@ -2089,11 +2113,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Balance - Never Exceed Suggested Balance", "", "01/02/2024", "02/02/2024",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
+        Assert.assertTrue(myRequests.checkAlertPopup("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 36, groups = "Vacations")
     public void checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup(){
 
         /////////////// Web Initialize //////////////
@@ -2174,7 +2199,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 37, groups = "Vacations")
     public void checkOption_preventWithdrawTransactionAfterFirstApproval(){
 
         /////////////// Web Initialize //////////////
@@ -2251,11 +2276,12 @@ public class VacationTest extends BaseTest {
         myTransactions.openTransactionInMyTransactions("Vacations", "Prevent Withdraw Transaction After First Approval", "10.01.2023");
         myTransactions.withdraw(false);
 
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
         Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 38, groups = "Vacations")
     public void requestVacationContainsDaysOffWithOption_CutDaysOff(){
 
         /////////////// Web Initialize //////////////
@@ -2313,7 +2339,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 39, groups = "Vacations")
     public void requestVacationContainsHolidayWithOption_CutHolidays(){
 
         /////////////// Web Initialize //////////////
@@ -2367,7 +2393,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 17, groups = "Vacations")
+    @Test(priority = 40, groups = "Vacations")
     public void checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement(){
 
         /////////////// Web Initialize //////////////
@@ -2425,7 +2451,7 @@ public class VacationTest extends BaseTest {
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 41, groups = "Vacations")
     public void checkOption_PreventTakingVacationsInSpecificPeriods(){
 
         /////////////// Web Initialize //////////////
@@ -2463,11 +2489,12 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Prevent Taking Vacations In Specific Periods", "", "01/10/2024", "03/10/2024",
                 false, 0, "", "", true, true);
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+        Assert.assertTrue(myRequests.checkAlertPopup("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 42, groups = "Vacations")
     public void checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation(){
 
         /////////////// Web Initialize //////////////
@@ -2515,11 +2542,12 @@ public class VacationTest extends BaseTest {
                 false, 0, "", "", true, true);
 
         System.exit(0);
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+        Assert.assertTrue(myRequests.checkAlertPopup("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
 
     }
 
-    @Test(priority = 3, groups = "Vacations")
+    @Test(priority = 43, groups = "Vacations")
     public void checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation(){
 
         /////////////// Web Initialize //////////////
@@ -2557,7 +2585,8 @@ public class VacationTest extends BaseTest {
         myRequests.vacationRequest("Alert Employees To Request Following Items When Submit Vacation", "", "01/10/2024", "01/10/2024",
                 false, 0, "", "", true, true);
 
-        softAssert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
+        //softAssert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
+        softAssert.assertTrue(myRequests.checkAlertPopup("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
 
         myRequests.closeAlert();
 
