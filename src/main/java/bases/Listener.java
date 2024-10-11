@@ -28,7 +28,8 @@ public class Listener implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        WebBase base = new WebBase();
+        //WebBase base = new WebBase();
+        MobileBasePage base = new MobileBasePage();
         if(result.getThrowable() instanceof Exception){
             ExtentReport.getTest().log(Status.FAIL, result.getThrowable());
         }else{
@@ -36,7 +37,7 @@ public class Listener implements ITestListener {
         }
 
         try {
-            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.driver));
+            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.appiumDriver));
         }catch (Exception ignored){
             System.out.println("Screenshot Ignored!");
         }
@@ -47,7 +48,8 @@ public class Listener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
 
-        WebBase base = new WebBase();
+        //WebBase base = new WebBase();
+        MobileBasePage base = new MobileBasePage();
         if(result.getThrowable() instanceof Exception){
             ExtentReport.getTest().log(Status.SKIP, result.getThrowable());
         }else{
@@ -55,7 +57,7 @@ public class Listener implements ITestListener {
         }
 
         try {
-            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.driver));
+            ExtentReport.getTest().addScreenCaptureFromBase64String(screenshotAsBase64(base.appiumDriver));
         }catch (Exception ignored){
             System.out.println("Screenshot Ignored!");
         }
