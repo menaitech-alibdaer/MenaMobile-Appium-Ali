@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,6 +84,44 @@ public class MobileHelper {
         DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         LocalDate date = LocalDate.now();
         return date.format(currentDateFormatter);
+    }
+
+    public static String currentTime(){
+        LocalTime currentTime = LocalTime.now();
+        // Define a formatter to format the time as "h:mm a"
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+        // Format the time
+        return currentTime.format(formatter);
+    }
+
+    public static String backTime(String currentTime, int numberOfBackHour){
+
+        // Define a formatter for parsing and formatting the time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+
+        // Parse the time string to a LocalTime object
+        LocalTime time = LocalTime.parse(currentTime, formatter);
+
+        // Subtract one hour from the parsed time
+        LocalTime timeMinusHour = time.minusHours(numberOfBackHour);
+
+        // Format the new time back to a string
+        return timeMinusHour.format(formatter);
+    }
+
+    public static String PlusTime(String currentTime, int numberOfPlusHour){
+
+        // Define a formatter for parsing and formatting the time
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("h:mm a");
+
+        // Parse the time string to a LocalTime object
+        LocalTime time = LocalTime.parse(currentTime, formatter);
+
+        // Subtract one hour from the parsed time
+        LocalTime timePlusHour = time.plusHours(numberOfPlusHour);
+
+        // Format the new time back to a string
+        return timePlusHour.format(formatter);
     }
 
 }

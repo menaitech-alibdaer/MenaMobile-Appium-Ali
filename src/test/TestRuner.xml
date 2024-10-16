@@ -23,7 +23,7 @@
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="VacationTest" />
+            <class name="VacationRequest" />
         </classes>
     </test>
 

@@ -13,7 +13,7 @@ import static utilities.MssqlConnect.menaMeRestPassword;
 import static utilities.MssqlConnect.sqlQuery;
 import static utilities.WebHelper.*;
 
-public class VacationTest extends BaseTest {
+public class VacationRequest extends BaseTest {
 
     PersonnelInformation personnel;
     FinancialPackage financial;

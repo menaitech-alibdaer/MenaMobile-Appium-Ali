@@ -105,8 +105,8 @@ public class BaseTest {
 
         try{
             if(appiumDriver.get() != null) {
-                appiumDriver.get().quit();
-                appiumDriver.remove();
+                //appiumDriver.get().quit();
+                //appiumDriver.remove();
             }
         }catch (Exception e){
             e.printStackTrace();

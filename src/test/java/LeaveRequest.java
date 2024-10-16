@@ -7,7 +7,10 @@ import webBackend.general.*;
 import webBackend.personnelInformation.Other;
 import webBackend.personnelInformation.PersonnelInformation;
 
+import static utilities.MobileHelper.backTime;
+import static utilities.MobileHelper.currentTime;
 import static utilities.MssqlConnect.*;
+import static utilities.WebHelper.currentDate;
 
 public class LeaveRequest extends BaseTest {
 
@@ -758,6 +761,293 @@ public class LeaveRequest extends BaseTest {
         softAssert.assertTrue(myRequests.checkAlertPopup("The Leave Is Out Of Shift Time"), "Alert Issue: Shoud be alert contain--> The Leave Is Out Of Shift Time");
         softAssert.assertTrue(myRequests.checkAlertPopup("The Request Has Been Saved Successfully"), "Alert Issue: Shoud be alert contain--> The Request Has Been Saved Successfully");
         softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Leaves")
+    public void option_DontAllowPreviousDateMenaMERequest(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Dont Allow Previous Date MenaME Request", "01/10/2024", "10:00 AM", "11:00 AM",
+                false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkAlertPopup("Leave Transaction Can Not Be Before Current Date"), "Alert Issue: Shoud be alert contain--> Leave Transaction Can Not Be Before Current Date");
+
+    }
+
+    @Test(priority = 1, groups = "Leaves")
+    public void option_DontAllowPreviousTimeMenaMERequest(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Dont Allow Previous Time MenaME Request", currentDate(), backTime(currentTime(), 3), backTime(currentTime(), 1),
+                false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkAlertPopup("Leave Transaction Can Not Be Before Current Time"), "Alert Issue: Shoud be alert contain--> Leave Transaction Can Not Be Before Current Time");
+
+    }
+
+    @Test(priority = 1, groups = "Leaves")
+    public void option_PreventThisLeaveRequestIn_Sunday(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Prevent This Leave Request In Sunday", "06/10/2024", "9:00 AM", "10:00 AM",
+                false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkAlertPopup("You Can Not Request A Leave On Sunday"), "Alert Issue: Shoud be alert contain--> You Can Not Request A Leave On Sunday");
+
+    }
+
+    @Test(priority = 1, groups = "Leaves")
+    public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfEveningDay(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest_HoursSetting("Leave Hours Setting For MenaME Requests Only", "01/10/2024", "Half Evening Day",
+                false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Your Leave Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Leave Request Has Been Submitted Successfully");
+
+        myRequests.closeAlert();
+
+        mainScreen.myTransactions();
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Leaves", "Leave Hours Setting For MenaME Requests Only", "01.10.2024");
+
+        softAssert.assertEquals(myTransactions.transactionDetails("Period"), "6:00", "Issue in period");
+        softAssert.assertEquals(myTransactions.transactionDetails("From Time"), "5:00 PM", "Issue in From Time!");
+        softAssert.assertEquals(myTransactions.transactionDetails("To Time"), "11:00 PM", "Issue in To Time!");
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Leaves")
+    public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest_HoursSetting("Leave Hours Setting For MenaME Requests Only", "01/10/2024", "Half Morning Day",
+                false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Your Leave Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Leave Request Has Been Submitted Successfully");
+
+        myRequests.closeAlert();
+
+        mainScreen.myTransactions();
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Leaves", "Leave Hours Setting For MenaME Requests Only", "01.10.2024");
+
+        softAssert.assertEquals(myTransactions.transactionDetails("Period"), "7:00", "Issue in period");
+        softAssert.assertEquals(myTransactions.transactionDetails("From Time"), "9:00 AM", "Issue in From Time!");
+        softAssert.assertEquals(myTransactions.transactionDetails("To Time"), "4:00 PM", "Issue in To Time!");
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 3, groups = "Leaves")
+    public void checkOption_ValidateLeaveUpperLimitsOnRequestLevel(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Validate Leave Upper Limits On Request Level", "01/10/2024", "9:00 AM", "11:00 AM",
+                false, "", true, false);
+
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Validate Leave Upper Limits On Request Level", "10/10/2024", "9:00 AM", "11:00 AM",
+                false, "", true, false);
+
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Validate Leave Upper Limits On Request Level", "14/10/2024", "9:00 AM", "1:00 PM",
+                false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkAlertPopup("Leave Hours Per Month Exceeded The Upper Limit"), "Alert Issue: Shoud be alert appear--> Leave Hours Per Month Exceeded The Upper Limit");
 
     }
 

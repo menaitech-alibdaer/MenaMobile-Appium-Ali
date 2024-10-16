@@ -6,10 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/WebBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/WebBase.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonnelInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonnelInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WebHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/WebHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/LeaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LeaveRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -38,117 +38,123 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.AppTest.executor&quot;: &quot;Run&quot;,
-    &quot;Application.AppiumChecker.executor&quot;: &quot;Run&quot;,
-    &quot;Application.AppiumServerControl.executor&quot;: &quot;Run&quot;,
-    &quot;Application.EmulatorChecker.executor&quot;: &quot;Run&quot;,
-    &quot;Application.test.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TestNG.AppTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.AppTest.invokeNewEmployee.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.AppTest.invokeNewEmployeeInThread.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.AppTest.openApp.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.AppTest.simpleLogin.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.FirstRunTest.test1.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.FullTest.newEmployee.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_AlertIfEmployeeLeaveTransactionsFromThisTypeExceeds.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_EarnedAfter_2Month_FromHiringDate_checkValidationWhenRequestBeforeThat.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_LeaveHoursLowerLimitHoursPerDay.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerDay.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerMonth.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_LeaveRequestReasonIsMandatory.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.checkValidationWhenRequestLeaveOutOfShift.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.linkEmployeeOnShiftAndRequestLeaveWithinShift.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LeaveRequest.option_AllowOutOfShiftLeave.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.changePassword_CheckSpicalCarachter.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.changePassword_NewPasswordNotSameRetypePassword.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.changePassword_Success.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.changePassword_WrongOldPassword.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.checkForgetPassword.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.checkNotMenaMeUser.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.checkPasswordContainSpecialCharacter.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.connectivity_TestWrongBranch.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.connectivity_TestWrongCompany.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.connectivity_TestWrongURL.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.invalidLogin.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.loginWithOTP.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.loginWithOTP_InvalidCode.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.loginWithOTP_ResendCode.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.loginWithOTP_ValidCode.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.validLoginWithRememberMeAndLogout.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.LoginTest.validLoginWithRememberMeAndLogout22222.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.MssqlConnect.test.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.MssqlConnect.test1.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.NewEmployeeCreator.newEmployee.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.NewEmployeeCreator.simpleLogin.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.RunWebAppAndroidEmulator.openWebApp.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkOptionVacationCannotBeEnteredInMenaMe.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkOption_preventWithdrawTransactionAfterFirstApproval.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkPhoneNumberIsMandatory.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkReasonIsMandatory.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestTwoVacationInTheSameDate.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_ForTwoDaysValidation.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_OneDayVacation.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_SuccessValidation_Upload2Attachment.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_ForTwoDaysValidation_withoutUploadAttachment.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_SuccessValidation_Upload2Attachment.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_UploadExceedTheAllowedNumberOfAttachments.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkValidationForEmployeeWithoutVacationBalance.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkValidationForThisOption_AnnualUpperLimit.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkValidationForThisOption_MonthlyUpperLimit.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkValidation_EarnedAfter_HiringDate.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.checkValidation_NeverExceedVacationSuggestedBalance.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestUnpaidVacationAndWithdraw.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestUnpaidVacationWithAttachment.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestVacationAndApprovedByManagerAndPostTransactionFromSystem.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestVacationAndConsultToOtherEmployee.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestVacationAndDelegateToOtherEmployee.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestVacationContainsDaysOffWithOption_CutDaysOff.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.VacationTest.testtttttttttt.executor&quot;: &quot;Run&quot;,
-    &quot;com.codeium.enabled&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.40689656&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AppTest.executor": "Run",
+    "Application.AppiumChecker.executor": "Run",
+    "Application.AppiumServerControl.executor": "Run",
+    "Application.EmulatorChecker.executor": "Run",
+    "Application.test.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.AppTest.executor": "Run",
+    "TestNG.AppTest.invokeNewEmployee.executor": "Run",
+    "TestNG.AppTest.invokeNewEmployeeInThread.executor": "Run",
+    "TestNG.AppTest.openApp.executor": "Run",
+    "TestNG.AppTest.simpleLogin.executor": "Run",
+    "TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml.executor": "Run",
+    "TestNG.FirstRunTest.test1.executor": "Run",
+    "TestNG.FullTest.newEmployee.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_AlertIfEmployeeLeaveTransactionsFromThisTypeExceeds.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_EarnedAfter_2Month_FromHiringDate_checkValidationWhenRequestBeforeThat.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursLowerLimitHoursPerDay.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerDay.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerMonth.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_LeaveRequestReasonIsMandatory.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds.executor": "Run",
+    "TestNG.LeaveRequest.checkOption_ValidateLeaveUpperLimitsOnRequestLevel.executor": "Run",
+    "TestNG.LeaveRequest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
+    "TestNG.LeaveRequest.checkValidationWhenRequestLeaveOutOfShift.executor": "Run",
+    "TestNG.LeaveRequest.linkEmployeeOnShiftAndRequestLeaveWithinShift.executor": "Run",
+    "TestNG.LeaveRequest.option_AllowOutOfShiftLeave.executor": "Run",
+    "TestNG.LeaveRequest.option_DontAllowPreviousDateMenaMERequest.executor": "Run",
+    "TestNG.LeaveRequest.option_DontAllowPreviousTimeMenaMERequest.executor": "Run",
+    "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly.executor": "Run",
+    "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay.executor": "Run",
+    "TestNG.LeaveRequest.option_PreventThisLeaveRequestIn_Sunday.executor": "Run",
+    "TestNG.LoginTest.changePassword_CheckSpicalCarachter.executor": "Run",
+    "TestNG.LoginTest.changePassword_NewPasswordNotSameRetypePassword.executor": "Run",
+    "TestNG.LoginTest.changePassword_Success.executor": "Run",
+    "TestNG.LoginTest.changePassword_WrongOldPassword.executor": "Run",
+    "TestNG.LoginTest.checkForgetPassword.executor": "Run",
+    "TestNG.LoginTest.checkNotMenaMeUser.executor": "Run",
+    "TestNG.LoginTest.checkPasswordContainSpecialCharacter.executor": "Run",
+    "TestNG.LoginTest.connectivity_TestWrongBranch.executor": "Run",
+    "TestNG.LoginTest.connectivity_TestWrongCompany.executor": "Run",
+    "TestNG.LoginTest.connectivity_TestWrongURL.executor": "Run",
+    "TestNG.LoginTest.executor": "Run",
+    "TestNG.LoginTest.invalidLogin.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP_InvalidCode.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP_ResendCode.executor": "Run",
+    "TestNG.LoginTest.loginWithOTP_ValidCode.executor": "Run",
+    "TestNG.LoginTest.validLoginWithRememberMeAndCheckRememberMe.executor": "Run",
+    "TestNG.LoginTest.validLoginWithRememberMeAndLogout.executor": "Run",
+    "TestNG.LoginTest.validLoginWithRememberMeAndLogout22222.executor": "Run",
+    "TestNG.MssqlConnect.test.executor": "Run",
+    "TestNG.MssqlConnect.test1.executor": "Run",
+    "TestNG.NewEmployeeCreator.newEmployee.executor": "Run",
+    "TestNG.NewEmployeeCreator.simpleLogin.executor": "Run",
+    "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
+    "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
+    "TestNG.VacationTest.checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup.executor": "Run",
+    "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationTest.checkItemsInSickVacationReasonsFieldIfAllAppear.executor": "Run",
+    "TestNG.VacationTest.checkOptionVacationCannotBeEnteredInMenaMe.executor": "Run",
+    "TestNG.VacationTest.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement.executor": "Run",
+    "TestNG.VacationTest.checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation.executor": "Run",
+    "TestNG.VacationTest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation.executor": "Run",
+    "TestNG.VacationTest.checkOption_PreventTakingVacationsInSpecificPeriods.executor": "Run",
+    "TestNG.VacationTest.checkOption_preventWithdrawTransactionAfterFirstApproval.executor": "Run",
+    "TestNG.VacationTest.checkPhoneNumberIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkReasonIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkRequestAlertWhenDelegateIsMandatory.executor": "Run",
+    "TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction.executor": "Run",
+    "TestNG.VacationTest.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
+    "TestNG.VacationTest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
+    "TestNG.VacationTest.checkRequestTwoVacationInTheSameDate.executor": "Run",
+    "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIsNotRequired.executor": "Run",
+    "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_AllEmployees.executor": "Run",
+    "TestNG.VacationTest.checkRequestVacationWhenSelectDelegateIs_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationTest.checkSickVacationReasonsFieldIfAppearWhenSelectSickVacation.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_ForTwoDaysValidation.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_OneDayVacation.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_SuccessValidation_Upload2Attachment.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_ForTwoDaysValidation_withoutUploadAttachment.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_SuccessValidation_Upload2Attachment.executor": "Run",
+    "TestNG.VacationTest.checkTheDocumentIsMandatory_AccumulativeDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
+    "TestNG.VacationTest.checkValidationForEmployeeWithoutVacationBalance.executor": "Run",
+    "TestNG.VacationTest.checkValidationForThisOption_AnnualUpperLimit.executor": "Run",
+    "TestNG.VacationTest.checkValidationForThisOption_MonthlyUpperLimit.executor": "Run",
+    "TestNG.VacationTest.checkValidationWhenRequestSickVacationWithoutChooseSickVacationReason.executor": "Run",
+    "TestNG.VacationTest.checkValidation_EarnedAfter_HiringDate.executor": "Run",
+    "TestNG.VacationTest.checkValidation_NeverExceedVacationSuggestedBalance.executor": "Run",
+    "TestNG.VacationTest.requestSickVacationWithChooseSickVacationReason_Successfully.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationAndWithdraw.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachment.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_AndApprovedByDirectManager.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager.executor": "Run",
+    "TestNG.VacationTest.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager.executor": "Run",
+    "TestNG.VacationTest.requestVacationAndApprovedByManagerAndPostTransactionFromSystem.executor": "Run",
+    "TestNG.VacationTest.requestVacationAndConsultToOtherEmployee.executor": "Run",
+    "TestNG.VacationTest.requestVacationAndDelegateToOtherEmployee.executor": "Run",
+    "TestNG.VacationTest.requestVacationContainsDaysOffWithOption_CutDaysOff.executor": "Run",
+    "TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays.executor": "Run",
+    "TestNG.VacationTest.testtttttttttt.executor": "Run",
+    "com.codeium.enabled": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.40689656",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\java\webBackend" />
@@ -166,22 +172,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.LeaveRequest.option_AllowOutOfShiftLeave">
-    <configuration name="C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/TestRuner.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.LeaveRequest.checkOption_ValidateLeaveUpperLimitsOnRequestLevel">
+    <configuration name="LeaveRequest.checkOption_ValidateLeaveUpperLimitsOnRequestLevel" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
-      <option name="METHOD_NAME" value="checkOption_LeaveCannotBeEnteredInMenaME" />
+      <option name="METHOD_NAME" value="checkOption_ValidateLeaveUpperLimitsOnRequestLevel" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -189,11 +185,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaveRequest.option_DontAllowPreviousTimeMenaMERequest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
-      <option name="METHOD_NAME" value="checkOption_LeaveHoursUpperLimitHoursPerYear" />
+      <option name="METHOD_NAME" value="option_DontAllowPreviousTimeMenaMERequest" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -201,11 +197,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeaveRequest.checkOption_LeaveRequestReasonIsMandatory" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
-      <option name="METHOD_NAME" value="checkOption_LeaveRequestReasonIsMandatory" />
+      <option name="METHOD_NAME" value="option_LeaveHoursSettingForMenaMERequestsOnly" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -213,11 +209,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeaveRequest.option_AllowOutOfShiftLeave" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
-      <option name="METHOD_NAME" value="option_AllowOutOfShiftLeave" />
+      <option name="METHOD_NAME" value="option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="LeaveRequest.option_PreventThisLeaveRequestIn_Sunday" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
+      <option name="METHOD_NAME" value="option_PreventThisLeaveRequestIn_Sunday" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -227,11 +235,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.LeaveRequest.option_AllowOutOfShiftLeave" />
-        <item itemvalue="TestNG.LeaveRequest.checkOption_LeaveRequestReasonIsMandatory" />
-        <item itemvalue="TestNG.LeaveRequest.checkOption_LeaveCannotBeEnteredInMenaME" />
-        <item itemvalue="TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" />
-        <item itemvalue="TestNG.LeaveRequest.checkOption_LeaveHoursUpperLimitHoursPerYear" />
+        <item itemvalue="TestNG.LeaveRequest.checkOption_ValidateLeaveUpperLimitsOnRequestLevel" />
+        <item itemvalue="TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay" />
+        <item itemvalue="TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly" />
+        <item itemvalue="TestNG.LeaveRequest.option_PreventThisLeaveRequestIn_Sunday" />
+        <item itemvalue="TestNG.LeaveRequest.option_DontAllowPreviousTimeMenaMERequest" />
       </list>
     </recent_temporary>
   </component>
@@ -508,7 +516,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728614230973</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1729065031945</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1729065031945</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

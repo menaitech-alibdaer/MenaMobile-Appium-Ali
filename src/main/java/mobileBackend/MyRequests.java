@@ -65,6 +65,10 @@ public class MyRequests extends MobileBasePage {
     WebElement leaveAttachmentF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Delegate']/following::android.widget.Button)[1]")
     WebElement delegateF;
+    @AndroidFindBy(xpath = "(//android.widget.RadioButton)[1]")
+    WebElement halfMorningDay_option;
+    @AndroidFindBy(xpath = "(//android.widget.RadioButton)[2]")
+    WebElement halfEveningDay_option;
     @AndroidFindBy(accessibility = "Document")
     WebElement documentBtn;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='test.png']")
@@ -594,6 +598,137 @@ public class MyRequests extends MobileBasePage {
             timePicker(toTime);
             waitLoadingElement();
             hold(500);
+        }
+
+        scrollToElement(submitBtn, true);
+
+        if(attachment){
+
+            if(iniPlatform.equalsIgnoreCase("Android")){
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+                // Specify the remote path where you want to push the file on the device
+                String remotePath = "/sdcard/Download/test.png";
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+                // Upload the file to the device
+                ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(leaveAttachmentIconBtn);
+
+                verticalSwipeByPercentages(70, 50, 50);
+
+                clickOn(leaveAttachmentF);
+                waitForElementToBeVisible(accessibilityId("Document"));
+                clickOn(documentBtn);
+                waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
+                clickOn(imgUploaded);
+                hold(1000);
+                waitLoadingElement();
+                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+
+            }else{
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+
+                // Specify the remote path where you want to push the file on the iOS device
+                String remotePath = "@com.example.YourApp:documents/test.png";
+
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+
+                // Upload the file to the device
+                ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(leaveAttachmentIconBtn);
+                clickOn(leaveAttachmentF);
+                waitForElementToBeVisible(accessibilityId("Document"));
+                clickOn(documentBtn);
+//                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
+//                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.android.documentsui:id/icon_thumb']")));
+//                hold(1000);
+//                waitLoadingElement();
+//                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+
+
+            }
+
+            verticalSwipeByPercentages(70, 30, 50);
+
+        }
+
+        if(!reason.isEmpty()){
+            clickOn(reasonF);
+            setText(reasonF, reason);
+
+            if(iniPlatform.equalsIgnoreCase("Android")){
+                try{
+                    ((AndroidDriver) appiumDriver).hideKeyboard();
+                }catch (Exception ignored){}
+            }else{
+                try{
+                    ((IOSDriver) appiumDriver).hideKeyboard();
+                }catch (Exception ignored){
+                    ((IOSDriver) appiumDriver).hideKeyboard("Done");
+                }
+            }
+
+        }
+
+        if(submit){
+            clickOn(submitBtn);
+            waitLoadingElement();
+            hold(500);
+
+            if(!checkAlert){
+                closeAlert();
+                hold(500);
+
+//                if(iniPlatform.equalsIgnoreCase("Android")){
+//                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+//                }
+
+            }
+
+        }
+
+
+    }
+
+    public void leaveRequest_HoursSetting(String leaveType, String leaveDate, String timeSetting, boolean attachment, String reason, boolean submit, boolean checkAlert){
+
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(chooseBtn);
+        hold(200);
+        clickOn(accessibilityId(leaveType));
+        waitLoadingElement();
+        hold(600);
+        if(!leaveDate.isEmpty()){
+            clickOn(leaveDateF);
+            hold(500);
+            datePicker(leaveDate);
+            waitLoadingElement();
+            hold(500);
+        }
+        if(timeSetting.equalsIgnoreCase("Half Morning Day")){
+            clickOn(halfMorningDay_option);
+        }else if(timeSetting.equalsIgnoreCase("Half Evening Day")){
+            clickOn(halfEveningDay_option);
         }
 
         scrollToElement(submitBtn, true);
