@@ -666,4 +666,99 @@ public class LeaveRequest extends BaseTest {
 
     }
 
+    @Test(priority = 7, groups = "Leaves")
+    public void checkOption_LeaveRequestReasonIsMandatory(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Leave Request Reason Is Mandatory", "", "9:30 AM", "11:30 PM",
+                false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue: Shoud be alert appear--> Please Fill The Reason");
+
+    }
+
+    @Test(priority = 1, groups = "Leaves")
+    public void option_AllowOutOfShiftLeave(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1980");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        other = new Other();
+        other.goToShiftDetails();
+        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openLeaves();
+        myRequests.leaveRequest("Allow Out Of Shift Leave", "01/10/2024", "7:00 PM", "9:00 PM",
+                false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("The Leave Is Out Of Shift Time"), "Alert Issue: Shoud be alert contain--> The Leave Is Out Of Shift Time");
+        softAssert.assertTrue(myRequests.checkAlertPopup("The Request Has Been Saved Successfully"), "Alert Issue: Shoud be alert contain--> The Request Has Been Saved Successfully");
+        softAssert.assertAll();
+
+    }
+
 }

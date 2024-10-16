@@ -31,6 +31,8 @@ public class WebBase {
     int secondWait = 50;
     @FindBy(className = "select2-search__field")
     WebElement selectSearchField;
+    @FindBy(id = "LoadingElement")
+    WebElement loadingElement;
     private static String checkBranch = "branch";
 
 
@@ -140,6 +142,20 @@ public class WebBase {
 
     protected void implicitWaitChanging(int millis){
         driver.manage().timeouts().implicitlyWait(Duration.ofMillis(millis));
+    }
+
+    protected void waitAllElementIn(By by){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+    }
+
+    protected void waitLoadingScreenToVisible(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
+        wait.until(driver -> loadingElement.getCssValue("display").equals("block"));
+    }
+    protected void waitLoadingScreenToInvisible(){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
+        wait.until(driver -> loadingElement.getCssValue("display").equals("none"));
     }
 
     protected void selectOption(WebElement element, String text){

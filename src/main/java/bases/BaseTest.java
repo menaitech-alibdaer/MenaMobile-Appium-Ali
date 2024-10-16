@@ -10,6 +10,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 import org.testng.annotations.Optional;
@@ -75,7 +77,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"platform", "browser"})
-    public void setPlatform(@Optional("Android") String platform, @Optional("chrome") String browser){
+    public void setPlatform(@Optional("Android") String platform, @Optional("edge") String browser){
 
         data = new TestDataReader("data.json");
 
@@ -181,6 +183,7 @@ public class BaseTest {
 
         setDriver(getDriver());
         ChromeOptions options = new ChromeOptions();
+        EdgeOptions options_e = new EdgeOptions();
 
         if (iniBrowser.equalsIgnoreCase("chrome")){
 
@@ -208,7 +211,37 @@ public class BaseTest {
             options.setExperimentalOption("prefs", prefs);
             setDriver(new ChromeDriver(options));
 
+        } else if (iniBrowser.equalsIgnoreCase("edge")) {
+
+            WebDriverManager.edgedriver().setup();
+            options_e.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+            options_e.setExperimentalOption("useAutomationExtension", false);
+            options_e.addArguments("--start-maximized");
+
+            // Set preferences similar to Chrome if applicable (optional, Edge has different preferences APIs)
+            Map<String, Object> prefs = new HashMap<>();
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+            options_e.setExperimentalOption("prefs", prefs);
+
+            setDriver(new EdgeDriver(options_e));
+
+        } else if (iniBrowser.equalsIgnoreCase("edge_headless")) {
+
+            WebDriverManager.edgedriver().setup();
+            options_e.addArguments("--start-maximized");
+            options_e.addArguments("--headless", "--window-size=1920,1080");
+
+            // Set preferences (optional)
+            Map<String, Object> prefs = new HashMap<>();
+            prefs.put("credentials_enable_service", false);
+            prefs.put("profile.password_manager_enabled", false);
+            options_e.setExperimentalOption("prefs", prefs);
+
+            setDriver(new EdgeDriver(options_e));
+
         }
+
 
         getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
 

@@ -733,7 +733,9 @@ public class PersonnelInformation extends WebBase {
             System.out.println("Employee Code: "+employeeCode);
             goToFrame(frame);
             elementWaitAdvanced(By.id("employee_code"));
+            elementWait(empCode);
             setText(empCode, employeeCode, Keys.TAB);
+            //hold(4000);
 
             empFirstName = firstName();
             setText(fNameEng, empFirstName);
@@ -818,15 +820,15 @@ public class PersonnelInformation extends WebBase {
         }
 
         setLog("Personal Information"
-            +" - Employee Code: "+employeeCode
-            +" - Marital Status: "+MaritalStatus
-            +" - Gender: "+Gender
-            +" - Nationality: "+Nationality
-            +" - Religion: "+Religion
-            +" - Mobile: "+Mobile
-            +" - Email: "+Email
-            +" - Direct Manager: "+DirectManager
-            +" - Birth Date: "+BirthDate);
+            +"\n - Employee Code: "+employeeCode
+            +"\n - Marital Status: "+MaritalStatus
+            +"\n - Gender: "+Gender
+            +"\n - Nationality: "+Nationality
+            +"\n - Religion: "+Religion
+            +"\n - Mobile: "+Mobile
+            +"\n - Email: "+Email
+            +"\n - Direct Manager: "+DirectManager
+            +"\n - Birth Date: "+BirthDate);
 
     }
 
