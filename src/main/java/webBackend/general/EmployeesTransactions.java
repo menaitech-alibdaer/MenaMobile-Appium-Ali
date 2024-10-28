@@ -1159,6 +1159,14 @@ public class EmployeesTransactions extends WebBase {
         hold(300);
     }
 
+    public void goToOvertime(){
+        goToFrame(bodyFrame);
+        hold(300);
+        elementWaitAdvanced(By.id("employee_code"));
+        clickOn(overtimeTab);
+        hold(300);
+    }
+
     public void vacation(String employeeCode, String fromDate, String toDate, String vacationType, boolean post){
 
         goToFrame(bodyFrame);
@@ -1306,6 +1314,9 @@ public class EmployeesTransactions extends WebBase {
     }
     public String getToDate(int transactionOrder){
         return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_end_date')])["+transactionOrder+"]")).getAttribute("value");
+    }
+    public String getAmount(int transactionOrder){
+        return driver.findElement(By.xpath("(//input[contains(@name, 'transaction_amount')])["+transactionOrder+"]")).getAttribute("value");
     }
     public String getVacationType(int transactionOrder){
         WebElement selectElement = driver.findElement(By.xpath("(//select[contains(@id, 'transaction_internal_type')])["+transactionOrder+"]"));

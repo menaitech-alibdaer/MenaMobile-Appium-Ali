@@ -16,21 +16,16 @@ public class LeaveRequest extends BaseTest {
 
     PersonnelInformation personnel;
     FinancialPackage financial;
-    VacationsBalances vacationsBalances;
     Other other;
     Login login;
     MenaModules menaModules;
-    Substitutes substitutes;
     MainMenu mainMenu;
-    EmployeesTransactions transactions;
     String employeeCode = null;
 
     MobileLogin loginMob;
     MainScreen mainScreen;
-    Notifications notifications;
     MyTransactions myTransactions;
     MyRequests myRequests;
-    Manager manager;
 
     @Test(priority = 1, groups = "Leaves")
     public void linkEmployeeOnShiftAndRequestLeaveWithinShift(){
@@ -87,9 +82,9 @@ public class LeaveRequest extends BaseTest {
         myTransactions = new MyTransactions();
         myTransactions.openTransactionInMyTransactions("Leaves", "Unpaid Leave", "01.10.2024");
 
-        softAssert.assertEquals(myTransactions.getTransactionReason("Leave"), "Test Leave Reason", "- Reason Issue!");
+        softAssert.assertEquals(myTransactions.getTransactionReason(), "Test Leave Reason", "- Reason Issue!");
         softAssert.assertTrue(myTransactions.attachmentIconInDetails.isDisplayed(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(myTransactions.checkAttachmentInLeaveDetails(), "Attachment NOT Opened!");
+        softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
         softAssert.assertAll();
 
     }

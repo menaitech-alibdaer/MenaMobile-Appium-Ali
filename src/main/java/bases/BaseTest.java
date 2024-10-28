@@ -6,12 +6,15 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
+import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 import org.testng.annotations.Optional;
@@ -77,7 +80,7 @@ public class BaseTest {
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"platform", "browser"})
-    public void setPlatform(@Optional("Android") String platform, @Optional("edge") String browser){
+    public void setPlatform(@Optional("Android") String platform, @Optional("chrome") String browser){
 
         data = new TestDataReader("data.json");
 
@@ -131,7 +134,7 @@ public class BaseTest {
             //caps.setCapability("deviceName", "Ali");
             //caps.setCapability("udid", "emulator-5554");
             caps.setCapability("deviceName", "Appium Device 1");
-            caps.setCapability("udid", "192.168.56.104:5555");
+            caps.setCapability("udid", "192.168.56.105:5555");
             caps.setCapability("platformName", "Android");
             caps.setCapability("platformVersion", "13");
             caps.setCapability("automationName", "UiAutomator2");
@@ -184,6 +187,7 @@ public class BaseTest {
         setDriver(getDriver());
         ChromeOptions options = new ChromeOptions();
         EdgeOptions options_e = new EdgeOptions();
+        FirefoxOptions  options_f = new FirefoxOptions();
 
         if (iniBrowser.equalsIgnoreCase("chrome")){
 
@@ -197,6 +201,7 @@ public class BaseTest {
             prefs.put("credentials_enable_service", false);
             prefs.put("profile.password_manager_enabled", false);
             options.setExperimentalOption("prefs", prefs);
+            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
             setDriver(new ChromeDriver(options));
 
         } else if (iniBrowser.equalsIgnoreCase("chrome_headless")){
@@ -209,6 +214,7 @@ public class BaseTest {
             prefs.put("credentials_enable_service", false);
             prefs.put("profile.password_manager_enabled", false);
             options.setExperimentalOption("prefs", prefs);
+            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
             setDriver(new ChromeDriver(options));
 
         } else if (iniBrowser.equalsIgnoreCase("edge")) {
@@ -223,7 +229,7 @@ public class BaseTest {
             prefs.put("credentials_enable_service", false);
             prefs.put("profile.password_manager_enabled", false);
             options_e.setExperimentalOption("prefs", prefs);
-
+            options_e.setPageLoadStrategy(PageLoadStrategy.NORMAL);
             setDriver(new EdgeDriver(options_e));
 
         } else if (iniBrowser.equalsIgnoreCase("edge_headless")) {
@@ -237,8 +243,22 @@ public class BaseTest {
             prefs.put("credentials_enable_service", false);
             prefs.put("profile.password_manager_enabled", false);
             options_e.setExperimentalOption("prefs", prefs);
-
+            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
             setDriver(new EdgeDriver(options_e));
+
+        } else if (iniBrowser.equalsIgnoreCase("firefox")) {
+
+            WebDriverManager.firefoxdriver().setup();
+            options_f.addPreference("dom.webnotifications.enabled", false);  // Disable notifications
+            options_f.addPreference("geo.enabled", false);  // Disable geolocation
+            options_f.addPreference("geo.prompt.testing", false);
+            options_f.addPreference("geo.prompt.testing.allow", false);
+            options_f.addPreference("privacy.trackingprotection.enabled", false);
+            options_f.addArguments("-private");
+            options_f.addPreference("dom.popup_maximum", 0);
+            options_f.addPreference("dom.disable_open_during_load", false);
+            setDriver(new FirefoxDriver(options_f));
+            getDriver().manage().window().maximize();
 
         }
 

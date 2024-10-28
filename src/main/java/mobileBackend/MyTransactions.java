@@ -266,21 +266,46 @@ public class MyTransactions extends MobileBasePage {
         }
     }
 
-    public boolean checkAttachmentInVacationDetails(){
-        hold(1000);
+//    public boolean checkAttachmentInVacationDetails(){
+//        hold(1000);
+//
+//        scrollToElement(workflowDetailsText, true);
+//        clickOn(attachmentInVacationDetails);
+//        waitLoadingElement();
+//        hold(2000);
+//        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
+//        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+//    }
+//
+//    public boolean checkAttachmentInLeaveDetails(){
+//        hold(1000);
+//        scrollToElement(additionalInformationText, true);
+//        clickOn(attachmentIconInDetails);
+//        waitLoadingElement();
+//        hold(2000);
+//        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
+//        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+//    }
+//
+//    public boolean checkAttachmentInOvertimeDetails(){
+//        hold(1000);
+//        scrollToElement(additionalInformationText, true);
+//        clickOn(attachmentIconInDetails);
+//        waitLoadingElement();
+//        hold(2000);
+//        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
+//        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+//    }
 
-        scrollToElement(workflowDetailsText, true);
-        clickOn(attachmentInVacationDetails);
-        waitLoadingElement();
-        hold(2000);
-        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
-        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
-    }
-
-    public boolean checkAttachmentInLeaveDetails(){
+    public boolean checkOpenAttachment(){
         hold(1000);
-        scrollToElement(additionalInformationText, true);
-        clickOn(attachmentIconInDetails);
+        try {
+            verticalSwipeByPercentages(70, 30, 50);
+            simpleClick(attachmentIconInDetails);
+        }catch (Exception e){
+            scrollToElement(attachmentIconInDetails, true);
+            simpleClick(attachmentIconInDetails);
+        }
         waitLoadingElement();
         hold(2000);
         waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
@@ -308,42 +333,24 @@ public class MyTransactions extends MobileBasePage {
 
     }
 
-    public String getTransactionReason(String transactionType){
+    public String getTransactionReason(){
 
         String getReason = null;
         int startIndex = 0;
         int endIndex = 0;
         String reason = null;
 
-        if(transactionType.equalsIgnoreCase("Vacation")){
-
-            try{
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
-            }catch (Exception e){
-                scrollToElement(workflowDetailsText, true, 4);
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
-            }
-
-            startIndex = getReason.indexOf('\n') + 1;
-            endIndex = getReason.indexOf('-');
-
-            reason = getReason.substring(startIndex, endIndex);
-
-        }else if(transactionType.equalsIgnoreCase("Leave")){
-
-            try{
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
-            }catch (Exception e){
-                scrollToElement(cancelBtn, true, 4);
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
-            }
-
-            startIndex = getReason.indexOf('\n') + 1;
-            endIndex = getReason.indexOf('-');
-
-            reason = getReason.substring(startIndex, endIndex);
-
+        try{
+            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+        }catch (Exception e){
+            verticalSwipeByPercentages(70, 10, 50);
+            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
         }
+
+        startIndex = getReason.indexOf('\n') + 1;
+        endIndex = getReason.indexOf('-');
+
+        reason = getReason.substring(startIndex, endIndex);
 
         return reason;
 

@@ -71,6 +71,11 @@ public class MobileBasePage {
         hold(100);
     }
 
+    public void simpleClick(By locator){
+        appiumDriver.findElement(locator).click();
+        hold(100);
+    }
+
     public void clickOn(WebElement element){
         try{
 
@@ -158,6 +163,22 @@ public class MobileBasePage {
             }catch (Exception ex){
                 scrollToElement(element, true, 5);
                 element.click();
+            }
+        }
+    }
+
+    public void clickOn(By locator, boolean waitElement){
+        try {
+            appiumDriver.findElement(locator).click();
+        }catch (Exception e){
+            try {
+                if(waitElement){
+                    waitForElementToBeClickable(locator);
+                    appiumDriver.findElement(locator).click();
+                }
+            }catch (Exception ex){
+                scrollToElement(locator, true, 5);
+                appiumDriver.findElement(locator).click();
             }
         }
     }

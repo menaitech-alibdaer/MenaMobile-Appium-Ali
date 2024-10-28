@@ -82,9 +82,9 @@ public class VacationRequest extends BaseTest {
         myTransactions = new MyTransactions();
         myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
 
-        softAssert.assertEquals(myTransactions.getTransactionReason("Vacation"), "Test Appium Reason", "- Reason Issue!");
+        softAssert.assertEquals(myTransactions.getTransactionReason(), "Test Appium Reason", "- Reason Issue!");
         softAssert.assertTrue(myTransactions.attachmentInVacationDetails.isDisplayed(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(myTransactions.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
+        softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
         softAssert.assertAll();
 
     }
