@@ -1323,5 +1323,10 @@ public class EmployeesTransactions extends WebBase {
         Select select = new Select(selectElement);
         return select.getFirstSelectedOption().getText();
     }
+    public String getTransactionType_Overtime(int transactionOrder){
+        WebElement selectElement = driver.findElement(By.xpath("(//select[contains(@name, 'transaction_pay_nonpay')])["+transactionOrder+"]"));
+        Select select = new Select(selectElement);
+        return select.getFirstSelectedOption().getText().trim();
+    }
 
 }

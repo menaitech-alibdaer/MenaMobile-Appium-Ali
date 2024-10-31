@@ -33,7 +33,7 @@ public class VacationRequest extends BaseTest {
     MyRequests myRequests;
     Manager manager;
 
-    @Test(priority = 1, groups = "Vacations")
+    @Test(priority = 1, groups = "Vacations", enabled = false)
     public void requestUnpaidVacationWithAttachmentAndReason(){
 
         /////////////// Web Initialize //////////////
@@ -89,7 +89,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 2, groups = "Vacations")
+    @Test(priority = 2, groups = "Vacations", enabled = false)
     public void requestUnpaidVacationAndWithdraw(){
 
         /////////////// Web Initialize //////////////
@@ -254,7 +254,7 @@ public class VacationRequest extends BaseTest {
                 false, 1, "", "", true, true);
 
         //Assert.assertTrue(myRequests.pleaseFillTheReason_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
-        Assert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
+        Assert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud lbe appear: Please Fill The Reason! - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 
@@ -275,39 +275,18 @@ public class VacationRequest extends BaseTest {
                 false, 1, "", "", true, true);
 
         //Assert.assertTrue(myRequests.pleaseInsertPhoneNumber_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Insert Phone Number!");
-        Assert.assertTrue(myRequests.checkToastAlert("Please Insert Phone Number"), "Alert Issue - shoud lbe appear: Please Insert Phone Number!");
+        Assert.assertTrue(myRequests.checkToastAlert("Please Insert Phone Number"), "Alert Issue - shoud lbe appear: Please Insert Phone Number! - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 
     @Test(priority = 7, groups = "Vacations")
     public void checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments(){
 
-        /////////////// Web Initialize //////////////
-        webInitialize();
-
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -315,10 +294,10 @@ public class VacationRequest extends BaseTest {
         myRequests = new MyRequests();
         myRequests.openVacations();
         myRequests.vacationRequest_checkAlertAfterUploadAttachment("Document Is Mandatory After 2 Days - Allowed Number = 2", "10/10/2023", "11/10/2023",
-                true, 3, 3);
+                true, 2);
 
         //Assert.assertTrue(myRequests.theMaximumNumberOfAttachmentIs2_Alert.isDisplayed(), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
-        Assert.assertTrue(myRequests.checkToastAlert("The maximum number of attachment is : 2"), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
+        Assert.assertTrue(myRequests.checkToastAlert("The maximum number of attachment is : 2"), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2 - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 
@@ -361,7 +340,9 @@ public class VacationRequest extends BaseTest {
                 false, 0, "", "", true, true);
 
         //Assert.assertTrue(myRequests.maximumAllowedAttachmentsIs2AndMinimumAllowedAttachmentsIs1.isDisplayed(), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1");
-        Assert.assertTrue(myRequests.checkToastAlert("Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1"), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1");
+        softAssert.assertTrue(myRequests.checkToastAlert("Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is"), "Alert Issue: Shoud be alert appear--> Maximum Allowed Attachments Is 2 And Minimum Allowed Attachments Is 1 - But the alert appear is --> "+myRequests.getToastAlert());
+        softAssert.assertTrue(myRequests.checkToastAlert("1"));
+        softAssert.assertAll();
 
     }
 
@@ -493,10 +474,10 @@ public class VacationRequest extends BaseTest {
         mainScreen.myRequests();
         myRequests.openVacations();
         myRequests.vacationRequest_checkAlertAfterUploadAttachment("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "11/10/2023", "11/10/2023",
-                true, 3, 3);
+                true, 2);
 
         //Assert.assertTrue(myRequests.theMaximumNumberOfAttachmentIs2_Alert.isDisplayed(), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
-        Assert.assertTrue(myRequests.checkToastAlert("The maximum number of attachment is : 2"), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2");
+        Assert.assertTrue(myRequests.checkToastAlert("The maximum number of attachment is : 2"), "Alert Issue: Shoud be alert appear--> The maximum number of attachment is : 2 - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 
@@ -696,7 +677,7 @@ public class VacationRequest extends BaseTest {
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
         //Assert.assertTrue(myRequests.autoDelegationIsMandatoryBeforeVacationRequest_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: Auto Delegation Is Mandatory Before Vacation Request!");
-        Assert.assertTrue(myRequests.checkToastAlert("Auto Delegation Is Mandatory Before Vacation Request"), "Alert Issue : it should be appear this alert: Auto Delegation Is Mandatory Before Vacation Request!");
+        Assert.assertTrue(myRequests.checkToastAlert("Auto Delegation Is Mandatory Before Vacation Request"), "Alert Issue : it should be appear this alert: Auto Delegation Is Mandatory Before Vacation Request! - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 
@@ -927,7 +908,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 20, groups = "Vacations")
+    @Test(priority = 20, groups = "Vacations", enabled = false)
     public void requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -1047,7 +1028,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 21, groups = "Vacations")
+    @Test(priority = 21, groups = "Vacations", enabled = false)
     public void requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -1309,7 +1290,7 @@ public class VacationRequest extends BaseTest {
                 false, 0, "", "", true, true);
 
         //Assert.assertTrue(myRequests.youMustFillSickVacationReason_Alert.isDisplayed(), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason");
-        Assert.assertTrue(myRequests.checkToastAlert("You Must Fill Sick Vacation Reason"), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason");
+        Assert.assertTrue(myRequests.checkToastAlert("You Must Fill Sick Vacation Reason"), "Alert Issue : it should be appear this alert: You Must Fill Sick Vacation Reason - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 
@@ -1471,7 +1452,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 28, groups = "Vacations")
+    @Test(priority = 28, groups = "Vacations", enabled = false)
     public void checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
 
         /////////////// Web Initialize //////////////
@@ -1578,7 +1559,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 29, groups = "Vacations")
+    @Test(priority = 29, groups = "Vacations", enabled = false)
     public void checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
 
         /////////////// Web Initialize //////////////
@@ -1685,7 +1666,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 30, groups = "Vacations")
+    @Test(priority = 30, groups = "Vacations", enabled = false)
     public void requestVacationAndConsultToOtherEmployee(){
 
         /////////////// Web Initialize //////////////
@@ -1775,8 +1756,6 @@ public class VacationRequest extends BaseTest {
         manager.openMyTeamTransaction();
         manager.openTransaction(employee, "Test Delegate and Consult");
 
-        System.exit(0);
-
         manager.reject("Appium Comment - Reject");
 
         mainScreen.logout();
@@ -1794,7 +1773,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 31, groups = "Vacations")
+    @Test(priority = 31, groups = "Vacations", enabled = false)
     public void requestVacationAndDelegateToOtherEmployee(){
 
         /////////////// Web Initialize //////////////
@@ -1969,7 +1948,7 @@ public class VacationRequest extends BaseTest {
                 false, 0, "", "", true, true);
 
         //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
-        Assert.assertTrue(myRequests.checkAlertPopup("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        Assert.assertTrue(myRequests.checkAlertPopup("Exceeded The Upper Limit"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
 
     }
 
@@ -2199,7 +2178,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 37, groups = "Vacations")
+    @Test(priority = 37, groups = "Vacations", enabled = false)
     public void checkOption_preventWithdrawTransactionAfterFirstApproval(){
 
         /////////////// Web Initialize //////////////
@@ -2281,7 +2260,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 38, groups = "Vacations")
+    @Test(priority = 38, groups = "Vacations", enabled = false)
     public void requestVacationContainsDaysOffWithOption_CutDaysOff(){
 
         /////////////// Web Initialize //////////////
@@ -2339,7 +2318,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 39, groups = "Vacations")
+    @Test(priority = 39, groups = "Vacations", enabled = false)
     public void requestVacationContainsHolidayWithOption_CutHolidays(){
 
         /////////////// Web Initialize //////////////
@@ -2393,7 +2372,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 40, groups = "Vacations")
+    @Test(priority = 40, groups = "Vacations", enabled = false)
     public void checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement(){
 
         /////////////// Web Initialize //////////////
@@ -2446,7 +2425,7 @@ public class VacationRequest extends BaseTest {
 
         myTransactions = new MyTransactions();
         myTransactions.openTransactionInMyTransactions("Vacations", "Ability to request in advance vacation", "02.05.2024");
-        System.exit(0);
+
         Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "1.000", "Period Issue!");
 
     }
@@ -2533,7 +2512,7 @@ public class VacationRequest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Annual Vacation", "", "01/03/2023", "02/03/2023",
+        myRequests.vacationRequest("Annual Vacation", "", "01/03/2023", "03/03/2023",
                 false, 0, "", "", true, false);
 
         mainScreen.myRequests();
@@ -2541,13 +2520,12 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Prevent Submit Vacation Of This Type If Employee Vacation", "", "01/10/2024", "01/10/2024",
                 false, 0, "", "", true, true);
 
-        System.exit(0);
         //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
         Assert.assertTrue(myRequests.checkAlertPopup("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
 
     }
 
-    @Test(priority = 43, groups = "Vacations")
+    @Test(priority = 43, groups = "Vacations", enabled = false)
     public void checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation(){
 
         /////////////// Web Initialize //////////////

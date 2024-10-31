@@ -76,6 +76,18 @@ public class MobileBasePage {
         hold(100);
     }
 
+    public void simpleClick(By locator, boolean wait){
+        try {
+            appiumDriver.findElement(locator).click();
+            hold(100);
+        }catch (Exception e){
+            if(wait){
+                waitForElementToBeClickable(locator);
+                appiumDriver.findElement(locator).click();
+            }
+        }
+    }
+
     public void clickOn(WebElement element){
         try{
 
@@ -656,13 +668,15 @@ public class MobileBasePage {
 
         if (between > 0) {
             for(int i = 0; i < between; i++){
-                clickOn(leftRow, true);
+                hold(200);
+                simpleClick(AppiumBy.xpath("//android.widget.Button[1]"), true);
             }
 
         }else if(between < 0){
             int backMonth = Math.abs(between);
             for(int i = 0; i < backMonth; i++){
-                clickOn(rightRow, true);
+                hold(200);
+                simpleClick(AppiumBy.xpath("//android.widget.Button[2]"), true);
             }
         }
 
@@ -760,6 +774,22 @@ public class MobileBasePage {
 
     public void android_Back(){
         ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
+    }
+
+    public void back(){
+        try {
+            simpleClick(AppiumBy.xpath("//android.widget.ImageView[@content-desc='NotificationIcon']/preceding-sibling::android.widget.ImageView[1]"));
+        }catch (Exception e){
+            simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'BackButton')]//android.widget.ImageView[not(contains(@content-desc, 'Icon'))])[2]"));
+        }
+    }
+
+    public void home(){
+        try {
+            simpleClick(AppiumBy.xpath("//android.widget.ImageView[@content-desc='NotificationIcon']/following::android.widget.ImageView[1]"));
+        }catch (Exception e){
+            simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'BackButton')]//android.widget.ImageView[not(contains(@content-desc, 'Icon'))])[3]"));
+        }
     }
 
     public WebElement getBy(By locator){

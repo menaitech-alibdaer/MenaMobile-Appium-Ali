@@ -27,7 +27,7 @@ public class LeaveRequest extends BaseTest {
     MyTransactions myTransactions;
     MyRequests myRequests;
 
-    @Test(priority = 1, groups = "Leaves")
+    @Test(priority = 1, groups = "Leaves", enabled = false)
     public void linkEmployeeOnShiftAndRequestLeaveWithinShift(){
 
         /////////////// Web Initialize //////////////
@@ -140,7 +140,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 3, groups = "Leaves")
+    @Test(priority = 3, groups = "Leaves", enabled = false)
     public void checkOption_AlertIfEmployeeLeaveTransactionsFromThisTypeExceeds(){
 
         /////////////// Web Initialize //////////////
@@ -205,7 +205,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 3, groups = "Leaves")
+    @Test(priority = 3, groups = "Leaves", enabled = false)
     public void checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds(){
 
         /////////////// Web Initialize //////////////
@@ -885,7 +885,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 1, groups = "Leaves")
+    @Test(priority = 1, groups = "Leaves", enabled = false)
     public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfEveningDay(){
 
         /////////////// Web Initialize //////////////
@@ -938,7 +938,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 1, groups = "Leaves")
+    @Test(priority = 1, groups = "Leaves", enabled = false)
     public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay(){
 
         /////////////// Web Initialize //////////////

@@ -60,7 +60,7 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
-    public void setVersion(@Optional("JUL") String version, @Optional("false") boolean lite){
+    public void setVersion(@Optional("AUG") String version, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
@@ -108,9 +108,10 @@ public class BaseTest {
 
         try{
             if(appiumDriver.get() != null) {
-                //appiumDriver.get().quit();
-                //appiumDriver.remove();
+                appiumDriver.get().quit();
             }
+            appiumDriver.remove();
+            System.gc();
         }catch (Exception e){
             e.printStackTrace();
         }
@@ -125,16 +126,15 @@ public class BaseTest {
     ////////////////////////////////////////////////////
 
     public void initializeAppiumDriver(String platform){
+
         DesiredCapabilities caps = new DesiredCapabilities();
 
         if (platform.equalsIgnoreCase("Android")) {
 
             //File app = new File("src/main/apps/app.apk");
 
-            //caps.setCapability("deviceName", "Ali");
-            //caps.setCapability("udid", "emulator-5554");
-            caps.setCapability("deviceName", "Appium Device 1");
-            caps.setCapability("udid", "192.168.56.105:5555");
+            caps.setCapability("deviceName", "Ali - Appium");
+            caps.setCapability("udid", "192.168.56.106:5555");
             caps.setCapability("platformName", "Android");
             caps.setCapability("platformVersion", "13");
             caps.setCapability("automationName", "UiAutomator2");
@@ -142,14 +142,14 @@ public class BaseTest {
             caps.setCapability("appPackage", "com.menaitech.mename");
             caps.setCapability("appActivity", "com.menaitech.mename.MainActivity");
             caps.setCapability("noReset", false);
-            //caps.setCapability("fullReset", true);
-            //caps.setCapability("newCommandTimeout", 2);
+            caps.setCapability("newCommandTimeout", 300);
             caps.setCapability("enforceXPath1", true);
             caps.setCapability("autoGrantPermissions", true);
-//            caps.setCapability("disableWindowAnimation", true);
-//            caps.setCapability("skipDeviceInitialization", true);
-//            caps.setCapability("skipServerInstallation", true);
-//            caps.setCapability("ignoreUnimportantViews", true);
+            caps.setCapability("disableWindowAnimation", true);
+            caps.setCapability("ignoreUnimportantViews", true);
+            //caps.setCapability("fullReset", true);
+            //caps.setCapability("skipDeviceInitialization", true);
+            //caps.setCapability("skipServerInstallation", true);
 
             URL url = null;
             try {

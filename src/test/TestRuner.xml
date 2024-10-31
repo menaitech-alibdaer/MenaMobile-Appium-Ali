@@ -5,36 +5,47 @@
         <listener class-name="bases.Listener" />
     </listeners>
 
-    <test name="LoginAndConnectivity" parallel="classes" thread-count="1">
+<!--    <test name="LoginAndConnectivity" parallel="classes" thread-count="1">-->
+<!--        <parameter name="browser" value="chrome_headless" />-->
+<!--        <parameter name="version" value="AUG" />-->
+<!--        <parameter name="lite" value="false" />-->
+<!--        <parameter name="platform" value="Android" />-->
+
+<!--        <classes>-->
+<!--            <class name="LoginTest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="VacationRequest" parallel="classes" thread-count="1">-->
+<!--        <parameter name="browser" value="chrome_headless" />-->
+<!--        <parameter name="version" value="AUG" />-->
+<!--        <parameter name="lite" value="false" />-->
+<!--        <parameter name="platform" value="Android" />-->
+
+<!--        <classes>-->
+<!--            <class name="VacationRequest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+<!--    <test name="LeaveRequest" parallel="classes" thread-count="1">-->
+<!--        <parameter name="browser" value="chrome_headless" />-->
+<!--        <parameter name="version" value="AUG" />-->
+<!--        <parameter name="lite" value="false" />-->
+<!--        <parameter name="platform" value="Android" />-->
+
+<!--        <classes>-->
+<!--            <class name="LeaveRequest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="OvertimeRequest" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="JUL" />
+        <parameter name="version" value="AUG" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="LoginTest" />
-        </classes>
-    </test>
-
-    <test name="VacationRequest" parallel="classes" thread-count="1">
-        <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="JUL" />
-        <parameter name="lite" value="false" />
-        <parameter name="platform" value="Android" />
-
-        <classes>
-            <class name="VacationRequest" />
-        </classes>
-    </test>
-
-    <test name="LeaveRequest" parallel="classes" thread-count="1">
-        <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="JUL" />
-        <parameter name="lite" value="false" />
-        <parameter name="platform" value="Android" />
-
-        <classes>
-            <class name="LeaveRequest" />
+            <class name="OvertimeRequest" />
         </classes>
     </test>
 

@@ -300,6 +300,24 @@ public class MyRequests extends MobileBasePage {
         return scrollToElement(AppiumBy.accessibilityId(leaveType) , true, 12);
     }
 
+    public boolean checkOvertimeTypeIfAppear(String  date, String type){
+        waitLoadingElement();
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(overtimeDateF);
+        hold(500);
+        datePicker(date);
+        waitLoadingElement();
+        hold(500);
+        clickOn(overtimeTypeF);
+        hold(200);
+        return scrollToElement(AppiumBy.accessibilityId(type) , true, 15);
+    }
+
+    public void closeList(){
+        simpleClick(AppiumBy.className("android.widget.Button"));
+    }
+
     public void vacationRequest(String vacationType, String sickVacationReason, String fromDate, String toDate, boolean attachment, int numberOfAttachment, String reason, String delegateTo, boolean submit, boolean checkAlert){
 
         waitLoadingElement();
@@ -385,9 +403,7 @@ public class MyRequests extends MobileBasePage {
                 closeAlert();
                 hold(500);
 
-                if(iniPlatform.equalsIgnoreCase("Android")){
-                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
-                }
+                back();
 
             }
 
@@ -420,7 +436,7 @@ public class MyRequests extends MobileBasePage {
         hold(100);
     }
 
-    public void vacationRequest_checkAlertAfterUploadAttachment(String vacationType, String fromDate, String toDate, boolean attachment, int numberOfAttachment, int checkAlertAfterNumber){
+    public void vacationRequest_checkAlertAfterUploadAttachment(String vacationType, String fromDate, String toDate, boolean attachment, int numberOfAttachment){
 
         waitLoadingElement();
         waitForElementToBeClickable(accessibilityId("Choose"));
@@ -441,6 +457,14 @@ public class MyRequests extends MobileBasePage {
         if(attachment){
             uploadAttachment(numberOfAttachment);
         }
+
+        try {
+            simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]"));
+        }catch (Exception e){
+            simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Request Attachment']/following::android.widget.ImageView)[1]"));
+        }
+
+        hold(500);
 
     }
 
@@ -504,6 +528,7 @@ public class MyRequests extends MobileBasePage {
         }
 
         if(submit){
+            verticalSwipeByPercentages(70, 30, 50);
             clickOn(submitBtn);
             waitLoadingElement();
             hold(500);
@@ -674,6 +699,7 @@ public class MyRequests extends MobileBasePage {
         }
 
         if(submit){
+            verticalSwipeByPercentages(70, 30, 50);
             clickOn(submitBtn);
             waitLoadingElement();
             hold(500);
@@ -682,9 +708,7 @@ public class MyRequests extends MobileBasePage {
                 closeAlert();
                 hold(500);
 
-//                if(iniPlatform.equalsIgnoreCase("Android")){
-//                    ((AndroidDriver) appiumDriver).pressKey(new KeyEvent().withKey(AndroidKey.BACK));
-//                }
+                back();
 
             }
 
@@ -733,6 +757,14 @@ public class MyRequests extends MobileBasePage {
             return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             return false;
+        }
+    }
+
+    public String getToastAlert(){
+        try {
+            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc");
+        }catch (Exception e){
+            return null;
         }
     }
 

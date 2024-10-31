@@ -384,7 +384,7 @@ public class MssqlConnect extends WebBase {
 
     @Test
     public void test1(){
-        sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 10 where branch_code='auto_mob1'");
+        sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
     }
 
 }
