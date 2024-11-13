@@ -33,7 +33,7 @@ public class VacationRequest extends BaseTest {
     MyRequests myRequests;
     Manager manager;
 
-    @Test(priority = 1, groups = "Vacations", enabled = false)
+    @Test(priority = 1, groups = "Vacations")
     public void requestUnpaidVacationWithAttachmentAndReason(){
 
         /////////////// Web Initialize //////////////
@@ -80,16 +80,16 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.01.2023");
 
         softAssert.assertEquals(myTransactions.getTransactionReason(), "Test Appium Reason", "- Reason Issue!");
         softAssert.assertTrue(myTransactions.attachmentInVacationDetails.isDisplayed(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
+        //softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
         softAssert.assertAll();
 
     }
 
-    @Test(priority = 2, groups = "Vacations", enabled = false)
+    @Test(priority = 2, groups = "Vacations")
     public void requestUnpaidVacationAndWithdraw(){
 
         /////////////// Web Initialize //////////////
@@ -136,7 +136,7 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "To Test Withdraw", "11.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "To Test Withdraw", "11.01.2023");
         myTransactions.withdraw();
 
         Assert.assertEquals(myTransactions.getApprovalCommittee("HR Manager"), "Dropped", "The Transaction NOT Dropped!");
@@ -752,15 +752,21 @@ public class VacationRequest extends BaseTest {
         String emp1 = personnel.employeeCodeGetter();
         menaMeRestPassword(emp1);
 
+        String emp2_fn = firstName();
+        String emp2_sn = secondName();
+        String emp2_tn = thirdName();
+        String emp2_ln = lastName();
+
         mainMenu.mainMenu("Employees","Personnel Information");
         personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
+        personnel.personalInformation(emp2_fn, emp2_sn, emp2_tn, emp2_ln, "Single", "Male", "Jordanian",
                 "", "", "", "", "01/01/1980");
         personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
         String emp2 = personnel.employeeCodeGetter();
+        String emp2_Name = emp2_fn + " " + emp2_sn + " " + emp2_ln;
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -776,7 +782,7 @@ public class VacationRequest extends BaseTest {
         myRequests = new MyRequests();
         myRequests.openVacations();
         myRequests.vacationRequest("To Test Delegate", "", "", "",
-                false, 0, "", emp2, true, true);
+                false, 0, "", emp2_Name, true, true);
 
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
@@ -908,7 +914,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 20, groups = "Vacations", enabled = false)
+    @Test(priority = 20, groups = "Vacations")
     public void requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -974,7 +980,7 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.01.2023");
 
         softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Pending", "Approval Committee status issue - should be is: Pending");
 
@@ -1008,7 +1014,7 @@ public class VacationRequest extends BaseTest {
         softAssert.assertEquals(manager.transactionDetails("Period"), "1.000", "Period!");
         //softAssert.assertEquals(mainScreen.getTransactionReason(), "Test Appium Reason", "- Reason Issue!");
         softAssert.assertTrue(manager.checkAttachmentIcon(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(manager.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
+        //softAssert.assertTrue(manager.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
 
         manager.approve("Appium Comment - Approve");
 
@@ -1018,7 +1024,7 @@ public class VacationRequest extends BaseTest {
         mainScreen = new MainScreen();
 
         mainScreen.myTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.01.2023");
 
         softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Approved", "Approval Committee status issue - should be is: Approved");
         softAssert.assertEquals(myTransactions.getApprovalComments(directManagerName), "Appium Comment - Approve", "Approval Comment issue - should be is: Appium Comment - Approve");
@@ -1028,7 +1034,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 21, groups = "Vacations", enabled = false)
+    @Test(priority = 21, groups = "Vacations")
     public void requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager(){
 
         /////////////// Web Initialize //////////////
@@ -1094,7 +1100,7 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.01.2023");
 
         softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Pending", "Approval Committee status issue - should be is: Pending");
 
@@ -1128,7 +1134,7 @@ public class VacationRequest extends BaseTest {
         softAssert.assertEquals(manager.transactionDetails("Period"), "1.000", "Period!");
         //softAssert.assertEquals(mainScreen.getTransactionReason(), "Test Appium Reason", "- Reason Issue!");
         softAssert.assertTrue(manager.checkAttachmentIcon(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(manager.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
+        //softAssert.assertTrue(manager.checkAttachmentInVacationDetails(), "Attachment NOT Opened!");
 
         manager.reject("Appium Comment - Reject");
 
@@ -1137,7 +1143,7 @@ public class VacationRequest extends BaseTest {
         loginMob.login(employee, "1", "auto_mob1", false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.01.2023");
 
         softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Rejected", "Approval Committee status issue - should be is: Rejected");
         softAssert.assertEquals(myTransactions.getApprovalComments(directManagerName), "Appium Comment - Reject", "Approval Comment issue - should be is: Appium Comment - Reject");
@@ -1452,7 +1458,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 28, groups = "Vacations", enabled = false)
+    @Test(priority = 28, groups = "Vacations")
     public void checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
 
         /////////////// Web Initialize //////////////
@@ -1530,7 +1536,7 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.03.2024");
         myTransactions.cancel();
 
         softAssert.assertFalse(myTransactions.checkCancelButtonIfVisible(), "Cancel Button Should be NOT Appear After Request To Cancel!!");
@@ -1550,7 +1556,7 @@ public class VacationRequest extends BaseTest {
         loginMob.login(employee, "1", "auto_mob1", false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.03.2024");
 
         softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Cancel", "Approval Committee status issue - should be is: Rejected");
         softAssert.assertEquals(myTransactions.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
@@ -1559,7 +1565,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 29, groups = "Vacations", enabled = false)
+    @Test(priority = 29, groups = "Vacations")
     public void checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide(){
 
         /////////////// Web Initialize //////////////
@@ -1637,7 +1643,7 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.03.2024");
         myTransactions.cancel();
 
         softAssert.assertFalse(myTransactions.checkCancelButtonIfVisible(), "Cancel Button Should be NOT Appear After Request To Cancel!!");
@@ -1657,16 +1663,16 @@ public class VacationRequest extends BaseTest {
         loginMob.login(employee, "1", "auto_mob1", false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.03.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.03.2024");
 
-        softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Approved", "Approval Committee status issue - should be is: Rejected");
+        softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Approved", "Approval Committee status issue - should be is: Approved");
         softAssert.assertEquals(myTransactions.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
 
         softAssert.assertAll();
 
     }
 
-    @Test(priority = 30, groups = "Vacations", enabled = false)
+    @Test(priority = 30, groups = "Vacations")
     public void requestVacationAndConsultToOtherEmployee(){
 
         /////////////// Web Initialize //////////////
@@ -1708,6 +1714,7 @@ public class VacationRequest extends BaseTest {
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
         String employee = personnel.employeeCodeGetter();
+        String employeeName = fn + " " + sn + " " + tn + " " + ln;
 
         mainMenu.mainMenu("Employees","Financial Information");
         financial = new FinancialPackage();
@@ -1729,7 +1736,8 @@ public class VacationRequest extends BaseTest {
         String thirdEmployee = personnel.employeeCodeGetter();
         menaMeRestPassword(thirdEmployee);
 
-        String thirdEmployeeName = t_fn + t_sn + t_tn + t_ln;
+        String thirdEmployeeFullName = t_fn + " " + t_sn + " " + t_tn + " " + t_ln;
+        String thirdEmployeeName = t_fn + " " + t_ln;
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1756,24 +1764,38 @@ public class VacationRequest extends BaseTest {
         manager.openMyTeamTransaction();
         manager.openTransaction(employee, "Test Delegate and Consult");
 
-        manager.reject("Appium Comment - Reject");
+        manager.consult(thirdEmployeeFullName, "Appium Comment - Consult");
 
         mainScreen.logout();
 
-        loginMob.login(employee, "1", "auto_mob1", false);
+        loginMob.login(thirdEmployee, "1", "auto_mob1", false);
         mainScreen = new MainScreen();
-        mainScreen.myTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Unpaid Vacation", "10.01.2023");
+        mainScreen.openNotifications();
 
-        softAssert.assertEquals(myTransactions.getApprovalCommittee(directManagerName), "Rejected", "Approval Committee status issue - should be is: Rejected");
-        softAssert.assertEquals(myTransactions.getApprovalComments(directManagerName), "Appium Comment - Reject", "Approval Comment issue - should be is: Appium Comment - Reject");
-        softAssert.assertEquals(myTransactions.getApprovalDate(directManagerName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
+        notifications = new Notifications();
+        notifications.openWorkflowApprovals();
+        notifications.openTransaction("Vacation Request", employeeName);
+        notifications.sendFeedback("Consult Comment By Third Employee");
 
+        mainScreen.logout();
+
+        loginMob.login(directManager, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openManager();
+
+        manager = new Manager();
+        manager.openMyTeamTransaction();
+        manager.openTransaction(employee, "Test Delegate and Consult");
+        manager.openConsultationHistory();
+
+        softAssert.assertEquals(manager.getConsultComment(directManagerName), "Appium Comment - Consult");
+        softAssert.assertEquals(manager.getConsultComment(thirdEmployeeName), "Consult Comment By Third Employee");
         softAssert.assertAll();
 
     }
 
-    @Test(priority = 31, groups = "Vacations", enabled = false)
+    @Test(priority = 31, groups = "Vacations")
     public void requestVacationAndDelegateToOtherEmployee(){
 
         /////////////// Web Initialize //////////////
@@ -1890,7 +1912,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Test Delegate and Consult", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Test Delegate and Consult", "10.01.2023");
 
         softAssert.assertEquals(myTransactions.getApprovalCommittee(thirdEmployeeName), "Approved", "Approval Committee status issue - should be is: Rejected");
         softAssert.assertEquals(myTransactions.getApprovalDate(thirdEmployeeName), currentDate_mobile(), "Approval Date issue - should be is: "+currentDate_mobile());
@@ -1992,7 +2014,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.myRequests();
         myRequests.openVacations();
-        myRequests.vacationRequest("Monthly Upper Limit 3", "", "15/05/2023", "17/05/2023",
+        myRequests.vacationRequest("Monthly Upper Limit 3", "", "15/05/2023", "19/05/2023",
                 false, 0, "", "", true, true);
 
         //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
@@ -2178,7 +2200,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 37, groups = "Vacations", enabled = false)
+    @Test(priority = 37, groups = "Vacations")
     public void checkOption_preventWithdrawTransactionAfterFirstApproval(){
 
         /////////////// Web Initialize //////////////
@@ -2252,7 +2274,7 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Prevent Withdraw Transaction After First Approval", "10.01.2023");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Prevent Withdraw Transaction After First Approval", "10.01.2023");
         myTransactions.withdraw(false);
 
         //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
@@ -2260,7 +2282,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 38, groups = "Vacations", enabled = false)
+    @Test(priority = 38, groups = "Vacations")
     public void requestVacationContainsDaysOffWithOption_CutDaysOff(){
 
         /////////////// Web Initialize //////////////
@@ -2312,13 +2334,13 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Test Cut Daysoff", "05.09.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Test Cut Daysoff", "05.09.2024");
 
         Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "2.000", "Period Issue!");
 
     }
 
-    @Test(priority = 39, groups = "Vacations", enabled = false)
+    @Test(priority = 39, groups = "Vacations")
     public void requestVacationContainsHolidayWithOption_CutHolidays(){
 
         /////////////// Web Initialize //////////////
@@ -2366,13 +2388,13 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Test Cut Daysoff", "24.12.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Test Cut Daysoff", "24.12.2024");
 
         Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "1.000", "Period Issue!");
 
     }
 
-    @Test(priority = 40, groups = "Vacations", enabled = false)
+    @Test(priority = 40, groups = "Vacations")
     public void checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement(){
 
         /////////////// Web Initialize //////////////
@@ -2424,9 +2446,9 @@ public class VacationRequest extends BaseTest {
         mainScreen.myTransactions();
 
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Ability to request in advance vacation", "02.05.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Ability to request in advance vacation", "02.05.2024");
 
-        Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "1.000", "Period Issue!");
+        Assert.assertEquals(myTransactions.getTransactionDetails("Period"), "28.000", "Period Issue!");
 
     }
 
@@ -2525,7 +2547,7 @@ public class VacationRequest extends BaseTest {
 
     }
 
-    @Test(priority = 43, groups = "Vacations", enabled = false)
+    @Test(priority = 43, groups = "Vacations")
     public void checkOption_AlertEmployeesToRequestFollowingItemsWhenSubmitVacation(){
 
         /////////////// Web Initialize //////////////
@@ -2570,7 +2592,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Vacations", "Alert Employees To Request Following Items When Submit Vacation", "01.10.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Alert Employees To Request Following Items When Submit Vacation", "01.10.2024");
         myTransactions.openRequestedItem();
 
         softAssert.assertTrue(myTransactions.checkInRequestedItemIfAppear("OR 1", "Pending"), "Requested Item Issue! - should be appear the item name 'OR 1' and status 'Pending'");

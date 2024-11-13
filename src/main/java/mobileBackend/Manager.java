@@ -5,6 +5,9 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class Manager extends MobileBasePage {
 
     @AndroidFindBy(accessibility = "Approval Committee")
@@ -47,6 +50,8 @@ public class Manager extends MobileBasePage {
     WebElement approveAllBtn;
     @AndroidFindBy(accessibility = "Attachments")
     WebElement attachments_title;
+    @AndroidFindBy(accessibility = "Consultation History")
+    WebElement consultationHistoryBtn;
 
     public void openMyTeamTransaction(){
         clickOn(myTeamTransactionAll);
@@ -253,26 +258,26 @@ public class Manager extends MobileBasePage {
         return check;
     }
 
-    public boolean checkAttachmentInVacationDetails(){
-        hold(1000);
-        boolean check = false;
-
-        scrollToElement(approvalCommitteeText, true);
-        clickOn(attachmentInVacationDetails);
-        waitLoadingElement();
-        hold(2000);
-        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
-
-        try {
-            appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
-            check = true;
-        }catch (Exception ignored){}
-
-        android_Back();
-        hold(1000);
-
-        return check;
-    }
+//    public boolean checkAttachmentInVacationDetails(){
+//        hold(1000);
+//        boolean check = false;
+//
+//        scrollToElement(approvalCommitteeText, true);
+//        clickOn(attachmentInVacationDetails);
+//        waitLoadingElement();
+//        hold(2000);
+//        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
+//
+//        try {
+//            appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+//            check = true;
+//        }catch (Exception ignored){}
+//
+//        android_Back();
+//        hold(1000);
+//
+//        return check;
+//    }
 
     public void approve(String comment){
         verticalSwipeByPercentages(70, 30, 50);
@@ -281,8 +286,15 @@ public class Manager extends MobileBasePage {
         simpleClick(commentF);
         setText(commentF, comment);
         simpleClick(SendBtn);
+        hold(2000);
         waitLoadingElement();
-        hold(500);
+        waitLoadingElement();
+        hold(2000);
+    }
+
+    public void backHome(){
+        waitLoadingElement();
+        home();
     }
 
     public void approve(){
@@ -290,8 +302,10 @@ public class Manager extends MobileBasePage {
         clickOn(approveBtn);
         hold(200);
         simpleClick(SendBtn);
+        hold(2000);
         waitLoadingElement();
-        hold(500);
+        waitLoadingElement();
+        hold(2000);
     }
 
     public void reject(String reason){
@@ -301,8 +315,10 @@ public class Manager extends MobileBasePage {
         simpleClick(commentF);
         setText(commentF, reason);
         simpleClick(SendBtn);
+        hold(2000);
         waitLoadingElement();
-        hold(500);
+        waitLoadingElement();
+        hold(2000);
     }
 
     public void reject(){
@@ -310,8 +326,10 @@ public class Manager extends MobileBasePage {
         clickOn(rejectBtn);
         hold(200);
         simpleClick(SendBtn);
+        hold(2000);
         waitLoadingElement();
-        hold(500);
+        waitLoadingElement();
+        hold(2000);
     }
 
     public void consult(String employeeName, String comment){
@@ -333,8 +351,9 @@ public class Manager extends MobileBasePage {
 
         clickOn(consultBtn);
         waitLoadingElement();
+        waitLoadingElement();
         closeAlert();
-        hold(200);
+        hold(2000);
 
     }
 
@@ -361,6 +380,7 @@ public class Manager extends MobileBasePage {
         }
 
         clickOn(delegateBtn);
+        waitLoadingElement();
         waitLoadingElement();
         closeAlert();
         hold(200);
@@ -397,6 +417,26 @@ public class Manager extends MobileBasePage {
         }
         return textAfterNewline;
 
+    }
+
+    public void openConsultationHistory(){
+        clickOn(consultationHistoryBtn);
+        hold(1000);
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Consultation History"));
+    }
+
+    public String getConsultComment(String name) {
+        String history = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@content-desc='Consultation History']//android.view.View//android.view.View//android.view.View")).getAttribute("content-desc");
+        // Define regex pattern to capture the specified name and its associated comment
+        String regex = "(?m)" + Pattern.quote(name) + "\\n\\d{2}/\\d{2}/\\d{4}.*?\\n(.*?)(?=\\n[A-Z]{2}|$)";
+        Pattern pattern = Pattern.compile(regex);
+        Matcher matcher = pattern.matcher(history);
+
+        // Find and return the comment associated with the specified name
+        if (matcher.find()) {
+            return matcher.group(1).trim();
+        }
+        return null;
     }
 
 }

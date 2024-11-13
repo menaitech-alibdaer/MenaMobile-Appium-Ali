@@ -12,6 +12,8 @@ public class MainScreen extends MobileBasePage {
     public WebElement requestMenuBtn;
     @AndroidFindBy(accessibility = "MenuIcon")
     WebElement sideBarMenu;
+    @AndroidFindBy(accessibility = "MenuMSS")
+    WebElement sideBarMenuManager;
     @AndroidFindBy(accessibility = "Manager")
     WebElement managerBtn;
     @AndroidFindBy(accessibility = "Log Out")
@@ -55,21 +57,42 @@ public class MainScreen extends MobileBasePage {
     }
 
     public void logout(){
-        try {
-            simpleClick(sideBarMenu);
-        }catch (Exception e){
-            horizontalSwipeByPercentages(2, 95, 50);
-            hold(100);
-            scrollToElement(logOutBtn, true);
-        }
-        hold(100);
-        simpleClick(logOutBtn);
+        openSideMenu();
+        hold(1000);
+        simpleClick(logOutBtn, true);
         waitLoadingElement();
         waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
     }
 
+    public void openSideMenu(){
+        hold(1000);
+        try {
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            horizontalSwipeByPercentages(10, 90, 50);
+            hold(500);
+        }catch (Exception e){
+            try {
+                simpleClick(sideBarMenu);
+            }catch (Exception ee){
+                try {
+                    verticalSwipeByPercentages(60, 10, 50);
+                    simpleClick(sideBarMenu);
+                }catch (Exception eee){
+                    try {
+                        simpleClick(sideBarMenuManager);
+                    }catch (Exception eeee){
+                        verticalSwipeByPercentages(60, 10, 50);
+                        simpleClick(sideBarMenuManager);
+                    }
+                }
+            }
+        }
+    }
+
     public void openChangePassword(){
-        clickOn(sideBarMenu);
+        openSideMenu();
         hold(100);
         clickOn(changePasswordBtn);
         waitLoadingElement();
@@ -90,7 +113,6 @@ public class MainScreen extends MobileBasePage {
 
     public void myTransactions(){
         clickOn(myTransactionBtn);
-        waitForElementToBeVisible(AppiumBy.accessibilityId("Vacations"));
         hold(500);
     }
 
@@ -113,7 +135,7 @@ public class MainScreen extends MobileBasePage {
 
     public void openManager(){
         waitForElementToBeVisible(AppiumBy.accessibilityId("MenuIcon"));
-        clickOn(sideBarMenu);
+        openSideMenu();
         hold(100);
         clickOn(managerBtn);
         waitLoadingElement();

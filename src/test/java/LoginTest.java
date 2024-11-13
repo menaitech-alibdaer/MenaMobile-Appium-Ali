@@ -33,7 +33,7 @@ public class LoginTest extends BaseTest {
         loginMob = new MobileLogin();
         loginMob.login("auto_mobile1", "1111", "auto_mob1", false);
 
-        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Username Or Password"), "Error Alert Not contains: Wrong Username Or Password, The alert that appears is: "+loginMob.errorAlert.getAttribute("content-desc"));
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Username Or Password"), "Error Alert Not contains: Wrong Username Or Password, The alert that appears is: "+loginMob.checkErrorLoginAlert());
 
     }
 
@@ -112,7 +112,7 @@ public class LoginTest extends BaseTest {
 
         sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 0 where branch_code='auto_mob1'");
 
-        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Authentication Code"), "Issue in Authentication Error Alert!");
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Authentication Code"), "Issue in Authentication Error Alert!");
 
     }
 
@@ -183,7 +183,7 @@ public class LoginTest extends BaseTest {
         loginMob.skipPage();
         loginMob.connectivity("auto1112", "auto_mob1", versionURL);
 
-        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Company Code Or Branch Code"), "Issue In Alert when company code is wrong!");
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Company Code Or Branch Code"), "Issue In Alert when company code is wrong!");
 
     }
 
@@ -196,7 +196,7 @@ public class LoginTest extends BaseTest {
         loginMob.skipPage();
         loginMob.connectivity("automation", "auto_auto", versionURL);
 
-        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("Wrong Company Code Or Branch Code"), "Issue In Alert when branch code is wrong!");
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Company Code Or Branch Code"), "Issue In Alert when branch code is wrong!");
 
     }
 
@@ -336,7 +336,7 @@ public class LoginTest extends BaseTest {
 
         sqlQuery("update pay_employees set is_MenaME_user = 1 where employee_code = 'auto_mobile1'");
 
-        Assert.assertTrue(loginMob.errorAlert.getAttribute("content-desc").contains("You Are Not Authorized To Login"), "Issue In Alert: should be appear : You Are Not Authorized To Login!");
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("You Are Not Authorized To Login"), "Issue In Alert: should be appear : You Are Not Authorized To Login!");
 
     }
 

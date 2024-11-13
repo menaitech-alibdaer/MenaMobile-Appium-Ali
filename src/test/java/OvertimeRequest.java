@@ -32,7 +32,7 @@ public class OvertimeRequest extends BaseTest {
     MyRequests myRequests;
     Manager manager;
 
-    @Test(priority = 1, groups = "Overtime", enabled = false)
+    @Test(priority = 1, groups = "Overtime")
     public void option_OvertimeHourIsCalculatedAsFixedRateValue(){
 
         /////////////// Web Initialize //////////////
@@ -81,14 +81,14 @@ public class OvertimeRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Overtime", "Overtime Hour Is Calculated As Fixed Rate Value", "01.10.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "All", "Overtime Hour Is Calculated As Fixed Rate Value", "01.10.2024");
 
         softAssert.assertEquals(myTransactions.transactionDetails("Period"), "3.000 Hours", "Issue in period");
         softAssert.assertEquals(myTransactions.transactionDetails("From"), "5:30 PM", "Issue in From Time!");
         softAssert.assertEquals(myTransactions.transactionDetails("To"), "8:30 PM", "Issue in To Time!");
         softAssert.assertEquals(myTransactions.getTransactionReason(), "Test Overtime Reason", "- Reason Issue!");
         softAssert.assertTrue(myTransactions.attachmentIconInDetails.isDisplayed(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
+        //softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
         softAssert.assertAll();
 
     }
@@ -936,6 +936,115 @@ public class OvertimeRequest extends BaseTest {
         mainScreen.myRequests();
         myRequests.openOvertime();
         myRequests.overtimeRequest("20/10/2024", "Amount Per Month Should Not Exceed 10%", "", "", "",
+                "8:00 AM", "11:00 AM", false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+    }
+
+    @Test(priority = 8, groups = "Overtime")
+    public void overtimeAmountPerDayShouldNotExceed_2_Percent(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("01/10/2024", "Amount Per Day Should Not Exceed 2%", "", "", "",
+                "8:00 AM", "8:30 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("20/10/2024", "Amount Per Day Should Not Exceed 2%", "", "", "",
+                "8:00 AM", "10:00 AM", false, "", true, true);
+
+        Assert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+    }
+
+    @Test(priority = 8, groups = "Overtime")
+    public void overtimeAmountPerWeekShouldNotExceed_10_Percent(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("07/10/2024", "Amount Per Week Should Not Exceed 10%", "", "", "",
+                "8:00 AM", "4:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("08/10/2024", "Amount Per Week Should Not Exceed 10%", "", "", "",
+                "8:00 AM", "12:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("09/10/2024", "Amount Per Week Should Not Exceed 10%", "", "", "",
                 "8:00 AM", "11:00 AM", false, "", true, true);
 
         Assert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");

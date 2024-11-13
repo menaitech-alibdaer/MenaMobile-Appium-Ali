@@ -37,6 +37,10 @@ public class MyTransactions extends MobileBasePage {
     WebElement requestedItem_title;
     @AndroidFindBy(accessibility = "Withdraw")
     WebElement withdrawBtn;
+    @AndroidFindBy(accessibility = "Financial Transactions")
+    WebElement financialTransactionsBtn;
+    @AndroidFindBy(accessibility = "HR Transactions")
+    WebElement HRTransactionsBtn;
 
 
     public String transactionDetails(String type){
@@ -121,15 +125,27 @@ public class MyTransactions extends MobileBasePage {
             }
             return textAfterSecondNewline;
         }catch (Exception e){
-            scrollToElement(approvalCommitteeText, true);
-            hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                int firstNewline = det.indexOf("\n");
-                int secondNewline = det.indexOf("\n", firstNewline + 1);
-                textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
+            try {
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    int firstNewline = det.indexOf("\n");
+                    int secondNewline = det.indexOf("\n", firstNewline + 1);
+                    textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
+                }
+                return textAfterSecondNewline;
+            }catch (Exception ee){
+                scrollToElement(approvalCommitteeText, true);
+                hold(200);
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    int firstNewline = det.indexOf("\n");
+                    int secondNewline = det.indexOf("\n", firstNewline + 1);
+                    textAfterSecondNewline = det.substring(secondNewline + 1, det.indexOf("\n", secondNewline + 1));
+                }
+                return textAfterSecondNewline;
             }
-            return textAfterSecondNewline;
         }
     }
 
@@ -182,29 +198,106 @@ public class MyTransactions extends MobileBasePage {
         return checkElementIfVisible(cancelBtn);
     }
 
-    public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
+//    public void openTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
+//
+//        clickOn(accessibilityId(transactionType));
+//        hold(4000);
+//        verticalSwipeByPercentages(70, 10, 50);
+//
+//        if(!transactionDate.isEmpty()){
+//            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
+//            clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+//        }else{
+//            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
+//            clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+//        }
+//
+//        waitForElementToBeVisible(accessibilityId("Requested on"));
+//
+//    }
 
-        clickOn(accessibilityId(transactionType));
-        hold(4000);
-        verticalSwipeByPercentages(70, 10, 50);
+    public void openTransactionInMyTransactions(String generalType, String transactionType, String transactionName, String transactionDate){
 
-        if(!transactionDate.isEmpty()){
-            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
-            clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
-        }else{
-            scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
-            clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+        hold(1000);
+
+        try {
+            financialTransactionsBtn.isDisplayed();
+
+            simpleClick(AppiumBy.accessibilityId(generalType));
+            hold(500);
+            if(!transactionType.equalsIgnoreCase("All")){
+                simpleClick(AppiumBy.accessibilityId("All"));
+                hold(500);
+                simpleClick(AppiumBy.accessibilityId("All"));
+                hold(200);
+                clickOn(AppiumBy.accessibilityId(transactionType));
+                hold(200);
+                simpleClick(AppiumBy.accessibilityId("Choose"));
+                hold(200);
+            }
+            simpleClick(AppiumBy.accessibilityId("View"));
+            hold(4000);
+            if(!transactionDate.isEmpty()){
+                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
+                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+            }else{
+                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
+                clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+            }
+
+            waitForElementToBeVisible(accessibilityId("Requested on"));
+
+
+        }catch (Exception e){
+
+            clickOn(accessibilityId(transactionType));
+            hold(4000);
+            verticalSwipeByPercentages(70, 10, 50);
+
+            if(!transactionDate.isEmpty()){
+                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
+                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+            }else{
+                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
+                clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+            }
+
+            waitForElementToBeVisible(accessibilityId("Requested on"));
+
         }
-
-        waitForElementToBeVisible(accessibilityId("Requested on"));
 
     }
 
-    public boolean checkTransactionInMyTransactions(String transactionType, String transactionName, String transactionDate){
+    public boolean checkTransactionInMyTransactions(String generalType, String transactionType, String transactionName, String transactionDate){
 
-        clickOn(accessibilityId(transactionType));
-        hold(4000);
-        verticalSwipeByPercentages(70, 10, 50);
+        hold(1000);
+
+        try {
+            financialTransactionsBtn.isDisplayed();
+
+            simpleClick(AppiumBy.accessibilityId(generalType));
+            hold(500);
+            if(!transactionType.equalsIgnoreCase("All")){
+                simpleClick(AppiumBy.accessibilityId("All"));
+                hold(500);
+                simpleClick(AppiumBy.accessibilityId("All"));
+                hold(200);
+                clickOn(AppiumBy.accessibilityId(transactionType));
+                hold(200);
+                simpleClick(AppiumBy.accessibilityId("Choose"));
+                hold(200);
+            }
+            simpleClick(AppiumBy.accessibilityId("View"));
+            hold(4000);
+            verticalSwipeByPercentages(70, 50, 50);
+
+        }catch (Exception e){
+
+            clickOn(accessibilityId(transactionType));
+            hold(4000);
+            verticalSwipeByPercentages(70, 10, 50);
+
+        }
 
         try{
             return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")).isDisplayed();
@@ -298,6 +391,7 @@ public class MyTransactions extends MobileBasePage {
 //    }
 
     public boolean checkOpenAttachment(){
+        boolean check = false;
         hold(1000);
         try {
             verticalSwipeByPercentages(70, 30, 50);
@@ -307,9 +401,27 @@ public class MyTransactions extends MobileBasePage {
             simpleClick(attachmentIconInDetails);
         }
         waitLoadingElement();
-        hold(2000);
-        waitForElementToBeVisible(AppiumBy.id("com.android.gallery3d:id/gallery_root"));
-        return appiumDriver.findElement(AppiumBy.id("com.android.gallery3d:id/gl_root_view")).isDisplayed();
+        hold(3000);
+
+        //waitForElementToBeVisible(AppiumBy.className("android.widget.ImageView"));
+
+        try {
+            appiumDriver.findElement(AppiumBy.xpath("//*[contains(@resource-id, 'com.android.gallery')]")).isDisplayed();
+            check = true;
+        }catch (Exception ee){
+            try {
+                appiumDriver.findElement(AppiumBy.xpath("//*[contains(@resource-id, 'gallery_root')]")).isDisplayed();
+                check = true;
+            }catch (Exception eee){
+                try {
+                    appiumDriver.findElement(AppiumBy.xpath("//*[contains(@resource-id, 'gl_root_view')]")).isDisplayed();
+                    check = true;
+                }catch (Exception ignored){}
+            }
+        }
+
+        return check;
+
     }
 
     public String getTransactionDetails(String type){
@@ -340,11 +452,20 @@ public class MyTransactions extends MobileBasePage {
         int endIndex = 0;
         String reason = null;
 
-        try{
-            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
-        }catch (Exception e){
-            verticalSwipeByPercentages(70, 10, 50);
-            getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+        try {
+            try {
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }catch (Exception e){
+                verticalSwipeByPercentages(70, 10, 50);
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }
+        }catch (Exception ee){
+            try{
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }catch (Exception eee){
+                verticalSwipeByPercentages(70, 10, 50);
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+            }
         }
 
         startIndex = getReason.indexOf('\n') + 1;

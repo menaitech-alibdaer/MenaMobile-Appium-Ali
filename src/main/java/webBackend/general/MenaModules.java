@@ -9,7 +9,9 @@ import org.testng.Assert;
 import utilities.ExtentReport;
 
 import static utilities.ExtentReport.setLog;
+import static utilities.VersionGetter.liteGetter;
 import static utilities.VersionGetter.versionGetter;
+import static utilities.WebHelper.hold;
 
 public class MenaModules extends WebBase {
 
@@ -45,6 +47,10 @@ public class MenaModules extends WebBase {
     WebElement menaPay_oct;
     @FindBy(id = "area_menahr")
     WebElement menaHR_oct;
+    @FindBy(className = "MenaBox_div_container")
+    WebElement newCompanyPopup;
+    @FindBy(xpath = "//img[@onclick='Remove_MenaBox()']")
+    WebElement close_newCompanyPopup;
 
 
     public void menaModules(String module){
@@ -71,7 +77,16 @@ public class MenaModules extends WebBase {
                 Assert.fail("This Module: " + module + " is not exist");
             }
 
-        }else {
+            if(liteGetter()){
+                hold(2000);
+                try{
+                    if(newCompanyPopup.isDisplayed()){
+                        clickOn(close_newCompanyPopup);
+                    }
+                }catch (Exception ignored){}
+            }
+
+        } else {
 
             elementWaitAdvanced(By.id("area_menapay"));
 

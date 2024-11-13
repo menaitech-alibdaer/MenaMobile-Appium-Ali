@@ -88,6 +88,18 @@ public class MobileBasePage {
         }
     }
 
+    public void simpleClick(WebElement element, boolean wait){
+        try {
+            element.click();
+            hold(100);
+        }catch (Exception e){
+            if(wait){
+                waitForElementToBeClickable(element);
+                element.click();
+            }
+        }
+    }
+
     public void clickOn(WebElement element){
         try{
 
@@ -528,7 +540,7 @@ public class MobileBasePage {
         scroll.addAction(finger.createPointerMove(ofMillis(0),
                 PointerInput.Origin.viewport(), startPoint, anchor)); // Start point
         scroll.addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()));
-        scroll.addAction(finger.createPointerMove(ofMillis(400), // Finger scrolling speed
+        scroll.addAction(finger.createPointerMove(ofMillis(600), // Finger scrolling speed
                 PointerInput.Origin.viewport(), endPoint, anchor)); // End point
         scroll.addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
         appiumDriver.perform(List.of(scroll));

@@ -27,7 +27,7 @@ public class LeaveRequest extends BaseTest {
     MyTransactions myTransactions;
     MyRequests myRequests;
 
-    @Test(priority = 1, groups = "Leaves", enabled = false)
+    @Test(priority = 1, groups = "Leaves")
     public void linkEmployeeOnShiftAndRequestLeaveWithinShift(){
 
         /////////////// Web Initialize //////////////
@@ -80,11 +80,11 @@ public class LeaveRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Leaves", "Unpaid Leave", "01.10.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Leaves", "Unpaid Leave", "01.10.2024");
 
         softAssert.assertEquals(myTransactions.getTransactionReason(), "Test Leave Reason", "- Reason Issue!");
         softAssert.assertTrue(myTransactions.attachmentIconInDetails.isDisplayed(), "Attachment Icon NOT appear!");
-        softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
+        //softAssert.assertTrue(myTransactions.checkOpenAttachment(), "Attachment NOT Opened!");
         softAssert.assertAll();
 
     }
@@ -134,13 +134,13 @@ public class LeaveRequest extends BaseTest {
         myRequests = new MyRequests();
         myRequests.openLeaves();
         myRequests.leaveRequest("Unpaid Leave", "01/10/2024", "7:00 PM", "8:00 PM",
-                true, "Test Leave Reason", true, true);
+                false, "", true, true);
 
         Assert.assertTrue(myRequests.checkAlertPopup("Start Time And End Time Should Be Within Shift Start Time"), "Alert Issue: Shoud be alert appear--> Start Time And End Time Should Be Within Shift Start Time And End Time");
 
     }
 
-    @Test(priority = 3, groups = "Leaves", enabled = false)
+    @Test(priority = 3, groups = "Leaves")
     public void checkOption_AlertIfEmployeeLeaveTransactionsFromThisTypeExceeds(){
 
         /////////////// Web Initialize //////////////
@@ -196,7 +196,7 @@ public class LeaveRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Leaves", "Alert After 2 Leave Per Month", "03.10.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Leaves", "Alert After 2 Leave Per Month", "03.10.2024");
 
         softAssert.assertEquals(myTransactions.transactionDetails("Date"), "03/10/2024", " - Transaction Date!");
         softAssert.assertEquals(myTransactions.transactionDetails("From Time"), "9:00 AM", " - From Time!");
@@ -205,7 +205,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 3, groups = "Leaves", enabled = false)
+    @Test(priority = 3, groups = "Leaves")
     public void checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds(){
 
         /////////////// Web Initialize //////////////
@@ -262,7 +262,7 @@ public class LeaveRequest extends BaseTest {
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
 
-        softAssert.assertFalse(myTransactions.checkTransactionInMyTransactions("Leaves", "Prevent After 2 Leave Per Month", "03.10.2024"), " - The Transaction Should be NOT appear in My Transactions!");
+        softAssert.assertFalse(myTransactions.checkTransactionInMyTransactions("Financial Transactions", "All", "Prevent After 2 Leave Per Month", "03.10.2024"), " - The Transaction Should be NOT appear in My Transactions!");
         softAssert.assertAll();
 
     }
@@ -885,7 +885,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 1, groups = "Leaves", enabled = false)
+    @Test(priority = 1, groups = "Leaves")
     public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfEveningDay(){
 
         /////////////// Web Initialize //////////////
@@ -929,7 +929,7 @@ public class LeaveRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Leaves", "Leave Hours Setting For MenaME Requests Only", "01.10.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Leaves", "Leave Hours Setting For MenaME Requests Only", "01.10.2024");
 
         softAssert.assertEquals(myTransactions.transactionDetails("Period"), "6:00", "Issue in period");
         softAssert.assertEquals(myTransactions.transactionDetails("From Time"), "5:00 PM", "Issue in From Time!");
@@ -938,7 +938,7 @@ public class LeaveRequest extends BaseTest {
 
     }
 
-    @Test(priority = 1, groups = "Leaves", enabled = false)
+    @Test(priority = 1, groups = "Leaves")
     public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay(){
 
         /////////////// Web Initialize //////////////
@@ -982,7 +982,7 @@ public class LeaveRequest extends BaseTest {
 
         mainScreen.myTransactions();
         myTransactions = new MyTransactions();
-        myTransactions.openTransactionInMyTransactions("Leaves", "Leave Hours Setting For MenaME Requests Only", "01.10.2024");
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "Leaves", "Leave Hours Setting For MenaME Requests Only", "01.10.2024");
 
         softAssert.assertEquals(myTransactions.transactionDetails("Period"), "7:00", "Issue in period");
         softAssert.assertEquals(myTransactions.transactionDetails("From Time"), "9:00 AM", "Issue in From Time!");

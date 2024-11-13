@@ -7,14 +7,18 @@
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reports/ExtentReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/ExtentReport.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeesTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeesTransactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/MenaModules.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/MenaModules.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/TestRuner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRuner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/LeaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LeaveRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/OvertimeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/OvertimeRequest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/VacationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationRequest.java" afterDir="false" />
     </list>
@@ -81,6 +85,7 @@
     "TestNG.LeaveRequest.option_DontAllowPreviousDateMenaMERequest.executor": "Run",
     "TestNG.LeaveRequest.option_DontAllowPreviousTimeMenaMERequest.executor": "Run",
     "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly.executor": "Run",
+    "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfEveningDay.executor": "Run",
     "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay.executor": "Run",
     "TestNG.LeaveRequest.option_PreventThisLeaveRequestIn_Sunday.executor": "Run",
     "TestNG.LoginTest.changePassword_CheckSpicalCarachter.executor": "Run",
@@ -126,14 +131,23 @@
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
     "TestNG.VacationRequest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
     "TestNG.VacationRequest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
+    "TestNG.VacationRequest.checkOptionVacationCannotBeEnteredInMenaMe.executor": "Run",
     "TestNG.VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation.executor": "Run",
+    "TestNG.VacationRequest.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
+    "TestNG.VacationRequest.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
     "TestNG.VacationRequest.checkRequestVacationWhenSelectDelegateIs_AllEmployees.executor": "Run",
     "TestNG.VacationRequest.checkTheDocumentIsMandatoryContinuousDays_ForTwoDaysValidation_withoutUploadAttachment.executor": "Run",
     "TestNG.VacationRequest.checkTheDocumentIsMandatoryContinuousDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
     "TestNG.VacationRequest.checkTheDocumentIsMandatory_AccumulativeDays_ForTwoDaysValidation_withoutUploadAttachment.executor": "Run",
     "TestNG.VacationRequest.checkTheDocumentIsMandatory_AccumulativeDays_UploadExceedTheAllowedNumberOfAttachments.executor": "Run",
     "TestNG.VacationRequest.checkValidationForThisOption_AnnualUpperLimit.executor": "Run",
+    "TestNG.VacationRequest.checkValidationForThisOption_MonthlyUpperLimit.executor": "Run",
+    "TestNG.VacationRequest.requestUnpaidVacationAndWithdraw.executor": "Run",
     "TestNG.VacationRequest.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
+    "TestNG.VacationRequest.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager.executor": "Run",
+    "TestNG.VacationRequest.requestVacationAndConsultToOtherEmployee.executor": "Run",
+    "TestNG.VacationRequest.ssss.executor": "Run",
+    "TestNG.VacationRequest.wqwwww.executor": "Run",
     "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
     "TestNG.VacationTest.checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup.executor": "Run",
     "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
@@ -182,6 +196,7 @@
     "TestNG.VacationTest.requestVacationContainsHolidayWithOption_CutHolidays.executor": "Run",
     "TestNG.VacationTest.testtttttttttt.executor": "Run",
     "com.codeium.enabled": "true",
+    "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend",
@@ -208,11 +223,13 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml">
-    <configuration name="C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.LeaveRequest.checkOption_TheSupportDocumentIsMandatoryWithDayAndTime_CheckOutOfDayAndTime">
+    <configuration name="LeaveRequest.checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
-      <option name="SUITE_NAME" value="$PROJECT_DIR$/src/test/TestRuner.xml" />
-      <option name="TEST_OBJECT" value="SUITE" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
+      <option name="METHOD_NAME" value="checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
@@ -231,11 +248,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeaveRequest.option_DontAllowPreviousDateMenaMERequest" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LeaveRequest.checkValidationWhenRequestLeaveOutOfShift" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
-      <option name="METHOD_NAME" value="option_DontAllowPreviousDateMenaMERequest" />
+      <option name="METHOD_NAME" value="checkValidationWhenRequestLeaveOutOfShift" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -243,11 +260,17 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="LeaveRequest.option_DontAllowPreviousTimeMenaMERequest" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="MssqlConnect.test1" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="LeaveRequest" />
-      <option name="METHOD_NAME" value="option_DontAllowPreviousTimeMenaMERequest" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utilities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="utilities" />
+      <option name="MAIN_CLASS_NAME" value="utilities.MssqlConnect" />
+      <option name="METHOD_NAME" value="test1" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -255,11 +278,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="OvertimeRequest.option_CalculateTransactionAmountBasedOnSocialSecuritySalary" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="OvertimeRequest" />
-      <option name="METHOD_NAME" value="option_CalculateTransactionAmountBasedOnSocialSecuritySalary" />
+      <option name="MAIN_CLASS_NAME" value="VacationRequest" />
+      <option name="METHOD_NAME" value="checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -269,11 +292,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.C:/Users/ali.b/IdeaProjects/menamobile-appium/src/test/TestRuner.xml" />
         <item itemvalue="TestNG.LeaveRequest.checkOption_TheSupportDocumentIsMandatoryWithDayAndTime_CheckOutOfDayAndTime" />
-        <item itemvalue="TestNG.OvertimeRequest.option_CalculateTransactionAmountBasedOnSocialSecuritySalary" />
-        <item itemvalue="TestNG.LeaveRequest.option_DontAllowPreviousTimeMenaMERequest" />
-        <item itemvalue="TestNG.LeaveRequest.option_DontAllowPreviousDateMenaMERequest" />
+        <item itemvalue="TestNG.LeaveRequest.checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds" />
+        <item itemvalue="TestNG.LeaveRequest.checkValidationWhenRequestLeaveOutOfShift" />
+        <item itemvalue="TestNG.VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
+        <item itemvalue="TestNG.MssqlConnect.test1" />
       </list>
     </recent_temporary>
   </component>
@@ -574,7 +597,15 @@
       <option name="project" value="LOCAL" />
       <updated>1730100808290</updated>
     </task>
-    <option name="localTasksCounter" value="37" />
+    <task id="LOCAL-00037" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1730376725082</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1730376725082</updated>
+    </task>
+    <option name="localTasksCounter" value="38" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

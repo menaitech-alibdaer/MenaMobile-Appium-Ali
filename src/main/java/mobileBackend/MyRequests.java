@@ -385,10 +385,17 @@ public class MyRequests extends MobileBasePage {
                 hold(100);
                 setText(search_delegatePopup, delegateTo);
                 hold(200);
-                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Code:')]"));
+                try {
+                    waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Code:')]"));
+                    hold(300);
+                    clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")));
+
+                }catch (Exception e){
+                    hold(1000);
+                    clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")), true);
+
+                }
                 hold(300);
-                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")));
-                hold(100);
                 simpleClick(chooseBtn);
                 hold(500);
             }
@@ -570,7 +577,8 @@ public class MyRequests extends MobileBasePage {
             clickOn(halfEveningDay_option);
         }
 
-        scrollToElement(submitBtn, true);
+        //scrollToElement(submitBtn, true);
+        verticalSwipeByPercentages(70, 30, 50);
 
         if(attachment){
 

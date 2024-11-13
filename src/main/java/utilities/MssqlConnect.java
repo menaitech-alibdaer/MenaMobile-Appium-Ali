@@ -52,6 +52,41 @@ public class MssqlConnect extends WebBase {
 
     }
 
+    public static void sqlQuery(String Query, String dataBase){
+
+        String db = null;
+
+        if(dataBase.equalsIgnoreCase("OCT")){
+            db = OCT_database;
+        }else if(dataBase.equalsIgnoreCase("AUG")){
+            db = AUG_database;
+        }else if(dataBase.equalsIgnoreCase("JUL")){
+            db = JUL_database;
+        }
+
+        String host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+        String username = "qcUser";
+        String password = "P@ssw0rd@qc@789";
+
+        try {
+            Connection connection = DriverManager.getConnection(host, username, password);
+            Statement statement = connection.createStatement();
+            statement.execute(Query);
+            connection.close();
+
+            System.out.println("Database Name: "+db);
+            System.out.println("This query executed: "+Query);
+
+            setLog("Database Name: "+db);
+            setLog("query executed: "+Query);
+
+        } catch (SQLException e) {
+            System.out.println("There's an error:");
+            e.printStackTrace();
+        }
+
+    }
+
     public static String selectQuery(String query) {
         StringBuilder result = new StringBuilder();
         String db = null;
@@ -384,7 +419,7 @@ public class MssqlConnect extends WebBase {
 
     @Test
     public void test1(){
-        sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
+        sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'", "jul");
     }
 
 }

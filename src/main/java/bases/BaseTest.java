@@ -56,7 +56,7 @@ public class BaseTest {
     public static String iniPlatform = null;
     public TestType testType = null;
 
-    protected TestDataReader data;
+    //protected TestDataReader data;
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
@@ -82,7 +82,7 @@ public class BaseTest {
     @Parameters({"platform", "browser"})
     public void setPlatform(@Optional("Android") String platform, @Optional("chrome") String browser){
 
-        data = new TestDataReader("data.json");
+        //data = new TestDataReader("data.json");
 
         iniBrowser = browser;
         iniPlatform = platform;
@@ -99,8 +99,8 @@ public class BaseTest {
             softAssert = null;
             if(getDriver() != null) {
                 getDriver().quit();
-                driver.remove();
             }
+            driver.remove();
         }catch (Exception e){
             softAssert = null; //// optional ///
             e.printStackTrace();
@@ -133,8 +133,8 @@ public class BaseTest {
 
             //File app = new File("src/main/apps/app.apk");
 
-            caps.setCapability("deviceName", "Ali - Appium");
-            caps.setCapability("udid", "192.168.56.106:5555");
+            caps.setCapability("deviceName", "Ali-Appium");
+            caps.setCapability("udid", "192.168.56.107:5555");
             caps.setCapability("platformName", "Android");
             caps.setCapability("platformVersion", "13");
             caps.setCapability("automationName", "UiAutomator2");

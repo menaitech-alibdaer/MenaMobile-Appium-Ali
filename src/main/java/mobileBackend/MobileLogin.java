@@ -156,7 +156,9 @@ public class MobileLogin extends MobileBasePage {
         }
         clickOn(loginBtn);
         waitLoadingElement();
-        hold(200);
+        waitLoadingElement();
+        waitLoadingElement();
+        hold(1000);
 
     }
 
@@ -271,6 +273,8 @@ public class MobileLogin extends MobileBasePage {
         clickOn(verifyBtn);
         waitLoadingElement();
         waitLoadingElement();
+        waitLoadingElement();
+        hold(1000);
 
     }
 
@@ -341,6 +345,13 @@ public class MobileLogin extends MobileBasePage {
 
     public void auto_mobile1(){
         login("auto_mobile1","1", "auto_mob1", false);
+    }
+
+    public String checkErrorLoginAlert(){
+        waitLoadingElement();
+        waitForElementToBeVisible(errorAlert);
+        hold(700);
+        return errorAlert.getAttribute("content-desc");
     }
 
 
