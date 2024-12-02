@@ -254,7 +254,7 @@ public class VacationRequest extends BaseTest {
                 false, 1, "", "", true, true);
 
         //Assert.assertTrue(myRequests.pleaseFillTheReason_Alert.isDisplayed(), "Alert Issue - shoud lbe appear: Please Fill The Reason!");
-        Assert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud lbe appear: Please Fill The Reason! - But the alert appear is --> "+myRequests.getToastAlert());
+        Assert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud be appear: Please Fill The Reason! - But the alert appear is --> "+myRequests.getToastAlert());
 
     }
 

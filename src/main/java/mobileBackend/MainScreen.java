@@ -3,13 +3,26 @@ package mobileBackend;
 import bases.MobileBasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.PointerInput;
+import org.openqa.selenium.interactions.Sequence;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import java.time.Duration;
+import java.util.List;
+
+import static java.time.Duration.ofMillis;
 
 public class MainScreen extends MobileBasePage {
 
 
     @AndroidFindBy(accessibility = "MainButtonSemantics")
     public WebElement requestMenuBtn;
+    @AndroidFindBy(accessibility = "ProfileIcon")
+    public WebElement myProfileBtn;
     @AndroidFindBy(accessibility = "MenuIcon")
     WebElement sideBarMenu;
     @AndroidFindBy(accessibility = "MenuMSS")
@@ -51,9 +64,25 @@ public class MainScreen extends MobileBasePage {
     }
 
     public void myRequests(){
-        waitForElementToBeVisible(AppiumBy.accessibilityId("MainButtonSemantics"));
+        waitForElementToBeVisible(AppiumBy.accessibilityId("ProfileIcon"));
         clickOn(requestMenuBtn);
         hold(200);
+    }
+
+    public void myProfile(String tab){
+        waitForElementToBeVisible(AppiumBy.accessibilityId("MainButtonSemantics"));
+        clickOn(myProfileBtn);
+        hold(500);
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Personal"));
+
+        if(tab.equalsIgnoreCase("Personal")){
+            clickOn(AppiumBy.accessibilityId("Personal"));
+        }else if(tab.equalsIgnoreCase("Financial")){
+            clickOn(AppiumBy.accessibilityId("Financial"));
+        }else if(tab.equalsIgnoreCase("Other")){
+            clickOn(AppiumBy.accessibilityId("Other"));
+        }
+        hold(700);
     }
 
     public void logout(){
@@ -146,6 +175,21 @@ public class MainScreen extends MobileBasePage {
         waitForElementToBeVisible(AppiumBy.accessibilityId("NotificationIcon"));
         simpleClick(notification);
         waitForElementToBeVisible(AppiumBy.accessibilityId("Campaigns"));
+    }
+
+    public void goBack(int after){
+        hold(after);
+        back();
+    }
+
+    public boolean checkSalarySlipIfAppear() {
+        boolean check = false;
+        try {
+            new WebDriverWait(appiumDriver, Duration.ofSeconds(5))
+                    .until(ExpectedConditions.visibilityOfElementLocated(AppiumBy.accessibilityId("Salary Slip")));
+            check = true;
+        } catch (Exception ignored) {}
+        return check;
     }
 
 }

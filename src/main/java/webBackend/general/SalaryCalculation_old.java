@@ -6,12 +6,11 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.Select;
-import utilities.WebHelper;
 
 import static utilities.ExtentReport.setLog;
 import static utilities.WebHelper.*;
 
-public class SalaryCalculation extends WebBase {
+public class SalaryCalculation_old extends WebBase {
 
     @FindBy(id = "select_month")
     WebElement monthE;

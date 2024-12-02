@@ -30,6 +30,7 @@ import java.time.Duration;
 import java.util.*;
 
 import static utilities.Colors.*;
+import static utilities.Devices.*;
 import static utilities.VersionGetter.*;
 
 public class BaseTest {
@@ -60,7 +61,7 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
-    public void setVersion(@Optional("AUG") String version, @Optional("false") boolean lite){
+    public void setVersion(@Optional("JUL") String version, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
@@ -133,10 +134,10 @@ public class BaseTest {
 
             //File app = new File("src/main/apps/app.apk");
 
-            caps.setCapability("deviceName", "Ali-Appium");
-            caps.setCapability("udid", "192.168.56.107:5555");
+            caps.setCapability("deviceName", huaweiY7a_name);
+            caps.setCapability("udid", huaweiY7a_udid);
+            caps.setCapability("platformVersion", huaweiY7a_AndroidVersion);
             caps.setCapability("platformName", "Android");
-            caps.setCapability("platformVersion", "13");
             caps.setCapability("automationName", "UiAutomator2");
             //caps.setCapability("app", "app.apk");
             caps.setCapability("appPackage", "com.menaitech.mename");

@@ -22,6 +22,7 @@ public class OvertimeRequest extends BaseTest {
     MenaModules menaModules;
     Substitutes substitutes;
     MainMenu mainMenu;
+    SystemParameters systemParameters;
     EmployeesTransactions transactions;
     String employeeCode = null;
 
@@ -1048,6 +1049,444 @@ public class OvertimeRequest extends BaseTest {
                 "8:00 AM", "11:00 AM", false, "", true, true);
 
         Assert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkAttachmentAndReasonIsMandatoryInOvertimeRequest(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime Request", "", "", "",
+                "5:30 PM", "8:30 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkToastAlert("Please Choose Attachment"), "Alert Issue - shoud be appear: Please Choose Attachment - But the alert appear is --> "+myRequests.getToastAlert());
+
+        mainScreen.goBack(5000);
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime Request", "", "", "",
+                "5:30 PM", "8:30 PM", true, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud be appear: Please Fill The Reason! - But the alert appear is --> "+myRequests.getToastAlert());
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkOvertimeHoursPerMonthShouldNotExceed_FromSystemParameters_OvertimeRule(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters = new SystemParameters();
+        systemParameters.overtimeRule("Hours", "20", "", "", "");
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("01/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "1:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("02/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "1:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("15/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "1:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("17/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "3:00 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters.overtimeRule("Hours", "0", "0", "0", "");
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkOvertimeHoursPerWeekShouldNotExceed_FromSystemParameters_OvertimeRule(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters = new SystemParameters();
+        systemParameters.overtimeRule("Hours", "20", "10", "0", "");
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("06/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "1:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("09/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "3:00 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters.overtimeRule("Hours", "0", "0", "0", "");
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkOvertimeHoursPerDayShouldNotExceed_FromSystemParameters_OvertimeRule(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters = new SystemParameters();
+        systemParameters.overtimeRule("Hours", "40", "20", "5", "");
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("17/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "2:00 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters.overtimeRule("Hours", "0", "0", "0", "");
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkOvertimeAmountPerMonthShouldNotExceed_Percent_FromSystemParameters_OvertimeRule(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters = new SystemParameters();
+        systemParameters.overtimeRule("Percent", "10", "0", "0", "");
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("01/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "4:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("10/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "12:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("20/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "2:00 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters.overtimeRule("Hours", "0", "0", "0", "");
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkOvertimeAmountPerWeekShouldNotExceed_Percent_FromSystemParameters_OvertimeRule(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters = new SystemParameters();
+        systemParameters.overtimeRule("Percent", "50", "10", "0", "");
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("06/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "4:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("07/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "12:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("08/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "2:00 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters.overtimeRule("Hours", "0", "0", "0", "");
+
+        softAssert.assertAll();
+
+    }
+
+    @Test(priority = 1, groups = "Overtime")
+    public void checkOvertimeAmountPerDayShouldNotExceed_Percent_FromSystemParameters_OvertimeRule(){
+
+        /////////////// Web Initialize //////////////
+        webInitialize();
+
+        login = new Login();
+        login.auto_mob1();
+
+        menaModules = new MenaModules();
+        menaModules.menaPAY();
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters = new SystemParameters();
+        systemParameters.overtimeRule("Percent", "20", "10", "4", "");
+
+        mainMenu = new MainMenu();
+        mainMenu.mainMenu("Employees","Personnel Information");
+        personnel = new PersonnelInformation();
+        personnel.personalInformation("Single", "Male", "Jordanian",
+                "", "", "", "", "01/01/1990");
+        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
+                "", "", "", "", "", "", "", "",
+                "", "", "", "", "", "Software Test Engineer",
+                "01/01/2020", "01/01/2020", "", "", "", "");
+        employeeCode = personnel.employeeCodeGetter();
+        menaMeRestPassword(employeeCode);
+
+        mainMenu.mainMenu("Employees","Financial Information");
+        financial = new FinancialPackage();
+        financial.setEmployeeCode(employeeCode);
+        financial.setBasicSalary("1000");
+
+        /////////////// Mobile Initialize //////////////
+        mobileInitialize();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "1", "auto_mob1", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.myRequests();
+
+        myRequests = new MyRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("01/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "12:00 PM", false, "", true, false);
+
+        mainScreen.myRequests();
+        myRequests.openOvertime();
+        myRequests.overtimeRequest("20/10/2024", "Holiday Overtime", "", "", "",
+                "8:00 AM", "3:00 PM", false, "", true, true);
+
+        softAssert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+
+        mainMenu.mainMenu("Settings","System Parameters");
+        systemParameters.overtimeRule("Hours", "0", "0", "0", "");
+
+        softAssert.assertAll();
 
     }
 

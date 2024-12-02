@@ -13,7 +13,7 @@ import static utilities.MobileHelper.terminateApp;
 import static utilities.MssqlConnect.*;
 import static utilities.WebHelper.emailAddress;
 
-public class LoginTest extends BaseTest {
+public class LoginAndConnectivity extends BaseTest {
 
     PersonnelInformation personnel;
     Login login;

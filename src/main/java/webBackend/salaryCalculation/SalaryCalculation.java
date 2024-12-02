@@ -28,6 +28,8 @@ public class SalaryCalculation extends WebBase {
     WebElement MenaBox_iframe;
     @FindBy(name = "close")
     WebElement closeBtn;
+    @FindBy(name = "salary_released_button")
+    WebElement releaseToMenaMEBtn;
     @FindBy(name = "menu")
     WebElement menuFrame;
     @FindBy(id = "MenuShowButton")
@@ -152,7 +154,7 @@ public class SalaryCalculation extends WebBase {
 
     }
 
-    public void salaryCalculation_WithoutViewReport(String employeeCode, String year, String month){
+    public void salaryCalculation_WithoutViewReport(String employeeCode, String year, String month, boolean releaseToMenaME){
 
         goToFrame(body_frame);
         elementWaitAdvanced(By.id("employee_code"));
@@ -176,6 +178,21 @@ public class SalaryCalculation extends WebBase {
         elementWaitAdvanced(By.name("close"));
         clickOn(closeBtn);
         hold(200);
+        if(releaseToMenaME){
+            closeIFrame();
+            goToFrame(body_frame);
+            hold(800);
+            clickOn(releaseToMenaMEBtn);
+            alertWait();
+            Alert alert = driver.switchTo().alert();
+            alert.accept();
+            hold(1000);
+            alertWait();
+            Alert alert2 = driver.switchTo().alert();
+            alert2.accept();
+            closeIFrame();
+            goToFrame(body_frame);
+        }
         closeIFrame();
 
         setLog("Salary Calculation - Employee Code: "+employeeCode+" - Year: "+year+" - Month: "+month);

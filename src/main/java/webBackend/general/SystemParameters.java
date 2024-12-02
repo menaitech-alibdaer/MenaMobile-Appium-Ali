@@ -1973,8 +1973,9 @@ public class SystemParameters extends WebBase {
         goToFrame(menuFrame);
         hold(500);
         clickOn(menuSave);
-        hold(500);
+        hold(1000);
         closeIFrame();
+        waitLoadingScreenToInvisible();
 
         setLog("per Hours Or Percent: "+perHoursOrPercent
         +" - value Per Month: "+valuePerMonth

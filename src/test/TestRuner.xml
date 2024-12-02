@@ -12,7 +12,7 @@
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="LoginTest" />
+            <class name="LoginAndConnectivity" />
         </classes>
     </test>
 
