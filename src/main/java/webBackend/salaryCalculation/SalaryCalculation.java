@@ -84,6 +84,12 @@ public class SalaryCalculation extends WebBase {
     public WebElement Total_Income_month;
     @FindBy(id = "Social_Security_month")
     public WebElement Social_Security_month;
+    @FindBy(id = "Income_Tax_month")
+    WebElement Income_Tax_month;
+    @FindBy(id = "National_Contribution_month")
+    WebElement National_Contribution_month;
+    @FindBy(id = "Service_Tax_month")
+    WebElement Service_Tax_month;
     @FindBy(id = "Health_Insurance_month")
     public WebElement Health_Insurance_month;
     @FindBy(id = "Net_Salary_month")
@@ -333,6 +339,23 @@ public class SalaryCalculation extends WebBase {
         closeIFrame();
     }
 
+    public void releaseToMenaME(){
+        hold(500);
+        closeIFrame();
+        goToFrame(body_frame);
+        hold(800);
+        clickOn(releaseToMenaMEBtn);
+        alertWait();
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+        hold(1000);
+        alertWait();
+        Alert alert2 = driver.switchTo().alert();
+        alert2.accept();
+        closeIFrame();
+        goToFrame(body_frame);
+    }
+
     public void viewReport(){
         goToFrame(menuFrame);
         clickOn(MenuShowButton);
@@ -469,6 +492,15 @@ public class SalaryCalculation extends WebBase {
     }
     public String paidVacations(){
         return Paid_Vacations_month.getText().trim();
+    }
+    public String incomeTax(){
+        return Income_Tax_month.getText().trim();
+    }
+    public String nationalContribution(){
+        return National_Contribution_month.getText().trim();
+    }
+    public String serviceTax(){
+        return Service_Tax_month.getText().trim();
     }
 
     public String fixedAllowanceByEmpName(String employeeName){

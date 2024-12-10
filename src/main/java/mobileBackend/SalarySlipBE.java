@@ -78,7 +78,7 @@ public class SalarySlipBE extends MobileBasePage {
         waitLoadingElement();
     }
 
-    public String salarySlip_GetAmount(String fieldName){
+    public String salarySlip_GetAmount(String type, String fieldName){
 
         String getField = null;
         boolean isElementFound = false;
@@ -96,8 +96,8 @@ public class SalarySlipBE extends MobileBasePage {
             if(counter <= 7){
 
                 try {
-                    isElementFound =  appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+fieldName+"')]")).isDisplayed();
-                    String field = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+fieldName+"')]")).getAttribute("content-desc");
+                    isElementFound =  appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[contains(@content-desc, '"+fieldName+"')]")).isDisplayed();
+                    String field = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[contains(@content-desc, '"+fieldName+"')]")).getAttribute("content-desc");
 
                     if (field != null) {
                         getField = field.split("\n")[1];
@@ -157,12 +157,8 @@ public class SalarySlipBE extends MobileBasePage {
         }
     }
     public String deduction_Period(){
-        scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']"), true, 4);
-        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[1]")).getAttribute("content-desc").contains("Period")){
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Period')]/following::android.view.View[1]")).getAttribute("content-desc");
-        }else{
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[1]")).getAttribute("content-desc");
-        }
+        scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Period')]"), true, 4);
+        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Period')]/following::android.view.View[1]")).getAttribute("content-desc");
     }
     public String PF_Balance(){
         scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='PF Balance']"), true, 6);
@@ -176,6 +172,98 @@ public class SalarySlipBE extends MobileBasePage {
         }catch (Exception e){
             return false;
         }
+    }
+
+    public void downloadSalarySlip(){
+
+        if(!checkAppIfInstalled("com.adobe.reader")){
+            Assert.fail("The 'Adobe Acrobat Reader: Edit PDF' App NOT Installed In Mobile, Please install this app and try again!");
+        }
+
+        verticalSwipeByPercentages(80, 5, 50);
+        clickOn(AppiumBy.accessibilityId("Download Salary Slip"));
+        hold(1000);
+        waitLoadingElement();
+        waitLoadingElement();
+        hold(2000);
+    }
+
+    public void openPdfAfterDownload(){
+        try {
+            hold(5000);
+            appiumDriver.findElement(AppiumBy.xpath("//android.widget.Button[contains(@text, 'ALWAYS')]")).isDisplayed();
+            simpleClick(appiumDriver.findElement(AppiumBy.xpath("//android.widget.Button[contains(@text, 'ALWAYS')]")));
+        }catch (Exception ignored){}
+
+        try {
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Cross Button"), 6);
+            simpleClick(AppiumBy.accessibilityId("Cross Button"));
+
+            hold(1000);
+            waitForElementToBeClickable(AppiumBy.accessibilityId("More options"));
+
+        }catch (Exception e){
+            try{
+                hold(1000);
+                waitForElementToBeClickable(AppiumBy.accessibilityId("More options"));
+            }catch (Exception ee){
+                ee.printStackTrace();
+            }
+        }
+    }
+
+    public void savePdfInDevice(String fileName){
+
+        try {
+            hold(5000);
+            appiumDriver.findElement(AppiumBy.xpath("//android.widget.Button[contains(@text, 'ALWAYS')]")).isDisplayed();
+            simpleClick(appiumDriver.findElement(AppiumBy.xpath("//android.widget.Button[contains(@text, 'ALWAYS')]")));
+        }catch (Exception ignored){}
+
+        try {
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Cross Button"), 6);
+            simpleClick(AppiumBy.accessibilityId("Cross Button"));
+
+            hold(1000);
+            waitForElementToBeClickable(AppiumBy.accessibilityId("More options"));
+            clickOn(AppiumBy.accessibilityId("More options"));
+            hold(2000);
+            verticalSwipeByPercentages(70, 20, 50);
+            verticalSwipeByPercentages(70, 20, 50);
+            doubleClick(AppiumBy.xpath("//android.widget.TextView[@text='Save a copy']"));
+            waitForElementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+            clickOn(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+            hold(500);
+            appiumDriver.findElement(AppiumBy.className("android.widget.EditText")).clear();
+            hold(200);
+            setText(appiumDriver.findElement(AppiumBy.className("android.widget.EditText")), fileName);
+            hold(200);
+            clickOn(AppiumBy.xpath("//android.widget.Button[@text='Done']"));
+            hold(500);
+
+        }catch (Exception e){
+            try{
+                hold(1000);
+                waitForElementToBeClickable(AppiumBy.accessibilityId("More options"));
+                clickOn(AppiumBy.accessibilityId("More options"));
+                hold(2000);
+                verticalSwipeByPercentages(70, 20, 50);
+                verticalSwipeByPercentages(70, 20, 50);
+                doubleClick(AppiumBy.xpath("//android.widget.TextView[@text='Save a copy']"));
+                waitForElementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+                clickOn(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+                hold(500);
+                appiumDriver.findElement(AppiumBy.className("android.widget.EditText")).clear();
+                hold(200);
+                setText(appiumDriver.findElement(AppiumBy.className("android.widget.EditText")), fileName);
+                hold(200);
+                clickOn(AppiumBy.xpath("//android.widget.Button[@text='Done']"));
+                hold(500);
+            }catch (Exception ee){
+                ee.printStackTrace();
+            }
+        }
+
     }
 
 }

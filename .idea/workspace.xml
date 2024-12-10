@@ -5,21 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/Devices.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/SalarySlip.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/FindAndTransferPdf.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/utilities/PDFReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/VersionGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/VersionGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/SalaryCalculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/SalaryCalculation_old.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/SystemParameters.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/SystemParameters.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/Devices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/Devices.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/salaryCalculation/SalaryCalculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/salaryCalculation/SalaryCalculation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/TestRuner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRuner.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/LoginTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/LoginAndConnectivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/OvertimeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/OvertimeRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SalarySlip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SalarySlip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/VacationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/VacationRequest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -55,6 +52,7 @@
     "Application.AppiumChecker.executor": "Run",
     "Application.AppiumServerControl.executor": "Run",
     "Application.EmulatorChecker.executor": "Run",
+    "Application.PDFReader.executor": "Run",
     "Application.test.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
@@ -136,7 +134,12 @@
     "TestNG.OvertimeRequest.overtimeHoursPerWeekShouldNotExceed_10_Hours.executor": "Run",
     "TestNG.OvertimeRequest.requestOvertimeWithinShiftAndCheckTheValidation.executor": "Run",
     "TestNG.RunWebAppAndroidEmulator.openWebApp.executor": "Run",
+    "TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip.executor": "Run",
+    "TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS.executor": "Run",
+    "TestNG.SalarySlip.calculateTwoMonthAndCheckTheRecentMonthCalculatedViewInSalarySlip.executor": "Run",
     "TestNG.SalarySlip.checkAlertValidationInSalarySlipWhenSalaryCalculationWithoutReleaseToMenaME.executor": "Run",
+    "TestNG.SalarySlip.checkAllFieldsInSalarySlip.executor": "Run",
+    "TestNG.SalarySlip.checkLastSalaryInMainScreen.executor": "Run",
     "TestNG.SalarySlip.checkSalarySlipTabIfNotHavePermissionFromMenameSecuritySetup.executor": "Run",
     "TestNG.SalarySlip.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
     "TestNG.VacationRequest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
@@ -210,7 +213,7 @@
     "full.screen.before.presentation.mode": "false",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium/src/main/java/webBackend",
+    "last_opened_file_path": "C:/Users/ali.b/IdeaProjects/menamobile-appium",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.40689656",
@@ -219,6 +222,7 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium" />
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\java\webBackend" />
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\java\bases" />
       <recent name="C:\Users\ali.b\IdeaProjects\menamobile-appium\src\main\java\utilities" />
@@ -234,42 +238,12 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.SalarySlip.checkSalarySlipTabIfNotHavePermissionFromMenameSecuritySetup">
-    <configuration name="MssqlConnect.test" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="utilities.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="utilities" />
-      <option name="MAIN_CLASS_NAME" value="utilities.MssqlConnect" />
-      <option name="METHOD_NAME" value="test" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="OvertimeRequest.checkOvertimeAmountPerWeekShouldNotExceed_Percent_FromSystemParameters_OvertimeRule" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="OvertimeRequest" />
-      <option name="METHOD_NAME" value="checkOvertimeAmountPerWeekShouldNotExceed_Percent_FromSystemParameters_OvertimeRule" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="SalarySlip.checkAlertValidationInSalarySlipWhenSalaryCalculationWithoutReleaseToMenaME" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS">
+    <configuration name="SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="SalarySlip" />
-      <option name="METHOD_NAME" value="checkAlertValidationInSalarySlipWhenSalaryCalculationWithoutReleaseToMenaME" />
+      <option name="METHOD_NAME" value="addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -277,11 +251,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalarySlip.checkSalarySlipTabIfNotHavePermissionFromMenameSecuritySetup" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="SalarySlip" />
-      <option name="METHOD_NAME" value="checkSalarySlipTabIfNotHavePermissionFromMenameSecuritySetup" />
+      <option name="METHOD_NAME" value="addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -289,11 +263,35 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SalarySlip.requestUnpaidVacationWithAttachmentAndReason" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="SalarySlip.checkAllFieldsInSalarySlip" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="SalarySlip" />
-      <option name="METHOD_NAME" value="requestUnpaidVacationWithAttachmentAndReason" />
+      <option name="METHOD_NAME" value="checkAllFieldsInSalarySlip" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="VacationRequest" />
+      <option name="METHOD_NAME" value="checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="VacationRequest.checkValidationForThisOption_MonthlyUpperLimit" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="VacationRequest" />
+      <option name="METHOD_NAME" value="checkValidationForThisOption_MonthlyUpperLimit" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -303,11 +301,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.SalarySlip.checkSalarySlipTabIfNotHavePermissionFromMenameSecuritySetup" />
-        <item itemvalue="TestNG.SalarySlip.checkAlertValidationInSalarySlipWhenSalaryCalculationWithoutReleaseToMenaME" />
-        <item itemvalue="TestNG.SalarySlip.requestUnpaidVacationWithAttachmentAndReason" />
-        <item itemvalue="TestNG.MssqlConnect.test" />
-        <item itemvalue="TestNG.OvertimeRequest.checkOvertimeAmountPerWeekShouldNotExceed_Percent_FromSystemParameters_OvertimeRule" />
+        <item itemvalue="TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS" />
+        <item itemvalue="TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip" />
+        <item itemvalue="TestNG.VacationRequest.checkValidationForThisOption_MonthlyUpperLimit" />
+        <item itemvalue="TestNG.VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
+        <item itemvalue="TestNG.SalarySlip.checkAllFieldsInSalarySlip" />
       </list>
     </recent_temporary>
   </component>
@@ -624,7 +622,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731483696705</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1733116850152</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1733116850152</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

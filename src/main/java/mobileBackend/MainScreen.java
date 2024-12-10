@@ -56,8 +56,6 @@ public class MainScreen extends MobileBasePage {
     @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
     public WebElement successAlertPopup;
 
-    @AndroidFindBy(xpath = "(//android.widget.ImageView[contains(@content-desc, 'Current')])[2]")
-    WebElement toTestScroll111111;
 
     public MainScreen(){
         ignoreUpdatePopup();
@@ -190,6 +188,23 @@ public class MainScreen extends MobileBasePage {
             check = true;
         } catch (Exception ignored) {}
         return check;
+    }
+
+    public String getLastSalary(){
+        try {
+            String text = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")).getAttribute("content-desc");
+            String[] parts = text.split("\n");
+            // The first part will be the text before the newline
+            return parts[0];
+        }catch (Exception e){
+            WebElement scrollView = appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ScrollView//android.view.View[1])[1]"));
+            horizontalScrollStartedFromElement(scrollView, true);
+            hold(800);
+            String text = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")).getText();
+            String[] parts = text.split("\n");
+            // The first part will be the text before the newline
+            return parts[0];
+        }
     }
 
 }

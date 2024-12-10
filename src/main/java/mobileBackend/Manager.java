@@ -52,6 +52,12 @@ public class Manager extends MobileBasePage {
     WebElement attachments_title;
     @AndroidFindBy(accessibility = "Consultation History")
     WebElement consultationHistoryBtn;
+    @AndroidFindBy(accessibility = "See All")
+    WebElement seeAllBtn;
+    @AndroidFindBy(accessibility = "Other")
+    WebElement otherTab;
+    @AndroidFindBy(accessibility = "Salary Slip")
+    WebElement salarySlipBtn;
 
     public void openMyTeamTransaction(){
         clickOn(myTeamTransactionAll);
@@ -437,6 +443,24 @@ public class Manager extends MobileBasePage {
             return matcher.group(1).trim();
         }
         return null;
+    }
+
+    public void myTeam(String employeeName){
+        clickOn(seeAllBtn, true);
+        hold(1000);
+        clickOn(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]"), true);
+        waitLoadingElement();
+        hold(800);
+    }
+
+    public void openSalarySlip(){
+        clickOn(otherTab, true);
+        hold(500);
+        clickOn(salarySlipBtn, true);
+        hold(500);
+        waitLoadingElement();
+        waitLoadingElement();
+        waitForElementToBeVisible(AppiumBy.accessibilityId("Recent Slip"));
     }
 
 }

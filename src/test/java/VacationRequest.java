@@ -2521,7 +2521,7 @@ public class VacationRequest extends BaseTest {
 
         mainMenu.mainMenu("Workforce Management","Vacations Balances");
         vacationsBalances = new VacationsBalances();
-        vacationsBalances.addBalance(employeeCode, "Annual Vacation", "0.000", "2", "2023", "", "", false);
+        vacationsBalances.addBalance(employeeCode, "Annual Vacation", "0.000", "10", "2023", "", "", false);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -2533,11 +2533,6 @@ public class VacationRequest extends BaseTest {
         mainScreen.myRequests();
 
         myRequests = new MyRequests();
-        myRequests.openVacations();
-        myRequests.vacationRequest("Annual Vacation", "", "01/03/2023", "03/03/2023",
-                false, 0, "", "", true, false);
-
-        mainScreen.myRequests();
         myRequests.openVacations();
         myRequests.vacationRequest("Prevent Submit Vacation Of This Type If Employee Vacation", "", "01/10/2024", "01/10/2024",
                 false, 0, "", "", true, true);

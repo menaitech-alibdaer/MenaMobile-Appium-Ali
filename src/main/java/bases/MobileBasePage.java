@@ -302,6 +302,21 @@ public class MobileBasePage {
 
     }
 
+    public void actionClick(WebElement element){
+
+        Actions actions = new Actions(appiumDriver);
+
+        if (element.isDisplayed() && element.isEnabled()) {
+            actions.moveToElement(element)
+                    .click()
+                    .build()
+                    .perform();
+        } else {
+            System.out.println("Element is not interactable.");
+        }
+
+    }
+
     public void setText(WebElement element, String text){
         try {
             element.sendKeys(text);
@@ -598,6 +613,23 @@ public class MobileBasePage {
 
     }
 
+    public void doubleClick(By locator){
+
+        Actions actions = new Actions(appiumDriver);
+
+        if (appiumDriver.findElement(locator).isDisplayed() && appiumDriver.findElement(locator).isEnabled()) {
+            actions.moveToElement(appiumDriver.findElement(locator))
+                    .click()
+                    .pause(Duration.ofMillis(100))  // Short pause between clicks
+                    .click()
+                    .build()
+                    .perform();
+        } else {
+            System.out.println("Element is not interactable.");
+        }
+
+    }
+
     public void datePicker(String date){
 
         String[] parts = date.split("/");
@@ -833,6 +865,19 @@ public class MobileBasePage {
             }
         }
         hold(200);
+    }
+
+    public boolean checkAppIfInstalled(String appPackage){
+        hold(200);
+        boolean check = false;
+
+        if(iniPlatform.equalsIgnoreCase("Android")){
+            check = ((AndroidDriver) appiumDriver).isAppInstalled(appPackage);
+        }else{
+            check = ((IOSDriver) appiumDriver).isAppInstalled(appPackage);
+        }
+        hold(200);
+        return check;
     }
 
 }

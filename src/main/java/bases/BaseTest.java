@@ -109,9 +109,9 @@ public class BaseTest {
 
         try{
             if(appiumDriver.get() != null) {
-                appiumDriver.get().quit();
+                //appiumDriver.get().quit();
             }
-            appiumDriver.remove();
+            //appiumDriver.remove();
             System.gc();
         }catch (Exception e){
             e.printStackTrace();
@@ -137,6 +137,15 @@ public class BaseTest {
             caps.setCapability("deviceName", huaweiY7a_name);
             caps.setCapability("udid", huaweiY7a_udid);
             caps.setCapability("platformVersion", huaweiY7a_AndroidVersion);
+
+//            caps.setCapability("deviceName", galaxyA23_name);
+//            caps.setCapability("udid", galaxyA23_udid);
+//            caps.setCapability("platformVersion", galaxyA23_AndroidVersion);
+
+//            caps.setCapability("deviceName", emulator_1);
+//            caps.setCapability("udid", emulator_1_udid);
+//            caps.setCapability("platformVersion", emulator_1_AndroidVersion);
+
             caps.setCapability("platformName", "Android");
             caps.setCapability("automationName", "UiAutomator2");
             //caps.setCapability("app", "app.apk");
@@ -148,6 +157,9 @@ public class BaseTest {
             caps.setCapability("autoGrantPermissions", true);
             caps.setCapability("disableWindowAnimation", true);
             caps.setCapability("ignoreUnimportantViews", true);
+            caps.setCapability("adbShell", true);
+            caps.setCapability("adb_shell", true);
+            caps.setCapability("appium:allowInsecure", "adb_shell");
             //caps.setCapability("fullReset", true);
             //caps.setCapability("skipDeviceInitialization", true);
             //caps.setCapability("skipServerInstallation", true);
