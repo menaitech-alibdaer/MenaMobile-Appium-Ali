@@ -49,6 +49,32 @@ public class MainScreen extends MobileBasePage {
     WebElement myTransactionBtn;
     @AndroidFindBy(accessibility = "NotificationIcon")
     WebElement notification;
+    @AndroidFindBy(xpath = "(//android.widget.ScrollView//android.view.View)[2]")
+    WebElement boxesSection;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Annual Vacation')]")
+    WebElement annualVacationBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Annual Vacation') and contains(@content-desc, 'Current Balance')]")
+    WebElement annualVacation_CurrentBalanceBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Annual Vacation') and contains(@content-desc, 'Up To End Of Year')]")
+    WebElement annualVacation_UpToEndOfYearBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Sick Vacation') and contains(@content-desc, 'Current Balance')]")
+    WebElement sickVacation_CurrentBalanceBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Sick Vacation') and contains(@content-desc, 'Up To End Of Year')]")
+    WebElement sickVacation_UpToEndOfYearBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Loan Balance')]")
+    WebElement loanBalanceAmount;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")
+    WebElement lastSalaryAmount;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'STB Balance')]")
+    WebElement stbBalanceAmount;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Sick Vacation')]")
+    WebElement sickVacationBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Loan Balance')]")
+    WebElement loanBalanceBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'STB Balance')]")
+    WebElement stbBalanceBox;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")
+    WebElement lastSalaryBox;
     @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Workflow Approvals')]")
     WebElement workflowApprovals_notification;
     @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
@@ -198,13 +224,304 @@ public class MainScreen extends MobileBasePage {
             return parts[0];
         }catch (Exception e){
             WebElement scrollView = appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ScrollView//android.view.View[1])[1]"));
-            horizontalScrollStartedFromElement(scrollView, true);
+            horizontalScrollStartedFromElement(scrollView, true, 1000);
             hold(800);
             String text = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")).getText();
             String[] parts = text.split("\n");
             // The first part will be the text before the newline
             return parts[0];
         }
+    }
+
+    public boolean annualVacationBox(){
+        hold(1000);
+//        verticalSwipeByPercentages(70, 10, 50);
+//        hold(500);
+        boolean check = false;
+        try {
+            if(annualVacationBox.isDisplayed()){
+                check = true;
+            }
+            return check;
+        }catch (Exception ignored){
+            return check;
+        }
+    }
+
+    public boolean sickVacationBox(){
+        hold(1000);
+//        verticalSwipeByPercentages(70, 10, 50);
+//        hold(500);
+        boolean check = false;
+        try {
+            if(sickVacationBox.isDisplayed()){
+                check = true;
+            }
+            return check;
+        }catch (Exception ignored){
+            return check;
+        }
+    }
+
+    public String getCurrentBalance_AnnualVacation(){
+
+        String input = annualVacation_CurrentBalanceBox.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
+    }
+
+    public String getUpToEndOfYear_AnnualVacation(){
+
+        horizontalScrollStartedFromElement(annualVacationBox, false, 250);
+        hold(700);
+
+        try {
+            annualVacation_UpToEndOfYearBox.isDisplayed();
+        }catch (Exception e){
+            horizontalScrollStartedFromElement(annualVacationBox, true, 250);
+        }
+
+        String input = annualVacation_UpToEndOfYearBox.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
+    }
+
+    public String getCurrentBalance_SickVacation(){
+
+        String input = sickVacation_CurrentBalanceBox.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
+    }
+
+    public String getUpToEndOfYear_SickVacation(){
+
+        horizontalScrollStartedFromElement(sickVacationBox, false, 250);
+        hold(700);
+
+        try {
+            sickVacation_UpToEndOfYearBox.isDisplayed();
+        }catch (Exception e){
+            horizontalScrollStartedFromElement(sickVacationBox, true, 250);
+        }
+
+        String input = sickVacation_UpToEndOfYearBox.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
+    }
+
+    public boolean loanBalanceBox(){
+        hold(1000);
+        boolean check = false;
+        try {
+            if(loanBalanceBox.isDisplayed()){
+                check = true;
+            }
+            return check;
+        }catch (Exception e){
+            try {
+                horizontalScrollStartedFromElement(annualVacationBox, true);
+                hold(700);
+                if(loanBalanceBox.isDisplayed()){
+                    check = true;
+                }
+                return check;
+            }catch (Exception ignored){
+                return check;
+            }
+        }
+    }
+
+    public String loanBalanceAmount(){
+
+        try {
+            loanBalanceBox.isDisplayed();
+        }catch (Exception e){
+            horizontalScrollStartedFromElement(annualVacationBox, true);
+            hold(700);
+        }
+
+        String input = loanBalanceAmount.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
+    }
+
+    public boolean stbBalanceBox(){
+        hold(1000);
+        boolean check = false;
+        try {
+            if(stbBalanceBox.isDisplayed()){
+                check = true;
+            }
+            return check;
+        }catch (Exception e){
+            try {
+                horizontalScrollStartedFromElement(annualVacationBox, true);
+                hold(700);
+                if(stbBalanceBox.isDisplayed()){
+                    check = true;
+                }
+                return check;
+            }catch (Exception ignored){
+                return check;
+            }
+        }
+    }
+
+    public String stbBalanceAmount(){
+
+        try {
+            stbBalanceBox.isDisplayed();
+        }catch (Exception e){
+            horizontalScrollStartedFromElement(annualVacationBox, true);
+            hold(700);
+        }
+
+        String input = stbBalanceAmount.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
+    }
+
+    public boolean lastSalaryBox(){
+        hold(1000);
+        boolean check = false;
+        try {
+            if(lastSalaryBox.isDisplayed()){
+                check = true;
+            }
+            return check;
+        }catch (Exception e){
+            try {
+                horizontalScrollStartedFromElement(annualVacationBox, true);
+                hold(700);
+                if(lastSalaryBox.isDisplayed()){
+                    check = true;
+                }
+                return check;
+            }catch (Exception ee){
+                try {
+                    horizontalScrollStartedFromElement(loanBalanceBox, true);
+                    hold(700);
+                    if(lastSalaryBox.isDisplayed()){
+                        check = true;
+                    }
+                    return check;
+                }catch (Exception ignored){
+                    return check;
+                }
+            }
+        }
+    }
+
+    public String lastSalaryAmount(){
+
+        try {
+            lastSalaryBox.isDisplayed();
+        }catch (Exception e){
+            horizontalScrollStartedFromElement(annualVacationBox, true);
+            hold(700);
+        }
+
+        String input = lastSalaryAmount.getAttribute("content-desc");
+        String regex = "\\d+(\\.\\d+)?";
+        String result = null;
+
+        // Find the match
+        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+        java.util.regex.Matcher matcher = pattern.matcher(input);
+
+        if (matcher.find()) {
+            String extractedNumber = matcher.group();
+            result = extractedNumber;
+        } else {
+            result = "No number found!";
+        }
+
+        return result;
+
     }
 
 }

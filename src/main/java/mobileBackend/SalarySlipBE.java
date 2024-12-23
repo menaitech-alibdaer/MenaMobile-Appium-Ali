@@ -221,8 +221,12 @@ public class SalarySlipBE extends MobileBasePage {
         }catch (Exception ignored){}
 
         try {
-            waitForElementToBeVisible(AppiumBy.accessibilityId("Cross Button"), 6);
-            simpleClick(AppiumBy.accessibilityId("Cross Button"));
+            waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[contains(@text, 'Sign in')]"), 6);
+            try {
+                simpleClick(AppiumBy.accessibilityId("Cancel"));
+            }catch (Exception cancel){
+                simpleClick(AppiumBy.accessibilityId("Cross Button"));
+            }
 
             hold(1000);
             waitForElementToBeClickable(AppiumBy.accessibilityId("More options"));
@@ -231,8 +235,12 @@ public class SalarySlipBE extends MobileBasePage {
             verticalSwipeByPercentages(70, 20, 50);
             verticalSwipeByPercentages(70, 20, 50);
             doubleClick(AppiumBy.xpath("//android.widget.TextView[@text='Save a copy']"));
-            waitForElementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
-            clickOn(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+            hold(1500);
+            try {
+                simpleClick(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+            }catch (Exception device){
+                simpleClick(AppiumBy.xpath("//android.widget.TextView[@text='On This Device']"));
+            }
             hold(500);
             appiumDriver.findElement(AppiumBy.className("android.widget.EditText")).clear();
             hold(200);
@@ -241,7 +249,7 @@ public class SalarySlipBE extends MobileBasePage {
             clickOn(AppiumBy.xpath("//android.widget.Button[@text='Done']"));
             hold(500);
 
-        }catch (Exception e){
+        }catch (Exception cross){
             try{
                 hold(1000);
                 waitForElementToBeClickable(AppiumBy.accessibilityId("More options"));
@@ -250,8 +258,12 @@ public class SalarySlipBE extends MobileBasePage {
                 verticalSwipeByPercentages(70, 20, 50);
                 verticalSwipeByPercentages(70, 20, 50);
                 doubleClick(AppiumBy.xpath("//android.widget.TextView[@text='Save a copy']"));
-                waitForElementToBeClickable(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
-                clickOn(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+                hold(1500);
+                try {
+                    simpleClick(AppiumBy.xpath("//android.widget.TextView[@text='On this device']"));
+                }catch (Exception device){
+                    simpleClick(AppiumBy.xpath("//android.widget.TextView[@text='On This Device']"));
+                }
                 hold(500);
                 appiumDriver.findElement(AppiumBy.className("android.widget.EditText")).clear();
                 hold(200);
@@ -259,8 +271,8 @@ public class SalarySlipBE extends MobileBasePage {
                 hold(200);
                 clickOn(AppiumBy.xpath("//android.widget.Button[@text='Done']"));
                 hold(500);
-            }catch (Exception ee){
-                ee.printStackTrace();
+            }catch (Exception ex){
+                ex.printStackTrace();
             }
         }
 

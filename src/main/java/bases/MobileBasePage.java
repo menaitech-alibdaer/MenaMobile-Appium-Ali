@@ -5,6 +5,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.ios.IOSDriver;
+import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.AppiumFieldDecorator;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -27,6 +28,15 @@ import static bases.BaseTest.iniPlatform;
 import static java.time.Duration.ofMillis;
 
 public class MobileBasePage {
+
+    @AndroidFindBy(accessibility = "OK")
+    WebElement okBtn;
+    @AndroidFindBy(accessibility = "Try Again")
+    WebElement tryAgainBtn;
+    @AndroidFindBy(accessibility = "Got it!")
+    WebElement gotItBtn;
+    @AndroidFindBy(accessibility = "Alright!")
+    WebElement alrightBtn;
 
     protected AppiumDriver appiumDriver;
     int second = 20;
@@ -563,6 +573,23 @@ public class MobileBasePage {
     }
 
     // Method to scroll horizontally by element location using W3C Actions
+    public void horizontalScrollStartedFromElement(WebElement targetElement, boolean toRight, int offset) {
+        Point location = targetElement.getLocation();
+        int startX = location.getX() + (targetElement.getSize().getWidth() / 2);
+        int startY = location.getY() + (targetElement.getSize().getHeight() / 2);
+        int endX = !toRight ? startX + offset : startX - offset; // Adjust the offset as needed
+
+        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
+        Sequence scroll = new Sequence(finger, 1)
+                .addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY))
+                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
+                .addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, startY))
+                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+
+        appiumDriver.perform(Arrays.asList(scroll));
+    }
+
+    // Method to scroll horizontally by element location using W3C Actions
     public void horizontalScrollStartedFromElement(WebElement targetElement, boolean toRight) {
         Point location = targetElement.getLocation();
         int startX = location.getX();
@@ -573,7 +600,7 @@ public class MobileBasePage {
         Sequence scroll = new Sequence(finger, 1)
                 .addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), startX, startY))
                 .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofMillis(400), PointerInput.Origin.viewport(), endX, startY))
+                .addAction(finger.createPointerMove(Duration.ofMillis(500), PointerInput.Origin.viewport(), endX, startY))
                 .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
 
         appiumDriver.perform(Arrays.asList(scroll));
@@ -878,6 +905,27 @@ public class MobileBasePage {
         }
         hold(200);
         return check;
+    }
+
+    public void closeAlert(){
+        try{
+            simpleClick(alrightBtn);
+        }catch (Exception exce){
+            try {
+                simpleClick(gotItBtn);
+            }catch (Exception exc){
+                try {
+                    simpleClick(okBtn);
+                }catch (Exception ex){
+                    try {
+                        simpleClick(tryAgainBtn);
+                    }catch (Exception e){
+                        System.out.println("I can't click on the suggested buttons!");
+                        e.printStackTrace();
+                    }
+                }
+            }
+        }
     }
 
 }

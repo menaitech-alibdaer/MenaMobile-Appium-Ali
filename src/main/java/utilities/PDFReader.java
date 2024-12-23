@@ -5,13 +5,12 @@ import org.apache.pdfbox.text.PDFTextStripper;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 
 public class PDFReader {
 
     private static final String filePath = "pdfFiles/Salary Slip.pdf";
 
-//    public static String getPdfFile(String filePath){
+//    public static String pdfFileReader(String filePath){
 //        // Load the PDF document
 //        try (PDDocument document = PDDocument.load(new File(filePath))) {
 //            // Extract text from the PDF
@@ -47,7 +46,7 @@ public class PDFReader {
 //        return dataMap.getOrDefault(key, "Not Found");
 //    }
 
-    public static String getPdfFile(String filePath) {
+    public static String pdfFileReader(String filePath) {
         // Load the PDF document
         try (PDDocument document = PDDocument.load(new File(filePath))) {
             // Extract text from the PDF
@@ -58,8 +57,8 @@ public class PDFReader {
         }
     }
 
-    public static String getDataFromPdf(String pdfText, String key) {
-        String[] lines = pdfText.split("\\r?\\n");
+    public static String getDataFromPdf(String employeeCode, String key) {
+        String[] lines = pdfFileReader("pdfFiles/"+employeeCode+".pdf").split("\\r?\\n");
 
         for (String line : lines) {
             // Check if the line contains the key
@@ -91,7 +90,7 @@ public class PDFReader {
 
     //////////////////////////// Static Path ////////////////////////////////
 
-    public static String getPdfFile() {
+    public static String pdfFileReader() {
         // Load the PDF document
         try (PDDocument document = PDDocument.load(new File(filePath))) {
             // Extract text from the PDF
@@ -103,7 +102,7 @@ public class PDFReader {
     }
 
     public static String getDataFromPdf(String key) {
-        String[] lines = getPdfFile().split("\\r?\\n");
+        String[] lines = pdfFileReader().split("\\r?\\n");
 
         for (String line : lines) {
             // Check if the line contains the key
