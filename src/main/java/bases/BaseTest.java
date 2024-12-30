@@ -134,17 +134,17 @@ public class BaseTest {
 
             //File app = new File("src/main/apps/app.apk");
 
-            caps.setCapability("deviceName", huaweiY7a_name);
-            caps.setCapability("udid", huaweiY7a_udid);
-            caps.setCapability("platformVersion", huaweiY7a_AndroidVersion);
+//            caps.setCapability("deviceName", huaweiY7a_name);
+//            caps.setCapability("udid", huaweiY7a_udid);
+//            caps.setCapability("platformVersion", huaweiY7a_AndroidVersion);
 
 //            caps.setCapability("deviceName", galaxyA23_name);
 //            caps.setCapability("udid", galaxyA23_udid);
 //            caps.setCapability("platformVersion", galaxyA23_AndroidVersion);
 
-//            caps.setCapability("deviceName", emulator_1);
-//            caps.setCapability("udid", emulator_1_udid);
-//            caps.setCapability("platformVersion", emulator_1_AndroidVersion);
+            caps.setCapability("deviceName", emulator_1);
+            caps.setCapability("udid", emulator_1_udid);
+            caps.setCapability("platformVersion", emulator_1_AndroidVersion);
 
             caps.setCapability("platformName", "Android");
             caps.setCapability("automationName", "UiAutomator2");

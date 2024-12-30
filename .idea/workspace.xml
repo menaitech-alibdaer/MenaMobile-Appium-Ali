@@ -5,12 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyProfilePersonal.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/MainScreenTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyProfileFinancial.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyProfilePersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyProfilePersonal.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/utilities/PDFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/PDFReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/SalarySlip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SalarySlip.java" afterDir="false" />
     </list>
@@ -234,7 +233,25 @@
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.SalarySlip.test">
+  <component name="RunManager" selected="TestNG.MssqlConnect.test">
+    <configuration name="MssqlConnect.test" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="menamobile-appium" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="utilities.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="utilities" />
+      <option name="MAIN_CLASS_NAME" value="utilities.MssqlConnect" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
@@ -271,18 +288,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="menamobile-appium" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="VacationRequest" />
-      <option name="METHOD_NAME" value="checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="VacationRequest.checkValidationForThisOption_MonthlyUpperLimit" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <option name="PACKAGE_NAME" value="" />
@@ -297,11 +302,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.MssqlConnect.test" />
         <item itemvalue="TestNG.SalarySlip.test" />
         <item itemvalue="TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip" />
         <item itemvalue="TestNG.SalarySlip.addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS" />
         <item itemvalue="TestNG.VacationRequest.checkValidationForThisOption_MonthlyUpperLimit" />
-        <item itemvalue="TestNG.VacationRequest.checkOption_PreventSubmitVacationOfThisTypeIfEmployeeVacation" />
       </list>
     </recent_temporary>
   </component>
@@ -634,7 +639,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733836407511</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1734960261028</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1734960261028</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

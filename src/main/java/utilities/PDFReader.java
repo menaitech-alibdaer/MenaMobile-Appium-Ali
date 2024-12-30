@@ -30,7 +30,7 @@ public class PDFReader {
 //        }
 //    }
 //
-//    public static String getDataFromPdf(String pdfText, String key) {
+//    public static String getDataFromSalarySlipPdf(String pdfText, String key) {
 //        String[] lines = pdfText.split("\\r?\\n");
 //        HashMap<String, String> dataMap = new HashMap<>();
 //
@@ -57,7 +57,7 @@ public class PDFReader {
         }
     }
 
-    public static String getDataFromPdf(String employeeCode, String key) {
+    public static String getDataFromSalarySlipPdf(String employeeCode, String key) {
         String[] lines = pdfFileReader("pdfFiles/"+employeeCode+".pdf").split("\\r?\\n");
 
         for (String line : lines) {
@@ -101,7 +101,7 @@ public class PDFReader {
         }
     }
 
-    public static String getDataFromPdf(String key) {
+    public static String getDataFromSalarySlipPdf(String key) {
         String[] lines = pdfFileReader().split("\\r?\\n");
 
         for (String line : lines) {

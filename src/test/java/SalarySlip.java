@@ -2,6 +2,7 @@ import bases.BaseTest;
 import mobileBackend.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
+import utilities.PDFReader;
 import webBackend.financialInformation.FinancialPackage;
 import webBackend.financialInformation.Insurance;
 import webBackend.financialInformation.TaxAndDeduction;
@@ -12,7 +13,7 @@ import webBackend.salaryCalculation.SalaryCalculation;
 
 import static utilities.FindAndTransferPdf.getPDF;
 import static utilities.MssqlConnect.menaMeRestPassword;
-import static utilities.PDFReader.getDataFromPdf;
+import static utilities.PDFReader.getDataFromSalarySlipPdf;
 import static utilities.WebHelper.*;
 
 public class SalarySlip extends BaseTest {
@@ -290,14 +291,14 @@ public class SalarySlip extends BaseTest {
         getPDF("/sdcard/Download/", employeeCode+".pdf");
         mainScreen.android_Back();
 
-        softAssert.assertEquals(worthSalary, getDataFromPdf(employeeCode, "Worth Salary"), "- Worth Salary!");
-        softAssert.assertEquals(fixedAllowance, getDataFromPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
-        softAssert.assertEquals(percentAllowance, getDataFromPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
-        softAssert.assertEquals(overtime, getDataFromPdf(employeeCode, "Overtime"), "- Overtime!");
-        softAssert.assertEquals(otherIncome, getDataFromPdf(employeeCode, "Other Income"), "- Other Income!");
-        softAssert.assertEquals(totalIncome, getDataFromPdf(employeeCode, "Total Income"), "- Total Income!");
-        softAssert.assertEquals(totalDeduction, getDataFromPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
-        softAssert.assertEquals(netSalary, getDataFromPdf(employeeCode, "Net Salary (Month Jan)")+" JOD", "- Net Salary!");
+        softAssert.assertEquals(worthSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Worth Salary"), "- Worth Salary!");
+        softAssert.assertEquals(fixedAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
+        softAssert.assertEquals(percentAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
+        softAssert.assertEquals(overtime, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Overtime"), "- Overtime!");
+        softAssert.assertEquals(otherIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Income"), "- Other Income!");
+        softAssert.assertEquals(totalIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Income"), "- Total Income!");
+        softAssert.assertEquals(totalDeduction, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
+        softAssert.assertEquals(netSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Net Salary (Month Jan)")+" JOD", "- Net Salary!");
 
         softAssert.assertAll();
 
@@ -423,26 +424,26 @@ public class SalarySlip extends BaseTest {
         getPDF("/sdcard/Download/", employeeCode+".pdf");
         mainScreen.android_Back();
 
-        softAssert.assertEquals(employeeCode, getDataFromPdf(employeeCode, "Employee Code"), "- Employee Code!");
-        softAssert.assertEquals(basicSalary, getDataFromPdf(employeeCode, "Basic Salary"), "- Basic Salary!");
-        softAssert.assertEquals(otherAllowances, getDataFromPdf(employeeCode, "Other Allowances"), "- Other Allowances!");
-        softAssert.assertEquals(overtime, getDataFromPdf(employeeCode, "Overtime"), "- Overtime!");
-        softAssert.assertEquals(paidVacations, getDataFromPdf(employeeCode, "Paid Vacations"), "- Paid Vacations!");
-        softAssert.assertEquals(otherIncome, getDataFromPdf(employeeCode, "Other Income"), "- Other Income!");
-        softAssert.assertEquals(totalIncome, getDataFromPdf(employeeCode, "Total Income"), "- Total Income!");
-        softAssert.assertEquals(incomeTax, getDataFromPdf(employeeCode, "Income Tax"), "- Income Tax!");
-        softAssert.assertEquals(nationalContribution, getDataFromPdf(employeeCode, "National Contribution"), "- National Contribution!");
-        softAssert.assertEquals(serviceTax, getDataFromPdf(employeeCode, "Service Tax"), "- Service Tax!");
-        softAssert.assertEquals(socialSecurity, getDataFromPdf(employeeCode, "Social Security"), "- Social Security!");
-        softAssert.assertEquals(healthInsurance, getDataFromPdf(employeeCode, "Health Insurance"), "- Health Insurance!");
-        softAssert.assertEquals(providentFund, getDataFromPdf(employeeCode, "Provident Fund"), "- Provident Fund!");
-        softAssert.assertEquals(monthlyLoans, getDataFromPdf(employeeCode, "Monthly Loans"), "- Monthly Loans!");
-        softAssert.assertEquals(otherDeductions, getDataFromPdf(employeeCode, "Other Deductions"), "- Other Deductions!");
-        softAssert.assertEquals(totalDeduction, getDataFromPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
-        softAssert.assertEquals(netSalary, getDataFromPdf(employeeCode, "Net Salary (Month Jun)")+" JOD", "- Net Salary!");
-        softAssert.assertEquals(fixedAllowance, getDataFromPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
-        softAssert.assertEquals(percentAllowance, getDataFromPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
-        softAssert.assertEquals(otherAllowances, getDataFromPdf(employeeCode, "Transportation Allowance"), "- Transportation Allowance!");
+        softAssert.assertEquals(employeeCode, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Employee Code"), "- Employee Code!");
+        softAssert.assertEquals(basicSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Basic Salary"), "- Basic Salary!");
+        softAssert.assertEquals(otherAllowances, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Allowances"), "- Other Allowances!");
+        softAssert.assertEquals(overtime, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Overtime"), "- Overtime!");
+        softAssert.assertEquals(paidVacations, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Paid Vacations"), "- Paid Vacations!");
+        softAssert.assertEquals(otherIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Income"), "- Other Income!");
+        softAssert.assertEquals(totalIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Income"), "- Total Income!");
+        softAssert.assertEquals(incomeTax, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Income Tax"), "- Income Tax!");
+        softAssert.assertEquals(nationalContribution, PDFReader.getDataFromSalarySlipPdf(employeeCode, "National Contribution"), "- National Contribution!");
+        softAssert.assertEquals(serviceTax, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Service Tax"), "- Service Tax!");
+        softAssert.assertEquals(socialSecurity, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Social Security"), "- Social Security!");
+        softAssert.assertEquals(healthInsurance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Health Insurance"), "- Health Insurance!");
+        softAssert.assertEquals(providentFund, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Provident Fund"), "- Provident Fund!");
+        softAssert.assertEquals(monthlyLoans, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Monthly Loans"), "- Monthly Loans!");
+        softAssert.assertEquals(otherDeductions, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Deductions"), "- Other Deductions!");
+        softAssert.assertEquals(totalDeduction, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
+        softAssert.assertEquals(netSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Net Salary (Month Jun)")+" JOD", "- Net Salary!");
+        softAssert.assertEquals(fixedAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
+        softAssert.assertEquals(percentAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
+        softAssert.assertEquals(otherAllowances, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Transportation Allowance"), "- Transportation Allowance!");
 
         softAssert.assertAll();
 

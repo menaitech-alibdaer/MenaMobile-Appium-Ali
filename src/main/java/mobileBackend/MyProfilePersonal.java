@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Base64;
+import java.util.HashMap;
+import java.util.Map;
 
 import static io.appium.java_client.AppiumBy.accessibilityId;
 
@@ -140,6 +142,14 @@ public class MyProfilePersonal extends MobileBasePage {
     WebElement documentBtn;
     @AndroidFindBy(xpath = "//android.widget.TextView[@text='test.png']")
     WebElement imgUploaded;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='From Date']/following::android.widget.ImageView[1]")
+    WebElement fromDate_incidentsLog;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='To Date']/following::android.widget.ImageView[2]")
+    WebElement toDate_incidentsLog;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Category']/following::android.view.View[1]")
+    WebElement category_incidentsLog;
+    @AndroidFindBy(accessibility = "View")
+    WebElement viewBtn;
 
     public void openContactInformation(){
         clickOn(personalTab);
@@ -649,6 +659,54 @@ public class MyProfilePersonal extends MobileBasePage {
         }
     }
 
+    public void viewIncidentsLog(String fromDate, String toDate, String category){
+        hold(1000);
+        if(!fromDate.isEmpty()){
+            clickOn(fromDate_incidentsLog);
+            hold(500);
+            datePicker(fromDate);
+            waitLoadingElement();
+        }
+        hold(800);
+        if(!toDate.isEmpty()){
+            clickOn(toDate_incidentsLog);
+            hold(500);
+            datePicker(toDate);
+            waitLoadingElement();
+        }
+        hold(800);
+        clickOn(category_incidentsLog);
+        hold(1000);
+        clickOn(AppiumBy.accessibilityId(category));
+        hold(1000);
+        clickOn(viewBtn);
+        hold(1000);
+        waitLoadingElement();
+        waitLoadingElement();
+    }
+
+    public String getIncidentsLogViewed(String date ,String item){
+
+        // Send date like this = 30.12.2024
+        // Send item like this = Category
+
+        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category')]"));
+        verticalSwipeByPercentages(70, 20, 50);
+        //scrollToElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category') and contains(@content-desc, '"+date+"')]"), true, 5);
+        String input = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category') and contains(@content-desc, '"+date+"')]")).getAttribute("content-desc");
+        // Split the string into lines
+        String[] lines = input.split("\n");
+        // Create a map to store key-value pairs
+        Map<String, String> keyValueMap = new HashMap<>();
+        // Parse the input lines
+        for (int i = 1; i < lines.length; i += 2) {
+            if (i < lines.length - 1) {
+                keyValueMap.put(lines[i], lines[i + 1]);
+            }
+        }
+        // Return the value for the given key, or null if not found
+        return keyValueMap.get(item);
+    }
 
 
 }
