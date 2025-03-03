@@ -279,33 +279,33 @@ public class MainMenu extends WebBase {
     public void mainMenu(String tabName, String subTabName){
 
         closeIFrame();
-        hold(500);
+        hold(1000);
         waitFrameAndWindow();
 
          if (tabName.equalsIgnoreCase("Settings")) {
-             hold(300);
+             hold(800);
              clickOn_menu(settings, subTabName, tabName);
-             hold(500);
+             hold(1000);
              subTabs(subTabName, "Settings");
          } else if (tabName.equalsIgnoreCase("Employees")){
-             hold(300);
+             hold(800);
              clickOn_menu(employees, subTabName, tabName);
-             hold(500);
+             hold(1000);
              subTabs(subTabName, "Employees");
          } else if (tabName.equalsIgnoreCase("Workforce Management") || tabName.contains("Workforce")) {
-             hold(300);
+             hold(800);
              clickOn_menu(WorkforceManagement, subTabName, tabName);
-             hold(500);
+             hold(1000);
              subTabs(subTabName, "Workforce Management");
          } else if (tabName.equalsIgnoreCase("Reports")){
-             hold(300);
+             hold(800);
              clickOn_menu(reports, subTabName, tabName);
-             hold(500);
+             hold(1000);
              subTabs(subTabName, "Reports");
          } else if (tabName.equalsIgnoreCase("Extra Modules")){
-             hold(300);
+             hold(800);
              clickOn_menu(extraModules, subTabName, tabName);
-             hold(500);
+             hold(1000);
              subTabs(subTabName, "Extra Modules");
          }
 
@@ -323,599 +323,599 @@ public class MainMenu extends WebBase {
         //////////// ***Trick*** I used a While loop to be able to add a break inside the if statement //////////
         while (true){
             if (subTabName.equalsIgnoreCase("Branches Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(branchesSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Branches Setup Synchronization")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(branchesSetupSynchronization, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Security Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(securitySetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Users Reports")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(usersReports, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Dictionary Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(dictionarySetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("SMTP Server Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(smtpServerSetup, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("MenaME Security Setup"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMESetup, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMESecuritySetup, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("MenaMe Passwords")) || subTabName.contains(toLowerCase("QRC"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMESetup, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMePasswords, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("MenaME Users Report"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMESetup, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMEUsersReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("MenaME Failed Logins"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMESetup, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(menaMEFailedLogins, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Integration Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(integrationSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Personnel Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(personnelSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Financial Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(financialSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Exit Interview Questions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(exitInterviewQuestions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Hierarchy Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(hierarchySetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Organization Chart")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(organizationChart, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Salary Scale")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(salaryScale, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Managers Permissions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManagersPermissions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Key-Staff Setup") || subTabName.equalsIgnoreCase("Key Staff Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(KeyStaffSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("System Parameters")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(SystemParameters, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Currencies Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(CurrenciesSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Holidays Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(HolidaysSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Notifications Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(NotificationsSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Regions Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(RegionsSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Signatures Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(SignaturesSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Headers Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(HeadersSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Dynamic Lists Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(DynamicListsSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("System Theme")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(SystemTheme, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Attachments Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(AttachmentsSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("External Links Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ExternalLinksSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Bonus Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(BonusSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Badges Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(BadgesSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Workflow Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(WorkflowSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Workflow Assign")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(WorkflowAssign, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Workflow Screening")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(WorkflowScreening, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Workflow Report")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(WorkflowReport, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("WF Templates Report")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(WFTemplatesReport, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Detailed WF Templates Report")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(DetailedWFTemplatesReport, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Salary Reports Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(SalaryReportsSetup, subTabName, tabName);
                 break;
             }  else if (subTabName.equalsIgnoreCase("Personnel Information")){
-                hold(500);
+                hold(1000);
                 clickOn_menu(personnelInformation, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Financial Information")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(financialInformation, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Mass Allowances")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(massAllowances, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Employees Residences")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(employeesResidences, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Substitutes")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(substitutes, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Application Exams")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(applicationExams, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Import Application Exams")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(importApplicationExams, subTabName, tabName);
                 break;
             }  else if (subTabName.contains(toLowerCase("PF Balances"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(pf_Balances, subTabName, tabName);
                 break;
             }  else if (subTabName.equalsIgnoreCase("Employees Greetings")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(employeesGreetings, subTabName, tabName);
                 break;
             }  else if (subTabName.equalsIgnoreCase("Change Contract History")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(changeContractHistory, subTabName, tabName);
                 break;
             }  else if (subTabName.equalsIgnoreCase("Import Employees")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(importEmployees, subTabName, tabName);
                 break;
             }  else if (subTabName.equalsIgnoreCase("Import Employees - Integration")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(importEmployeesIntegration, subTabName, tabName);
                 break;
             }  else if (subTabName.equalsIgnoreCase("Lock Employees Data")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(lockEmployeesData, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Cost Centers Import")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(costCentersImport, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Covered Deductions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(coveredDeductions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Dynamic Provisions Distribution")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(dynamicProvisionsDistribution, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Monthly KPI Import")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(monthlyKPIImport, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Banks Files Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(BanksFilesSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Bank Integration Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(BankIntegrationSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Service Points Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ServicePointsSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Manpower Planning Setup")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanningSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Manpower Planning")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanning, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Manpower Screening")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerScreening, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Manpower Count"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanningReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerCountReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Manpower Actual"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanningReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerActualVsPlan, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Manpower Detailed"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerDetailedReport, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanning, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Manpower Summary"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanningReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerSummaryReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Manpower History"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerPlanningReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(ManpowerHistoryReport, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Change Transactions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ChangeTransactions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("HR Tabular Entry")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(HRTabularEntry, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Mass Change Transactions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(MassChangeTransactions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Import Change Transactions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ImportChangeTransactions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Post Change Transactions")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(PostChangeTransactions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Employees Upgrade")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeesUpgrade, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Employees Explorer")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeesExplorer, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Posting/Unposting Upgrade"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(PostingUnpostingUpgradeTransactions, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Employees Tasks")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeesTasks, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Evaluation Results")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(EvaluationResults, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Exit Interviews")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(ExitInterviews, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Leave Management Setup") || subTabName.contains(toLowerCase("Leave Management"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveManagementSetup, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Vacations Balances")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsBalances, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Employees Transactions Leave")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeesTransactionsLeave, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Leave Tabular Entry") || subTabName.contains(toLowerCase("Leave Tabular"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveTabularEntry, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Vacations Resumption")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsResumption, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Vacation Balances Moving")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationBalancesMoving, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Vacations Balances Differences")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsBalancesDifferences, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Round Leave")) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(RoundLeave, subTabName, tabName);
                 break;
             } else if (subTabName.equalsIgnoreCase("Leave Posting & Unposting") || subTabName.contains(toLowerCase("Leave Posting"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeavePostingUnposting, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Employee Transactions"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeeTransactions, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Vacations Balances Reports"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsBalancesReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Vacations Sheet"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsSheet, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Vacations Summary"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsSummary, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Vacations Totals"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationsTotals, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Resumption Report"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationResumptionReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Compound Vacations Report"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(CompoundVacationsReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Leave/Vacation Requests"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveVacationRequests, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Weekly Leaves Summary Report"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(LeaveReports, subTabName, tabName);
-                hold(500);
+                hold(1000);
                 clickOn_menu(WeeklyLeavesSummaryReport, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Employee Termination"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(SalaryTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(SalaryTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeeTermination, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Vacation In Advance Screening"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(VacationInAdvanceScreening, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Update Family Allowance"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(UpdateFamilyAllowance, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Round Overtime"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(RoundOvertime, subTabName, tabName);
                 break;
             } else if (subTabName.contains(toLowerCase("Salary Calculation"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(SalaryTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(SalaryTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(SalaryCalculation, subTabName, tabName);
                 break;
             }  else if (subTabName.contains(toLowerCase("Special Salary Report"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MainSalaryReports, subTabName, tabName);
                 }else {
                     clickOn_menu(MainSalaryReports_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(SpecialSalaryReport, subTabName, tabName);
                 break;
             }  else if (subTabName.contains(toLowerCase("Off-Cycle Salary Slip"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(SalarySlips, subTabName, tabName);
                 }else {
                     clickOn_menu(SalarySlips_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(OffCycleSalarySlip, subTabName, tabName);
                 break;
             }  else if (subTabName.contains(toLowerCase("Non-Payroll Benefit Calculation"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(SalaryTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(SalaryTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(nonpayroll_trans_calculation, subTabName, tabName);
                 break;
             }  else if (subTabName.contains(toLowerCase("Extra Salary"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(SalaryTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(SalaryTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(extraSalary, subTabName, tabName);
                 break;
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Employees Transactions"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(EmployeesTransactionsFinancial, subTabName, tabName);
                 }else {
                     clickOn_menu(EmployeesTransactionsFinancial_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(EmployeeTransactionsFinancial, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Non Payroll Transactions"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(EmployeesTransactionsFinancial, subTabName, tabName);
                 }else {
                     clickOn_menu(EmployeesTransactionsFinancial_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(NonPayrollTransactionsE, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Work Suspension"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(EmployeesTransactionsFinancial, subTabName, tabName);
                 }else {
                     clickOn_menu(EmployeesTransactionsFinancial_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(WorkSuspension, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Mass Transactions"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(MassTransactionsPage, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Mass Posting & Unposting"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(MassPostingUnposting, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Update Social Security Salary"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(UpdateSocialSecuritySalary, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Import Transactions"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(importTransactions, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("Dynamic Allowances Calculation"))) {
-                hold(500);
+                hold(1000);
                 if(!versionGetter().equalsIgnoreCase("OCT")){
                     clickOn_menu(MassTransactions, subTabName, tabName);
                 }else {
                     clickOn_menu(MassTransactions_oct, subTabName, tabName);
                 }
-                hold(500);
+                hold(1000);
                 clickOn_menu(DynamicAllowancesCalculation, subTabName, tabName);
                 break;
 
             }  else if (tabName.equalsIgnoreCase("Workforce Management") && subTabName.contains(toLowerCase("General Settings"))) {
-                hold(500);
+                hold(1000);
                 clickOn_menu(GeneralSettings, subTabName, tabName);
                 break;
 

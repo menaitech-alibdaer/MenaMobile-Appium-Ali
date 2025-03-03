@@ -735,6 +735,10 @@ public class PersonnelInformation extends WebBase {
             elementWaitAdvanced(By.id("employee_code"));
             elementWait(empCode);
             setText(empCode, employeeCode, Keys.TAB);
+            hold(500);
+            closeIFrame();
+            waitFrameAndWindow();
+            goToFrame(frame);
             //hold(4000);
 
             empFirstName = firstName();
@@ -844,6 +848,9 @@ public class PersonnelInformation extends WebBase {
             goToFrame(frame);
             elementWaitAdvanced(By.id("employee_code"));
             setText(empCode, employeeCode, Keys.TAB);
+            closeIFrame();
+            waitFrameAndWindow();
+            goToFrame(frame);
 
             setText(fNameEng, firstName);
             setText(sNameEng, secondName);
@@ -951,6 +958,9 @@ public class PersonnelInformation extends WebBase {
         hold(200);
         setText(empCode, employeeCode, Keys.TAB);
         hold(200);
+        closeIFrame();
+        waitFrameAndWindow();
+        goToFrame(frame);
 
         setText(fNameEng, firstName);
         setText(sNameEng, secondName);

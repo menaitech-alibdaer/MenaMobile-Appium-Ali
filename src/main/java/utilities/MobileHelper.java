@@ -86,6 +86,12 @@ public class MobileHelper {
         return date.format(currentDateFormatter);
     }
 
+    public static String currentDate_mobile_new(){
+        DateTimeFormatter currentDateFormatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+        LocalDate date = LocalDate.now();
+        return date.format(currentDateFormatter);
+    }
+
     public static String currentTime(){
         LocalTime currentTime = LocalTime.now();
         // Define a formatter to format the time as "h:mm a"

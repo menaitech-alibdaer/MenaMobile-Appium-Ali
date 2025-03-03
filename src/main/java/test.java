@@ -1,6 +1,13 @@
 import io.appium.java_client.AppiumBy;
 import utilities.MobileHelper;
 
+import java.text.DecimalFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+
+import static utilities.MssqlConnect.selectQuery;
+
 public class test {
 
     public static void main(String[] args) {
@@ -25,10 +32,79 @@ public class test {
 
         //String det = "Hanh Christiansen\nApproved\nAppium Comment - Approve\n26.09.2024 12:55PM";
 
-        String det = "Len Gene Lesch Cronin : \nAli Delegate";
-        String textAfterNewline = det.substring(det.indexOf("\n") + 1);
-        System.out.println(textAfterNewline);
+//        String det = "Len Gene Lesch Cronin : \nAli Delegate";
+//        String textAfterNewline = det.substring(det.indexOf("\n") + 1);
+//        System.out.println(textAfterNewline);
 
+//        selectQuery("select Id from VacationProfiles where NameEn = 'Annual Vacation' and BranchId = 646", "Revamp");
+
+//        System.out.println(formatToThreeFractionDigits(1500));      // 1500.000
+//        System.out.println(formatToThreeFractionDigits(1500.5));    // 1500.500
+//        System.out.println(formatToThreeFractionDigits(1500.58));   // 1500.580
+//        System.out.println(formatToThreeFractionDigits(1500.584));  // 1500.584
+
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSSS");
+        String formattedDate1 = now.withNano(now.getNano() / 100).format(formatter1);
+
+        // Formatting the output
+        DateTimeFormatter formatter2 = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSSS");
+        String formattedDate2 = now.with(ChronoField.NANO_OF_SECOND, now.getNano() / 100).format(formatter2);
+
+
+        // Print the result
+        System.out.println(formattedDate1);
+        System.out.println(formattedDate2);
+
+    }
+
+    public static String getApprovalCommittee(String aaaa, String managerName){
+        String textBetweenNewlines = null;
+        try{
+            String det = aaaa;
+            boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+            if(containsMoreThanOneNewline){
+                textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+            }else{
+                textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
+            }
+
+            return textBetweenNewlines;
+
+        }catch (Exception e){
+            try {
+                String det = aaaa;
+                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+                if(containsMoreThanOneNewline){
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }else{
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
+                }
+
+                return textBetweenNewlines;
+
+            }catch (Exception ex){
+
+                String det = aaaa;
+                boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
+
+                if(containsMoreThanOneNewline){
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1, det.indexOf("\n", det.indexOf("\n") + 1));
+                }else{
+                    textBetweenNewlines = det.substring(det.indexOf("\n") + 1);
+                }
+
+                return textBetweenNewlines;
+
+            }
+        }
+    }
+
+    public static String formatToThreeFractionDigits(double number) {
+        DecimalFormat decimalFormat = new DecimalFormat("#.000");
+        return decimalFormat.format(number);
     }
 
     public static String extractDate(String det) {

@@ -22,7 +22,9 @@ public class Listener implements ITestListener {
                 .assignDevice(browserGetter());
 
         setLog("System Version: "+versionGetter());
-        setLog("Lite Version: "+liteGetter());
+        if(!versionGetter().equalsIgnoreCase("Revamp")){
+            setLog("Lite Version: "+liteGetter());
+        }
         setLog("URL: "+urlGetter());
     }
 
@@ -63,38 +65,43 @@ public class Listener implements ITestListener {
         }
 
         System.out.println("Rest Queries When test ignored");
-        restFamilySetup();
-        sqlQuery("update adm_company set Client_id=NULL where company_code = 'automation';" +
-                "update adm_branch set country_profile = 1, tax_profile = 1, is_gulf = 1, Employee_Auto_Serial = 0 where branch_code = 'auto_a1' and company_code = 'automation';" +
-                "update pay_setup set max_upload_type = 0 where company_code = 'automation';" +
-                "update pay_setup set english_arabic_man = 2 where branch_code = 'auto_a1' and company_code = 'automation';" +
-                "update pay_setup set is_setup_overtime_hours = 0 where branch_code = 'auto_a1' and company_code = 'automation';" +
-                "update pay_setup set is_calendar_days = 2, day_hours = 8 where company_code = 'automation' and branch_code = 'auto_a1';" +
-                "update pay_setup set cut_off_date = 0 where company_code = 'automation' and branch_code = 'auto_a1';" +
-                "update pay_setup set cost_distribution_scope = 3 where company_code = 'automation' and branch_code = 'auto_a1';" +
-                "update pay_setup set no_edit_familly_allow = 0 where company_code = 'automation' and branch_code = 'auto_a1';" +
-                "update pay_setup set allow_age = '30.000', allow_girl_age = '30.000' where company_code = 'automation' and branch_code = 'auto_a1';" +
-                "update pay_setup set min_age_marry = 0 where company_code = 'automation';" +
-                "update adm_company set is_retroactive_salaries = 0 where company_code='automation';" +
-                "update adm_branch set is_calc_with_previous = 0 where company_code = 'automation';");
 
-        restChildSort();
-        allowancesCalculatedAccordingToDate(true, "auto_a1");
-        automaticallySubmitEmployeeToSocialSecurity(false);
-        automaticallySubmitEmployeeToHealthInsurance(false);
-        socialSecurityStartMonth("0");
-        insuranceStartMonth("0");
-        if(liteGetter()){
-            liteVersion("1");
+        if(!versionGetter().equalsIgnoreCase("Revamp")){
+            restFamilySetup();
+            sqlQuery("update adm_company set Client_id=NULL where company_code = 'automation';" +
+                    "update adm_branch set country_profile = 1, tax_profile = 1, is_gulf = 1, Employee_Auto_Serial = 0 where branch_code = 'auto_a1' and company_code = 'automation';" +
+                    "update pay_setup set max_upload_type = 0 where company_code = 'automation';" +
+                    "update pay_setup set english_arabic_man = 2 where branch_code = 'auto_a1' and company_code = 'automation';" +
+                    "update pay_setup set is_setup_overtime_hours = 0 where branch_code = 'auto_a1' and company_code = 'automation';" +
+                    "update pay_setup set is_calendar_days = 2, day_hours = 8 where company_code = 'automation' and branch_code = 'auto_a1';" +
+                    "update pay_setup set cut_off_date = 0 where company_code = 'automation' and branch_code = 'auto_a1';" +
+                    "update pay_setup set cost_distribution_scope = 3 where company_code = 'automation' and branch_code = 'auto_a1';" +
+                    "update pay_setup set no_edit_familly_allow = 0 where company_code = 'automation' and branch_code = 'auto_a1';" +
+                    "update pay_setup set allow_age = '30.000', allow_girl_age = '30.000' where company_code = 'automation' and branch_code = 'auto_a1';" +
+                    "update pay_setup set min_age_marry = 0 where company_code = 'automation';" +
+                    "update adm_company set is_retroactive_salaries = 0 where company_code='automation';" +
+                    "update adm_branch set is_calc_with_previous = 0 where company_code = 'automation';");
+
+            restChildSort();
+            allowancesCalculatedAccordingToDate(true, "auto_a1");
+            automaticallySubmitEmployeeToSocialSecurity(false);
+            automaticallySubmitEmployeeToHealthInsurance(false);
+            socialSecurityStartMonth("0");
+            insuranceStartMonth("0");
+            if(liteGetter()){
+                liteVersion("1");
+            }else{
+                liteVersion("0");
+            }
+
+            sqlQuery("update adm_company set reports_max_records = 2000 where company_code = 'automation'");
+            sqlQuery("update adm_branch set is_gulf = 0 where company_code = 'automation' and branch_code = 'auto_a9'");
+
+            sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 60 where branch_code='auto_mob1'");
+            sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
         }else{
-            liteVersion("0");
+            setMenaMePassword("auto_mobile1", "Revamp");
         }
-
-        sqlQuery("update adm_company set reports_max_records = 2000 where company_code = 'automation'");
-        sqlQuery("update adm_branch set is_gulf = 0 where company_code = 'automation' and branch_code = 'auto_a9'");
-
-        sqlQuery("update users_password_admin set me_security_management = 0, is_mfa_enabled = 0, mfa_timeout = 60 where branch_code='auto_mob1'");
-        sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
 
     }
 

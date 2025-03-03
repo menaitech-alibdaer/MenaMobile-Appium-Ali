@@ -1,3 +1,5 @@
+package newVersion;
+
 import bases.BaseTest;
 import mobileBackend.*;
 import org.testng.Assert;
@@ -13,7 +15,6 @@ import webBackend.salaryCalculation.SalaryCalculation;
 
 import static utilities.FindAndTransferPdf.getPDF;
 import static utilities.MssqlConnect.menaMeRestPassword;
-import static utilities.PDFReader.getDataFromSalarySlipPdf;
 import static utilities.WebHelper.*;
 
 public class SalarySlip extends BaseTest {
@@ -44,7 +45,7 @@ public class SalarySlip extends BaseTest {
     public void checkAlertValidationInSalarySlipWhenSalaryCalculationWithoutReleaseToMenaME(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -77,7 +78,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -94,7 +95,7 @@ public class SalarySlip extends BaseTest {
     public void calculateTwoMonthAndCheckTheRecentMonthCalculatedViewInSalarySlip(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -128,7 +129,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -147,7 +148,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -160,7 +161,7 @@ public class SalarySlip extends BaseTest {
     public void checkLastSalaryInMainScreen(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -194,7 +195,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
 
@@ -206,7 +207,7 @@ public class SalarySlip extends BaseTest {
     public void checkAllFieldsInSalarySlip(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -257,7 +258,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -308,7 +309,7 @@ public class SalarySlip extends BaseTest {
     public void addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -389,7 +390,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -453,7 +454,7 @@ public class SalarySlip extends BaseTest {
     public void addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip_checkSalarySlipIn_MSS(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -548,7 +549,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(directManager, "1", "auto_mob1", false);
+        loginMob.login(directManager, "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -590,7 +591,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("vuxn60250", "1", "auto_mob1", false);
+        loginMob.login("vuxn60250", "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
 

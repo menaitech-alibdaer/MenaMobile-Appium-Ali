@@ -1,3 +1,5 @@
+package oldVersion;
+
 import bases.BaseTest;
 import mobileBackend.*;
 import org.testng.Assert;
@@ -11,7 +13,7 @@ import webBackend.personnelInformation.PersonnelInformation;
 import static utilities.MssqlConnect.menaMeRestPassword;
 import static utilities.WebHelper.currentDateMinusDays;
 
-public class OvertimeRequest extends BaseTest {
+public class OvertimeRequest_old extends BaseTest {
 
     PersonnelInformation personnel;
     FinancialPackage financial;
@@ -33,11 +35,11 @@ public class OvertimeRequest extends BaseTest {
     MyRequests myRequests;
     Manager manager;
 
-    @Test(priority = 1, groups = "Overtime")
+    @Test(priority = 1, groups = "Overtime", enabled = false)
     public void option_OvertimeHourIsCalculatedAsFixedRateValue(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -66,7 +68,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -94,11 +96,11 @@ public class OvertimeRequest extends BaseTest {
 
     }
 
-    @Test(priority = 2, groups = "Overtime")
+    @Test(priority = 2, groups = "Overtime", enabled = false)
     public void option_CalculateTransactionAmountBasedOnSocialSecuritySalary(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.login("sa", "0795798860", "automation", "auto_mob1", false, false);
@@ -134,7 +136,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -156,11 +158,11 @@ public class OvertimeRequest extends BaseTest {
 
     }
 
-    @Test(priority = 3, groups = "Overtime")
+    @Test(priority = 3, groups = "Overtime", enabled = false)
     public void option_RelatedToShifts(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.login("sa", "0795798860", "automation", "auto_mob1", false, false);
@@ -193,7 +195,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -222,7 +224,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -238,7 +240,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_IncludeExtraSalariesInTransactionAmountCalculation(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.login("sa", "0795798860", "automation", "auto_mob1", false, false);
@@ -270,7 +272,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -296,7 +298,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_AllowMoreThanOneTransactionInTheSameDay(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -325,7 +327,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -348,7 +350,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_AllowOvertimeRequestsWithinShiftsPeriods(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -381,7 +383,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -399,7 +401,7 @@ public class OvertimeRequest extends BaseTest {
     public void requestOvertimeWithinShiftAndCheckTheValidation(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -432,7 +434,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -450,7 +452,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_DontAllowPreviousDateMenaMERequestMoreThan_3_DaysFromEffectiveDate(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -483,7 +485,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -501,7 +503,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_RequestedOvertimeTransactionsWillBePaidAsNonpayroll(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.login("sa", "0795798860", "automation", "auto_mob1", false, false);
@@ -530,15 +532,17 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
 
         myRequests = new MyRequests();
         myRequests.openOvertime();
-        myRequests.overtimeRequest("01/10/2024", "Requested Overtime Transactions will be paid as Non-payroll", "", "", "",
-                "9:00 AM", "11:00 AM", false, "", true, false);
+//        myRequests.overtimeRequest("01/10/2024", "Requested Overtime Transactions will be paid as Non-payroll", "", "", "",
+//                "9:00 AM", "11:00 AM", false, "", true, false);
+        myRequests.overtimeRequest("01/10/2024", "Overtime Transactions will be paid as Non-payroll", "", "", "",
+                "9:00 AM", "11:00 AM", false, "", true, false); //// For New System Revamp
 
         ///////////////////
 
@@ -556,7 +560,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_OvertimeCanBeRequestedOnlyOn_WorkingDays(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -589,7 +593,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -612,7 +616,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_OvertimeCanBeRequestedOnlyOn_Holidays(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -645,7 +649,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -668,7 +672,7 @@ public class OvertimeRequest extends BaseTest {
     public void option_OvertimeCanBeRequestedOnlyOn_DaysOff(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -701,7 +705,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -724,7 +728,7 @@ public class OvertimeRequest extends BaseTest {
     public void overtimeHoursPerMonthShouldNotExceed_20_Hours(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -753,7 +757,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -786,7 +790,7 @@ public class OvertimeRequest extends BaseTest {
     public void hoursPerDayShouldNotExceed_6_Hours(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -815,7 +819,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -833,7 +837,7 @@ public class OvertimeRequest extends BaseTest {
     public void overtimeHoursPerWeekShouldNotExceed_10_Hours(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -862,7 +866,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -890,7 +894,7 @@ public class OvertimeRequest extends BaseTest {
     public void overtimeAmountPerMonthShouldNotExceed_10_Percent(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -919,7 +923,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -947,7 +951,7 @@ public class OvertimeRequest extends BaseTest {
     public void overtimeAmountPerDayShouldNotExceed_2_Percent(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -976,7 +980,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -999,7 +1003,7 @@ public class OvertimeRequest extends BaseTest {
     public void overtimeAmountPerWeekShouldNotExceed_10_Percent(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1028,7 +1032,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1056,7 +1060,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkAttachmentAndReasonIsMandatoryInOvertimeRequest(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1080,23 +1084,27 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
 
         myRequests = new MyRequests();
         myRequests.openOvertime();
-        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime Request", "", "", "",
-                "5:30 PM", "8:30 PM", false, "", true, true);
+//        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime Request", "", "", "",
+//                "5:30 PM", "8:30 PM", false, "", true, true);
+        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime", "", "", "",
+                "5:30 PM", "8:30 PM", false, "", true, true); /// For new system Revamp
 
         softAssert.assertTrue(myRequests.checkToastAlert("Please Choose Attachment"), "Alert Issue - shoud be appear: Please Choose Attachment - But the alert appear is --> "+myRequests.getToastAlert());
 
         mainScreen.goBack(5000);
         mainScreen.myRequests();
         myRequests.openOvertime();
-        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime Request", "", "", "",
-                "5:30 PM", "8:30 PM", true, "", true, true);
+//        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime Request", "", "", "",
+//                "5:30 PM", "8:30 PM", true, "", true, true);
+        myRequests.overtimeRequest("01/10/2024", "Attachment and Reason Is Mandatory In Overtime", "", "", "",
+                "5:30 PM", "8:30 PM", true, "", true, true); /// For new system Revamp
 
         softAssert.assertTrue(myRequests.checkToastAlert("Please Fill The Reason"), "Alert Issue - shoud be appear: Please Fill The Reason! - But the alert appear is --> "+myRequests.getToastAlert());
         softAssert.assertAll();
@@ -1107,7 +1115,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkOvertimeHoursPerMonthShouldNotExceed_FromSystemParameters_OvertimeRule(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1141,7 +1149,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1179,7 +1187,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkOvertimeHoursPerWeekShouldNotExceed_FromSystemParameters_OvertimeRule(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1213,7 +1221,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1241,7 +1249,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkOvertimeHoursPerDayShouldNotExceed_FromSystemParameters_OvertimeRule(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1275,7 +1283,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1298,7 +1306,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkOvertimeAmountPerMonthShouldNotExceed_Percent_FromSystemParameters_OvertimeRule(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1332,7 +1340,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1365,7 +1373,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkOvertimeAmountPerWeekShouldNotExceed_Percent_FromSystemParameters_OvertimeRule(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1399,7 +1407,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1432,7 +1440,7 @@ public class OvertimeRequest extends BaseTest {
     public void checkOvertimeAmountPerDayShouldNotExceed_Percent_FromSystemParameters_OvertimeRule(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1466,7 +1474,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();

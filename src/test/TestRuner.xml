@@ -5,47 +5,47 @@
         <listener class-name="bases.Listener" />
     </listeners>
 
-    <test name="LoginAndConnectivity" parallel="classes" thread-count="1">
+    <test name="LoginAndConnectivity_old" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="AUG" />
+        <parameter name="version" value="JUL" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="LoginAndConnectivity" />
+            <class name="oldVersion.LoginAndConnectivity_old" />
         </classes>
     </test>
 
-    <test name="VacationRequest" parallel="classes" thread-count="1">
+    <test name="VacationRequest_old" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
         <parameter name="version" value="AUG" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="VacationRequest" />
+            <class name="oldVersion.VacationRequest_old" />
         </classes>
     </test>
 
-    <test name="LeaveRequest" parallel="classes" thread-count="1">
+    <test name="LeaveRequest_old" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
         <parameter name="version" value="AUG" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="LeaveRequest" />
+            <class name="oldVersion.LeaveRequest_old" />
         </classes>
     </test>
 
-    <test name="OvertimeRequest" parallel="classes" thread-count="1">
+    <test name="OvertimeRequest_old" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
         <parameter name="version" value="AUG" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="OvertimeRequest" />
+            <class name="oldVersion.OvertimeRequest_old" />
         </classes>
     </test>
 

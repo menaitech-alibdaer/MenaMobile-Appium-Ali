@@ -5,7 +5,12 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
+import static org.testng.Assert.fail;
 import static utilities.ExtentReport.setLog;
 import static utilities.MobileHelper.encryptSHA1;
 import static utilities.VersionGetter.liteGetter;
@@ -16,6 +21,7 @@ public class MssqlConnect extends WebBase {
     public static String AUG_database = "menas01_08_2022_sql2016";
     public static String OCT_database = "menas01_10_2020_sql2016";
     public static String JUL_database = "MenaS01_07_2024_sql2016";
+    public static String revamp_database = "Payroll";
 
     public static void sqlQuery(String Query){
 
@@ -27,11 +33,25 @@ public class MssqlConnect extends WebBase {
             db = AUG_database;
         }else if(versionGetter().equalsIgnoreCase("JUL")){
             db = JUL_database;
+        }else if(versionGetter().equalsIgnoreCase("Revamp")){
+            db = revamp_database;
+        }else{
+            fail("Database Name not exist");
         }
 
-        String host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
-        String username = "qcUser";
-        String password = "P@ssw0rd@qc@789";
+        String host;
+        String username;
+        String password;
+
+        if(db.equals(revamp_database)){
+            host = "jdbc:sqlserver://DEVELOPMENTSRV;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "sa";
+            password = "12345678";
+        }else{
+            host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "qcUser";
+            password = "P@ssw0rd@qc@789";
+        }
 
         try {
             Connection connection = DriverManager.getConnection(host, username, password);
@@ -62,11 +82,25 @@ public class MssqlConnect extends WebBase {
             db = AUG_database;
         }else if(dataBase.equalsIgnoreCase("JUL")){
             db = JUL_database;
+        }else if(dataBase.equalsIgnoreCase("Revamp")){
+            db = revamp_database;
+        }else{
+            fail("Database Name not exist");
         }
 
-        String host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
-        String username = "qcUser";
-        String password = "P@ssw0rd@qc@789";
+        String host;
+        String username;
+        String password;
+
+        if(db.equals(revamp_database)){
+            host = "jdbc:sqlserver://DEVELOPMENTSRV;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "sa";
+            password = "12345678";
+        }else{
+            host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "qcUser";
+            password = "P@ssw0rd@qc@789";
+        }
 
         try {
             Connection connection = DriverManager.getConnection(host, username, password);
@@ -98,11 +132,98 @@ public class MssqlConnect extends WebBase {
             db = AUG_database;
         } else if (versionGetter().equalsIgnoreCase("JUL")) {
             db = JUL_database;
+        } else if (versionGetter().equalsIgnoreCase("Revamp")) {
+            db = revamp_database;
+        }else{
+            fail("Database Name not exist");
         }
 
-        String host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
-        String username = "qcUser";
-        String password = "P@ssw0rd@qc@789";
+        String host;
+        String username;
+        String password;
+
+        if(db.equals(revamp_database)){
+            host = "jdbc:sqlserver://DEVELOPMENTSRV;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "sa";
+            password = "12345678";
+        }else{
+            host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "qcUser";
+            password = "P@ssw0rd@qc@789";
+        }
+
+        try {
+            // Establish a connection to the database
+            Connection connection = DriverManager.getConnection(host, username, password);
+            Statement statement = connection.createStatement();
+
+            // Execute the SQL query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Retrieve metadata about the result set
+            int columnCount = resultSet.getMetaData().getColumnCount();
+
+            // Process the result set
+            while (resultSet.next()) {
+                for (int i = 1; i <= columnCount; i++) {
+                    String columnValue = resultSet.getString(i);
+                    result.append(columnValue);
+
+                    if (i < columnCount) {
+                        result.append(", ");
+                    }
+                }
+                result.append("\n");  // Add a newline for each row
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            System.out.println("Database Name: " + db);
+            System.out.println("Query executed: " + query);
+
+            setLog("Database Name: " + db);
+            setLog("Query executed: " + query);
+
+        } catch (SQLException e) {
+            System.out.println("There's an error:");
+            e.printStackTrace();
+        }
+
+        return result.toString();  // Return the result as a string
+    }
+
+    public static String selectQuery(String query, String dataBase) {
+        StringBuilder result = new StringBuilder();
+        String db = null;
+
+        if(dataBase.equalsIgnoreCase("OCT")){
+            db = OCT_database;
+        }else if(dataBase.equalsIgnoreCase("AUG")){
+            db = AUG_database;
+        }else if(dataBase.equalsIgnoreCase("JUL")){
+            db = JUL_database;
+        }else if(dataBase.equalsIgnoreCase("Revamp")){
+            db = revamp_database;
+        }else{
+            fail("Database Name not exist");
+        }
+
+        String host;
+        String username;
+        String password;
+
+        if(db.equals(revamp_database)){
+            host = "jdbc:sqlserver://DEVELOPMENTSRV;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "sa";
+            password = "12345678";
+        }else{
+            host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "qcUser";
+            password = "P@ssw0rd@qc@789";
+        }
 
         try {
             // Establish a connection to the database
@@ -180,82 +301,6 @@ public class MssqlConnect extends WebBase {
 
     }
 
-    public static void countryProfileChanger(String countryProfile, String branchCode){
-
-        if(countryProfile.equalsIgnoreCase("Jordan")){
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=1 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("KSA")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=2 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Palestine")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=3 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Qatar")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=4 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Lebanon")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=5 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Kuwait")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=6 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Libya")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=7 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Sudan")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=8 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Syria")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=9 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Singapore")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=10 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Egypt")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=11 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("UAE")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=12 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Oman")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=13 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Algeria")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=14 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Tunisia")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=15 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Morocco")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=16 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Iraq")) {
-            MssqlConnect.sqlQuery("update adm_branch set country_profile=17 where branch_code = '"+branchCode+"'");
-        } else {
-            Assert.fail("Country Profile Not Exist!");
-        }
-
-    }
-
-    public static void taxProfileChanger(String countryProfile, String branchCode){
-
-        if(countryProfile.equalsIgnoreCase("Jordan Tax")){
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=1 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("West Bank Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=2 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Jerusalem Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=3 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Lebanese Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=4 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Libyan Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=5 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Syrian Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=6 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Sudan Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=7 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Algerian Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=8 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Egyptian Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=9 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Tunisian Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=10 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Moroccan Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=11 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Iraq Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=12 where branch_code = '"+branchCode+"'");
-        } else if (countryProfile.equalsIgnoreCase("Yemeni Tax")) {
-            MssqlConnect.sqlQuery("update adm_branch set tax_profile=13 where branch_code = '"+branchCode+"'");
-        } else {
-            Assert.fail("Tax Profile Not Exist!");
-        }
-
-    }
-
     public static void menaMeRestPassword(String employeeCode){
         sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='"+employeeCode+"'");
     }
@@ -310,33 +355,12 @@ public class MssqlConnect extends WebBase {
         sqlQuery("update HRMS_config set lite = "+flag+";");
     }
 
-    public static void deleteDynamicList(String branchCode){
-        sqlQuery("DELETE FROM Dynamic_lists_employees WHERE list_serial = 1 and branch_code = '"+branchCode+"' and company_code = 'automation';" +
-                "DELETE FROM Dynamic_lists WHERE list_serial = 1 and branch_code = '"+branchCode+"' and company_code = 'automation'");
-    }
-    public static void createDynamicList(String branchCode){
-        deleteDynamicList(branchCode);
-        sqlQuery("INSERT INTO Dynamic_lists (company_code, branch_code, list_serial, list_name_e, list_name_a, Excluded_Dynamic_List) VALUES ('Automation', '"+branchCode+"', '1', 'auto_list', 'auto_list', NULL);");
-    }
-    public static void addEmployeeToDynamicList(String branchCode, String employeeCode){
-        sqlQuery("INSERT INTO Dynamic_lists_employees (company_code, branch_code, list_serial, employee_code, Excluded_Emp) VALUES ('Automation', '"+branchCode+"', '1', '"+employeeCode+"', NULL);");
-    }
     public static void allowancesCalculatedAccordingToDate(boolean checkbox, String branch){
 
         if(checkbox){
             sqlQuery("update pay_setup set allowance_per_date = 1 where branch_code = '"+branch+"' and company_code = 'automation'");
         }else{
             sqlQuery("update pay_setup set allowance_per_date = 0 where branch_code = '"+branch+"' and company_code = 'automation'");
-        }
-
-    }
-
-    public static void raisesTransactionsEffectAccordingToRaiseDate(boolean checkbox, String branch){
-
-        if(checkbox){
-            sqlQuery("update pay_setup set raise_per_date = 1 where branch_code = '"+branch+"' and company_code = 'automation'");
-        }else{
-            sqlQuery("update pay_setup set raise_per_date = 0 where branch_code = '"+branch+"' and company_code = 'automation'");
         }
 
     }
@@ -377,50 +401,184 @@ public class MssqlConnect extends WebBase {
         }
     }
 
-    public static void shiftAllowance(String type){
-        if(type.equalsIgnoreCase("fixed")){
-
-            sqlQuery("update pay_code_tables set shift_allowance = 1  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Percent - Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Withhold - Allowance';");
-
-        }else if(type.equalsIgnoreCase("percent")){
-
-            sqlQuery("update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift Allowance';" +
-                    "update pay_code_tables set shift_allowance = 1  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Percent - Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Withhold - Allowance';");
-
-        }else if(type.equalsIgnoreCase("withhold")){
-
-            sqlQuery("update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Percent - Allowance';" +
-                    "update pay_code_tables set shift_allowance = 1  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Withhold - Allowance';");
-
-        }else if(type.isEmpty()){
-
-            sqlQuery("update pay_code_tables set shift_allowance = 1  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Percent - Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Withhold - Allowance';");
-
-        }else{
-
-            sqlQuery("update pay_code_tables set shift_allowance = 1  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Percent - Allowance';" +
-                    "update pay_code_tables set shift_allowance = 0  where branch_code = 'auto_a1' and company_code = 'automation' and system_desp_e = 'Shift - Withhold - Allowance';");
-
-        }
-
+    public static void setMenaMePassword(String employeeCode, String dataBase){
+        /////// Set Password: sa
+        sqlQuery("UPDATE EmployeeGeneralInfo " +
+                "SET " +
+                "MenaMEPasswordHash = CONVERT(varbinary(max), '0x37D09C4D9E4F7A94B67B4AFF3A3845F6C2785D79A3FA4D37E580E21A543BF0DAFF4A2F2D6742D2CA76E292E9677B2E10AB6E072C83669DA7C9BB6CD17057BB83', 1), " +
+                "MenaMEPasswordSalt = CONVERT(varbinary(max), '0xDEC780C9441D12B48AD19D5F9070A4D95E4C875758416EB74DE162D4AD17E3CEE9FFF60A31C7FE74A7C1F946D25067A1563E423BF7D32F7E0CF9259EA9B0B895E22CB1C40A70367554626A6F8B7A3C4AD44FC6C37D1C6A5830D2FF6805A55DA7DE6314835B914C5C9111EB04C69C3F04C1C19FC31FB1BCD23CB4A7580EB45A71', 1) " +
+                "WHERE EmployeeCode = '"+employeeCode+"';", dataBase);
     }
+
 
     @Test
     public void test(){
-        sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='auto_mobile2'", "jul");
+        //sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='auto_mobile2'", "jul");
+        setMenaMePassword("auto_mobile1", "Revamp");
     }
 
     @Test
     public void test1(){
         sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'", "jul");
     }
+    @Test
+    public void test12222(){
+        System.out.println(selectQuery("select * from Companies", "Revamp"));
+    }
+
+    public static List<String[]> selectQueryAll(String query){
+
+        List<String[]> result = new ArrayList<>();
+
+        String db = null;
+
+        // Determine the database name based on the version
+        if (versionGetter().equalsIgnoreCase("OCT")) {
+            db = OCT_database;
+        } else if (versionGetter().equalsIgnoreCase("AUG")) {
+            db = AUG_database;
+        } else if (versionGetter().equalsIgnoreCase("JUL")) {
+            db = JUL_database;
+        } else if (versionGetter().equalsIgnoreCase("Revamp")) {
+            db = revamp_database;
+        }else{
+            fail("Database Name not exist");
+        }
+
+        String host;
+        String username;
+        String password;
+
+        if(db.equals(revamp_database)){
+            host = "jdbc:sqlserver://DEVELOPMENTSRV;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "sa";
+            password = "12345678";
+        }else{
+            host = "jdbc:sqlserver://20.79.90.124:1432;databaseName="+db+";encrypt=true;trustServerCertificate=true;";
+            username = "qcUser";
+            password = "P@ssw0rd@qc@789";
+        }
+
+        try {
+            // Establish a connection to the database
+            Connection connection = DriverManager.getConnection(host, username, password);
+            Statement statement = connection.createStatement();
+
+            // Execute the SQL query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Retrieve metadata about the result set
+            int columnCount = resultSet.getMetaData().getColumnCount();
+
+            // Process the result set
+            while (resultSet.next()) {
+                String[] row = new String[columnCount];  // Create an array for the current row
+                for (int i = 1; i <= columnCount; i++) {
+                    row[i - 1] = resultSet.getString(i); // Store column value in the array
+                }
+                result.add(row);  // Add the row array to the result list
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            System.out.println("Database Name: " + db);
+            System.out.println("Query executed: " + query);
+
+            setLog("Database Name: " + db);
+            setLog("Query executed: " + query);
+
+        } catch (SQLException e) {
+            System.out.println("There's an error:");
+            e.printStackTrace();
+        }
+
+        return result;  // Return the list of arrays
+    }
+
+    public static List<Map<String, String>> selectQueryAll2(String query) {
+
+        List<Map<String, String>> result = new ArrayList<>();
+
+        String db = null;
+
+        // Determine the database name based on the version
+        if (versionGetter().equalsIgnoreCase("OCT")) {
+            db = OCT_database;
+        } else if (versionGetter().equalsIgnoreCase("AUG")) {
+            db = AUG_database;
+        } else if (versionGetter().equalsIgnoreCase("JUL")) {
+            db = JUL_database;
+        } else if (versionGetter().equalsIgnoreCase("Revamp")) {
+            db = revamp_database;
+        } else {
+            fail("Database Name not exist");
+        }
+
+        String host;
+        String username;
+        String password;
+
+        if (db.equals(revamp_database)) {
+            host = "jdbc:sqlserver://DEVELOPMENTSRV;databaseName=" + db + ";encrypt=true;trustServerCertificate=true;";
+            username = "sa";
+            password = "12345678";
+        } else {
+            host = "jdbc:sqlserver://20.79.90.124:1432;databaseName=" + db + ";encrypt=true;trustServerCertificate=true;";
+            username = "qcUser";
+            password = "P@ssw0rd@qc@789";
+        }
+
+        try {
+            // Establish a connection to the database
+            Connection connection = DriverManager.getConnection(host, username, password);
+            Statement statement = connection.createStatement();
+
+            // Execute the SQL query and retrieve the result set
+            ResultSet resultSet = statement.executeQuery(query);
+
+            // Retrieve metadata about the result set
+            ResultSetMetaData metaData = resultSet.getMetaData();
+            int columnCount = metaData.getColumnCount();
+
+            // Process the result set
+            while (resultSet.next()) {
+                Map<String, String> row = new HashMap<>();
+                for (int i = 1; i <= columnCount; i++) {
+                    String columnName = metaData.getColumnName(i);  // Get column name
+                    String columnValue = resultSet.getString(i);    // Get column value
+                    row.put(columnName, columnValue);               // Add to the map
+                }
+                result.add(row);  // Add the row map to the result list
+            }
+
+            // Close resources
+            resultSet.close();
+            statement.close();
+            connection.close();
+
+            System.out.println("Database Name: " + db);
+            System.out.println("Query executed: " + query);
+
+            setLog("Database Name: " + db);
+            setLog("Query executed: " + query);
+
+        } catch (SQLException e) {
+            System.out.println("There's an error:");
+            e.printStackTrace();
+        }
+
+        return result;  // Return the list of maps
+
+    }
+
+    @Test
+    public void wwwww(){
+        sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='auto_mobile1'", "JUL");
+    }
+
 
 }
 

@@ -6,6 +6,7 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.WebElement;
 
 import static io.appium.java_client.AppiumBy.accessibilityId;
+import static utilities.VersionGetter.versionGetter;
 
 public class MyTransactions extends MobileBasePage {
 
@@ -238,11 +239,12 @@ public class MyTransactions extends MobileBasePage {
             simpleClick(AppiumBy.accessibilityId("View"));
             hold(4000);
             if(!transactionDate.isEmpty()){
-                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
-                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+                //scrollToElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]"), true, 10);
+                verticalSwipeByPercentages(70, 10, 50);
+                clickOn(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]"));
             }else{
-                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
-                clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+                scrollToElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]"), true, 10);
+                clickOn(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]"));
             }
 
             waitForElementToBeVisible(accessibilityId("Requested on"));
@@ -255,11 +257,11 @@ public class MyTransactions extends MobileBasePage {
             verticalSwipeByPercentages(70, 10, 50);
 
             if(!transactionDate.isEmpty()){
-                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")), true);
-                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]")));
+                scrollToElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]"), true, 10);
+                clickOn(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+transactionName+"') and contains(@content-desc, '"+transactionDate+"')]"));
             }else{
-                scrollToElement(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")), true);
-                clickOn(appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]")));
+                scrollToElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]"), true, 10);
+                clickOn(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '"+transactionName+"')])[1]"));
             }
 
             waitForElementToBeVisible(accessibilityId("Requested on"));
@@ -309,7 +311,8 @@ public class MyTransactions extends MobileBasePage {
 
     public void withdraw(){
         waitForElementToBeVisible(accessibilityId("Requested on"));
-        scrollToElement(withdrawBtn, true);
+        //scrollToElement(withdrawBtn, true);
+        verticalSwipeByPercentages(65, 10, 50);
         clickOn(withdrawBtn);
         waitLoadingElement();
         waitForElementToBeVisible(accessibilityId("Alright!"));
@@ -319,7 +322,8 @@ public class MyTransactions extends MobileBasePage {
 
     public void withdraw(boolean closeAlert){
         waitForElementToBeVisible(accessibilityId("Requested on"));
-        scrollToElement(withdrawBtn, true);
+        //scrollToElement(withdrawBtn, true);
+        verticalSwipeByPercentages(65, 10, 50);
         clickOn(withdrawBtn);
         waitLoadingElement();
         hold(4000);
@@ -330,7 +334,8 @@ public class MyTransactions extends MobileBasePage {
 
     public void cancel(){
         waitForElementToBeVisible(accessibilityId("Requested on"));
-        scrollToElement(cancelBtn, true);
+        //scrollToElement(cancelBtn, true);
+        verticalSwipeByPercentages(65, 10, 50);
         clickOn(cancelBtn);
         waitLoadingElement();
         waitForElementToBeVisible(accessibilityId("Alright!"));
@@ -468,12 +473,19 @@ public class MyTransactions extends MobileBasePage {
             }
         }
 
-        startIndex = getReason.indexOf('\n') + 1;
-        endIndex = getReason.indexOf('-');
+        if(versionGetter().equalsIgnoreCase("Revamp")){
+            // Find the index of the newline character
+            int newlineIndex = getReason.indexOf("\n");
+            // Extract the substring after the newline character
+            reason = getReason.substring(newlineIndex + 1);
+        }else{
+            startIndex = getReason.indexOf('\n') + 1;
+            endIndex = getReason.indexOf('-');
 
-        reason = getReason.substring(startIndex, endIndex);
+            reason = getReason.substring(startIndex, endIndex);
+        }
 
-        return reason;
+        return reason.trim();
 
     }
 
@@ -491,6 +503,25 @@ public class MyTransactions extends MobileBasePage {
             return false;
         }
 
+    }
+
+    public boolean checkAttachmentIcon(){
+        boolean check = false;
+        try {
+            if(attachmentIconInDetails.isDisplayed()){
+                check = true;
+            }
+        }catch (Exception e){
+            scrollToElement(approvalCommitteeText, true, 6);
+
+            try {
+                if(attachmentIconInDetails.isDisplayed()){
+                    check = true;
+                }
+            }catch (Exception ignored){}
+
+        }
+        return check;
     }
 
 }

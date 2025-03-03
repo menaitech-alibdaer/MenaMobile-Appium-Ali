@@ -1,3 +1,5 @@
+package oldVersion;
+
 import bases.BaseTest;
 import mobileBackend.*;
 import org.testng.Assert;
@@ -12,7 +14,7 @@ import static utilities.MobileHelper.currentTime;
 import static utilities.MssqlConnect.*;
 import static utilities.WebHelper.currentDate;
 
-public class LeaveRequest extends BaseTest {
+public class LeaveRequest_old extends BaseTest {
 
     PersonnelInformation personnel;
     FinancialPackage financial;
@@ -31,7 +33,7 @@ public class LeaveRequest extends BaseTest {
     public void linkEmployeeOnShiftAndRequestLeaveWithinShift(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -64,7 +66,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -93,7 +95,7 @@ public class LeaveRequest extends BaseTest {
     public void checkValidationWhenRequestLeaveOutOfShift(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -126,7 +128,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -144,7 +146,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_AlertIfEmployeeLeaveTransactionsFromThisTypeExceeds(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -173,7 +175,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -209,7 +211,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_PreventIfEmployeeLeaveTransactionsFromThisTypeExceeds(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -238,7 +240,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -271,7 +273,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_LeaveHoursUpperLimitHoursPerDay(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -300,7 +302,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -318,7 +320,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_LeaveHoursLowerLimitHoursPerDay(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -347,7 +349,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -366,7 +368,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_LeaveHoursUpperLimitHoursPerMonth(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -395,7 +397,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -421,7 +423,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_LeaveHoursUpperLimitHoursPerYear(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -450,7 +452,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -476,7 +478,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_EarnedAfter_2Month_FromHiringDate_checkValidationWhenRequestBeforeThat(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -505,7 +507,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -526,7 +528,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -542,7 +544,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_TheSupportDocumentIsMandatory(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -566,7 +568,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -584,7 +586,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_TheSupportDocumentIsMandatoryWithDayAndTime_CheckWithinDayAndTime(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -608,7 +610,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -626,7 +628,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_TheSupportDocumentIsMandatoryWithDayAndTime_CheckOutOfDayAndTime(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -650,7 +652,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -668,7 +670,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_LeaveRequestReasonIsMandatory(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -692,7 +694,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -710,7 +712,7 @@ public class LeaveRequest extends BaseTest {
     public void option_AllowOutOfShiftLeave(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -743,7 +745,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -763,7 +765,7 @@ public class LeaveRequest extends BaseTest {
     public void option_DontAllowPreviousDateMenaMERequest(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -787,7 +789,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -805,7 +807,7 @@ public class LeaveRequest extends BaseTest {
     public void option_DontAllowPreviousTimeMenaMERequest(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -829,7 +831,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -847,7 +849,7 @@ public class LeaveRequest extends BaseTest {
     public void option_PreventThisLeaveRequestIn_Sunday(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -871,7 +873,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -889,7 +891,7 @@ public class LeaveRequest extends BaseTest {
     public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfEveningDay(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -913,7 +915,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -942,7 +944,7 @@ public class LeaveRequest extends BaseTest {
     public void option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -966,7 +968,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -995,7 +997,7 @@ public class LeaveRequest extends BaseTest {
     public void checkOption_ValidateLeaveUpperLimitsOnRequestLevel(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -1024,7 +1026,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "1", "auto_mob1", "automation", false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();

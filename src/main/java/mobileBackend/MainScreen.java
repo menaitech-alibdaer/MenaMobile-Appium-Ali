@@ -123,7 +123,7 @@ public class MainScreen extends MobileBasePage {
             waitLoadingElement();
             waitLoadingElement();
             waitLoadingElement();
-            horizontalSwipeByPercentages(10, 90, 50);
+            horizontalSwipeByPercentages(10, 90, 30);
             hold(500);
         }catch (Exception e){
             try {

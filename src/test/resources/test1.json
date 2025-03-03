@@ -1,0 +1,22 @@
+{
+  "test1": {
+    "id": 0,
+    "branchId": 0,
+    "branch": "string",
+    "titleEn": "string",
+    "titleAr": "string",
+    "prefix": "string",
+    "prefixLength": 0,
+    "startingNumber": 0,
+    "active": true,
+    "default": true,
+    "incrementalCode": 0
+  },
+
+  "login": {
+    "username": "your_username",
+    "password": "your_password"
+  }
+
+}
+

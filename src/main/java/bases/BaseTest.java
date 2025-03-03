@@ -1,6 +1,5 @@
 package bases;
 
-import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.ios.IOSDriver;
@@ -19,11 +18,6 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.*;
 import org.testng.annotations.Optional;
 import org.testng.asserts.SoftAssert;
-import utilities.TestDataReader;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -52,6 +46,7 @@ public class BaseTest {
     public SoftAssert softAssert = null;
     public String menaMeURL = null;
     public String versionURL = null;
+    public boolean api = false;
 
     public  static String iniBrowser = null;
     public static String iniPlatform = null;
@@ -61,7 +56,7 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
-    public void setVersion(@Optional("JUL") String version, @Optional("false") boolean lite){
+    public void setVersion(@Optional("Revamp") String version, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
@@ -69,19 +64,28 @@ public class BaseTest {
             versionSetter("OCT");
         }else if(version.equalsIgnoreCase("JUL")){
             versionSetter("JUL");
+        }else if(version.equalsIgnoreCase("Revamp")){
+            versionSetter("Revamp");
+            api = true;
         }
 
-        urlSetter(versionGetter());
-        versionURL = urlGetter();
-        menaMeURL = urlMenaMeGetter();
-
-        liteSetter(lite);
+        if(!version.equalsIgnoreCase("Revamp")){
+            urlSetter(versionGetter());
+            versionURL = urlGetter();
+            menaMeURL = urlMenaMeGetter();
+            liteSetter(lite);
+        }
 
     }
 
     @BeforeMethod(alwaysRun = true)
     @Parameters({"platform", "browser"})
     public void setPlatform(@Optional("Android") String platform, @Optional("chrome") String browser){
+
+        if(api){
+            testType = TestType.API;
+            System.out.println(ANSI_GREEN + "API Work Now!" + ANSI_RESET);
+        }
 
         //data = new TestDataReader("data.json");
 
@@ -96,6 +100,16 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true)
     public void driverQuit(){
 
+        try{
+            if(appiumDriver.get() != null) {
+                //appiumDriver.get().quit();
+            }
+            //appiumDriver.remove();
+            //System.gc();
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
         try {
             softAssert = null;
             if(getDriver() != null) {
@@ -107,21 +121,12 @@ public class BaseTest {
             e.printStackTrace();
         }
 
-        try{
-            if(appiumDriver.get() != null) {
-                //appiumDriver.get().quit();
-            }
-            //appiumDriver.remove();
-            System.gc();
-        }catch (Exception e){
-            e.printStackTrace();
-        }
-
     }
 
     public enum TestType{
         WEB,
         MOBILE,
+        API,
     }
 
     ////////////////////////////////////////////////////
@@ -191,99 +196,106 @@ public class BaseTest {
         }
     }
 
-    public void webInitialize(){
+    public void systemInitialize(){
 
-        testType = TestType.WEB;
+        if(api){
+            testType = TestType.API;
 
-        System.out.println(ANSI_GREEN + "Web Driver Work Now!" + ANSI_RESET);
+            System.out.println(ANSI_GREEN + "API Work Now!" + ANSI_RESET);
 
-        setDriver(getDriver());
-        ChromeOptions options = new ChromeOptions();
-        EdgeOptions options_e = new EdgeOptions();
-        FirefoxOptions  options_f = new FirefoxOptions();
+        }else{
+            testType = TestType.WEB;
 
-        if (iniBrowser.equalsIgnoreCase("chrome")){
+            System.out.println(ANSI_GREEN + "Web Driver Work Now!" + ANSI_RESET);
 
-            WebDriverManager.chromedriver().setup();
-            options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-            options.setExperimentalOption("useAutomationExtension", false);
-            options.addArguments("--start-maximized");
-            options.addArguments("--remote-allow-origins=*");
+            setDriver(getDriver());
+            ChromeOptions options = new ChromeOptions();
+            EdgeOptions options_e = new EdgeOptions();
+            FirefoxOptions  options_f = new FirefoxOptions();
 
-            Map<String, Object> prefs = new HashMap<>();
-            prefs.put("credentials_enable_service", false);
-            prefs.put("profile.password_manager_enabled", false);
-            options.setExperimentalOption("prefs", prefs);
-            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            setDriver(new ChromeDriver(options));
+            if (iniBrowser.equalsIgnoreCase("chrome")){
 
-        } else if (iniBrowser.equalsIgnoreCase("chrome_headless")){
+                WebDriverManager.chromedriver().setup();
+                options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                options.setExperimentalOption("useAutomationExtension", false);
+                options.addArguments("--start-maximized");
+                options.addArguments("--remote-allow-origins=*");
 
-            WebDriverManager.chromedriver().setup();
-            options.addArguments("--remote-allow-origins=*");
-            options.addArguments("--start-maximized");
-            options.addArguments("--headless", "--window-size=1920,1080");
-            Map<String, Object> prefs = new HashMap<>();
-            prefs.put("credentials_enable_service", false);
-            prefs.put("profile.password_manager_enabled", false);
-            options.setExperimentalOption("prefs", prefs);
-            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            setDriver(new ChromeDriver(options));
+                Map<String, Object> prefs = new HashMap<>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                options.setExperimentalOption("prefs", prefs);
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                setDriver(new ChromeDriver(options));
 
-        } else if (iniBrowser.equalsIgnoreCase("edge")) {
+            } else if (iniBrowser.equalsIgnoreCase("chrome_headless")){
 
-            WebDriverManager.edgedriver().setup();
-            options_e.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
-            options_e.setExperimentalOption("useAutomationExtension", false);
-            options_e.addArguments("--start-maximized");
+                WebDriverManager.chromedriver().setup();
+                options.addArguments("--remote-allow-origins=*");
+                options.addArguments("--start-maximized");
+                options.addArguments("--headless", "--window-size=1920,1080");
+                Map<String, Object> prefs = new HashMap<>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                options.setExperimentalOption("prefs", prefs);
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                setDriver(new ChromeDriver(options));
 
-            // Set preferences similar to Chrome if applicable (optional, Edge has different preferences APIs)
-            Map<String, Object> prefs = new HashMap<>();
-            prefs.put("credentials_enable_service", false);
-            prefs.put("profile.password_manager_enabled", false);
-            options_e.setExperimentalOption("prefs", prefs);
-            options_e.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            setDriver(new EdgeDriver(options_e));
+            } else if (iniBrowser.equalsIgnoreCase("edge")) {
 
-        } else if (iniBrowser.equalsIgnoreCase("edge_headless")) {
+                WebDriverManager.edgedriver().setup();
+                options_e.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
+                options_e.setExperimentalOption("useAutomationExtension", false);
+                options_e.addArguments("--start-maximized");
 
-            WebDriverManager.edgedriver().setup();
-            options_e.addArguments("--start-maximized");
-            options_e.addArguments("--headless", "--window-size=1920,1080");
+                // Set preferences similar to Chrome if applicable (optional, Edge has different preferences APIs)
+                Map<String, Object> prefs = new HashMap<>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                options_e.setExperimentalOption("prefs", prefs);
+                options_e.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                setDriver(new EdgeDriver(options_e));
 
-            // Set preferences (optional)
-            Map<String, Object> prefs = new HashMap<>();
-            prefs.put("credentials_enable_service", false);
-            prefs.put("profile.password_manager_enabled", false);
-            options_e.setExperimentalOption("prefs", prefs);
-            options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-            setDriver(new EdgeDriver(options_e));
+            } else if (iniBrowser.equalsIgnoreCase("edge_headless")) {
 
-        } else if (iniBrowser.equalsIgnoreCase("firefox")) {
+                WebDriverManager.edgedriver().setup();
+                options_e.addArguments("--start-maximized");
+                options_e.addArguments("--headless", "--window-size=1920,1080");
 
-            WebDriverManager.firefoxdriver().setup();
-            options_f.addPreference("dom.webnotifications.enabled", false);  // Disable notifications
-            options_f.addPreference("geo.enabled", false);  // Disable geolocation
-            options_f.addPreference("geo.prompt.testing", false);
-            options_f.addPreference("geo.prompt.testing.allow", false);
-            options_f.addPreference("privacy.trackingprotection.enabled", false);
-            options_f.addArguments("-private");
-            options_f.addPreference("dom.popup_maximum", 0);
-            options_f.addPreference("dom.disable_open_during_load", false);
-            setDriver(new FirefoxDriver(options_f));
-            getDriver().manage().window().maximize();
+                // Set preferences (optional)
+                Map<String, Object> prefs = new HashMap<>();
+                prefs.put("credentials_enable_service", false);
+                prefs.put("profile.password_manager_enabled", false);
+                options_e.setExperimentalOption("prefs", prefs);
+                options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                setDriver(new EdgeDriver(options_e));
+
+            } else if (iniBrowser.equalsIgnoreCase("firefox")) {
+
+                WebDriverManager.firefoxdriver().setup();
+                options_f.addPreference("dom.webnotifications.enabled", false);  // Disable notifications
+                options_f.addPreference("geo.enabled", false);  // Disable geolocation
+                options_f.addPreference("geo.prompt.testing", false);
+                options_f.addPreference("geo.prompt.testing.allow", false);
+                options_f.addPreference("privacy.trackingprotection.enabled", false);
+                options_f.addArguments("-private");
+                options_f.addPreference("dom.popup_maximum", 0);
+                options_f.addPreference("dom.disable_open_during_load", false);
+                setDriver(new FirefoxDriver(options_f));
+                getDriver().manage().window().maximize();
+
+            }
+
+            getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
+
+            browserSetter(iniBrowser);
+            urlSetter(versionGetter());
+            versionURL = urlGetter();
+            menaMeURL = urlMenaMeGetter();
+            getDriver().get(urlGetter());
+            //getDriver().get("https://qc.menaitech.com/MenaS01_07_2024/application/hrms/");
 
         }
-
-
-        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(50));
-
-        browserSetter(iniBrowser);
-        urlSetter(versionGetter());
-        versionURL = urlGetter();
-        menaMeURL = urlMenaMeGetter();
-        getDriver().get(urlGetter());
-        //getDriver().get("https://qc.menaitech.com/MenaS01_07_2024/application/hrms/");
 
     }
 

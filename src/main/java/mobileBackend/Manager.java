@@ -129,16 +129,20 @@ public class Manager extends MobileBasePage {
 
         }catch (Exception e){
             try {
-                scrollToElement(attachments_title, true);
+                scrollToElement(attachments_title, true, 6);
             }catch (Exception ee){
-                scrollToElement(approvalCommitteeText, true);
+                scrollToElement(approvalCommitteeText, true, 6);
             }
             hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//*[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
-            if (det != null) {
-                textAfterNewline = det.substring(det.indexOf("\n") + 1);
+            try {
+                String det = appiumDriver.findElement(AppiumBy.xpath("//*[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+                if (det != null) {
+                    textAfterNewline = det.substring(det.indexOf("\n") + 1);
+                }
+                return textAfterNewline;
+            }catch (Exception ee){
+                return type+": NOT FOUND!";
             }
-            return textAfterNewline;
         }
     }
 
@@ -254,11 +258,13 @@ public class Manager extends MobileBasePage {
                 check = true;
             }
         }catch (Exception e){
-            scrollToElement(approvalCommitteeText, true);
+            scrollToElement(approvalCommitteeText, true, 6);
 
-            if(attachmentInVacationDetails.isDisplayed()){
-                check = true;
-            }
+            try {
+                if(attachmentInVacationDetails.isDisplayed()){
+                    check = true;
+                }
+            }catch (Exception ignored){}
 
         }
         return check;

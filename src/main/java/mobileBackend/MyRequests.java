@@ -292,6 +292,16 @@ public class MyRequests extends MobileBasePage {
         return scrollToElement(AppiumBy.accessibilityId(vacationType) , true, 12);
     }
 
+    public void selectVacationType(String vacationType){
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(vacationsTypeBtn);
+        hold(200);
+        clickOn(AppiumBy.accessibilityId(vacationType));
+        hold(800);
+        waitLoadingElement();
+    }
+
     public boolean checkLeaveType(String leaveType){
         waitLoadingElement();
         waitForElementToBeClickable(accessibilityId("Choose"));
@@ -376,15 +386,15 @@ public class MyRequests extends MobileBasePage {
 
         if(!delegateTo.isEmpty()){
             clickOn(delegateF);
-            hold(100);
+            hold(2000);
             if(delegateTo.equalsIgnoreCase("Not Required")){
                 simpleClick(notRequired_checkbox);
-                hold(300);
+                hold(900);
             }else{
                 simpleClick(search_delegatePopup);
-                hold(100);
+                hold(500);
                 setText(search_delegatePopup, delegateTo);
-                hold(200);
+                hold(500);
                 try {
                     waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Code:')]"));
                     hold(300);

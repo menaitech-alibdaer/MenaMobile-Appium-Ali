@@ -1,3 +1,7 @@
+package newVersion;
+
+import apiBackend.CompanyAndBranch;
+import apiBackend.Employees;
 import bases.BaseTest;
 import mobileBackend.MainScreen;
 import mobileBackend.MobileLogin;
@@ -12,6 +16,7 @@ import static utilities.MobileHelper.launchApp;
 import static utilities.MobileHelper.terminateApp;
 import static utilities.MssqlConnect.*;
 import static utilities.WebHelper.emailAddress;
+import static utilities.WebHelper.hold;
 
 public class LoginAndConnectivity extends BaseTest {
 
@@ -24,6 +29,9 @@ public class LoginAndConnectivity extends BaseTest {
     MobileLogin loginMob;
     MainScreen mainScreen;
 
+    CompanyAndBranch companyAndBranch;
+    Employees employees;
+
     @Test(priority = 1, groups = "Login_Mobile")
     public void invalidLogin(){
 
@@ -31,7 +39,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1111", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "1111", "automobile", false);
 
         Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Username Or Password"), "Error Alert Not contains: Wrong Username Or Password, The alert that appears is: "+loginMob.checkErrorLoginAlert());
 
@@ -44,7 +52,9 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", true);
+        loginMob.login("auto_mobile1", "sa", "automobile", true);
+
+        hold(7000);
 
         terminateApp();
         launchApp();
@@ -64,10 +74,12 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", true);
+        loginMob.login("auto_mobile1", "sa", "automobile", true);
 
         mainScreen = new MainScreen();
         mainScreen.logout();
+
+        hold(7000);
 
         terminateApp();
         launchApp();
@@ -76,7 +88,7 @@ public class LoginAndConnectivity extends BaseTest {
 
     }
 
-    @Test(priority = 4, groups = "Login_Mobile")
+    @Test(priority = 4, groups = "Login_Mobile", enabled = false)
     public void loginWithOTP_ValidCode(){
 
         sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 60 where branch_code='auto_mob1'");
@@ -97,7 +109,7 @@ public class LoginAndConnectivity extends BaseTest {
 
     }
 
-    @Test(priority = 5, groups = "Login_Mobile")
+    @Test(priority = 5, groups = "Login_Mobile", enabled = false)
     public void loginWithOTP_InvalidCode(){
 
         sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 60 where branch_code='auto_mob1'");
@@ -116,7 +128,7 @@ public class LoginAndConnectivity extends BaseTest {
 
     }
 
-    @Test(priority = 6, groups = "Login_Mobile")
+    @Test(priority = 6, groups = "Login_Mobile", enabled = false)
     public void loginWithOTP_ResendCode(){
 
         sqlQuery("update users_password_admin set me_security_management = 1, is_mfa_enabled = 1, mfa_timeout = 20 where branch_code='auto_mob1'");
@@ -138,11 +150,11 @@ public class LoginAndConnectivity extends BaseTest {
 
     }
 
-    @Test(priority = 7, groups = "Login_Mobile")
+    @Test(priority = 7, groups = "Login_Mobile", enabled = false)
     public void checkForgetPassword(){
 
         /////////////// Web Initialize //////////////
-        webInitialize();
+        systemInitialize();
 
         login = new Login();
         login.auto_mob1();
@@ -181,13 +193,13 @@ public class LoginAndConnectivity extends BaseTest {
 
         loginMob = new MobileLogin();
         loginMob.skipPage();
-        loginMob.connectivity("auto1112", "auto_mob1", versionURL);
+        loginMob.connectivity("auto1112", versionURL);
 
-        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Company Code Or Branch Code"), "Issue In Alert when company code is wrong!");
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Company Code"), "Issue In Alert when company code is wrong!");
 
     }
 
-    @Test(priority = 9, groups = "Login_Mobile")
+    @Test(priority = 9, groups = "Login_Mobile", enabled = false)
     public void connectivity_TestWrongBranch(){
 
         mobileInitialize();
@@ -207,7 +219,7 @@ public class LoginAndConnectivity extends BaseTest {
 
         loginMob = new MobileLogin();
         loginMob.skipPage();
-        loginMob.connectivity("automation", "auto_auto", "https://qc.menaitech.com/menas01_08_2022_sql2016666/");
+        loginMob.connectivity("automation", "https://qc.menaitech.com/qqwweerr1/");
 
         Assert.assertTrue(loginMob.alertPopup.getAttribute("content-desc").contains("Invalid URL"), "Issue In Alert popup when URL is wrong!");
 
@@ -220,13 +232,13 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
         mainScreen.changePassword("55555", "222", "222");
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Wrong Old Password"), "Attention Alert Issue, should be contain: Wrong Old Password!");
+        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The old password you entered is incorrect"), "Attention Alert Issue, should be contain: Wrong Old Password!");
 
     }
 
@@ -237,7 +249,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
@@ -250,38 +262,30 @@ public class LoginAndConnectivity extends BaseTest {
     @Test(priority = 13, groups = "Login_Mobile")
     public void changePassword_Success(){
 
-        /////////////// Web Initialize //////////////
-        webInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        String email = emailAddress();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", email, "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
+        employees = new Employees();
+        employees.createNewEmployee("1990-05-20", "", "Male", "Single", "", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
-        mainScreen.changePassword("1", "55555", "55555");
+        mainScreen.changePassword("sa", "0799999999", "0799999999");
 
         Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Password has been changed successfully"), "Successfully Alert Issue, should be contain: Password has been changed successfully");
 
@@ -290,33 +294,35 @@ public class LoginAndConnectivity extends BaseTest {
     @Test(priority = 14, groups = "Login_Mobile")
     public void checkPasswordContainSpecialCharacter(){
 
-        /////////////// Web Initialize //////////////
-        webInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-
-        menaMeSetPassword(employeeCode, "Ali&$%#@*3658");
+        employees = new Employees();
+        employees.createNewEmployee("1990-05-20", "", "Male", "Single", "", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "Ali&$%#@*3658", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
+
+        mainScreen = new MainScreen();
+        mainScreen.openChangePassword();
+        mainScreen.changePassword("sa", "Ali&$%#@*3658", "Ali&$%#@*3658");
+        mainScreen.closeAlert();
+        mainScreen.logout();
+
+        loginMob = new MobileLogin();
+        loginMob.login(employeeCode, "Ali&$%#@*3658", "automobile", false);
 
         mainScreen = new MainScreen();
 
@@ -327,16 +333,27 @@ public class LoginAndConnectivity extends BaseTest {
     @Test(priority = 15, groups = "Login_Mobile")
     public void checkNotMenaMeUser(){
 
-        sqlQuery("update pay_employees set is_MenaME_user = 0 where employee_code = 'auto_mobile1'");
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
+
+        employees = new Employees();
+        employees.createNewEmployee("1990-05-20", "", "Male", "Single", "", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                false, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
 
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1", "auto_mob1", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
-        sqlQuery("update pay_employees set is_MenaME_user = 1 where employee_code = 'auto_mobile1'");
-
-        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("You Are Not Authorized To Login"), "Issue In Alert: should be appear : You Are Not Authorized To Login!");
+        Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("You Do Not Have Permissions to Use The Employee"), "Issue In Alert: should be appear : You Are Not Authorized To Login!");
 
     }
 

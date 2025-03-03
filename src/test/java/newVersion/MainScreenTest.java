@@ -1,13 +1,9 @@
+package newVersion;
+
 import bases.BaseTest;
-import mobileBackend.*;
+import mobileBackend.MainScreen;
+import mobileBackend.MobileLogin;
 import org.testng.annotations.Test;
-import webBackend.financialInformation.FinancialPackage;
-import webBackend.financialInformation.Insurance;
-import webBackend.financialInformation.TaxAndDeduction;
-import webBackend.general.*;
-import webBackend.personnelInformation.Other;
-import webBackend.personnelInformation.PersonnelInformation;
-import webBackend.salaryCalculation.SalaryCalculation;
 
 public class MainScreenTest extends BaseTest {
 
@@ -21,7 +17,7 @@ public class MainScreenTest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("vuxn60250", "1", "auto_mob1", false);
+        loginMob.login("vuxn60250", "sa", "auto_mob1", "automobile", false);
 
         mainScreen = new MainScreen();
 

@@ -1,7 +1,6 @@
 package mobileBackend;
 
 import bases.MobileBasePage;
-import com.beust.ah.A;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -11,10 +10,6 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 
 import static bases.WebBase.setBranch;
 import static utilities.MssqlConnect.queryRestSetup;
@@ -99,14 +94,29 @@ public class MobileLogin extends MobileBasePage {
         setText(connectivityURLF, connectivityURL);
         clickOn(connectBtn);
         waitLoadingElement();
+        waitLoadingElement();
 
     }
 
-    public void login(String employeeCode, String password, String branchCode, boolean rememberMe){
+    public void connectivity(String companyCode, String connectivityURL){
+
+        waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Company Code']"));
+        clickOn(companyCodeF);
+        companyCodeF.clear();
+        setText(companyCodeF, companyCode);
+        clickOn(connectivityURLF);
+        connectivityURLF.clear();
+        setText(connectivityURLF, connectivityURL);
+        clickOn(connectBtn);
+        waitLoadingElement();
+
+    }
+
+    public void login(String employeeCode, String password, String branchCode, String companyCode, boolean rememberMe){
 
         if(checkIfFirstRun()){
             skipPage();
-            connectivity("automation", branchCode, urlGetter());
+            connectivity(companyCode, branchCode, urlGetter());
         }else{
 
             waitLoadingElement();
@@ -129,6 +139,62 @@ public class MobileLogin extends MobileBasePage {
                     clickOn(branchCodeF);
                     branchCodeF.clear();
                     setText(branchCodeF, branchCode);
+                }
+
+                if(!urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
+                    clickOn(connectivityURLF);
+                    connectivityURLF.clear();
+                    setText(connectivityURLF, urlGetter());
+                }
+
+                clickOn(connectBtn);
+                waitLoadingElement();
+                waitLoadingElement();
+            }
+
+        }
+
+        waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Employee Code']"));
+        clickOn(employeeCodeF);
+        employeeCodeF.clear();
+        setText(employeeCodeF, employeeCode);
+        clickOn(passwordF);
+        passwordF.clear();
+        setText(passwordF, password);
+        hold(100);
+        if(rememberMe){
+            clickOn(rememberMeCheckbox);
+        }
+        clickOn(loginBtn);
+        waitLoadingElement();
+        waitLoadingElement();
+        waitLoadingElement();
+        waitLoadingElement();
+        hold(1000);
+
+    }
+
+    public void login(String employeeCode, String password, String companyCode, boolean rememberMe){
+
+        if(checkIfFirstRun()){
+            skipPage();
+            connectivity(companyCode, urlGetter());
+        }else{
+
+            waitLoadingElement();
+
+            clickOn(connectivityBtn);
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Connect"));
+
+            if("automobile".equalsIgnoreCase(companyCodeF.getText()) && urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
+                clickOn(backConnectivityBtn);
+                waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
+            }else{
+
+                if(!"automobile".equalsIgnoreCase(companyCodeF.getText())){
+                    clickOn(companyCodeF);
+                    companyCodeF.clear();
+                    setText(companyCodeF, "automobile");
                 }
 
                 if(!urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
@@ -344,7 +410,7 @@ public class MobileLogin extends MobileBasePage {
     }
 
     public void auto_mobile1(){
-        login("auto_mobile1","1", "auto_mob1", false);
+        login("auto_mobile1","1", "auto_mob1", "automation", false);
     }
 
     public String checkErrorLoginAlert(){

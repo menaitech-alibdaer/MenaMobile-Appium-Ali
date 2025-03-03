@@ -39,7 +39,7 @@ public class MobileBasePage {
     WebElement alrightBtn;
 
     protected AppiumDriver appiumDriver;
-    int second = 20;
+    int second = 30;
 
     public MobileBasePage() {
         this.appiumDriver = BaseTest.getAppiumDriver();

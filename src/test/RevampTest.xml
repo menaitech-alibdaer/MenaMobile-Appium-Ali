@@ -1,0 +1,26 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Regression Testing Revamp">
+    <listeners>
+        <listener class-name="bases.AnnotationTransformer" />
+        <listener class-name="bases.Listener" />
+    </listeners>
+
+<!--    <test name="Login And Connectivity" parallel="classes">-->
+<!--        <parameter name="version" value="Revamp" />-->
+<!--        <parameter name="platform" value="Android" />-->
+
+<!--        <classes>-->
+<!--            <class name="newVersion.LoginAndConnectivity" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Vacation Request" parallel="classes">
+        <parameter name="version" value="Revamp" />
+        <parameter name="platform" value="Android" />
+
+        <classes>
+            <class name="newVersion.VacationRequest" />
+        </classes>
+    </test>
+
+</suite>
