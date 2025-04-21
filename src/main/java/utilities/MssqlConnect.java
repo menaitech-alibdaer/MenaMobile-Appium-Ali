@@ -1,8 +1,6 @@
 package utilities;
 
 import bases.WebBase;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -410,22 +408,6 @@ public class MssqlConnect extends WebBase {
                 "WHERE EmployeeCode = '"+employeeCode+"';", dataBase);
     }
 
-
-    @Test
-    public void test(){
-        //sqlQuery("update pay_employees set password='356a192b7913b04c54574d18c28d46e6395428ab' where employee_code='auto_mobile2'", "jul");
-        setMenaMePassword("auto_manager", "Revamp");
-    }
-
-    @Test
-    public void test1(){
-        sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'", "jul");
-    }
-    @Test
-    public void test12222(){
-        System.out.println(selectQuery("select * from Companies", "Revamp"));
-    }
-
     public static List<String[]> selectQueryAll(String query){
 
         List<String[]> result = new ArrayList<>();
@@ -572,11 +554,6 @@ public class MssqlConnect extends WebBase {
 
         return result;  // Return the list of maps
 
-    }
-
-    @Test
-    public void wwwww(){
-        setMenaMePassword("test1155", "");
     }
 
 

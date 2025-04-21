@@ -281,38 +281,4 @@ public class SalaryCalculation extends ApiBase {
 
     }
 
-
-
-    @Test
-    public void ddddd(){
-
-        RestAssured.baseURI = baseUrlApiGetter();
-
-        int empId = 48944;
-        List<Integer> requestBody = Collections.singletonList(empId);
-
-        int yearInt = Integer.parseInt("2025");
-        System.out.println(yearInt);
-        int monthInt = Integer.parseInt("1");
-        System.out.println(monthInt);
-
-        Response responsePosted = given()
-                .contentType(ContentType.JSON)
-                .queryParam("year", 2025) // Example query parameters
-                .queryParam("month", 1)
-                .queryParam("actionType", 8)
-                .queryParam("isExtraSalary", false)
-                .body(requestBody) // Sending an array in body
-                .when()
-                .post("/SalaryCalculation/UpdateSalaryCalculationRelease")
-                .then()
-                .statusCode(200)
-                .extract()
-                .response();
-
-        System.out.println("Response Status Code: " + responsePosted.getStatusCode());
-        System.out.println("Response Body: " + responsePosted.getBody().asString());
-
-    }
-
 }
