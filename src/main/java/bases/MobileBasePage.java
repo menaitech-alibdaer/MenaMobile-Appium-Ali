@@ -98,6 +98,19 @@ public class MobileBasePage {
         }
     }
 
+    public void simpleClick(By locator, int waitTime){
+        try {
+            appiumDriver.findElement(locator).click();
+            hold(100);
+        }catch (Exception e){
+            if(waitTime != 0){
+                new WebDriverWait(appiumDriver, Duration.ofSeconds(waitTime))
+                        .until(ExpectedConditions.elementToBeClickable(locator));
+                appiumDriver.findElement(locator).click();
+            }
+        }
+    }
+
     public void simpleClick(WebElement element, boolean wait){
         try {
             element.click();
@@ -105,6 +118,19 @@ public class MobileBasePage {
         }catch (Exception e){
             if(wait){
                 waitForElementToBeClickable(element);
+                element.click();
+            }
+        }
+    }
+
+    public void simpleClick(WebElement element, int waitTime){
+        try {
+            element.click();
+            hold(100);
+        }catch (Exception e){
+            if(waitTime != 0){
+                new WebDriverWait(appiumDriver, Duration.ofSeconds(waitTime))
+                        .until(ExpectedConditions.elementToBeClickable(element));
                 element.click();
             }
         }

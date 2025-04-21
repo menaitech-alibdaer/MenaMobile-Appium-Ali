@@ -82,7 +82,6 @@ public class VersionGetter {
     public static String urlMenaMeGetter(){
         return menaMeURL;
     }
-
     public static void browserSetter(String browser){
         browsers = browser;
     }

@@ -39,12 +39,13 @@
     <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="groups">
         <value>
-          <list size="5">
+          <list size="6">
             <item index="0" class="java.lang.String" itemvalue="Login" />
             <item index="1" class="java.lang.String" itemvalue="Login_Mobile" />
             <item index="2" class="java.lang.String" itemvalue="Vacations" />
             <item index="3" class="java.lang.String" itemvalue="Leaves" />
             <item index="4" class="java.lang.String" itemvalue="Overtime" />
+            <item index="5" class="java.lang.String" itemvalue="MyProfilePersonal" />
           </list>
         </value>
       </option>

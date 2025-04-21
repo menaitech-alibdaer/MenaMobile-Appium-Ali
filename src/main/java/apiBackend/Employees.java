@@ -3,6 +3,7 @@ package apiBackend;
 import bases.ApiBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.time.LocalDateTime;
@@ -564,10 +565,17 @@ public class Employees extends ApiBase {
             //payload.put("insuranceCardExpiry", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("insuranceCardExpiry"));
         }
 
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("entitledToExtraSalaryFlag")){
+            payload.put("entitledToExtraSalaryFlag", true);
+            payload.put("extraSalaryId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("extraSalaryId"));
+        }
+
         payload.put("insuranceId", employeeInsuranceIdGetter());
         payload.put("EmployeeId", employeeIdGetter());
         payload.put("subjectToSocialSecurityFlag", true);
+        payload.put("employeeStatusFlag", true);
         payload.put("retirementFlag", retirement);
+        payload.put("entitledToOvertimeFlag", true);
 
         List<Map<String, Object>> employeeSocialSecurities = new ArrayList<>();
         Map<String, Object> employeeSocialSecurity = new HashMap<>();
@@ -654,9 +662,16 @@ public class Employees extends ApiBase {
 
         }
 
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("entitledToExtraSalaryFlag")){
+            payload.put("entitledToExtraSalaryFlag", true);
+            payload.put("extraSalaryId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("extraSalaryId"));
+        }
+
         payload.put("insuranceId", employeeInsuranceIdGetter());
         payload.put("EmployeeId", employeeIdGetter());
         payload.put("insuredFlag", true);
+        payload.put("employeeStatusFlag", true);
+        payload.put("entitledToOvertimeFlag", true);
 
 //        List<Map<String, Object>> employeeSocialSecurities = new ArrayList<>();
 //        Map<String, Object> employeeSocialSecurity = new HashMap<>();
@@ -852,6 +867,30 @@ public class Employees extends ApiBase {
 
     }
 
+    public String getVacationCurrentBalance(String employeeCode, String vacationType, int year){
+
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        Response response = given()
+                .queryParam("employeeId", getIdByEmployeeCode(employeeCode))
+                .queryParam("year", year)
+                .when()
+                .get("/EmployeeVacationBalance/GetAll")
+                .then()
+                .statusCode(200) // Validate response
+                .extract()
+                .response();
+
+        try {
+            return formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.currentBalance").trim());
+        }catch (Exception ignored){
+            return "Not Found!";
+        }
+
+
+
+    }
+
     public void addSubstitute(String employeeCode, String substituteCode, boolean isDirectManager){
 
         // Dynamically create a JSON payload
@@ -945,6 +984,8 @@ public class Employees extends ApiBase {
                 selectQuery("select id from ExtraSalaryProfiles where ProfileTitle = '"+extraSalary+"' and BranchId = "+getBranchId()).trim()
         );
         payload.put("extraSalaryId", extraSalaryId);
+        payload.put("employeeStatusFlag", true);
+        payload.put("entitledToOvertimeFlag", true);
 
         // Set the base URI
         RestAssured.baseURI = baseUrlApiGetter();
@@ -976,13 +1017,87 @@ public class Employees extends ApiBase {
 
     }
 
+    public void entitledToOvertime(String employeeCode){
+
+        // Dynamically create a JSON payload
+        Map<String, Object> payload = new HashMap<>();
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("insuredFlag")){
+            payload.put("insuredFlag", true);
+            payload.put("insuranceProgramId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("insuranceProgramId"));
+            payload.put("insuranceStartDate", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("insuranceStartDate"));
+            //payload.put("insuranceCardExpiry", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("insuranceCardExpiry"));
+        }
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("subjectToSocialSecurityFlag")){
+
+            payload.put("subjectToSocialSecurityFlag", true);
+            payload.put("retirementFlag", getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("retirementFlag"));
+
+            List<Map<String, Object>> employeeSocialSecurities = new ArrayList<>();
+            Map<String, Object> employeeSocialSecurity = new HashMap<>();
+
+            employeeSocialSecurity.put("EmployeeId", employeeIdGetter());
+            employeeSocialSecurity.put("socialSecurityTypeId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("employeeSocialSecurities[0].socialSecurityTypeId"));
+            employeeSocialSecurity.put("socialSecurityStartDate", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("employeeSocialSecurities[0].socialSecurityStartDate"));
+            employeeSocialSecurity.put("socialSecuritySalary", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("employeeSocialSecurities[0].socialSecuritySalary"));
+            employeeSocialSecurities.add(employeeSocialSecurity);
+            payload.put("employeeSocialSecurities", employeeSocialSecurities);
+
+        }
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("entitledToExtraSalaryFlag")){
+            payload.put("entitledToExtraSalaryFlag", true);
+            payload.put("extraSalaryId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("extraSalaryId"));
+        }
+
+        if(!employeeCode.isEmpty()){
+            int employeeId = getIdByEmployeeCode(employeeCode);
+            payload.put("employeeId", employeeId);
+            employeeInsuranceIdSetter(employeeId);
+            payload.put("insuranceId", employeeInsuranceIdGetter());
+        }
+
+        payload.put("employeeStatusFlag", true);
+        payload.put("entitledToOvertimeFlag", true);
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    .header("Content-Type", "application/json")
+                    .body(jsonPayload)
+                    .when()
+                    .post("/EmployeeFinancialInsurance/save-employee-insurance") // Replace with your endpoint like that -> /Employee/get-max-employee-code
+                    .then()
+                    .extract()
+                    .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("Employee Entitled To Overtime successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void addEmployeeToPermissionList(int employeeId, int isManager){
 
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSSSSS");
         String formattedDate = now.withNano(now.getNano() / 100).format(formatter);
 
-        int menaMeSecuritySetupId = Integer.parseInt(selectQuery("select id from MenaMeSecuritySetups where BranchId = "+getBranchId()).trim());
+        int menaMeSecuritySetupId = Integer.parseInt(selectQuery("select id from MenaMeSecuritySetups where BranchId = "+getBranchId() + " and TitleEn = 'MenaME Users'").trim());
         sqlQuery("INSERT INTO MenaMeSecurityEmployeePermissions (MenaMeSecuritySetupId, EmployeeId, IsManager, CreatedById, CreationDate) VALUES ("+menaMeSecuritySetupId+", "+employeeId+", "+isManager+", 1, '"+formattedDate+"');");
     }
 

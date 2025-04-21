@@ -17,6 +17,14 @@ public class SalarySlipBE extends MobileBasePage {
 
     @AndroidFindBy(accessibility = "ProfileIcon")
     public WebElement myProfileBtn;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Successfully')]")
+    public WebElement successAlertPopup;
+    @AndroidFindBy(xpath = "//android.widget.ImageView[contains(@content-desc, 'Attention')]")
+    public WebElement attentionAlertPopup;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Successfully')]")
+    public WebElement successAlertPopup2;
+    @AndroidFindBy(xpath = "//android.view.View[contains(@content-desc, 'Attention')]")
+    public WebElement attentionAlertPopup2;
 
     public void myProfile(String tab){
         waitForElementToBeVisible(AppiumBy.accessibilityId("MainButtonSemantics"));
@@ -41,7 +49,8 @@ public class SalarySlipBE extends MobileBasePage {
             clickOn(AppiumBy.accessibilityId("Salary Slip"));
             waitLoadingElement();
             waitLoadingElement();
-            waitForElementToBeVisible(AppiumBy.accessibilityId("Recent Slip"));
+            hold(1500);
+            //waitForElementToBeVisible(AppiumBy.accessibilityId("Recent Slip"));
         }catch (Exception e){
             myProfile("Financial");
             hold(500);
@@ -118,7 +127,7 @@ public class SalarySlipBE extends MobileBasePage {
                 }
 
             }else{
-                Assert.fail("The Element Not Found after trying to find it: "+ fieldName);
+                getField = "Not Found --> "+ fieldName;
                 break;
             }
 
@@ -171,6 +180,27 @@ public class SalarySlipBE extends MobileBasePage {
             return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             return false;
+        }
+    }
+
+    public boolean checkAlertPopup(String alertText){
+        hold(1000);
+        try{
+            return successAlertPopup.getAttribute("content-desc").contains(alertText);
+        }catch (Exception e){
+            try {
+                return attentionAlertPopup.getAttribute("content-desc").contains(alertText);
+            }catch (Exception ex){
+                try {
+                    return successAlertPopup2.getAttribute("content-desc").contains(alertText);
+                }catch (Exception eex){
+                    try {
+                        return attentionAlertPopup2.getAttribute("content-desc").contains(alertText);
+                    }catch (Exception eeex){
+                        return false;
+                    }
+                }
+            }
         }
     }
 

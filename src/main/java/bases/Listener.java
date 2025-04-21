@@ -101,6 +101,7 @@ public class Listener implements ITestListener {
             sqlQuery("update pay_setup set auto_delegate_before_vacation = 0 where branch_code = 'auto_mob1'");
         }else{
             setMenaMePassword("auto_mobile1", "Revamp");
+            setMenaMePassword("auto_mobile2", "Revamp");
         }
 
     }

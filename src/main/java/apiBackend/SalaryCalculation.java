@@ -3,15 +3,16 @@ package apiBackend;
 import bases.ApiBase;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
+import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 import static apiBackend.CompanyAndBranch.getBranchId;
 import static io.restassured.RestAssured.given;
+import static utilities.MssqlConnect.selectQuery;
+import static utilities.MssqlConnect.sqlQuery;
 
 public class SalaryCalculation extends ApiBase {
 
@@ -34,6 +35,7 @@ public class SalaryCalculation extends ApiBase {
     String DaysPaid = null;
     String FixedAllowance = null;
     String PercentAllowance = null;
+    String TransportationAllowance = null;
 
     public void salaryCalculation(String employeeCode, String year, String month, boolean releaseToMenaME){
 
@@ -48,9 +50,6 @@ public class SalaryCalculation extends ApiBase {
         payload.put("month", month);
         payload.put("branchId", getBranchId());
         payload.put("isTerminationSalary", false);
-        if(releaseToMenaME){
-            payload.put("isRelease", true);
-        }
 
         // Set the base URI
         RestAssured.baseURI = baseUrlApiGetter();
@@ -75,6 +74,59 @@ public class SalaryCalculation extends ApiBase {
 
             if(response.statusCode() == 200){
                 System.out.println("Successfully Salary Calculation - Response Status Code: " + response.statusCode());
+            }
+
+            if(releaseToMenaME){
+
+                int empId = getIdByEmployeeCode(employeeCode);
+                List<Integer> requestBody = Collections.singletonList(empId);
+
+                int yearInt = Integer.parseInt(year);
+                int monthInt = Integer.parseInt(month);
+
+                Response responsePosted = given()
+                        .contentType(ContentType.JSON)
+                        .queryParam("year", yearInt)
+                        .queryParam("month", monthInt)
+                        .queryParam("actionType", 1)
+                        .queryParam("isExtraSalary", false)
+                        .body(requestBody) // Sending an array in body
+                        .when()
+                        .post("/SalaryCalculation/UpdateSalaryCalculation")
+                        .then()
+                        .statusCode(200)
+                        .extract()
+                        .response();
+
+                System.out.println("Response Status Code: " + responsePosted.getStatusCode());
+                System.out.println("Response Body: " + responsePosted.getBody().asString());
+
+                    if(responsePosted.statusCode() == 200 || responsePosted.statusCode() == 201){
+                        System.out.println("Successfully Salary Posted - Response Status Code: " + responsePosted.statusCode());
+                    }
+
+                    Response responseReleased = given()
+                            .contentType(ContentType.JSON)
+                            .queryParam("year", yearInt) // Example query parameters
+                            .queryParam("month", monthInt)
+                            .queryParam("actionType", 8)
+                            .queryParam("isExtraSalary", false)
+                            .body(requestBody) // Sending an array in body
+                            .when()
+                            .post("/SalaryCalculation/UpdateSalaryCalculationRelease")
+                            .then()
+                            .statusCode(200)
+                            .extract()
+                            .response();
+
+                    if(responseReleased.statusCode() == 200 || responseReleased.statusCode() == 201){
+                        System.out.println("Successfully Salary Released - Response Status Code: " + responseReleased.statusCode());
+                    }
+
+//                    int empId = getIdByEmployeeCode(employeeCode);
+//                    sqlQuery("update SalaryCalculations set IsRelease = 1 where EmployeeId = "+empId+" and Year = '"+year+"' and Month = '"+month+"'");
+//                    System.out.println("Salary Released Successfully");
+
             }
 
         } catch (Exception e) {
@@ -121,6 +173,8 @@ public class SalaryCalculation extends ApiBase {
         }catch (Exception ignored){}
         try{
             PercentAllowance = response.jsonPath().get("allowanceDetails.find { it.typeEn == 'Percent Allowance' }.transactionAmount").toString();
+        }catch (Exception ignored){}try{
+            TransportationAllowance = response.jsonPath().get("allowanceDetails.find { it.typeEn == 'Transportation Allowance' }.transactionAmount").toString();
         }catch (Exception ignored){}
 
     }
@@ -155,6 +209,9 @@ public class SalaryCalculation extends ApiBase {
     public String percentAllowanceMonth(){
         return formatToThreeFractionDigits(PercentAllowance.trim());
     }
+    public String TransportationAllowanceMonth(){
+        return formatToThreeFractionDigits(TransportationAllowance.trim());
+    }
     public String allowances(){
         return formatToThreeFractionDigits(Allowances.trim());
     }
@@ -181,6 +238,81 @@ public class SalaryCalculation extends ApiBase {
     }
     public String vacationCompensation(){
         return formatToThreeFractionDigits(VacationCompensation.trim());
+    }
+
+    public void taxable(boolean taxable, String taxProfile, boolean personalExemption, boolean familyExemption){
+
+        // Dynamically create a JSON payload
+        Map<String, Object> payload = new HashMap<>();
+
+        // Add primary keys dynamically
+        payload.put("EmployeeId", employeeIdGetter());
+        payload.put("taxable", taxable);
+        int taxId = Integer.parseInt(selectQuery("select Id from TaxProfiles where NameEn = '"+taxProfile+"' and BranchId = "+getBranchId()).trim());
+        payload.put("taxProgramId", taxId);
+        payload.put("personalExemption", personalExemption);
+        payload.put("familyExemption", familyExemption);
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    .header("Content-Type", "application/json")
+                    .body(jsonPayload)
+                    .when()
+                    .post("/Employee/save-employee-tax-info") // Replace with your endpoint like that -> /Employee/get-max-employee-code
+                    .then()
+                    .statusCode(200) // Assert status code
+                    .extract()
+                    .response();
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("Tax added successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+
+
+    @Test
+    public void ddddd(){
+
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        int empId = 48944;
+        List<Integer> requestBody = Collections.singletonList(empId);
+
+        int yearInt = Integer.parseInt("2025");
+        System.out.println(yearInt);
+        int monthInt = Integer.parseInt("1");
+        System.out.println(monthInt);
+
+        Response responsePosted = given()
+                .contentType(ContentType.JSON)
+                .queryParam("year", 2025) // Example query parameters
+                .queryParam("month", 1)
+                .queryParam("actionType", 8)
+                .queryParam("isExtraSalary", false)
+                .body(requestBody) // Sending an array in body
+                .when()
+                .post("/SalaryCalculation/UpdateSalaryCalculationRelease")
+                .then()
+                .statusCode(200)
+                .extract()
+                .response();
+
+        System.out.println("Response Status Code: " + responsePosted.getStatusCode());
+        System.out.println("Response Body: " + responsePosted.getBody().asString());
+
     }
 
 }

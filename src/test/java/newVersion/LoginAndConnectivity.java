@@ -52,6 +52,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", true);
 
         hold(7000);
@@ -74,6 +75,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", true);
 
         mainScreen = new MainScreen();
@@ -232,6 +234,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -249,6 +252,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();

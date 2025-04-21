@@ -46,7 +46,7 @@ public class BaseTest {
     public SoftAssert softAssert = null;
     public String menaMeURL = null;
     public String versionURL = null;
-    public boolean api = false;
+    //public boolean api = false;
 
     public  static String iniBrowser = null;
     public static String iniPlatform = null;
@@ -56,7 +56,7 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
-    public void setVersion(@Optional("Revamp") String version, @Optional("false") boolean lite){
+    public void setVersion(@Optional("AUG") String version, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
@@ -66,10 +66,12 @@ public class BaseTest {
             versionSetter("JUL");
         }else if(version.equalsIgnoreCase("Revamp")){
             versionSetter("Revamp");
-            api = true;
         }
 
-        if(!version.equalsIgnoreCase("Revamp")){
+        if(version.equalsIgnoreCase("Revamp")){
+            testType = TestType.API;
+        }else{
+            testType = TestType.WEB;
             urlSetter(versionGetter());
             versionURL = urlGetter();
             menaMeURL = urlMenaMeGetter();
@@ -82,13 +84,7 @@ public class BaseTest {
     @Parameters({"platform", "browser"})
     public void setPlatform(@Optional("Android") String platform, @Optional("chrome") String browser){
 
-        if(api){
-            testType = TestType.API;
-            System.out.println(ANSI_GREEN + "API Work Now!" + ANSI_RESET);
-        }
-
         //data = new TestDataReader("data.json");
-
         iniBrowser = browser;
         iniPlatform = platform;
 
@@ -101,31 +97,34 @@ public class BaseTest {
     public void driverQuit(){
 
         try{
+            softAssert = null;
             if(appiumDriver.get() != null) {
+                //System.gc();
                 //appiumDriver.get().quit();
             }
             //appiumDriver.remove();
-            //System.gc();
         }catch (Exception e){
+            softAssert = null;
             e.printStackTrace();
         }
 
-        try {
-            softAssert = null;
-            if(getDriver() != null) {
-                getDriver().quit();
+        if(testType == TestType.WEB){
+            try {
+                softAssert = null;
+                if(getDriver() != null) {
+                    getDriver().quit();
+                }
+                driver.remove();
+            }catch (Exception e){
+                softAssert = null; //// optional ///
+                e.printStackTrace();
             }
-            driver.remove();
-        }catch (Exception e){
-            softAssert = null; //// optional ///
-            e.printStackTrace();
         }
 
     }
 
     public enum TestType{
         WEB,
-        MOBILE,
         API,
     }
 
@@ -198,14 +197,9 @@ public class BaseTest {
 
     public void systemInitialize(){
 
-        if(api){
-            testType = TestType.API;
-
+        if(testType == TestType.API){
             System.out.println(ANSI_GREEN + "API Work Now!" + ANSI_RESET);
-
         }else{
-            testType = TestType.WEB;
-
             System.out.println(ANSI_GREEN + "Web Driver Work Now!" + ANSI_RESET);
 
             setDriver(getDriver());
@@ -300,8 +294,6 @@ public class BaseTest {
     }
 
     public void mobileInitialize(){
-
-        testType = TestType.MOBILE;
 
         urlSetter(versionGetter());
         versionURL = urlGetter();

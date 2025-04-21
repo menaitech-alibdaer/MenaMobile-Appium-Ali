@@ -119,7 +119,12 @@ public class WebHelper {
         return str.replace("'", "");
     }
     public static String mobile(){
-        return fake.phoneNumber().cellPhone();
+
+        String[] options = {"078", "079", "077"};
+        Random random = new Random();
+        int index = random.nextInt(options.length); // generates 0, 1, or 2
+        return options[index]+random(7);
+
     }
     public static String emailAddress(){
         return fake.internet().emailAddress();

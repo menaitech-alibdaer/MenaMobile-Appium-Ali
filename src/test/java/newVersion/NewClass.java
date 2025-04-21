@@ -5,7 +5,14 @@ import apiBackend.CompanyAndBranch;
 import apiBackend.Employees;
 import apiBackend.SalaryCalculation;
 import bases.BaseTest;
+import mobileBackend.SalarySlipBE;
 import org.testng.annotations.Test;
+import utilities.PDFReader;
+
+import static utilities.MssqlConnect.setMenaMePassword;
+import static utilities.PDFReader.pdfFileReader;
+import static utilities.WebHelper.currentYear;
+import static utilities.WebHelper.mobile;
 
 public class NewClass extends BaseTest {
 
@@ -13,6 +20,7 @@ public class NewClass extends BaseTest {
     Employees employees;
     AllEmployeeTransactions allEmployeeTransactions;
     SalaryCalculation salaryCalculation;
+    SalarySlipBE salarySlip;
 
     protected String employeeCode = null;
 
@@ -28,30 +36,33 @@ public class NewClass extends BaseTest {
         employees.createNewEmployee("1990-05-20", "", "Male", "Single", "", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "Monthly", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, false, false);
         employeeCode = employees.getEmployeeCode();
+        employees.entitledToOvertime(employeeCode);
+        employees.setBasicSalary("1000");
+//        employees.addVacationBalance("Annual Vacation", "0", "14", "2025", "2025-01-01", "2025-12-31", true);
+//        allEmployeeTransactions = new AllEmployeeTransactions();
+//        allEmployeeTransactions.loans(employeeCode, "2025-04-01", "2025-04-01", "Car Loan", "1200", "12", true);
 
-        System.exit(0);
+//        employees.addAllowance("Fixed Allowance", "250", "", "", "", true);
+//        employees.addSocialSecurity("Social Security", "", "", false);
+//        employees.healthInsurance("Health insurance - Fixed", "", "");
+//        employees.addVacationBalance("Annual Vacation", "0", "14", "2024", "2024-01-01", "2024-12-31", true);
+//        employees.addExtraSalary(employeeCode, "Extra Salary 14");
 
-        employees.setBasicSalary("1500");
-        employees.addAllowance("Fixed Allowance", "250", "", "", "", true);
-        employees.addSocialSecurity("Social Security", "", "", false);
-        employees.healthInsurance("Health insurance - Fixed", "", "");
-        employees.addVacationBalance("Annual Vacation", "0", "14", "2024", "2024-01-01", "2024-12-31", true);
-        employees.addExtraSalary(employeeCode, "Extra Salary 14");
-
-        salaryCalculation = new SalaryCalculation();
-        salaryCalculation.salaryCalculation(employeeCode, "2025", "1", true);
-        salaryCalculation.getSalarySlip(employeeCode, 2025, 1);
-
-        System.out.println("Basic Salary = "+salaryCalculation.basicSalary());
-        System.out.println("Worth Salary = "+salaryCalculation.worthSalaryMonth());
-        System.out.println("Total Income = "+salaryCalculation.totalIncomeMonth());
-        System.out.println("Net Salary = "+salaryCalculation.netSalaryMonth());
-        System.out.println("Fixed Allowance = "+salaryCalculation.fixedAllowanceMonth());
+//        salaryCalculation = new SalaryCalculation();
+//        salaryCalculation.salaryCalculation(employeeCode, "2025", "1", true);
+//        salaryCalculation.getSalarySlip(employeeCode, 2025, 1);
+//        salaryCalculation.taxable(true, "Tax", true, false);
+//
+//        System.out.println("Basic Salary = "+salaryCalculation.basicSalary());
+//        System.out.println("Worth Salary = "+salaryCalculation.worthSalaryMonth());
+//        System.out.println("Total Income = "+salaryCalculation.totalIncomeMonth());
+//        System.out.println("Net Salary = "+salaryCalculation.netSalaryMonth());
+//        System.out.println("Fixed Allowance = "+salaryCalculation.fixedAllowanceMonth());
 
 
     }
@@ -94,22 +105,47 @@ public class NewClass extends BaseTest {
     @Test
     public void dddd(){
 
-        allEmployeeTransactions = new AllEmployeeTransactions();
+        setMenaMePassword("sa29", "Revamp");
 
-        //System.out.println(allEmployeeTransactions.getVacationId(45548, 0));
-        System.out.println(allEmployeeTransactions.getVacationPeriod("jstr22011", 0));
+    }
 
+    @Test
+    public void dddddd(){
 
-        //System.out.println(allEmployeeTransactions.getVacationTransactionValueByKey(9469, "posted"));
+        String content = pdfFileReader("pdfFiles/znuf90344.pdf");
+        System.out.println(content); // Check for exact matches of your keys
 
-//        List<Map<String, String>> data = selectQueryAll("select * from VacationTransactions where EmployeeId = 45548");
+//        String employeeCode = "znuf90344";
 //
-//        System.out.println("Amount = " + data.);
+//        softAssert.assertEquals("1000.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Basic Salary"), "- Basic Salary!");
+//        softAssert.assertEquals("1000.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Worth Salary"), "- Worth Salary!");
+//        softAssert.assertEquals("200.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
+//        softAssert.assertEquals("100.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Percent Allowance"), "- Percent Allowance!");
+//        softAssert.assertEquals("0.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Overtime"), "- Overtime!");
+//        softAssert.assertEquals("0.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Other Income"), "- Other Income!");
+//        softAssert.assertEquals("1300.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Total Income"), "- Total Income!");
+//        softAssert.assertEquals("75.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Total Deductions"), "- Total Deductions!");
+//        softAssert.assertEquals("180.00", PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Net Salary")+" JOD", "- Net Salary!");
+//        softAssert.assertAll();
 
-//        for (Map<String, String> row : data) {
-//            String amount = row.get("Amount");  // Get the 'amount' column by name
-//            System.out.println("Amount: " + amount);
-//        }
+    }
+
+    @Test
+    public void zzzzzzzzz(){
+
+        ////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
+
+        allEmployeeTransactions = new AllEmployeeTransactions();
+        //allEmployeeTransactions.vacation("hxpx95368", "2025-03-24", "2025-03-24", "Unpaid Vacation", true);
+        //allEmployeeTransactions.leave("hxpx95368", "2025-04-01", "2025-04-01", "Unpaid Leave", "5", true);
+        //allEmployeeTransactions.overtime("hxpx95368", "2025-05-01", "2025-05-01", "Holiday Overtime", "3", true);
+        //allEmployeeTransactions.loans("hxpx95368", "2025-07-01", "2025-07-01", "Car Loan", "1200", "12", true);
+        //allEmployeeTransactions.otherIncome("hxpx95368", "2025-08-01", false, "", "Other Income 1", "100", true);
+        allEmployeeTransactions.otherDeductions("hxpx95368", "2025-09-01", "Other Deduction 1", "200", false, "", true);
+
 
     }
 

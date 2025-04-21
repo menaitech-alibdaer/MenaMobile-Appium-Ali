@@ -113,6 +113,8 @@ public class MainScreen extends MobileBasePage {
         openSideMenu();
         hold(1000);
         simpleClick(logOutBtn, true);
+        hold(700);
+        waitLoadingElement();
         waitLoadingElement();
         waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
     }

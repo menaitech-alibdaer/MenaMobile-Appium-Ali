@@ -16,6 +16,7 @@ import static io.appium.java_client.AppiumBy.accessibilityId;
 import static utilities.MobileHelper.currentDate_mobile;
 import static utilities.MobileHelper.currentDate_mobile_new;
 import static utilities.MssqlConnect.menaMeRestPassword;
+import static utilities.MssqlConnect.setMenaMePassword;
 import static utilities.WebHelper.*;
 
 public class VacationRequest extends BaseTest {
@@ -52,7 +53,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -97,7 +98,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -141,11 +142,12 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
+        employees.addVacationBalance("Do Not Allow To Exceed Vacation End Of Year Balance", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", true);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -160,7 +162,7 @@ public class VacationRequest extends BaseTest {
         myRequests.openVacations();
 //        myRequests.vacationRequest("Balance - Never Exceed Annual Balance", "", "05/05/2023", "05/05/2023",
 //                false, 1, "", "", true, true);
-        myRequests.vacationRequest("Do Not Allow To Exceed Vacation End Of Year Balance", "", "05/05/2023", "05/05/2023",
+        myRequests.vacationRequest("Do Not Allow To Exceed Vacation End Of Year Balance", "", "01/03/"+currentYear(), "20/03/"+currentYear(),
                 false, 1, "", "", true, true); /// for new system revamp
 
         //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
@@ -180,7 +182,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -221,6 +223,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -242,6 +245,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -264,6 +268,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -291,7 +296,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -331,7 +336,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -369,7 +374,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -555,7 +560,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -605,7 +610,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -643,7 +648,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -682,7 +687,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -691,7 +696,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -730,7 +735,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -781,7 +786,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -833,7 +838,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -902,7 +907,7 @@ public class VacationRequest extends BaseTest {
         softAssert.assertEquals(manager.transactionDetails("Request Date").contains(currentDate_mobile_new()), "Request Date!");
         softAssert.assertEquals(manager.transactionDetails("From Date"), "10/01/2023", "From Date!");
         softAssert.assertEquals(manager.transactionDetails("To Date"), "10/01/2023", "To Date!");
-        softAssert.assertEquals(manager.transactionDetails("Amount"), "32.26 JD", "Amount!");
+        softAssert.assertEquals(manager.transactionDetails("Amount"), "32.26 JOD", "Amount!");
         //softAssert.assertEquals(manager.transactionDetails("Resume Date"), "Wednesday, 11.01.2023", "Resume Date!");
         //softAssert.assertEquals(manager.transactionDetails("Branch Code"), "auto_mob1", "Branch Code!");
         softAssert.assertEquals(manager.transactionDetails("Period"), "1 Day", "Period!");
@@ -940,7 +945,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -1009,7 +1014,7 @@ public class VacationRequest extends BaseTest {
         softAssert.assertEquals(manager.transactionDetails("Request Date").contains(currentDate_mobile_new()), "Request Date!");
         softAssert.assertEquals(manager.transactionDetails("From Date"), "10/01/2023", "From Date!");
         softAssert.assertEquals(manager.transactionDetails("To Date"), "10/01/2023", "To Date!");
-        softAssert.assertEquals(manager.transactionDetails("Amount"), "32.26 JD", "Amount!");
+        softAssert.assertEquals(manager.transactionDetails("Amount"), "32.26 JOD", "Amount!");
         //softAssert.assertEquals(manager.transactionDetails("Resume Date"), "Wednesday, 11.01.2023", "Resume Date!");
         //softAssert.assertEquals(manager.transactionDetails("Branch Code"), "auto_mob1", "Branch Code!");
         softAssert.assertEquals(manager.transactionDetails("Period"), "1 Day", "Period!");
@@ -1236,6 +1241,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -1260,7 +1266,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -1326,7 +1332,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -1418,7 +1424,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -1510,7 +1516,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -1610,7 +1616,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, true);
@@ -1712,7 +1718,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -1808,7 +1814,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -1857,12 +1863,13 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.addVacationBalance("Do Not Allow To Exceed Current Vacation Balance", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", true);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1877,7 +1884,7 @@ public class VacationRequest extends BaseTest {
         myRequests.openVacations();
 //        myRequests.vacationRequest("Balance - Never Exceed Suggested Balance", "", "01/02/2024", "02/02/2024",
 //                false, 0, "", "", true, true);
-        myRequests.vacationRequest("Do Not Allow To Exceed Current Vacation Balance", "", "01/02/2024", "02/02/2024",
+        myRequests.vacationRequest("Do Not Allow To Exceed Current Vacation Balance", "", "05/01/"+currentYear(), "08/01/"+currentYear(),
                 false, 0, "", "", true, true); /// for new system revamp
 
         //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
@@ -2230,7 +2237,7 @@ public class VacationRequest extends BaseTest {
         employees.createNewEmployee("1980-05-20", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);

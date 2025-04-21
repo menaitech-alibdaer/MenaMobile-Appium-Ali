@@ -14,12 +14,21 @@
 <!--        </classes>-->
 <!--    </test>-->
 
-    <test name="Vacation Request" parallel="classes">
+<!--    <test name="Vacation Request" parallel="classes">-->
+<!--        <parameter name="version" value="Revamp" />-->
+<!--        <parameter name="platform" value="Android" />-->
+
+<!--        <classes>-->
+<!--            <class name="newVersion.VacationRequest" />-->
+<!--        </classes>-->
+<!--    </test>-->
+
+    <test name="Leave Request" parallel="classes">
         <parameter name="version" value="Revamp" />
         <parameter name="platform" value="Android" />
 
         <classes>
-            <class name="newVersion.VacationRequest" />
+            <class name="newVersion.LeaveRequest" />
         </classes>
     </test>
 

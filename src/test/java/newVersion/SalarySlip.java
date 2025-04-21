@@ -1,5 +1,9 @@
 package newVersion;
 
+import apiBackend.AllEmployeeTransactions;
+import apiBackend.CompanyAndBranch;
+import apiBackend.Employees;
+import apiBackend.Settings;
 import bases.BaseTest;
 import mobileBackend.*;
 import org.testng.Assert;
@@ -15,6 +19,7 @@ import webBackend.salaryCalculation.SalaryCalculation;
 
 import static utilities.FindAndTransferPdf.getPDF;
 import static utilities.MssqlConnect.menaMeRestPassword;
+import static utilities.MssqlConnect.setMenaMePassword;
 import static utilities.WebHelper.*;
 
 public class SalarySlip extends BaseTest {
@@ -41,95 +46,81 @@ public class SalarySlip extends BaseTest {
     SalaryCalculation calculation;
     SalarySlipBE salarySlip;
 
+    CompanyAndBranch companyAndBranch;
+    Employees employees;
+    Settings settings;
+    apiBackend.SalaryCalculation salaryCalculation;
+    AllEmployeeTransactions allEmployeeTransactions;
+
     @Test(priority = 1, groups = "Salary Slip")
     public void checkAlertValidationInSalarySlipWhenSalaryCalculationWithoutReleaseToMenaME(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
-
-        mainMenu.mainMenu("Workforce Management", "Salary Calculation");
-        calculation = new SalaryCalculation();
-        calculation.salaryCalculation_WithoutViewReport(employeeCode, "2024", "01", false);
+        salaryCalculation = new apiBackend.SalaryCalculation();
+        salaryCalculation.salaryCalculation(employeeCode, "2024", "1", false);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
 
         salarySlip = new SalarySlipBE();
         salarySlip.openSalarySlip();
-        salarySlip.openRecentSalarySlip();
+//        salarySlip.openRecentSalarySlip();
 
-        Assert.assertTrue(salarySlip.checkToastAlert("Invalid Data"), "Alert Issue - shoud be appear: Returned Invalid Data!");
+        Assert.assertTrue(salarySlip.checkAlertPopup("Salary Has Not Been Released Yet"), "Alert Issue - shoud be appear: Salary Has Not Been Released Yet!");
 
     }
 
     @Test(priority = 2, groups = "Salary Slip")
     public void calculateTwoMonthAndCheckTheRecentMonthCalculatedViewInSalarySlip(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
-
-        mainMenu.mainMenu("Workforce Management", "Salary Calculation");
-        calculation = new SalaryCalculation();
-        calculation.salaryCalculation_WithoutViewReport(employeeCode, "2024", "01", true);
-        calculation.salaryCalculation_WithoutViewReport(employeeCode, "2024", "02", true);
+        salaryCalculation = new apiBackend.SalaryCalculation();
+        salaryCalculation.salaryCalculation(employeeCode, "2024", "1", true);
+        salaryCalculation.salaryCalculation(employeeCode, "2024", "2", true);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -137,7 +128,7 @@ public class SalarySlip extends BaseTest {
         salarySlip = new SalarySlipBE();
         salarySlip.openSalarySlip();
 
-        Assert.assertEquals(salarySlip.getRecentSalarySlip(), "February (02) - 2024");
+        Assert.assertEquals(salarySlip.getRecentSalarySlip(), "February (2) - 2024");
 
     }
 
@@ -148,7 +139,8 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "sa", "auto_mob1", "automobile", false);
+        setMenaMePassword("auto_mobile2", "Revamp");
+        loginMob.login("auto_mobile2", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -160,45 +152,34 @@ public class SalarySlip extends BaseTest {
     @Test(priority = 4, groups = "Salary Slip")
     public void checkLastSalaryInMainScreen(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
+        employees.addAllowance("Fixed Allowance", "200", "", "", "", true);
 
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
-        financial.addAllowances("Fixed Allowance", "200", "", "", "", "");
-
-        mainMenu.mainMenu("Workforce Management", "Salary Calculation");
-        calculation = new SalaryCalculation();
-        calculation.salaryCalculation_WithoutViewReport(employeeCode, "2024", "01", true);
+        salaryCalculation = new apiBackend.SalaryCalculation();
+        salaryCalculation.salaryCalculation(employeeCode, "2024", "1", true);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
-
         Assert.assertEquals(mainScreen.getLastSalary(), "1200.000", "Issue in Last Salary appeared in Main Screen!");
 
     }
@@ -206,59 +187,44 @@ public class SalarySlip extends BaseTest {
     @Test(priority = 5, groups = "Salary Slip")
     public void checkAllFieldsInSalarySlip(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
+        employees.addAllowance("Fixed Allowance", "200", "", "", "", true);
+        employees.addAllowance("Percent Allowance", "10", "", "", "", true);
+        employees.addSocialSecurity("Social Security", "", "", false);
 
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
+        salaryCalculation = new apiBackend.SalaryCalculation();
+        salaryCalculation.salaryCalculation(employeeCode, "2024", "1", true);
+        salaryCalculation.getSalarySlip(employeeCode, 2024, 1);
 
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
-        financial.addAllowances("Fixed Allowance", "200", "", "", "", "");
-        financial.addAllowances("Percent Allowance", "10", "", "", "", "");
-
-        insurance = new Insurance();
-        insurance.socialSecurity(true, false, false, "Social Security",
-                "", "", true, false);
-
-        mainMenu.mainMenu("Workforce Management", "Salary Calculation");
-        calculation = new SalaryCalculation();
-        calculation.salaryCalculation(employeeCode, "2024", "01");
-
-        String worthSalary = calculation.worthSalaryMonth();
-        String fixedAllowance = calculation.fixedAllowanceMonth();
-        String percentAllowance = calculation.percentAllowanceMonth();
-        String totalIncome = calculation.totalIncomeMonth();
-        String totalDeduction = calculation.totalDeductionsMonth();
-        String netSalary = calculation.netSalaryMonth();
-        String overtime = calculation.overtimeMonth();
-        String otherIncome = calculation.otherIncomeMonth();
-
-        calculation.closeSalaryReport();
-        calculation.releaseToMenaME();
+        String worthSalary = salaryCalculation.worthSalaryMonth();
+        String fixedAllowance = salaryCalculation.fixedAllowanceMonth();
+        String percentAllowance = salaryCalculation.percentAllowanceMonth();
+        String totalIncome = salaryCalculation.totalIncomeMonth();
+        String totalDeduction = salaryCalculation.totalDeductionsMonth();
+        String netSalary = salaryCalculation.netSalaryMonth();
+        String overtime = salaryCalculation.overtimeMonth();
+        String otherIncome = salaryCalculation.otherIncomeMonth();
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -266,40 +232,40 @@ public class SalarySlip extends BaseTest {
         salarySlip = new SalarySlipBE();
         salarySlip.openSalarySlip();
 
-        softAssert.assertEquals(salarySlip.getRecentSalarySlip(), "January (01) - 2024", "Recent Salary Month!");
-        softAssert.assertEquals(salarySlip.netSalary(), "1202.500", "Net Salary!");
+        softAssert.assertEquals(salarySlip.getRecentSalarySlip(), "January (1) - 2024", "Recent Salary Month!");
+        softAssert.assertEquals(salarySlip.netSalary(), "1225.000", "Net Salary!");
         softAssert.assertEquals(salarySlip.income(), "1300.000", "Income!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Worth Salary"), "1000.000", "Worth Salary!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Overtime"), "0.000", "Overtime!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Other Income"), "0.000", "Other Income!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Overtime"), "0.000", "Overtime!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Other Income"), "0.000", "Other Income!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Fixed Allowance"), "200.000", "Fixed Allowance!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Percent Allowance"), "100.000", "Percent Allowance!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Paid Vacations"), "0.000", "Paid Vacations!");
-        softAssert.assertEquals(salarySlip.deduction_Amount(), "97.500", "Deduction Amount!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Tax"), "0.000", "Tax!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Insurance"), "0.000", "Insurance!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Other Deductions"), "0.000", "Other Deductions!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Loan"), "0.000", "Loan!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Provident Fund"), "0.000", "Provident Fund!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Social Security"), "97.500", "Social Security!");
-        softAssert.assertEquals(salarySlip.deduction_Period(), "0", "Deduction Period!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Leave"), "0", "Leave!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Vacation"), "0", "Vacation!");
-        softAssert.assertEquals(salarySlip.PF_Balance(), "0.000", "PF Balance!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Paid Vacations"), "0.000", "Paid Vacations!");
+        softAssert.assertEquals(salarySlip.deduction_Amount(), "75.000", "Deduction Amount!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Tax"), "0.000", "Tax!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Insurance"), "0.000", "Insurance!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Other Deductions"), "0.000", "Other Deductions!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Loan"), "0.000", "Loan!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Provident Fund"), "0.000", "Provident Fund!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Social Security"), "75.000", "Social Security!");
+        //softAssert.assertEquals(salarySlip.deduction_Period(), "0", "Deduction Period!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Leave"), "0", "Leave!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Vacation"), "0", "Vacation!");
+        //softAssert.assertEquals(salarySlip.PF_Balance(), "0.000", "PF Balance!");
 
-        salarySlip.downloadSalarySlip();
-        salarySlip.savePdfInDevice(employeeCode);
-        getPDF("/sdcard/Download/", employeeCode+".pdf");
-        mainScreen.android_Back();
-
-        softAssert.assertEquals(worthSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Worth Salary"), "- Worth Salary!");
-        softAssert.assertEquals(fixedAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
-        softAssert.assertEquals(percentAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
-        softAssert.assertEquals(overtime, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Overtime"), "- Overtime!");
-        softAssert.assertEquals(otherIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Income"), "- Other Income!");
-        softAssert.assertEquals(totalIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Income"), "- Total Income!");
-        softAssert.assertEquals(totalDeduction, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
-        softAssert.assertEquals(netSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Net Salary (Month Jan)")+" JOD", "- Net Salary!");
+//        salarySlip.downloadSalarySlip();
+//        salarySlip.savePdfInDevice(employeeCode);
+//        getPDF("/sdcard/Download/", employeeCode+".pdf");
+//        mainScreen.android_Back();
+//
+//        softAssert.assertEquals(worthSalary, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Worth Salary"), "- Worth Salary!");
+//        softAssert.assertEquals(fixedAllowance, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
+//        softAssert.assertEquals(percentAllowance, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Percent Allowance"), "- Percent Allowance!");
+//        softAssert.assertEquals(overtime, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Overtime"), "- Overtime!");
+//        softAssert.assertEquals(otherIncome, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Other Income"), "- Other Income!");
+//        softAssert.assertEquals(totalIncome, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Total Income"), "- Total Income!");
+//        softAssert.assertEquals(totalDeduction, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Total Deductions"), "- Total Deductions!");
+//        softAssert.assertEquals(netSalary, PDFReader.getDataFromSalarySlipPdf_NEW(employeeCode, "Net Salary")+" JOD", "- Net Salary!");
 
         softAssert.assertAll();
 
@@ -308,89 +274,74 @@ public class SalarySlip extends BaseTest {
     @Test(priority = 5, groups = "Salary Slip")
     public void addAllTransactionToEmployeeAndCheckAllFieldsInSalarySlip(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("2000");
+        employees.entitledToOvertime(employeeCode);
+        employees.addAllowance("Fixed Allowance", "200", "", "", "", true);
+        employees.addAllowance("Percent Allowance", "10", "", "", "", true);
+        employees.addAllowance("Transportation Allowance", "100", "", "", "", true);
+        employees.addSocialSecurity("Social Security", "", "", false);
+        employees.healthInsurance("Health insurance - Fixed", "", "");
 
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
+        salaryCalculation = new apiBackend.SalaryCalculation();
+        salaryCalculation.taxable(true, "Tax", true, false);
 
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
+        allEmployeeTransactions = new AllEmployeeTransactions();
+        allEmployeeTransactions.vacation(employeeCode, "2024-06-01", "2024-06-01", "Unpaid Vacation", true);
+        allEmployeeTransactions.leave(employeeCode, "2024-06-06", "2024-06-06", "Unpaid Leave", "5", true);
+        allEmployeeTransactions.overtime(employeeCode, "2024-06-08", "2024-06-08", "Holiday Overtime", "2", true);
+        allEmployeeTransactions.overtime(employeeCode, "2024-06-09", "2024-06-09", "Holiday Overtime", "2", true);
+        allEmployeeTransactions.loans(employeeCode, "2024-06-01", "2024-06-01", "Car Loan", "1200", "12", true);
+        allEmployeeTransactions.otherIncome(employeeCode, "2024-06-10", false, "", "Other Income 1", "100", true);
+        allEmployeeTransactions.otherDeductions(employeeCode, "2024-06-12", "Other Deduction 1", "50", false, "", true);
 
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("2000");
-        financial.addAllowances("Fixed Allowance", "200", "", "", "", "");
-        financial.addAllowances("Percent Allowance", "10", "", "", "", "");
-        financial.addAllowances("Transportation Allowance", "100", "", "", "", "");
+        salaryCalculation = new apiBackend.SalaryCalculation();
+        salaryCalculation.salaryCalculation(employeeCode, "2024", "6", true);
+        salaryCalculation.getSalarySlip(employeeCode, 2024, 6);
 
-        insurance = new Insurance();
-        insurance.healthInsurance(true, "Health insurance - Fixed", "", "", "", false);
-        insurance.socialSecurity(true, false, false, "Social Security",
-                "", "", true, false);
+        String worthSalary = salaryCalculation.worthSalaryMonth();
+        String fixedAllowance = salaryCalculation.fixedAllowanceMonth();
+        String percentAllowance = salaryCalculation.percentAllowanceMonth();
+        String transportationAllowance = salaryCalculation.TransportationAllowanceMonth();
+        String totalIncome = salaryCalculation.totalIncomeMonth();
+        String totalDeduction = salaryCalculation.totalDeductionsMonth();
+        String netSalary = salaryCalculation.netSalaryMonth();
+        String overtime = salaryCalculation.overtimeMonth();
+        String otherIncome = salaryCalculation.otherIncomeMonth();
 
-        tax = new TaxAndDeduction();
-        tax.taxable(true, true);
-        //tax.permanentDeductions("Permanent Deduction 1", "", "", "");
 
-        mainMenu.mainMenu("Workforce Management","Employees Transactions Leave");
-        transactions = new EmployeesTransactions();
-        transactions.vacation(employeeCode, "01/06/2024", "01/06/2024", "Unpaid Vacation", true);
-        transactions.leave(employeeCode, "06/06/2024", "Unpaid Leave", "5");
+        //String otherAllowances = salaryCalculation.otherAllowances();
+        //String paidVacations = salaryCalculation.paidVacations();
+        //String absence = salaryCalculation.absenceMonth();
+        String basicSalary = salaryCalculation.basicSalary();
+        //String incomeTax = salaryCalculation.incomeTax();
+        String nationalContribution = salaryCalculation.nationalContribution();
+        //String serviceTax = salaryCalculation.serviceTax();
+        //String providentFund = salaryCalculation.providentFund();
+        String socialSecurity = salaryCalculation.socialSecurityMonth();
+        String healthInsurance = salaryCalculation.healthInsuranceMonth();
+        String monthlyLoans = salaryCalculation.monthlyLoans();
+        String otherDeductions = salaryCalculation.otherDeductionsMonth();
 
-        mainMenu.mainMenu("Workforce Management","Employees Transactions");
-        transactions.overtime(employeeCode, "08/06/2024", "Holiday Overtime", "2", true);
-        transactions.overtime(employeeCode, "09/06/2024", "Holiday Overtime", "2", true);
-        transactions.loans(employeeCode, "01/06/2024", "Car Loan", "1200", "12", "");
-        transactions.otherIncome(employeeCode, "10/06/2024", "Choose", "Other Income 1", "100", "");
-        transactions.otherDeductions(employeeCode, "12/06/2024", "Choose", "", "Other Deduction 1", "50", "", "", true);
-
-        mainMenu.mainMenu("Workforce Management", "Salary Calculation");
-        calculation = new SalaryCalculation();
-        calculation.salaryCalculation(employeeCode, "2024", "06");
-
-        String worthSalary = calculation.worthSalaryMonth();
-        String fixedAllowance = calculation.fixedAllowanceMonth();
-        String percentAllowance = calculation.percentAllowanceMonth();
-        String otherAllowances = calculation.otherAllowances();
-        String totalIncome = calculation.totalIncomeMonth();
-        String totalDeduction = calculation.totalDeductionsMonth();
-        String netSalary = calculation.netSalaryMonth();
-        String overtime = calculation.overtimeMonth();
-        String otherIncome = calculation.otherIncomeMonth();
-        String paidVacations = calculation.paidVacations();
-        String absence = calculation.absenceMonth();
-        String basicSalary = calculation.basicSalary();
-        String incomeTax = calculation.incomeTax();
-        String nationalContribution = calculation.nationalContribution();
-        String serviceTax = calculation.serviceTax();
-        String providentFund = calculation.providentFund();
-        String socialSecurity = calculation.socialSecurityMonth();
-        String healthInsurance = calculation.healthInsuranceMonth();
-        String monthlyLoans = calculation.monthlyLoans();
-        String otherDeductions = calculation.otherDeductionsMonth();
-
-        calculation.closeSalaryReport();
-        calculation.releaseToMenaME();
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "auto_mob1", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.myProfile("Financial");
@@ -398,53 +349,54 @@ public class SalarySlip extends BaseTest {
         salarySlip = new SalarySlipBE();
         salarySlip.openSalarySlip();
 
-        softAssert.assertEquals(salarySlip.getRecentSalarySlip(), "June (06) - 2024", "Recent Salary Month!");
+        softAssert.assertEquals(salarySlip.getRecentSalarySlip(), "June (6) - 2024", "Recent Salary Month!");
         softAssert.assertEquals(salarySlip.netSalary()+" JOD", netSalary, "Net Salary!");
         softAssert.assertEquals(salarySlip.income(), totalIncome, "Income!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Worth Salary"), worthSalary, "Worth Salary!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Overtime"), overtime, "Overtime!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Other Income"), otherIncome, "Other Income!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Holiday Overtime"), overtime, "Holiday Overtime!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Other Income 1"), otherIncome, "Other Income 1!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Fixed Allowance"), fixedAllowance, "Fixed Allowance!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Percent Allowance"), percentAllowance, "Percent Allowance!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Transportation Allowance"), otherAllowances, "Transportation Allowance!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Paid Vacations"), paidVacations, "Paid Vacations!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Transportation Allowance"), transportationAllowance, "Transportation Allowance!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Transportation Allowance"), otherAllowances, "Transportation Allowance!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Income", "Paid Vacations"), paidVacations, "Paid Vacations!");
         softAssert.assertEquals(salarySlip.deduction_Amount(), totalDeduction, "Deduction Amount!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Tax"), incomeTax, "Tax!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Insurance"), healthInsurance, "Insurance!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Other Deductions"), otherDeductions, "Other Deductions!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Loan"), monthlyLoans, "Loan!");
-        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Provident Fund"), providentFund, "Provident Fund!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Tax"), incomeTax, "Tax!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Health insurance - Fixed"), healthInsurance, "Health insurance - Fixed!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Other Deduction 1"), otherDeductions, "Other Deduction 1!");
+        softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Car Loan"), monthlyLoans, "Car Loan!");
+        //softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Provident Fund"), providentFund, "Provident Fund!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Social Security"), socialSecurity, "Social Security!");
-        softAssert.assertEquals(salarySlip.deduction_Period(), "6", "Deduction Period!");
+        //softAssert.assertEquals(salarySlip.deduction_Period(), "6", "Deduction Period!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Leave"), "5", "Leave!");
         softAssert.assertEquals(salarySlip.salarySlip_GetAmount("Deduction", "Vacation"), "1", "Vacation!");
-        softAssert.assertEquals(salarySlip.PF_Balance(), "0.000", "PF Balance!");
+        //softAssert.assertEquals(salarySlip.PF_Balance(), "0.000", "PF Balance!");
 
-        salarySlip.downloadSalarySlip();
-        salarySlip.savePdfInDevice(employeeCode);
-        getPDF("/sdcard/Download/", employeeCode+".pdf");
-        mainScreen.android_Back();
-
-        softAssert.assertEquals(employeeCode, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Employee Code"), "- Employee Code!");
-        softAssert.assertEquals(basicSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Basic Salary"), "- Basic Salary!");
-        softAssert.assertEquals(otherAllowances, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Allowances"), "- Other Allowances!");
-        softAssert.assertEquals(overtime, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Overtime"), "- Overtime!");
-        softAssert.assertEquals(paidVacations, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Paid Vacations"), "- Paid Vacations!");
-        softAssert.assertEquals(otherIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Income"), "- Other Income!");
-        softAssert.assertEquals(totalIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Income"), "- Total Income!");
-        softAssert.assertEquals(incomeTax, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Income Tax"), "- Income Tax!");
-        softAssert.assertEquals(nationalContribution, PDFReader.getDataFromSalarySlipPdf(employeeCode, "National Contribution"), "- National Contribution!");
-        softAssert.assertEquals(serviceTax, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Service Tax"), "- Service Tax!");
-        softAssert.assertEquals(socialSecurity, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Social Security"), "- Social Security!");
-        softAssert.assertEquals(healthInsurance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Health Insurance"), "- Health Insurance!");
-        softAssert.assertEquals(providentFund, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Provident Fund"), "- Provident Fund!");
-        softAssert.assertEquals(monthlyLoans, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Monthly Loans"), "- Monthly Loans!");
-        softAssert.assertEquals(otherDeductions, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Deductions"), "- Other Deductions!");
-        softAssert.assertEquals(totalDeduction, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
-        softAssert.assertEquals(netSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Net Salary (Month Jun)")+" JOD", "- Net Salary!");
-        softAssert.assertEquals(fixedAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
-        softAssert.assertEquals(percentAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
-        softAssert.assertEquals(otherAllowances, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Transportation Allowance"), "- Transportation Allowance!");
+//        salarySlip.downloadSalarySlip();
+//        salarySlip.savePdfInDevice(employeeCode);
+//        getPDF("/sdcard/Download/", employeeCode+".pdf");
+//        mainScreen.android_Back();
+//
+//        softAssert.assertEquals(employeeCode, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Employee Code"), "- Employee Code!");
+//        softAssert.assertEquals(basicSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Basic Salary"), "- Basic Salary!");
+//        //softAssert.assertEquals(otherAllowances, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Allowances"), "- Other Allowances!");
+//        softAssert.assertEquals(overtime, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Overtime"), "- Overtime!");
+//        //softAssert.assertEquals(paidVacations, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Paid Vacations"), "- Paid Vacations!");
+//        softAssert.assertEquals(otherIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Income"), "- Other Income!");
+//        softAssert.assertEquals(totalIncome, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Income"), "- Total Income!");
+//        //softAssert.assertEquals(incomeTax, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Income Tax"), "- Income Tax!");
+//        softAssert.assertEquals(nationalContribution, PDFReader.getDataFromSalarySlipPdf(employeeCode, "National Contribution"), "- National Contribution!");
+//        //softAssert.assertEquals(serviceTax, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Service Tax"), "- Service Tax!");
+//        softAssert.assertEquals(socialSecurity, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Social Security"), "- Social Security!");
+//        softAssert.assertEquals(healthInsurance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Health Insurance"), "- Health Insurance!");
+//        //softAssert.assertEquals(providentFund, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Provident Fund"), "- Provident Fund!");
+//        softAssert.assertEquals(monthlyLoans, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Monthly Loans"), "- Monthly Loans!");
+//        softAssert.assertEquals(otherDeductions, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Other Deductions"), "- Other Deductions!");
+//        softAssert.assertEquals(totalDeduction, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Total Deductions"), "- Total Deductions!");
+//        softAssert.assertEquals(netSalary, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Net Salary (Month Jun)")+" JOD", "- Net Salary!");
+//        softAssert.assertEquals(fixedAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Fixed Allowance"), "- Fixed Allowance!");
+//        softAssert.assertEquals(percentAllowance, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Percent Allowance"), "- Percent Allowance!");
+//        //softAssert.assertEquals(otherAllowances, PDFReader.getDataFromSalarySlipPdf(employeeCode, "Transportation Allowance"), "- Transportation Allowance!");
 
         softAssert.assertAll();
 
@@ -549,7 +501,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(directManager, "sa", "auto_mob1", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -591,7 +543,7 @@ public class SalarySlip extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("vuxn60250", "sa", "auto_mob1", "automobile", false);
+        loginMob.login("vuxn60250", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
 

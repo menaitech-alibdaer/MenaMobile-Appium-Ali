@@ -156,6 +156,7 @@ public class MyProfilePersonal extends MobileBasePage {
         hold(800);
         clickOn(contactInformationTab);
         waitLoadingElement();
+        waitLoadingElement();
     }
     public void openAddress(){
         clickOn(personalTab);
@@ -231,16 +232,22 @@ public class MyProfilePersonal extends MobileBasePage {
     public void addContactInformation(String mobile, String email, boolean checkAlert){
         waitLoadingElement();
         waitLoadingElement();
-        clickOn(contactInformation_AddBtn, true);
+        try {
+            simpleClick(contactInformation_AddBtn, 2);
+        }catch (Exception e){
+            simpleClick(AppiumBy.xpath("//android.view.View[@content-desc='Contact Information']/following::android.widget.ImageView[1]"), 2);
+        }
         waitLoadingElement();
         hold(800);
         if(!mobile.isEmpty()){
+            simpleClick(mobileField);
             mobileField.clear();
             setText(mobileField, mobile);
         }
         if(!email.isEmpty()){
+            simpleClick(emailField);
             emailField.clear();
-            setText(emailField, mobile);
+            setText(emailField, email);
         }
 
         verticalSwipeByPercentages(70, 10, 50);

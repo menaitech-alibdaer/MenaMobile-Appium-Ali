@@ -13,6 +13,7 @@ import webBackend.personnelInformation.Other;
 import webBackend.personnelInformation.PersonnelInformation;
 
 import static utilities.MssqlConnect.menaMeRestPassword;
+import static utilities.MssqlConnect.setMenaMePassword;
 import static utilities.WebHelper.currentDateMinusDays;
 
 public class OvertimeRequest extends BaseTest {
@@ -23,16 +24,17 @@ public class OvertimeRequest extends BaseTest {
     Login login;
     MenaModules menaModules;
     MainMenu mainMenu;
-    Settings settings;
     EmployeesTransactions transactions;
     String employeeCode = null;
 
     MobileLogin loginMob;
     MainScreen mainScreen;
     MyRequests myRequests;
+    MyTransactions myTransactions;
 
     CompanyAndBranch companyAndBranch;
     Employees employees;
+    Settings settings;
 
 //    @Test(priority = 1, groups = "Overtime", enabled = false)
 //    public void option_OvertimeHourIsCalculatedAsFixedRateValue(){
@@ -223,6 +225,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -247,12 +250,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
         employees.addExtraSalary(employeeCode, "Extra Salary 14");
 
         /////////////// Mobile Initialize //////////////
@@ -266,18 +270,16 @@ public class OvertimeRequest extends BaseTest {
 
         myRequests = new MyRequests();
         myRequests.openOvertime();
-        myRequests.overtimeRequest("01/10/2024", "Include Extra Salaries In Transaction Amount Calculation", "", "", "",
+        myRequests.overtimeRequest("01/10/2024", "Include Extra Salaries In Transaction", "", "", "",
                 "5:30 PM", "8:30 PM", false, "", true, false);
 
-        ///////////////////
+        mainScreen = new MainScreen();
+        mainScreen.myTransactions();
 
-        mainMenu.mainMenu("Workforce Management","Employees Transactions");
+        myTransactions = new MyTransactions();
+        myTransactions.openTransactionInMyTransactions("Financial Transactions", "All", "Include Extra Salaries In Transaction", "01.10.2024");
 
-        transactions = new EmployeesTransactions();
-        transactions.setEmployeeCode(employeeCode);
-        transactions.goToOvertime();
-
-        Assert.assertEquals(transactions.getAmount(1), "21.169", "- Overtime Amount Issue");
+        Assert.assertEquals(myTransactions.getTransactionDetails("Amount"), "21.17 JOD", "- Amount Issue");
 
     }
 
@@ -293,12 +295,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -319,42 +322,29 @@ public class OvertimeRequest extends BaseTest {
                 myRequests.overtimeRequest("01/10/2024", "Allow More Than One Transaction In The Same Day", "", "", "",
                 "5:30 PM", "8:30 PM", false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Your Overtime Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Overtime Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Done Successfully");
 
     }
 
-    @Test(priority = 7, groups = "Overtime", enabled = false)
+    @Test(priority = 7, groups = "Overtime")
     public void option_AllowOvertimeRequestsWithinShiftsPeriods(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1990");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "1", "1", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -370,42 +360,29 @@ public class OvertimeRequest extends BaseTest {
         myRequests.overtimeRequest("01/10/2024", "Allow Overtime Requests Within Shifts Periods", "", "", "",
                 "12:30 PM", "2:30 PM", false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Your Overtime Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Overtime Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Done Successfully");
 
     }
 
-    @Test(priority = 8, groups = "Overtime", enabled = false)
+    @Test(priority = 8, groups = "Overtime")
     public void requestOvertimeWithinShiftAndCheckTheValidation(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1990");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "1", "1", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -421,42 +398,29 @@ public class OvertimeRequest extends BaseTest {
         myRequests.overtimeRequest("01/10/2024", "Regular Overtime", "", "", "",
                 "12:30 PM", "2:30 PM", false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Request Start Time And End Time Should Not Be Within Shift"), "Alert Issue: Shoud be alert appear--> Request Start Time And End Time Should Not Be Within Shift");
+        Assert.assertTrue(myRequests.checkAlertPopup("Overtime is not allowed during the shift"), "Alert Issue: Shoud be alert appear--> Overtime is not allowed during the shift");
 
     }
 
-    @Test(priority = 8, groups = "Overtime", enabled = false)
+    @Test(priority = 8, groups = "Overtime")
     public void option_DontAllowPreviousDateMenaMERequestMoreThan_3_DaysFromEffectiveDate(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1990");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "", "", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -472,7 +436,7 @@ public class OvertimeRequest extends BaseTest {
         myRequests.overtimeRequest(currentDateMinusDays(5), "Dont Allow Previous Date MenaME Request More Than", "", "", "",
                 "12:30 PM", "2:30 PM", false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Date Can Not Before More Than"), "Alert Issue: Shoud be alert contain--> Date Can Not Before More Than");
+        Assert.assertTrue(myRequests.checkAlertPopup("Passed Allowed Period To Request Overtime"), "Alert Issue: Shoud be alert contain--> Passed Allowed Period To Request Overtime");
 
     }
 
@@ -488,12 +452,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -511,50 +476,29 @@ public class OvertimeRequest extends BaseTest {
         myRequests.overtimeRequest("01/10/2024", "Overtime Transactions will be paid as Non-payroll", "", "", "",
                 "9:00 AM", "11:00 AM", false, "", true, false); //// For New System Revamp
 
-        ///////////////////
-
-        mainMenu.mainMenu("Workforce Management","Employees Transactions");
-
-        transactions = new EmployeesTransactions();
-        transactions.setEmployeeCode(employeeCode);
-        transactions.goToOvertime();
-
-        Assert.assertEquals(transactions.getTransactionType_Overtime(1), "Non Payroll", "- Overtime Transaction Type Issue");
+        Assert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Done Successfully");
 
     }
 
-    @Test(priority = 8, groups = "Overtime", enabled = false)
+    @Test(priority = 8, groups = "Overtime")
     public void option_OvertimeCanBeRequestedOnlyOn_WorkingDays(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1990");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "1", "1", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -579,38 +523,25 @@ public class OvertimeRequest extends BaseTest {
 
     }
 
-    @Test(priority = 8, groups = "Overtime", enabled = false)
+    @Test(priority = 8, groups = "Overtime")
     public void option_OvertimeCanBeRequestedOnlyOn_Holidays(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1990");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "1", "1", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -635,38 +566,25 @@ public class OvertimeRequest extends BaseTest {
 
     }
 
-    @Test(priority = 8, groups = "Overtime", enabled = false)
+    @Test(priority = 8, groups = "Overtime")
     public void option_OvertimeCanBeRequestedOnlyOn_DaysOff(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1990");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "1", "1", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -703,12 +621,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -755,12 +674,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -792,12 +712,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -839,12 +760,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -886,12 +808,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -928,12 +851,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -975,12 +899,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1028,12 +953,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1087,12 +1013,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1136,12 +1063,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1179,12 +1107,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1233,12 +1162,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -1287,12 +1217,13 @@ public class OvertimeRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
         employeeCode = employees.getEmployeeCode();
         employees.setBasicSalary("1000");
+        employees.entitledToOvertime(employeeCode);
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();

@@ -9,33 +9,19 @@ import mobileBackend.MyRequests;
 import mobileBackend.MyTransactions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import webBackend.financialInformation.FinancialPackage;
-import webBackend.general.Login;
-import webBackend.general.MainMenu;
-import webBackend.general.MenaModules;
-import webBackend.personnelInformation.Other;
-import webBackend.personnelInformation.PersonnelInformation;
 
 import static utilities.MobileHelper.backTime;
 import static utilities.MobileHelper.currentTime;
-import static utilities.MssqlConnect.menaMeRestPassword;
+import static utilities.MssqlConnect.setMenaMePassword;
 import static utilities.WebHelper.currentDate;
 
 public class LeaveRequest extends BaseTest {
 
-    PersonnelInformation personnel;
-    FinancialPackage financial;
-    Other other;
-    Login login;
-    MenaModules menaModules;
-    MainMenu mainMenu;
     String employeeCode = null;
-
     MobileLogin loginMob;
     MainScreen mainScreen;
     MyTransactions myTransactions;
     MyRequests myRequests;
-
     CompanyAndBranch companyAndBranch;
     Employees employees;
 
@@ -51,7 +37,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "1", "1", 0, true, false);
@@ -99,7 +85,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "1", "1", 0, true, false);
@@ -136,7 +122,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -191,7 +177,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -243,7 +229,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -280,7 +266,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -318,7 +304,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -363,7 +349,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -408,7 +394,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -440,6 +426,7 @@ public class LeaveRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
+        setMenaMePassword("auto_mobile1", "Revamp");
         loginMob.login("auto_mobile1", "sa", "automobile", false);
 
         mainScreen = new MainScreen();
@@ -464,7 +451,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -501,7 +488,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -538,7 +525,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -559,7 +546,7 @@ public class LeaveRequest extends BaseTest {
         myRequests.leaveRequest("The Support Document Is Mandatory - With Day and Time", "08/10/2024", "11:30 AM", "1:30 PM",
                 false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Your Leave Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Leave Request Has Been Submitted Successfully");
+        Assert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Done Successfully");
 
     }
 
@@ -575,7 +562,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -603,35 +590,21 @@ public class LeaveRequest extends BaseTest {
     @Test(priority = 1, groups = "Leaves", enabled = false)
     public void option_AllowOutOfShiftLeave(){
 
-        /////////////// Web Initialize //////////////
-        systemInitialize();
+        /////////// API - Rest Assured ////////////
+        companyAndBranch = new CompanyAndBranch();
+        companyAndBranch.setCompanyId("automobile");
+        companyAndBranch.setBranchId("auto_mob1");
 
-        login = new Login();
-        login.auto_mob1();
-
-        menaModules = new MenaModules();
-        menaModules.menaPAY();
-
-        mainMenu = new MainMenu();
-        mainMenu.mainMenu("Employees","Personnel Information");
-        personnel = new PersonnelInformation();
-        personnel.personalInformation("Single", "Male", "Jordanian",
-                "", "", "", "", "01/01/1980");
-        personnel.employmentInformation("New Zarqa", "Quality", "Quality Control", "",
-                "", "", "", "", "", "", "", "",
-                "", "", "", "", "", "Software Test Engineer",
-                "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = personnel.employeeCodeGetter();
-        menaMeRestPassword(employeeCode);
-
-        other = new Other();
-        other.goToShiftDetails();
-        other.addShiftDetails(employeeCode, "Regular", "Automation", "WSS");
-
-        mainMenu.mainMenu("Employees","Financial Information");
-        financial = new FinancialPackage();
-        financial.setEmployeeCode(employeeCode);
-        financial.setBasicSalary("1000");
+        employees = new Employees();
+        employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
+                "", "New Zarqa", "Quality", "Quality Control", "", "", "",
+                "", "", "", "", "2020-01-01", "2020-01-01", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
+                "", "Software Test Engineer", "", "", "", "",
+                "", "", "", "", "",
+                true, "Regular", "1", "1", 0, true, false);
+        employeeCode = employees.getEmployeeCode();
+        employees.setBasicSalary("1000");
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
@@ -665,7 +638,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -686,7 +659,7 @@ public class LeaveRequest extends BaseTest {
         myRequests.leaveRequest("Dont Allow Previous Date MenaME Request", "01/10/2024", "10:00 AM", "11:00 AM",
                 false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Leave Transaction Can Not Be Before Current Date"), "Alert Issue: Shoud be alert contain--> Leave Transaction Can Not Be Before Current Date");
+        Assert.assertTrue(myRequests.checkAlertPopup("Leave Request Was Not Submitted"), "Alert Issue: Shoud be alert contain--> Leave Request Was Not Submitted! The leave date must be set in a later date");
 
     }
 
@@ -702,7 +675,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -739,7 +712,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -776,7 +749,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -824,7 +797,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);
@@ -872,7 +845,7 @@ public class LeaveRequest extends BaseTest {
         employees.createNewEmployee("1980-01-01", "", "Male", "Single", "Jordanian", "",
                 "", "New Zarqa", "Quality", "Quality Control", "", "", "",
                 "", "", "", "", "2020-01-01", "2020-01-01", "",
-                "", "", 0, "Jordan CP", "Jordanian Dinar", "",
+                "", "", 0, "Jordan CP", "Jordanian Dinar", "auto_manager",
                 "", "Software Test Engineer", "", "", "", "",
                 "", "", "", "", "",
                 true, "Regular", "", "", 0, true, false);

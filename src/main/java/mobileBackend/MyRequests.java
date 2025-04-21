@@ -18,6 +18,7 @@ import java.util.List;
 
 import static bases.BaseTest.iniPlatform;
 import static io.appium.java_client.AppiumBy.accessibilityId;
+import static org.testng.Assert.fail;
 
 public class MyRequests extends MobileBasePage {
 
@@ -385,29 +386,33 @@ public class MyRequests extends MobileBasePage {
         }
 
         if(!delegateTo.isEmpty()){
-            clickOn(delegateF);
-            hold(2000);
-            if(delegateTo.equalsIgnoreCase("Not Required")){
-                simpleClick(notRequired_checkbox);
-                hold(900);
-            }else{
-                simpleClick(search_delegatePopup);
-                hold(500);
-                setText(search_delegatePopup, delegateTo);
-                hold(500);
-                try {
-                    waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Code:')]"));
+            try {
+                clickOn(delegateF);
+                hold(2000);
+                if(delegateTo.equalsIgnoreCase("Not Required")){
+                    simpleClick(notRequired_checkbox);
+                    hold(900);
+                }else{
+                    simpleClick(search_delegatePopup);
+                    hold(500);
+                    setText(search_delegatePopup, delegateTo);
+                    hold(500);
+                    try {
+                        waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Code:')]"));
+                        hold(300);
+                        clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")));
+
+                    }catch (Exception e){
+                        hold(1000);
+                        clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")), true);
+
+                    }
                     hold(300);
-                    clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")));
-
-                }catch (Exception e){
-                    hold(1000);
-                    clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+delegateTo+"')]")), true);
-
+                    simpleClick(chooseBtn);
+                    hold(500);
                 }
-                hold(300);
-                simpleClick(chooseBtn);
-                hold(500);
+            }catch (Exception delegate){
+                fail("Issue in 'Delegate to' option");
             }
         }
 
@@ -788,84 +793,85 @@ public class MyRequests extends MobileBasePage {
 
     public void uploadAttachment(int numberOfAttachment){
 
-        if(iniPlatform.equalsIgnoreCase("Android")){
+        try {
+            if(iniPlatform.equalsIgnoreCase("Android")){
 
-            // The file to be uploaded
-            File file = new File("src/main/resources/testUpload.jpg");
-            // Specify the remote path where you want to push the file on the device
-            String remotePath = "/sdcard/Download/test.png";
-            // Convert the file to Base64 format
-            byte[] fileContent = null;
-            try {
-                fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            String encodedFile = Base64.getEncoder().encodeToString(fileContent);
-            // Upload the file to the device
-            ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
-
-            try {
-                simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Vacation Attachment')]/following::android.widget.ImageView)[1]"));
-            }catch (Exception e){
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+                // Specify the remote path where you want to push the file on the device
+                String remotePath = "/sdcard/Download/test.png";
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
                 try {
-                    simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Reason')]/preceding-sibling::android.view.View[1])//android.widget.ImageView[1]"));
-                }catch (Exception ex){
-                    simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'To Time')]/following::android.widget.ImageView)[1]"));
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
-            }
-
-            for(int i = 0; i < numberOfAttachment; i++){
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+                // Upload the file to the device
+                ((AndroidDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
 
                 try {
-                    simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]"));
+                    simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Vacation Attachment')]/following::android.widget.ImageView)[1]"));
                 }catch (Exception e){
-                    simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Request Attachment']/following::android.widget.ImageView)[1]"));
+                    try {
+                        simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Reason')]/preceding-sibling::android.view.View[1])//android.widget.ImageView[1]"));
+                    }catch (Exception ex){
+                        simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'To Time')]/following::android.widget.ImageView)[1]"));
+                    }
                 }
+
+                for(int i = 0; i < numberOfAttachment; i++){
+
+                    try {
+                        simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]"));
+                    }catch (Exception e){
+                        simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Request Attachment']/following::android.widget.ImageView)[1]"));
+                    }
+                    waitForElementToBeVisible(accessibilityId("Document"));
+                    clickOn(documentBtn);
+                    hold(1500);
+                    try{
+                        appiumDriver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']")).isDisplayed();
+                    }catch (Exception e){
+                        waitForElementToBeVisible(AppiumBy.accessibilityId("Show roots"));
+                        simpleClick(AppiumBy.accessibilityId("Show roots"));
+                        hold(1500);
+                        waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
+                        simpleClick(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
+                        hold(1500);
+                    }
+                    waitForElementToBeClickable(imgUploaded);
+                    simpleClick(imgUploaded);
+                    hold(1000);
+                    waitLoadingElement();
+                    waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
+                }
+
+            }else{
+
+                // The file to be uploaded
+                File file = new File("src/main/resources/testUpload.jpg");
+
+                // Specify the remote path where you want to push the file on the iOS device
+                String remotePath = "@com.example.YourApp:documents/test.png";
+
+                // Convert the file to Base64 format
+                byte[] fileContent = null;
+                try {
+                    fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+                String encodedFile = Base64.getEncoder().encodeToString(fileContent);
+
+                // Upload the file to the device
+                ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
+
+                clickOn(vacationAttachmentIconBtn);
+                clickOn(vacationAttachmentF);
                 waitForElementToBeVisible(accessibilityId("Document"));
                 clickOn(documentBtn);
-                hold(1500);
-                try{
-                    appiumDriver.findElement(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']")).isDisplayed();
-                }catch (Exception e){
-                    waitForElementToBeVisible(AppiumBy.accessibilityId("Show roots"));
-                    simpleClick(AppiumBy.accessibilityId("Show roots"));
-                    hold(1500);
-                    waitForElementToBeVisible(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
-                    simpleClick(AppiumBy.xpath("//android.widget.TextView[@text='Downloads']"));
-                    hold(1500);
-                }
-                waitForElementToBeClickable(imgUploaded);
-                simpleClick(imgUploaded);
-                hold(1000);
-                waitLoadingElement();
-                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
-            }
-
-        }else{
-
-            // The file to be uploaded
-            File file = new File("src/main/resources/testUpload.jpg");
-
-            // Specify the remote path where you want to push the file on the iOS device
-            String remotePath = "@com.example.YourApp:documents/test.png";
-
-            // Convert the file to Base64 format
-            byte[] fileContent = null;
-            try {
-                fileContent = Files.readAllBytes(Path.of(file.getAbsolutePath()));
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            String encodedFile = Base64.getEncoder().encodeToString(fileContent);
-
-            // Upload the file to the device
-            ((IOSDriver) appiumDriver).pushFile(remotePath, encodedFile.getBytes());
-
-            clickOn(vacationAttachmentIconBtn);
-            clickOn(vacationAttachmentF);
-            waitForElementToBeVisible(accessibilityId("Document"));
-            clickOn(documentBtn);
 //                waitForElementToBeVisible(AppiumBy.id("com.android.documentsui:id/dir_list"));
 //                clickOn(appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@resource-id='com.android.documentsui:id/icon_thumb']")));
 //                hold(1000);
@@ -873,6 +879,9 @@ public class MyRequests extends MobileBasePage {
 //                waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, '.png')]"));
 
 
+            }
+        }catch (Exception attachment){
+            fail("Upload attachment issue!");
         }
 
     }

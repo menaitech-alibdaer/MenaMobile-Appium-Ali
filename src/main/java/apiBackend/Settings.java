@@ -16,14 +16,14 @@ public class Settings extends ApiBase {
 
     public void overtimeBudget(boolean maxPercentage, String valuePerDay, String valuePerWeek, String valuePerMonth){
 
-        int overtimeBudgetId = Integer.parseInt(
-                selectQuery("select Id from OvertimeBudgets where BranchId = "+getBranchId()).trim()
-        );
+//        int overtimeBudgetId = Integer.parseInt(
+//                selectQuery("select Id from OvertimeBudgets where BranchId = "+getBranchId()).trim()
+//        );
 
         // Dynamically create a JSON payload
         Map<String, Object> payload = new HashMap<>();
 
-        payload.put("id", overtimeBudgetId);
+        payload.put("id", 0);
         payload.put("branchId", getBranchId());
 
         if(maxPercentage){

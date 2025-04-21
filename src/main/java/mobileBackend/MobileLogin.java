@@ -87,10 +87,19 @@ public class MobileLogin extends MobileBasePage {
 
         waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Company Code']"));
         clickOn(companyCodeF);
+        hold(100);
+        companyCodeF.clear();
+        hold(100);
         setText(companyCodeF, companyCode);
         clickOn(branchCodeF);
+        hold(100);
+        branchCodeF.clear();
+        hold(100);
         setText(branchCodeF, branchCode);
         clickOn(connectivityURLF);
+        hold(100);
+        connectivityURLF.clear();
+        hold(100);
         setText(connectivityURLF, connectivityURL);
         clickOn(connectBtn);
         waitLoadingElement();
