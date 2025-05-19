@@ -106,7 +106,7 @@ public class SalarySlipBE extends MobileBasePage {
 
                 try {
                     isElementFound =  appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[contains(@content-desc, '"+fieldName+"')]")).isDisplayed();
-                    String field = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[contains(@content-desc, '"+fieldName+"')]")).getAttribute("content-desc");
+                    String field = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[contains(@content-desc, '"+fieldName+"')]")).getDomAttribute("content-desc");
 
                     if (field != null) {
                         getField = field.split("\n")[1];
@@ -143,7 +143,7 @@ public class SalarySlipBE extends MobileBasePage {
         clickOn(AppiumBy.accessibilityId("Recent Slip"));
         waitLoadingElement();
         waitLoadingElement();
-        String date = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Change M/Y')]")).getAttribute("content-desc");
+        String date = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Change M/Y')]")).getDomAttribute("content-desc");
         String getDate = null;
         if (date != null) {
             getDate = date.split("\n")[0];
@@ -152,32 +152,32 @@ public class SalarySlipBE extends MobileBasePage {
     }
 
     public String netSalary(){
-        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Net Salary']/following::android.view.View[1]")).getAttribute("content-desc");
+        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Net Salary']/following::android.view.View[1]")).getDomAttribute("content-desc");
     }
     public String income(){
-        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Income']/following::android.view.View[1]")).getAttribute("content-desc");
+        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Income']/following::android.view.View[1]")).getDomAttribute("content-desc");
     }
     public String deduction_Amount(){
         scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']"), true, 4);
-        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[1]")).getAttribute("content-desc").contains("Amount")){
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Amount')]/following::android.view.View[1]")).getAttribute("content-desc");
+        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[1]")).getDomAttribute("content-desc").contains("Amount")){
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Amount')]/following::android.view.View[1]")).getDomAttribute("content-desc");
         }else{
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[1]")).getAttribute("content-desc");
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[1]")).getDomAttribute("content-desc");
         }
     }
     public String deduction_Period(){
         scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Period')]"), true, 4);
-        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Period')]/following::android.view.View[1]")).getAttribute("content-desc");
+        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Deduction']/following::android.view.View[contains(@content-desc, 'Period')]/following::android.view.View[1]")).getDomAttribute("content-desc");
     }
     public String PF_Balance(){
         scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='PF Balance']"), true, 6);
-        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='PF Balance']/following::android.view.View[1]")).getAttribute("content-desc");
+        return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='PF Balance']/following::android.view.View[1]")).getDomAttribute("content-desc");
     }
 
     public boolean checkToastAlert(String alertText){
         hold(800);
         try {
-            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc").contains(alertText);
+            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getDomAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             return false;
         }
@@ -186,16 +186,16 @@ public class SalarySlipBE extends MobileBasePage {
     public boolean checkAlertPopup(String alertText){
         hold(1000);
         try{
-            return successAlertPopup.getAttribute("content-desc").contains(alertText);
+            return successAlertPopup.getDomAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             try {
-                return attentionAlertPopup.getAttribute("content-desc").contains(alertText);
+                return attentionAlertPopup.getDomAttribute("content-desc").contains(alertText);
             }catch (Exception ex){
                 try {
-                    return successAlertPopup2.getAttribute("content-desc").contains(alertText);
+                    return successAlertPopup2.getDomAttribute("content-desc").contains(alertText);
                 }catch (Exception eex){
                     try {
-                        return attentionAlertPopup2.getAttribute("content-desc").contains(alertText);
+                        return attentionAlertPopup2.getDomAttribute("content-desc").contains(alertText);
                     }catch (Exception eeex){
                         return false;
                     }

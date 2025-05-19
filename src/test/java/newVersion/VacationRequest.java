@@ -165,7 +165,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Do Not Allow To Exceed Vacation End Of Year Balance", "", "01/03/"+currentYear(), "20/03/"+currentYear(),
                 false, 1, "", "", true, true); /// for new system revamp
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("Exceeded The End Of Year Remaining Balance"), "The alert NOT contain: Exceeded The Remaining Balance!");
         Assert.assertTrue(myRequests.checkAlertPopup("Cannot Exceed the Up To End Of Year"), "The alert NOT contain: Exceeded The Remaining Balance!");
 
     }
@@ -209,8 +209,8 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Unpaid Vacation", "", "05/05/2023", "05/05/2023",
                 false, 1, "", "", true, true);
 
-        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
-        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("in Same Day"), "The alert NOT contain: in Same Day");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("in Same Day"), "The alert NOT contain: in Same Day");
         //softAssert.assertTrue(myRequests.checkAlertPopup("You Can Not Add This Vacation"), "The alert NOT contain: You Can Not Add This Vacation!");
         softAssert.assertTrue(myRequests.checkAlertPopup("overlap detected"), "The alert NOT contain: Vacation overlap detected!");
         softAssert.assertAll();
@@ -357,7 +357,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "11/10/2023",
                 true, 2, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
@@ -395,7 +395,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory After 2 Days - Allowed Number = 2", "", "10/10/2023", "10/10/2023",
                 false, 0, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
@@ -494,7 +494,7 @@ public class VacationRequest extends BaseTest {
                 false, 0, "", "", true, true);
 
         //softAssert.assertTrue(mainScreen.attentionAlertPopup.isDisplayed(), "Attention Please Alert NOT Appear!");
-        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Minimum Number Of Allowed Attachments Is(1)"), "Alert Issue: Shoud be alert appear--> Minimum Number Of Allowed Attachments Is(1)]");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("Minimum Number Of Allowed Attachments Is(1)"), "Alert Issue: Shoud be alert appear--> Minimum Number Of Allowed Attachments Is(1)]");
         softAssert.assertTrue(myRequests.checkAlertPopup("Minimum Number Of Allowed Attachments Is(1)"), "Alert Issue: Shoud be alert appear--> Minimum Number Of Allowed Attachments Is(1)]");
         softAssert.assertAll();
 
@@ -543,7 +543,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Document Is Mandatory - Accumulative - After 2 Days - Allowed Number = 2", "", "06/05/2023", "06/05/2023",
                 true, 2, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
@@ -581,7 +581,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Can Not Be Requested In Future Date", "", "05/05/2030", "05/05/2030",
                 false, 0, "", "", true, true);
 
-        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("You Can Not Request This Vacation In A Future Date"), "Alert Issue: Shoud be alert appear--> You Can Not Request This Vacation In A Future Date");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("You Can Not Request This Vacation In A Future Date"), "Alert Issue: Shoud be alert appear--> You Can Not Request This Vacation In A Future Date");
         softAssert.assertTrue(myRequests.checkAlertPopup("Cannot Request Vacation With Future Date"), "Alert Issue: Shoud be alert appear--> Cannot Request Vacation With Future Date");
 
         myRequests.closeAlert();
@@ -591,7 +591,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Can Not Be Requested In Previous Date", "", "06/05/2023", "06/05/2023",
                 false, 0, "", "", true, true);
 
-        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("before the current date"), "Alert Issue: Shoud be alert appear--> Transaction Date can`t be before the current date");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("before the current date"), "Alert Issue: Shoud be alert appear--> Transaction Date can`t be before the current date");
         softAssert.assertTrue(myRequests.checkAlertPopup("Cannot Request Vacation With Previous Date"), "Alert Issue: Shoud be alert appear--> Cannot Request Vacation With Previous Date");
         softAssert.assertAll();
 
@@ -669,7 +669,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("To Test Delegate", "", "", "",
                 false, 0, "", "Not Required", true, true);
 
-        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Done Successfully");
 
     }
@@ -717,7 +717,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("To Test Delegate", "", "", "",
                 false, 0, "", emp2_Name, true, true);
 
-        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Done Successfully");
 
     }
@@ -768,7 +768,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("To Test Delegate - Substitutes", "", "", "",
                 false, 0, "", substituteCode, true, true);
 
-        //Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
@@ -819,9 +819,9 @@ public class VacationRequest extends BaseTest {
         myRequests.selectVacationType("To Test Delegate - Substitutes");
         myRequests.openDelegatePopup();
 
-        softAssert.assertTrue(myRequests.resultFound.getAttribute("content-desc").contains("1 results found"), "The Result found shoud be = 1");
+        softAssert.assertTrue(myRequests.resultFound.getDomAttribute("content-desc").contains("1 results found"), "The Result found shoud be = 1");
         softAssert.assertEquals(myRequests.listOfEmployees.size(), 1, "The list shoud be contain 1 employee");
-        softAssert.assertTrue(myRequests.listOfEmployees.get(0).getAttribute("content-desc").contains(substituteCode), "the employee code in the list shoud be: "+substituteCode);
+        softAssert.assertTrue(myRequests.listOfEmployees.get(0).getDomAttribute("content-desc").contains(substituteCode), "the employee code in the list shoud be: "+substituteCode);
         softAssert.assertAll();
 
     }
@@ -1229,7 +1229,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Sick Vacation", "Reason 2", "", "",
                 false, 0, "", "", true, true);
 
-        //Assert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //Assert.assertTrue(myRequests.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         Assert.assertTrue(myRequests.checkAlertPopup("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
 
     }
@@ -1749,7 +1749,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Annual Upper Limit 14", "", "20/08/2023", "25/08/2023",
                 false, 0, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("The Employee Has Exceeded The Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
         Assert.assertTrue(myRequests.checkAlertPopup("Exceeded The maximum days per year"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
 
     }
@@ -1797,7 +1797,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Monthly Upper Limit 3", "", "15/05/2023", "19/05/2023",
                 false, 0, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
         Assert.assertTrue(myRequests.checkAlertPopup("The Employee Has Exceeded The Monthly Upper Limit For The Vacation"), "Alert Issue!!! - The alert NOT contain: The Employee Has Exceeded The Upper Limit For The Vacation!");
 
     }
@@ -1835,7 +1835,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Earned After - 3 Month", "", "01/02/2020", "02/02/2020",
                 false, 0, "", "", true, true);
 
-        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("These Vacations Were Not Earned Yet"), "Alert Issue!!! - The alert NOT contain: These Vacations Were Not Earned Yet!");
+        //softAssert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("These Vacations Were Not Earned Yet"), "Alert Issue!!! - The alert NOT contain: These Vacations Were Not Earned Yet!");
         softAssert.assertTrue(myRequests.checkAlertPopup("not earned for this vacation"), "Alert Issue!!! - The alert NOT contain: These Vacations Were Not Earned Yet!");
 
         myRequests.closeAlert();
@@ -1845,7 +1845,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Earned After - 3 Month", "", "01/05/2020", "02/05/2020",
                 false, 0, "", "", true, true);
 
-        //softAssert.assertTrue(myRequests.successAlertPopup.getAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
+        //softAssert.assertTrue(myRequests.successAlertPopup.getDomAttribute("content-desc").contains("Your Vacation Request Has Been Submitted Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         softAssert.assertTrue(myRequests.checkAlertPopup("Done Successfully"), "Alert Issue: Shoud be alert appear--> Your Vacation Request Has Been Submitted Successfully");
         softAssert.assertAll();
 
@@ -1887,7 +1887,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Do Not Allow To Exceed Current Vacation Balance", "", "05/01/"+currentYear(), "08/01/"+currentYear(),
                 false, 0, "", "", true, true); /// for new system revamp
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("Exceeded The Remaining Balance For The Vacation"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
         Assert.assertTrue(myRequests.checkAlertPopup("Cannot Exceed the Current Balance"), "Alert Issue!!! - The alert NOT contain: Exceeded The Remaining Balance For This Vacation!");
 
     }
@@ -2050,8 +2050,8 @@ public class VacationRequest extends BaseTest {
         myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Prevent Withdraw Transaction After First Approval", "10.01.2023");
         myTransactions.withdraw(false);
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
+        Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It"), "The alert NOT contain: This Action Can Not Be Done Since At Least One Approval Action Has Been Taken On It!");
 
     }
 
@@ -2258,7 +2258,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Prevent Taking Vacations In Specific Periods", "", "01/10/2024", "02/10/2024",
                 false, 0, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
         Assert.assertTrue(myRequests.checkAlertPopup("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
 
     }
@@ -2305,7 +2305,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Prevent Submit Vacation Of This Type If Employee Vacation", "", "01/10/2024", "01/10/2024",
                 false, 0, "", "", true, true);
 
-        //Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
+        //Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
         Assert.assertTrue(myRequests.checkAlertPopup("Vacations Are Not Permitted In That Period"), "The alert NOT contain: Vacations Are Not Permitted In That Period!");
 
     }
@@ -2348,7 +2348,7 @@ public class VacationRequest extends BaseTest {
         myRequests.vacationRequest("Alert Employees To Request Following Items When Submit Vacation", "", "01/10/2024", "01/10/2024",
                 false, 0, "", "", true, true);
 
-        //softAssert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
+        //softAssert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
         softAssert.assertTrue(myRequests.checkAlertPopup("OR 1"), "The alert NOT contain: OR 1 (this is type of 'Miscellaneous')!");
 
         myRequests.closeAlert();

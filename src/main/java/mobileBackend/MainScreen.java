@@ -220,7 +220,7 @@ public class MainScreen extends MobileBasePage {
 
     public String getLastSalary(){
         try {
-            String text = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")).getAttribute("content-desc");
+            String text = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Last Salary')]")).getDomAttribute("content-desc");
             String[] parts = text.split("\n");
             // The first part will be the text before the newline
             return parts[0];
@@ -267,7 +267,7 @@ public class MainScreen extends MobileBasePage {
 
     public String getCurrentBalance_AnnualVacation(){
 
-        String input = annualVacation_CurrentBalanceBox.getAttribute("content-desc");
+        String input = annualVacation_CurrentBalanceBox.getDomAttribute("content-desc");
         String regex = "\\d+(\\.\\d+)?";
         String result = null;
 
@@ -297,7 +297,7 @@ public class MainScreen extends MobileBasePage {
             horizontalScrollStartedFromElement(annualVacationBox, true, 250);
         }
 
-        String input = annualVacation_UpToEndOfYearBox.getAttribute("content-desc");
+        String input = annualVacation_UpToEndOfYearBox.getDomAttribute("content-desc");
         String regex = "\\d+(\\.\\d+)?";
         String result = null;
 
@@ -318,7 +318,7 @@ public class MainScreen extends MobileBasePage {
 
     public String getCurrentBalance_SickVacation(){
 
-        String input = sickVacation_CurrentBalanceBox.getAttribute("content-desc");
+        String input = sickVacation_CurrentBalanceBox.getDomAttribute("content-desc");
         String regex = "\\d+(\\.\\d+)?";
         String result = null;
 
@@ -348,7 +348,7 @@ public class MainScreen extends MobileBasePage {
             horizontalScrollStartedFromElement(sickVacationBox, true, 250);
         }
 
-        String input = sickVacation_UpToEndOfYearBox.getAttribute("content-desc");
+        String input = sickVacation_UpToEndOfYearBox.getDomAttribute("content-desc");
         String regex = "\\d+(\\.\\d+)?";
         String result = null;
 
@@ -391,29 +391,33 @@ public class MainScreen extends MobileBasePage {
 
     public String loanBalanceAmount(){
 
-        try {
-            loanBalanceBox.isDisplayed();
-        }catch (Exception e){
-            horizontalScrollStartedFromElement(annualVacationBox, true);
-            hold(700);
+        if(loanBalanceBox()){
+            try {
+                loanBalanceBox.isDisplayed();
+            }catch (Exception e){
+                horizontalScrollStartedFromElement(annualVacationBox, true);
+                hold(700);
+            }
+
+            String input = loanBalanceAmount.getDomAttribute("content-desc");
+            String regex = "\\d+(\\.\\d+)?";
+            String result = null;
+
+            // Find the match
+            java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+            java.util.regex.Matcher matcher = pattern.matcher(input);
+
+            if (matcher.find()) {
+                String extractedNumber = matcher.group();
+                result = extractedNumber;
+            } else {
+                result = "No number found!";
+            }
+
+            return result;
+        }else{
+            return "Loan box not appear to find the amount!";
         }
-
-        String input = loanBalanceAmount.getAttribute("content-desc");
-        String regex = "\\d+(\\.\\d+)?";
-        String result = null;
-
-        // Find the match
-        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
-        java.util.regex.Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find()) {
-            String extractedNumber = matcher.group();
-            result = extractedNumber;
-        } else {
-            result = "No number found!";
-        }
-
-        return result;
 
     }
 
@@ -441,29 +445,33 @@ public class MainScreen extends MobileBasePage {
 
     public String stbBalanceAmount(){
 
-        try {
-            stbBalanceBox.isDisplayed();
-        }catch (Exception e){
-            horizontalScrollStartedFromElement(annualVacationBox, true);
-            hold(700);
+        if(stbBalanceBox()){
+            try {
+                stbBalanceBox.isDisplayed();
+            }catch (Exception e){
+                horizontalScrollStartedFromElement(annualVacationBox, true);
+                hold(700);
+            }
+
+            String input = stbBalanceAmount.getDomAttribute("content-desc");
+            String regex = "\\d+(\\.\\d+)?";
+            String result = null;
+
+            // Find the match
+            java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+            java.util.regex.Matcher matcher = pattern.matcher(input);
+
+            if (matcher.find()) {
+                String extractedNumber = matcher.group();
+                result = extractedNumber;
+            } else {
+                result = "No number found!";
+            }
+
+            return result;
+        }else{
+            return "STB box not appear to find the amount!";
         }
-
-        String input = stbBalanceAmount.getAttribute("content-desc");
-        String regex = "\\d+(\\.\\d+)?";
-        String result = null;
-
-        // Find the match
-        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
-        java.util.regex.Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find()) {
-            String extractedNumber = matcher.group();
-            result = extractedNumber;
-        } else {
-            result = "No number found!";
-        }
-
-        return result;
 
     }
 
@@ -500,29 +508,34 @@ public class MainScreen extends MobileBasePage {
 
     public String lastSalaryAmount(){
 
-        try {
-            lastSalaryBox.isDisplayed();
-        }catch (Exception e){
-            horizontalScrollStartedFromElement(annualVacationBox, true);
-            hold(700);
+        if(lastSalaryBox()){
+            try {
+                lastSalaryBox.isDisplayed();
+            }catch (Exception e){
+                horizontalScrollStartedFromElement(annualVacationBox, true);
+                hold(700);
+            }
+
+            String input = lastSalaryAmount.getDomAttribute("content-desc");
+            String regex = "\\d+(\\.\\d+)?";
+            String result = null;
+
+            // Find the match
+            java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
+            java.util.regex.Matcher matcher = pattern.matcher(input);
+
+            if (matcher.find()) {
+                String extractedNumber = matcher.group();
+                result = extractedNumber;
+            } else {
+                result = "No number found!";
+            }
+
+            return result;
+
+        }else{
+            return "Last Salary box not appear to find the amount!";
         }
-
-        String input = lastSalaryAmount.getAttribute("content-desc");
-        String regex = "\\d+(\\.\\d+)?";
-        String result = null;
-
-        // Find the match
-        java.util.regex.Pattern pattern = java.util.regex.Pattern.compile(regex);
-        java.util.regex.Matcher matcher = pattern.matcher(input);
-
-        if (matcher.find()) {
-            String extractedNumber = matcher.group();
-            result = extractedNumber;
-        } else {
-            result = "No number found!";
-        }
-
-        return result;
 
     }
 

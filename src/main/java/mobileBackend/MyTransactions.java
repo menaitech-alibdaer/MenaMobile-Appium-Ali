@@ -47,7 +47,7 @@ public class MyTransactions extends MobileBasePage {
     public String transactionDetails(String type){
         String textAfterNewline = null;
         try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 textAfterNewline = det.substring(det.indexOf("\n") + 1);
             }
@@ -60,7 +60,7 @@ public class MyTransactions extends MobileBasePage {
                 scrollToElement(approvalCommitteeText, true);
             }
             hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//*[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//*[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 textAfterNewline = det.substring(det.indexOf("\n") + 1);
             }
@@ -71,7 +71,7 @@ public class MyTransactions extends MobileBasePage {
     public String getApprovalCommittee(String managerName){
         String textBetweenNewlines = null;
         try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
 
             if(containsMoreThanOneNewline){
@@ -85,8 +85,9 @@ public class MyTransactions extends MobileBasePage {
         }catch (Exception e){
             try {
                 scrollToElement(approvalCommitteeText, true);
+                verticalSwipeByPercentages(70, 60, 50);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
 
                 if(containsMoreThanOneNewline){
@@ -100,7 +101,7 @@ public class MyTransactions extends MobileBasePage {
             }catch (Exception ex){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
 
                 if(containsMoreThanOneNewline){
@@ -118,7 +119,7 @@ public class MyTransactions extends MobileBasePage {
     public String getApprovalComments(String managerName){
         String textAfterSecondNewline = null;
         try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 int firstNewline = det.indexOf("\n");
                 int secondNewline = det.indexOf("\n", firstNewline + 1);
@@ -129,7 +130,7 @@ public class MyTransactions extends MobileBasePage {
             try {
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     int firstNewline = det.indexOf("\n");
                     int secondNewline = det.indexOf("\n", firstNewline + 1);
@@ -139,7 +140,7 @@ public class MyTransactions extends MobileBasePage {
             }catch (Exception ee){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     int firstNewline = det.indexOf("\n");
                     int secondNewline = det.indexOf("\n", firstNewline + 1);
@@ -153,7 +154,7 @@ public class MyTransactions extends MobileBasePage {
     public String getApprovalDate(String managerName){
         String date = null;
         try {
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 int lastNewline = det.lastIndexOf("\n");
                 String textAfterLastNewline = det.substring(lastNewline + 1).trim();
@@ -164,7 +165,7 @@ public class MyTransactions extends MobileBasePage {
             try {
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     int lastNewline = det.lastIndexOf("\n");
                     String textAfterLastNewline = det.substring(lastNewline + 1).trim();
@@ -174,7 +175,7 @@ public class MyTransactions extends MobileBasePage {
             }catch (Exception ex){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     int lastNewline = det.lastIndexOf("\n");
                     String textAfterLastNewline = det.substring(lastNewline + 1).trim();
@@ -433,10 +434,10 @@ public class MyTransactions extends MobileBasePage {
 
         String str = null;
         try{
-            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
         }catch (Exception e){
             scrollToElement(approvalCommitteeText, true);
-            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
         }
 
         if(str != null && !str.isEmpty()){
@@ -459,17 +460,17 @@ public class MyTransactions extends MobileBasePage {
 
         try {
             try {
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Reason')]")).getDomAttribute("content-desc");
             }catch (Exception e){
                 verticalSwipeByPercentages(70, 10, 50);
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, 'Reason')]")).getDomAttribute("content-desc");
             }
         }catch (Exception ee){
             try{
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getDomAttribute("content-desc");
             }catch (Exception eee){
                 verticalSwipeByPercentages(70, 10, 50);
-                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getAttribute("content-desc");
+                getReason = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Reason')]")).getDomAttribute("content-desc");
             }
         }
 

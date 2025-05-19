@@ -6,6 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.testng.annotations.Test;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -22,6 +23,7 @@ public class AllEmployeeTransactions extends ApiBase {
         RestAssured.baseURI = baseUrlApiGetter();
 
         Response response = given()
+                .spec(SpecBuilder())
                 .pathParam("id", id) // Pass integer as query param
                 .when()
                 .get("/VacationTransaction/{id}")
@@ -148,7 +150,8 @@ public class AllEmployeeTransactions extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/VacationTransaction/Create") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -192,7 +195,8 @@ public class AllEmployeeTransactions extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/LeaveTransaction/SaveTransaction") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -239,7 +243,8 @@ public class AllEmployeeTransactions extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/OvertimeTransaction/OvertimeTransactionsSave") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -277,13 +282,29 @@ public class AllEmployeeTransactions extends ApiBase {
         payload.put("employeeId", getIdByEmployeeCode(employeeCode));
         payload.put("posted", post);
 
-//        List<Map<String, Object>> loanCashPayments = new ArrayList<>();
-//
-//        for(int i = 0; i > Integer.parseInt(installments); i++){
-//            Map<String, Object> loanCashPayment = new HashMap<>();
-//
-//
-//        }
+        double amountDouble = Double.parseDouble(amount);
+        double installmentsDouble = Double.parseDouble(installments);
+        double paymentAmountPerMonth = (amountDouble / installmentsDouble);
+
+        LocalDate dates = LocalDate.parse(date);
+
+        List<Map<String, Object>> loanCashPayments = new ArrayList<>();
+
+        for(int i = 0; i < Integer.parseInt(installments); i++){
+
+            Map<String, Object> loanCashPayment = new HashMap<>();
+            loanCashPayment.put("installmentNumber", i+1);
+            //loanCashPayment.put("isPaid", false);
+            loanCashPayment.put("status", 2);
+            loanCashPayment.put("installmentAmount", paymentAmountPerMonth);
+            String installmentDate = String.valueOf(dates.plusMonths(i));
+            loanCashPayment.put("installDueDate", installmentDate);
+
+            loanCashPayments.add(loanCashPayment);
+
+        }
+
+        payload.put("loanCashPayments", loanCashPayments);
 
         // Set the base URI
         RestAssured.baseURI = baseUrlApiGetter();
@@ -294,7 +315,8 @@ public class AllEmployeeTransactions extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/LoanTransaction/Create") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -341,7 +363,8 @@ public class AllEmployeeTransactions extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/OtherIncomeTransaction/Create") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -389,7 +412,8 @@ public class AllEmployeeTransactions extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/DeductionTransaction/DeductionTransactionsSave") // Replace with your endpoint like that -> /Employee/get-max-employee-code

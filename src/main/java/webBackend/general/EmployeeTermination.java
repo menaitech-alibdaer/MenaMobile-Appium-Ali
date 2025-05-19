@@ -1373,82 +1373,82 @@ public class EmployeeTermination extends WebBase {
     ////////// Termination Salary Calculation ////////////
 
     public String absence(){
-        return absenceE.getAttribute("value").trim();
+        return absenceE.getDomAttribute("value").trim();
     }
     public String fixedAllowance(){
-        return fixedAllowanceE.getAttribute("value").trim();
+        return fixedAllowanceE.getDomAttribute("value").trim();
     }
     public String percentAllowance(){
-        return percentAllowanceE.getAttribute("value").trim();
+        return percentAllowanceE.getDomAttribute("value").trim();
     }
     public String siteAllowance(){
-        return siteAllowanceE.getAttribute("value").trim();
+        return siteAllowanceE.getDomAttribute("value").trim();
     }
     public String overtime(){
-        return overtime.getAttribute("value").trim();
+        return overtime.getDomAttribute("value").trim();
     }
     public String vacationsCompensation(){
-        return vacationsCompensationE.getAttribute("value").trim();
+        return vacationsCompensationE.getDomAttribute("value").trim();
     }
     public String monthlyIncome(){
-        return monthlyIncomeE.getAttribute("value").trim();
+        return monthlyIncomeE.getDomAttribute("value").trim();
     }
     public String incomeTax(){
-        return incomeTaxE.getAttribute("value").trim();
+        return incomeTaxE.getDomAttribute("value").trim();
     }
     public String nationalContribution(){
-        return nationalContributionE.getAttribute("value").trim();
+        return nationalContributionE.getDomAttribute("value").trim();
     }
     public String serviceTax(){
-        return serviceTaxE.getAttribute("value").trim();
+        return serviceTaxE.getDomAttribute("value").trim();
     }
     public String providentFund(){
-        return providentFundE.getAttribute("value").trim();
+        return providentFundE.getDomAttribute("value").trim();
     }
     public String loansInstallments(){
-        return loansInstallmentsE.getAttribute("value").trim();
+        return loansInstallmentsE.getDomAttribute("value").trim();
     }
     public String monthlyDeductions(){
-        return monthlyDeductionsE.getAttribute("value").trim();
+        return monthlyDeductionsE.getDomAttribute("value").trim();
     }
     public String hiringDate(){
-        return hiringDateE.getAttribute("value").trim();
+        return hiringDateE.getDomAttribute("value").trim();
     }
     public String companySocial(){
-        return companySocialE.getAttribute("value").trim();
+        return companySocialE.getDomAttribute("value").trim();
     }
     public String companyInsurance(){
-        return companyInsuranceE.getAttribute("value").trim();
+        return companyInsuranceE.getDomAttribute("value").trim();
     }
     public String companyPF(){
-        return companyPF_E.getAttribute("value").trim();
+        return companyPF_E.getDomAttribute("value").trim();
     }
     public String permanentDeductionCompany(){
-        return permanentDeductionCompanyE.getAttribute("value").trim();
+        return permanentDeductionCompanyE.getDomAttribute("value").trim();
     }
     public String otherAllowances(){
-        return otherAllowanceE.getAttribute("value").trim();
+        return otherAllowanceE.getDomAttribute("value").trim();
     }
     public String netSalary(){
-        return netSalary.getAttribute("value").trim();
+        return netSalary.getDomAttribute("value").trim();
     }
     public String totalIncome(){
-        return totalIncome.getAttribute("value").trim();
+        return totalIncome.getDomAttribute("value").trim();
     }
     public String daysPaid(){
-        return daysPaid.getAttribute("value").trim();
+        return daysPaid.getDomAttribute("value").trim();
     }
     public String worthSalary(){
-        return worthSalary.getAttribute("value").trim();
+        return worthSalary.getDomAttribute("value").trim();
     }
     public String socialSecurity(){
-        return socialSecurity.getAttribute("value").trim();
+        return socialSecurity.getDomAttribute("value").trim();
     }
     public String healthInsurance(){
-        return healthInsurance.getAttribute("value").trim();
+        return healthInsurance.getDomAttribute("value").trim();
     }
     public String totalDeductions(){
-        return totalDeductions.getAttribute("value").trim();
+        return totalDeductions.getDomAttribute("value").trim();
     }
 
     public void goToTerminationSettlementCalculation(){
@@ -1463,111 +1463,111 @@ public class EmployeeTermination extends WebBase {
     /////////// Termination Settlement Calculation ///////////
 
     public String TSC_Dues_TerminationSalary(){
-        return TSC_TerminationSalary.getAttribute("value").trim();
+        return TSC_TerminationSalary.getDomAttribute("value").trim();
     }
     public String TSC_Dues_ExtraSalaries(){
-        return TSC_ExtraSalaries.getAttribute("value").trim();
+        return TSC_ExtraSalaries.getDomAttribute("value").trim();
     }
     public String TSC_Dues_PFCurrentBalancePersonal(){
-        return TSC_PFCurrentBalancePersonal.getAttribute("value").trim();
+        return TSC_PFCurrentBalancePersonal.getDomAttribute("value").trim();
     }
     public String TSC_Dues_PFCurrentBalanceCompany(){
-        return TSC_PFCurrentBalanceCompany.getAttribute("value").trim();
+        return TSC_PFCurrentBalanceCompany.getDomAttribute("value").trim();
     }
     public String TSC_Dues_PFCurrentBalanceProfit(){
-        return TSC_PFCurrentBalanceProfit.getAttribute("value").trim();
+        return TSC_PFCurrentBalanceProfit.getDomAttribute("value").trim();
     }
     public String TSC_Dues_ServiceTerminationBenefit(){
-        return TSC_ServiceTerminationBenefit.getAttribute("value").trim();
+        return TSC_ServiceTerminationBenefit.getDomAttribute("value").trim();
     }
     public String TSC_Dues_LoanInterestsRefund(){
-        return TSC_LoanInterestsRefund.getAttribute("value").trim();
+        return TSC_LoanInterestsRefund.getDomAttribute("value").trim();
     }
     public String TSC_Dues_VacationsCompensation(){
-        return TSC_VacationsCompensation.getAttribute("value").trim();
+        return TSC_VacationsCompensation.getDomAttribute("value").trim();
     }
     public String TSC_Dues_OtherDues(){
-        return TSC_OtherDues.getAttribute("value").trim();
+        return TSC_OtherDues.getDomAttribute("value").trim();
     }
     public String TSC_Dues_IndemnityBasedOnArticle77(){
-        return TSC_IndemnityBasedOnArticle77.getAttribute("value").trim();
+        return TSC_IndemnityBasedOnArticle77.getDomAttribute("value").trim();
     }
     public String TSC_Dues_TotalDues(){
-        return TSC_TotalDues.getAttribute("value").trim();
+        return TSC_TotalDues.getDomAttribute("value").trim();
     }
 
     public String TSC_Deductions_UnpaidLoansInstallments(){
-        return TSC_UnpaidLoansInstallments.getAttribute("value").trim();
+        return TSC_UnpaidLoansInstallments.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_SettlementAmountTax(){
-        return TSC_SettlementAmountTax.getAttribute("value").trim();
+        return TSC_SettlementAmountTax.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_FurnitureCompensationRefund(){
-        return TSC_FurnitureCompensationRefund.getAttribute("value").trim();
+        return TSC_FurnitureCompensationRefund.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_OtherDeductions(){
-        return TSC_OtherDeductions.getAttribute("value").trim();
+        return TSC_OtherDeductions.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_NetSalaryDifferences(){
-        return TSC_NetSalaryDifferences.getAttribute("value").trim();
+        return TSC_NetSalaryDifferences.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_SchoolingAidsDifferences(){
-        return TSC_SchoolingAidsDifferences.getAttribute("value").trim();
+        return TSC_SchoolingAidsDifferences.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_STBTaxableAmount(){
-        return TSC_STBTaxableAmount.getAttribute("value").trim();
+        return TSC_STBTaxableAmount.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_STBExemptionAmount(){
-        return TSC_STBExemptionAmount.getAttribute("value").trim();
+        return TSC_STBExemptionAmount.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_STBTax(){
-        return TSC_STBTax.getAttribute("value").trim();
+        return TSC_STBTax.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_HousingDuesDeduction(){
-        return TSC_HousingDuesDeduction.getAttribute("value").trim();
+        return TSC_HousingDuesDeduction.getDomAttribute("value").trim();
     }
     public String TSC_Deductions_TotalDeductions(){
-        return TSC_TotalDeductions.getAttribute("value").trim();
+        return TSC_TotalDeductions.getDomAttribute("value").trim();
     }
 
     public String TSC_HiringDate(){
-        return TSC_HiringDate.getAttribute("value").trim();
+        return TSC_HiringDate.getDomAttribute("value").trim();
     }
     public String TSC_WorkedServiceDays(){
-        return TSC_WorkedServiceDays.getAttribute("value").trim();
+        return TSC_WorkedServiceDays.getDomAttribute("value").trim();
     }
     public String TSC_ServiceSuspensionDays(){
-        return TSC_ServiceSuspensionDays.getAttribute("value").trim();
+        return TSC_ServiceSuspensionDays.getDomAttribute("value").trim();
     }
     public String TSC_ServicePeriod(){
-        return TSC_ServicePeriod.getAttribute("value").trim();
+        return TSC_ServicePeriod.getDomAttribute("value").trim();
     }
     public String TSC_ExtraSalaryDays(){
-        return TSC_ExtraSalaryDays.getAttribute("value").trim();
+        return TSC_ExtraSalaryDays.getDomAttribute("value").trim();
     }
     public String TSC_WorkedSTBDays(){
-        return TSC_WorkedSTBDays.getAttribute("value").trim();
+        return TSC_WorkedSTBDays.getDomAttribute("value").trim();
     }
     public String TSC_STBSuspensionDays(){
-        return TSC_STBSuspensionDays.getAttribute("value").trim();
+        return TSC_STBSuspensionDays.getDomAttribute("value").trim();
     }
     public String TSC_STBVacationDays(){
-        return TSC_STBVacationDays.getAttribute("value").trim();
+        return TSC_STBVacationDays.getDomAttribute("value").trim();
     }
     public String TSC_STBPaidVacationsDays(){
-        return TSC_STBPaidVacationsDays.getAttribute("value").trim();
+        return TSC_STBPaidVacationsDays.getDomAttribute("value").trim();
     }
     public String TSC_STBDays(){
-        return TSC_STBDays.getAttribute("value").trim();
+        return TSC_STBDays.getDomAttribute("value").trim();
     }
     public String TSC_VacationCompensationDays(){
-        return TSC_VacationCompensationDays.getAttribute("value").trim();
+        return TSC_VacationCompensationDays.getDomAttribute("value").trim();
     }
     public String TSC_STBReversalAmount(){
-        return TSC_STBReversalAmount.getAttribute("value").trim();
+        return TSC_STBReversalAmount.getDomAttribute("value").trim();
     }
     public String TSC_NetDues(){
-        return TSC_NetDues.getAttribute("value").trim();
+        return TSC_NetDues.getDomAttribute("value").trim();
     }
 
     public void allEmployeesDuesWereSettledOnDate(boolean checkbox, String date){

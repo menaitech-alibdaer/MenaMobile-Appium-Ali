@@ -462,7 +462,7 @@ public class PersonalInformation_OCT extends WebBase {
         hold(500);
         elementWaitAdvanced(By.id("employee_code"));
         hold(300);
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         empFirstName = firstName();
         setText(fNameEng, empFirstName);
@@ -688,7 +688,7 @@ public class PersonalInformation_OCT extends WebBase {
         clickOn(childrenPage);
         elementWaitAdvanced(By.name("son_name_man1"));
         hold(500);
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(birthDateE, birthDate);
         normalSelect(genderE, gender);
         setText(firstNameChildren, firstName());
@@ -814,7 +814,7 @@ public class PersonalInformation_OCT extends WebBase {
         hold(500);
         clickOn(dependentsPage);
         elementWaitAdvanced(By.name("dep_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameDependents, firstName());
         setText(secondNameDependents, "");
         setText(thirdNameDependents, "");

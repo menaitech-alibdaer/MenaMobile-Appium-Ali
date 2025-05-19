@@ -152,24 +152,24 @@ public class Training extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), startDate, "startDate");
-        softAssert.assertEquals(toDateE.getAttribute("value"), toDate, "to date");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), startDate, "startDate");
+        softAssert.assertEquals(toDateE.getDomAttribute("value"), toDate, "to date");
         softAssert.assertEquals(courseTypeE.getText(), courseType, "courseType");
-        softAssert.assertEquals(otherCourseTypeE.getAttribute("value"), otherCourseType, "otherCourseType");
+        softAssert.assertEquals(otherCourseTypeE.getDomAttribute("value"), otherCourseType, "otherCourseType");
         softAssert.assertEquals(courseAttendedE.getText(), courseAttended, "courseAttended");
-        softAssert.assertEquals(otherCourseAttendedE.getAttribute("value"), otherCourseAttended, "otherCourseAttended");
-        softAssert.assertEquals(costE.getAttribute("value"), cost, "cost");
-        softAssert.assertEquals(numberOfHoursE.getAttribute("value"), numberOfHours, "numberOfHours");
+        softAssert.assertEquals(otherCourseAttendedE.getDomAttribute("value"), otherCourseAttended, "otherCourseAttended");
+        softAssert.assertEquals(costE.getDomAttribute("value"), cost, "cost");
+        softAssert.assertEquals(numberOfHoursE.getDomAttribute("value"), numberOfHours, "numberOfHours");
         softAssert.assertEquals(trainingTypeE.getText(), trainingType, "trainingType");
         softAssert.assertEquals(showInE.getText(), showIn, "showIn");
-        softAssert.assertEquals(commentsE.getAttribute("value"), comments, "comments");
+        softAssert.assertEquals(commentsE.getDomAttribute("value"), comments, "comments");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
-        //softAssert.assertEquals(checkTrainingSource.getAttribute("value"), trainingSource, "training Source");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
+        //softAssert.assertEquals(checkTrainingSource.getDomAttribute("value"), trainingSource, "training Source");
         if(!courseType.equalsIgnoreCase("Other"))
-            softAssert.assertEquals(otherCourseTypeE.getAttribute("disabled"), "true");
+            softAssert.assertEquals(otherCourseTypeE.getDomAttribute("disabled"), "true");
         if(!courseAttended.equalsIgnoreCase("Other"))
-            softAssert.assertEquals(otherCourseAttendedE.getAttribute("disabled"), "true");
+            softAssert.assertEquals(otherCourseAttendedE.getDomAttribute("disabled"), "true");
         softAssert.assertAll();
 
 
@@ -219,8 +219,8 @@ public class Training extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(otherCourseAttendedE.getAttribute("value"), "Course Edited", "otherCourseAttended");
-        softAssert.assertEquals(costE.getAttribute("value"), "200.000", "cost");
+        softAssert.assertEquals(otherCourseAttendedE.getDomAttribute("value"), "Course Edited", "otherCourseAttended");
+        softAssert.assertEquals(costE.getDomAttribute("value"), "200.000", "cost");
         softAssert.assertAll();
 
     }
@@ -356,7 +356,7 @@ public class Training extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -413,7 +413,7 @@ public class Training extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -515,7 +515,7 @@ public class Training extends WebBase {
         hold(300);
 
         softAssert.assertTrue(checkAttachForUserDontHavePermission.isDisplayed(), "- LOCKED Attachment NOT appear");
-        softAssert.assertEquals(checkAttachForUserDontHavePermission.getAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
+        softAssert.assertEquals(checkAttachForUserDontHavePermission.getDomAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
         softAssert.assertAll();
 
     }
@@ -539,7 +539,7 @@ public class Training extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);

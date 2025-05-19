@@ -245,33 +245,33 @@ public class AddressAndContacts extends WebBase {
                 realEstateArea, realEstateNumber, telephone1, telephone2, poBOX, zipCode, fax,
                 distanceToCompany, address);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), fromDate, "- From Date");
-        softAssert.assertEquals(endDateE.getAttribute("value"), toDate, "- To Date");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), fromDate, "- From Date");
+        softAssert.assertEquals(endDateE.getDomAttribute("value"), toDate, "- To Date");
         softAssert.assertEquals(countryE.getText(), country, "- Country");
         softAssert.assertEquals(cityE.getText(), city, "- City");
-        softAssert.assertEquals(provinceE.getAttribute("value"), province, "- Province");
-        softAssert.assertEquals(districtE.getAttribute("value"), district, "- District");
-        softAssert.assertEquals(landNumberE.getAttribute("value"), landNumber, "- Land Number");
-        softAssert.assertEquals(partNumberE.getAttribute("value"), partNumber, "- Part Number");
-        softAssert.assertEquals(neighborhoodE.getAttribute("value"), neighborhood, "- Neighborhood");
-        softAssert.assertEquals(streetE.getAttribute("value"), street, "- Street");
-        softAssert.assertEquals(buildingTypeE.getAttribute("value"), buildingType, "- Building Type");
-        softAssert.assertEquals(buildingNameE.getAttribute("value"), buildingName, "- Building Name");
-        softAssert.assertEquals(entranceE.getAttribute("value"), entrance, "- Entrance");
-        softAssert.assertEquals(floorE.getAttribute("value"), floor, "- Floor");
-        softAssert.assertEquals(apartmentE.getAttribute("value"), apartment, "- Apartment");
-        softAssert.assertEquals(townE.getAttribute("value"), town, "- Town");
-        softAssert.assertEquals(realEstateAreaE.getAttribute("value"), realEstateArea, "- Real Estate Area");
-        softAssert.assertEquals(realEstateNumberE.getAttribute("value"), realEstateNumber, "- Real Estate Number");
-        softAssert.assertEquals(telephone1E.getAttribute("value"), telephone1, "- Telephone 1");
-        softAssert.assertEquals(telephone2E.getAttribute("value"), telephone2, "- Telephone 2");
-        softAssert.assertEquals(poBoxE.getAttribute("value"), poBOX, "- P.O Box");
-        softAssert.assertEquals(zipCodeE.getAttribute("value"), zipCode, "- Zip Code");
-        softAssert.assertEquals(faxE.getAttribute("value"), fax, "- Fax");
-        softAssert.assertEquals(distanceToCompanyE.getAttribute("value"), distanceToCompany, "- Distance To Company");
+        softAssert.assertEquals(provinceE.getDomAttribute("value"), province, "- Province");
+        softAssert.assertEquals(districtE.getDomAttribute("value"), district, "- District");
+        softAssert.assertEquals(landNumberE.getDomAttribute("value"), landNumber, "- Land Number");
+        softAssert.assertEquals(partNumberE.getDomAttribute("value"), partNumber, "- Part Number");
+        softAssert.assertEquals(neighborhoodE.getDomAttribute("value"), neighborhood, "- Neighborhood");
+        softAssert.assertEquals(streetE.getDomAttribute("value"), street, "- Street");
+        softAssert.assertEquals(buildingTypeE.getDomAttribute("value"), buildingType, "- Building Type");
+        softAssert.assertEquals(buildingNameE.getDomAttribute("value"), buildingName, "- Building Name");
+        softAssert.assertEquals(entranceE.getDomAttribute("value"), entrance, "- Entrance");
+        softAssert.assertEquals(floorE.getDomAttribute("value"), floor, "- Floor");
+        softAssert.assertEquals(apartmentE.getDomAttribute("value"), apartment, "- Apartment");
+        softAssert.assertEquals(townE.getDomAttribute("value"), town, "- Town");
+        softAssert.assertEquals(realEstateAreaE.getDomAttribute("value"), realEstateArea, "- Real Estate Area");
+        softAssert.assertEquals(realEstateNumberE.getDomAttribute("value"), realEstateNumber, "- Real Estate Number");
+        softAssert.assertEquals(telephone1E.getDomAttribute("value"), telephone1, "- Telephone 1");
+        softAssert.assertEquals(telephone2E.getDomAttribute("value"), telephone2, "- Telephone 2");
+        softAssert.assertEquals(poBoxE.getDomAttribute("value"), poBOX, "- P.O Box");
+        softAssert.assertEquals(zipCodeE.getDomAttribute("value"), zipCode, "- Zip Code");
+        softAssert.assertEquals(faxE.getDomAttribute("value"), fax, "- Fax");
+        softAssert.assertEquals(distanceToCompanyE.getDomAttribute("value"), distanceToCompany, "- Distance To Company");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
-        softAssert.assertEquals(addressE.getAttribute("value").trim(), address, "- Address");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertEquals(addressE.getDomAttribute("value").trim(), address, "- Address");
         softAssert.assertAll();
 
     }
@@ -343,16 +343,16 @@ public class AddressAndContacts extends WebBase {
         clickOn(saveBtn);
         hold(300);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), "05/05/2020", "- From Date");
-        softAssert.assertEquals(endDateE.getAttribute("value"), "03/11/2021", "- To Date");
-        softAssert.assertEquals(provinceE.getAttribute("value"), "Zarqa Province Edited", "- Province");
-        softAssert.assertEquals(landNumberE.getAttribute("value"), "11111", "- Land Number");
-        softAssert.assertEquals(streetE.getAttribute("value"), "ST2222", "- Street");
-        softAssert.assertEquals(floorE.getAttribute("value"), "0", "- Floor");
-        softAssert.assertEquals(telephone1E.getAttribute("value"), "0777777777", "- Telephone 1");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), "05/05/2020", "- From Date");
+        softAssert.assertEquals(endDateE.getDomAttribute("value"), "03/11/2021", "- To Date");
+        softAssert.assertEquals(provinceE.getDomAttribute("value"), "Zarqa Province Edited", "- Province");
+        softAssert.assertEquals(landNumberE.getDomAttribute("value"), "11111", "- Land Number");
+        softAssert.assertEquals(streetE.getDomAttribute("value"), "ST2222", "- Street");
+        softAssert.assertEquals(floorE.getDomAttribute("value"), "0", "- Floor");
+        softAssert.assertEquals(telephone1E.getDomAttribute("value"), "0777777777", "- Telephone 1");
         softAssert.assertTrue(checkElementIfNotAppear(checkAttach), "- Attached ICON still appear");
         softAssert.assertTrue(checkElementIfNotAppear(checkDeleteAttachment), "- Delete Attachment ICON still appear");
-        softAssert.assertEquals(addressE.getAttribute("value").trim(), "Zarqa", "- Address");
+        softAssert.assertEquals(addressE.getDomAttribute("value").trim(), "Zarqa", "- Address");
         softAssert.assertAll();
 
     }
@@ -549,7 +549,7 @@ public class AddressAndContacts extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
         softAssert.assertAll();
 
     }
@@ -669,7 +669,7 @@ public class AddressAndContacts extends WebBase {
         hold(300);
 
         softAssert.assertTrue(checkAttachForUserDontHavePermission.isDisplayed(), "- LOCKED Attachment NOT appear");
-        softAssert.assertEquals(checkAttachForUserDontHavePermission.getAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
+        softAssert.assertEquals(checkAttachForUserDontHavePermission.getDomAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
         softAssert.assertAll();
 
     }
@@ -693,7 +693,7 @@ public class AddressAndContacts extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);
@@ -764,7 +764,7 @@ public class AddressAndContacts extends WebBase {
             clickOn(saveBtn);
             hold(500);
 
-            softAssert.assertEquals(addressE.getAttribute("value").trim(), textLessThan200);
+            softAssert.assertEquals(addressE.getDomAttribute("value").trim(), textLessThan200);
             softAssert.assertAll();
         }
 
@@ -813,7 +813,7 @@ public class AddressAndContacts extends WebBase {
         clickOn(item);
         hold(300);
         softAssert.assertEquals(contactsTypes.getText(), contactType, "- Contact Type");
-        softAssert.assertEquals(contactValueE.getAttribute("value"), contactValue, "- Contact Value");
+        softAssert.assertEquals(contactValueE.getDomAttribute("value"), contactValue, "- Contact Value");
         softAssert.assertAll();
 
     }
@@ -856,7 +856,7 @@ public class AddressAndContacts extends WebBase {
         hold(300);
 
         softAssert.assertEquals(contactsTypes.getText(), "Contacts 2", "- Contact Type");
-        softAssert.assertEquals(contactValueE.getAttribute("value"), "Automation Test Edited Value", "- Contact Value");
+        softAssert.assertEquals(contactValueE.getDomAttribute("value"), "Automation Test Edited Value", "- Contact Value");
         softAssert.assertAll();
 
     }
@@ -993,17 +993,17 @@ public class AddressAndContacts extends WebBase {
         addReference(contactName, relationship, otherRelationship, contactPosition, companyName, workPhone,
                 homePhone, city, street, zipCode, email);
 
-        softAssert.assertEquals(contactNameReference.getAttribute("value"), contactName, "- Contact Name");
+        softAssert.assertEquals(contactNameReference.getDomAttribute("value"), contactName, "- Contact Name");
         softAssert.assertEquals(relationshipsE.getText(), relationship, " - Relationship");
-        softAssert.assertEquals(relationshipOtherE.getAttribute("value"), otherRelationship, "- Other Relationship");
-        softAssert.assertEquals(contactPositionE.getAttribute("value"), contactPosition, "- Contact Position");
-        softAssert.assertEquals(companyNameE.getAttribute("value"), companyName, "- Company Name");
-        softAssert.assertEquals(workPhoneE.getAttribute("value"), workPhone, "- Work Phone");
-        softAssert.assertEquals(homePhoneE.getAttribute("value"), homePhone, "- Home Phone");
-        softAssert.assertEquals(cityReferences.getAttribute("value"), city, "- City");
-        softAssert.assertEquals(streetE.getAttribute("value"), street, "- Street");
-        softAssert.assertEquals(zipCodeE.getAttribute("value"), zipCode, "- Zip Code");
-        softAssert.assertEquals(emailE.getAttribute("value"), email, "- Email");
+        softAssert.assertEquals(relationshipOtherE.getDomAttribute("value"), otherRelationship, "- Other Relationship");
+        softAssert.assertEquals(contactPositionE.getDomAttribute("value"), contactPosition, "- Contact Position");
+        softAssert.assertEquals(companyNameE.getDomAttribute("value"), companyName, "- Company Name");
+        softAssert.assertEquals(workPhoneE.getDomAttribute("value"), workPhone, "- Work Phone");
+        softAssert.assertEquals(homePhoneE.getDomAttribute("value"), homePhone, "- Home Phone");
+        softAssert.assertEquals(cityReferences.getDomAttribute("value"), city, "- City");
+        softAssert.assertEquals(streetE.getDomAttribute("value"), street, "- Street");
+        softAssert.assertEquals(zipCodeE.getDomAttribute("value"), zipCode, "- Zip Code");
+        softAssert.assertEquals(emailE.getDomAttribute("value"), email, "- Email");
         softAssert.assertAll();
 
     }
@@ -1056,11 +1056,11 @@ public class AddressAndContacts extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(contactNameReference.getAttribute("value"), "Contact Edited", "- Contact Name");
+        softAssert.assertEquals(contactNameReference.getDomAttribute("value"), "Contact Edited", "- Contact Name");
         softAssert.assertEquals(relationshipsE.getText(), "Brother", " - Relationship");
-        softAssert.assertEquals(companyNameE.getAttribute("value"), "Edited Company", "- Company Name");
-        softAssert.assertEquals(workPhoneE.getAttribute("value"), "079999999", "- Work Phone");
-        softAssert.assertEquals(emailE.getAttribute("value"), "edited@gmail.com", "- Email");
+        softAssert.assertEquals(companyNameE.getDomAttribute("value"), "Edited Company", "- Company Name");
+        softAssert.assertEquals(workPhoneE.getDomAttribute("value"), "079999999", "- Work Phone");
+        softAssert.assertEquals(emailE.getDomAttribute("value"), "edited@gmail.com", "- Email");
         softAssert.assertAll();
 
     }
@@ -1175,7 +1175,7 @@ public class AddressAndContacts extends WebBase {
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Should Only Contain A Valid Email Address.");
-        softAssert.assertTrue(emailE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(emailE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }

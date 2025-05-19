@@ -84,7 +84,8 @@ public class Settings extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/OvertimeBuilder/UpdateBudget/id") // Replace with your endpoint like that -> /Employee/get-max-employee-code

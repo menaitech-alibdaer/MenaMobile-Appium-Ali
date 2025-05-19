@@ -49,8 +49,11 @@ public class VacationsBalances extends WebBase {
                            String year, String fromDate, String toDate, boolean fixed){
 
 
+        closeIFrame();
         goToFrame(bodyFrame);
         elementWaitAdvanced(By.id("employee_code"));
+        hold(500);
+        empCode.clear();
         hold(500);
         setText(empCode, employeeCode, Keys.TAB);
         hold(500);
@@ -97,13 +100,16 @@ public class VacationsBalances extends WebBase {
 
     public String getCurrentBalance(String employeeCode, String vacationCode){
 
+        closeIFrame();
         goToFrame(bodyFrame);
         elementWaitAdvanced(By.id("employee_code"));
+        hold(500);
+        empCode.clear();
         hold(500);
         setText(empCode, employeeCode, Keys.TAB);
         hold(500);
         elementWaitAdvanced(By.name("vacation_code[1]"));
-        return driver.findElement(By.xpath("(//option[text()='"+vacationCode+"' and @selected]/following::input)[3]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//option[text()='"+vacationCode+"' and @selected]/following::input)[3]")).getDomAttribute("value");
 
     }
 

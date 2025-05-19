@@ -409,7 +409,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/Employee/save-employee-general-info") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -417,6 +418,9 @@ public class Employees extends ApiBase {
                     .statusCode(200) // Assert status code
                     .extract()
                     .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
 
             if(response.statusCode() == 200){
                 employeeCode = employeeCodeGetter();
@@ -464,7 +468,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/Employee/save-employee-financial-info") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -535,7 +540,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeAllowance/create")
@@ -619,7 +625,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeFinancialInsurance/save-employee-insurance")
@@ -712,7 +719,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeFinancialInsurance/save-employee-insurance")
@@ -739,6 +747,7 @@ public class Employees extends ApiBase {
         RestAssured.baseURI = baseUrlApiGetter();
 
         Response response = given()
+                .spec(SpecBuilder())
                 .queryParam("employeeId", employeeId) // Pass integer as query param
                 .when()
                 .get("/EmployeeFinancialInsurance/employee-insurance")
@@ -755,6 +764,7 @@ public class Employees extends ApiBase {
         RestAssured.baseURI = baseUrlApiGetter();
 
         Response response = given()
+                .spec(SpecBuilder())
                 .queryParam("employeeId", empId) // Pass integer as query param
                 .when()
                 .get("/EmployeeVacationBalance/GetAll")
@@ -771,6 +781,7 @@ public class Employees extends ApiBase {
         RestAssured.baseURI = baseUrlApiGetter();
 
         Response response = given()
+                .spec(SpecBuilder())
                 .queryParam("vacationTypeId", vacationTypeId) // Pass integer as query param
                 .queryParam("employeeId", empId)
                 .queryParam("year", year)
@@ -845,7 +856,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeVacationBalance/create") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -872,6 +884,7 @@ public class Employees extends ApiBase {
         RestAssured.baseURI = baseUrlApiGetter();
 
         Response response = given()
+                .spec(SpecBuilder())
                 .queryParam("employeeId", getIdByEmployeeCode(employeeCode))
                 .queryParam("year", year)
                 .when()
@@ -922,7 +935,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeSubstitute/create") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -996,7 +1010,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeFinancialInsurance/save-employee-insurance") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -1070,7 +1085,8 @@ public class Employees extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/EmployeeFinancialInsurance/save-employee-insurance") // Replace with your endpoint like that -> /Employee/get-max-employee-code

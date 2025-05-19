@@ -7,7 +7,7 @@
 
     <test name="LoginAndConnectivity_old" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="JUL" />
+        <parameter name="version" value="AUG" />
         <parameter name="lite" value="false" />
         <parameter name="platform" value="Android" />
 
@@ -16,27 +16,27 @@
         </classes>
     </test>
 
-    <test name="VacationRequest_old" parallel="classes" thread-count="1">
-        <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="AUG" />
-        <parameter name="lite" value="false" />
-        <parameter name="platform" value="Android" />
+<!--    <test name="VacationRequest_old" parallel="classes" thread-count="1">-->
+<!--        <parameter name="browser" value="chrome_headless" />-->
+<!--        <parameter name="version" value="AUG" />-->
+<!--        <parameter name="lite" value="false" />-->
+<!--        <parameter name="platform" value="Android" />-->
 
-        <classes>
-            <class name="oldVersion.VacationRequest_old" />
-        </classes>
-    </test>
+<!--        <classes>-->
+<!--            <class name="oldVersion.VacationRequest_old" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
-    <test name="LeaveRequest_old" parallel="classes" thread-count="1">
-        <parameter name="browser" value="chrome_headless" />
-        <parameter name="version" value="AUG" />
-        <parameter name="lite" value="false" />
-        <parameter name="platform" value="Android" />
+<!--    <test name="LeaveRequest_old" parallel="classes" thread-count="1">-->
+<!--        <parameter name="browser" value="chrome_headless" />-->
+<!--        <parameter name="version" value="AUG" />-->
+<!--        <parameter name="lite" value="false" />-->
+<!--        <parameter name="platform" value="Android" />-->
 
-        <classes>
-            <class name="oldVersion.LeaveRequest_old" />
-        </classes>
-    </test>
+<!--        <classes>-->
+<!--            <class name="oldVersion.LeaveRequest_old" />-->
+<!--        </classes>-->
+<!--    </test>-->
 
     <test name="OvertimeRequest_old" parallel="classes" thread-count="1">
         <parameter name="browser" value="chrome_headless" />
@@ -46,6 +46,28 @@
 
         <classes>
             <class name="oldVersion.OvertimeRequest_old" />
+        </classes>
+    </test>
+
+    <test name="MainScreen_old" parallel="classes" thread-count="1">
+        <parameter name="browser" value="chrome_headless" />
+        <parameter name="version" value="AUG" />
+        <parameter name="lite" value="false" />
+        <parameter name="platform" value="Android" />
+
+        <classes>
+            <class name="oldVersion.MainScreenTest_old" />
+        </classes>
+    </test>
+
+    <test name="MyProfilePersonal_old" parallel="classes" thread-count="1">
+        <parameter name="browser" value="chrome_headless" />
+        <parameter name="version" value="AUG" />
+        <parameter name="lite" value="false" />
+        <parameter name="platform" value="Android" />
+
+        <classes>
+            <class name="oldVersion.MyProfilePersonalTest_old" />
         </classes>
     </test>
 

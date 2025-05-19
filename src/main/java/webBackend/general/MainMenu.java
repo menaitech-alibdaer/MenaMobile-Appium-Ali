@@ -278,9 +278,12 @@ public class MainMenu extends WebBase {
 
     public void mainMenu(String tabName, String subTabName){
 
+        waitLoad();
         closeIFrame();
-        hold(1000);
+        hold(500);
         waitFrameAndWindow();
+        waitLoadingScreen();
+        waitLoad();
 
          if (tabName.equalsIgnoreCase("Settings")) {
              hold(800);
@@ -316,6 +319,8 @@ public class MainMenu extends WebBase {
 
     //////////////// The method below 'subTabs' contains all the Sub Tabs ////////////////
     public void subTabs(String subTabName, String tabName){
+
+        waitLoad();
 
         subTabName = subTabName.toLowerCase();
         tabName = tabName.toLowerCase();
@@ -934,6 +939,7 @@ public class MainMenu extends WebBase {
 
         try {
             elementWait(element);
+            moveToElement(element);
             element.click();
         } catch (Exception e){
             e.printStackTrace();

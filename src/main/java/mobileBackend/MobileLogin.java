@@ -426,7 +426,7 @@ public class MobileLogin extends MobileBasePage {
         waitLoadingElement();
         waitForElementToBeVisible(errorAlert);
         hold(700);
-        return errorAlert.getAttribute("content-desc");
+        return errorAlert.getDomAttribute("content-desc");
     }
 
 

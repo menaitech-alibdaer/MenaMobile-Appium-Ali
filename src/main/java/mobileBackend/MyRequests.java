@@ -26,6 +26,8 @@ public class MyRequests extends MobileBasePage {
     public WebElement vacationsRequestBtn;
     @AndroidFindBy(accessibility = "Leaves")
     public WebElement leavesRequestBtn;
+    @AndroidFindBy(accessibility = "Loans")
+    public WebElement loanRequestBtn;
     @AndroidFindBy(accessibility = "Overtime")
     WebElement overtimeRequestBtn;
     @AndroidFindBy(accessibility = "Choose")
@@ -40,10 +42,34 @@ public class MyRequests extends MobileBasePage {
     public List<WebElement> sickVacationReasonsList;
     @AndroidFindBy(accessibility = "Choose")
     WebElement typeF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Guarantor']/following::android.view.View[@content-desc='*']/following::android.view.View)[1]")
+    WebElement guarantorList;
+    @AndroidFindBy(accessibility = "Calculate")
+    WebElement calculateBtn;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Days']//android.widget.RadioButton[1]")
+    WebElement daysRadioButton;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Days']//android.widget.EditText[1]")
+    WebElement daysF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Time The Total Salary']//android.widget.RadioButton[1]")
+    WebElement timeTheTotalSalaryRadioButton;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Time The Total Salary']//android.widget.EditText[1]")
+    WebElement timeTheTotalSalaryF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Amount']/following::android.view.View[2]")
+    WebElement amountValueInCalculate;
     @AndroidFindBy(accessibility = "Choose")
     WebElement chooseBtn;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Overtime Type']/following::android.view.View[@content-desc='Choose'])[1]")
     WebElement overtimeTypeF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Type']/following::android.view.View)[1]")
+    WebElement chnagePersonalDataTypeF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Nationality']/following::android.view.View)[1]")
+    WebElement nationalityF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Gender']/following::android.view.View)[1]")
+    WebElement genderF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Religion']/following::android.view.View)[1]")
+    WebElement religionF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Birth Date']/following::android.widget.ImageView)[1]")
+    WebElement birthDateE;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Project']/following::android.view.View[@content-desc='Choose'])[1]")
     WebElement projectF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Activity']/following::android.view.View[@content-desc='Choose'])[1]")
@@ -64,6 +90,12 @@ public class MyRequests extends MobileBasePage {
     WebElement toTimeF;
     @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Reason']/following::android.widget.EditText)[1]")
     WebElement reasonF;
+    @AndroidFindBy(xpath = "(//android.view.View[@content-desc='Date']/following::android.widget.Button)[1]")
+    WebElement loanDateF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Loan Amount']/following::android.widget.EditText[1]")
+    WebElement loanAmountF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Loan Amount']/following::android.widget.EditText[2]")
+    WebElement noOfPaymentsF;
     @AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc, 'Vacation Attachment')]/following::android.widget.ImageView)[1]")
     WebElement vacationAttachmentIconBtn;
     @AndroidFindBy(xpath = "(//android.view.View[contains(@content-desc, 'To Time')]/following::android.widget.ImageView)[1]")
@@ -88,6 +120,8 @@ public class MyRequests extends MobileBasePage {
     WebElement tryAgainBtn;
     @AndroidFindBy(accessibility = "Submit")
     WebElement submitBtn;
+    @AndroidFindBy(accessibility = "Submit Request")
+    WebElement submitRequestBtn;
     @AndroidFindBy(accessibility = "Not Required")
     WebElement notRequired_checkbox;
     @AndroidFindBy(xpath = "//android.widget.ImageView[@hint='Search by Name...']")
@@ -129,7 +163,7 @@ public class MyRequests extends MobileBasePage {
 //
 //        waitForElementToBeClickable(AppiumBy.accessibilityId("OK"));
 //
-//        int currentYear = Integer.parseInt(datePicker_yearBtn.getAttribute("content-desc").trim());
+//        int currentYear = Integer.parseInt(datePicker_yearBtn.getDomAttribute("content-desc").trim());
 //
 //        if(currentYear != year){
 //
@@ -167,47 +201,47 @@ public class MyRequests extends MobileBasePage {
 //
 //        }
 //
-////        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Dec")){
+////        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Dec")){
 ////            for(int i = 1; i < 12; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Nov")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Nov")){
 ////            for(int i = 1; i < 11; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Oct")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Oct")){
 ////            for(int i = 1; i < 10; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Sep")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Sep")){
 ////            for(int i = 1; i < 9; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Aug")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Aug")){
 ////            for(int i = 1; i < 8; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Jul")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Jul")){
 ////            for(int i = 1; i < 7; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Jun")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Jun")){
 ////            for(int i = 1; i < 6; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("May")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("May")){
 ////            for(int i = 1; i < 5; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Apr")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Apr")){
 ////            for(int i = 1; i < 4; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Mar")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Mar")){
 ////            for(int i = 1; i < 3; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
-////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Feb")){
+////        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Feb")){
 ////            for(int i = 1; i < 2; i++){
 ////                datePicker_PreviousBtn.click();
 ////            }
@@ -215,27 +249,27 @@ public class MyRequests extends MobileBasePage {
 //
 //        int currentMonth = 1;
 //
-//        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Dec")){
+//        if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Dec")){
 //            currentMonth = 12;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Nov")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Nov")){
 //            currentMonth = 11;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Oct")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Oct")){
 //            currentMonth = 10;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Sep")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Sep")){
 //            currentMonth = 9;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Aug")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Aug")){
 //            currentMonth = 8;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Jul")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Jul")){
 //            currentMonth = 7;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Jun")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Jun")){
 //            currentMonth = 6;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("May")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("May")){
 //            currentMonth = 5;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Apr")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Apr")){
 //            currentMonth = 4;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Mar")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Mar")){
 //            currentMonth = 3;
-//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc").contains("Feb")){
+//        }else if(appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc").contains("Feb")){
 //            currentMonth = 2;
 //        }
 //
@@ -285,12 +319,26 @@ public class MyRequests extends MobileBasePage {
         waitLoadingElement();
     }
 
+    public void openLoans(){
+        waitForElementToBeClickable(accessibilityId("Loans"));
+        clickOn(loanRequestBtn);
+        waitLoadingElement();
+    }
+
     public boolean checkVacationType(String vacationType){
         waitLoadingElement();
         waitForElementToBeClickable(accessibilityId("Choose"));
         clickOn(vacationsTypeBtn);
         hold(200);
         return scrollToElement(AppiumBy.accessibilityId(vacationType) , true, 12);
+    }
+
+    public boolean checkLoanType(String loanType){
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(typeF);
+        hold(200);
+        return scrollToElement(AppiumBy.accessibilityId(loanType) , true, 12);
     }
 
     public void selectVacationType(String vacationType){
@@ -697,10 +745,8 @@ public class MyRequests extends MobileBasePage {
         }
 
         if(attachment){
-
             uploadAttachment(1);
             verticalSwipeByPercentages(70, 30, 50);
-
         }
 
         if(!reason.isEmpty()){
@@ -764,10 +810,10 @@ public class MyRequests extends MobileBasePage {
     public boolean checkAlertPopup(String alertText){
         hold(500);
         try{
-            return successAlertPopup.getAttribute("content-desc").contains(alertText);
+            return successAlertPopup.getDomAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             try {
-                return attentionAlertPopup.getAttribute("content-desc").contains(alertText);
+                return attentionAlertPopup.getDomAttribute("content-desc").contains(alertText);
             }catch (Exception ex){
                 return false;
             }
@@ -777,7 +823,7 @@ public class MyRequests extends MobileBasePage {
     public boolean checkToastAlert(String alertText){
         hold(800);
         try {
-            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc").contains(alertText);
+            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getDomAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             return false;
         }
@@ -785,7 +831,7 @@ public class MyRequests extends MobileBasePage {
 
     public String getToastAlert(){
         try {
-            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getAttribute("content-desc");
+            return appiumDriver.findElement(AppiumBy.xpath("(//android.widget.ImageView)[last()]")).getDomAttribute("content-desc");
         }catch (Exception e){
             return null;
         }
@@ -817,7 +863,15 @@ public class MyRequests extends MobileBasePage {
                     try {
                         simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Reason')]/preceding-sibling::android.view.View[1])//android.widget.ImageView[1]"));
                     }catch (Exception ex){
-                        simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'To Time')]/following::android.widget.ImageView)[1]"));
+                        try {
+                            simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'To Time')]/following::android.widget.ImageView)[1]"));
+                        }catch(Exception exc){
+                            try {
+                                simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Type')]/following::android.widget.ImageView)[1]"));
+                            }catch (Exception exce){
+                                simpleClick(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'Guarantor')]/following::android.widget.ImageView)[1]"));
+                            }
+                        }
                     }
                 }
 
@@ -826,7 +880,11 @@ public class MyRequests extends MobileBasePage {
                     try {
                         simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Attachment']/following::android.widget.ImageView)[1]"));
                     }catch (Exception e){
-                        simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Request Attachment']/following::android.widget.ImageView)[1]"));
+                        try {
+                            simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Request Attachment']/following::android.widget.ImageView)[1]"));
+                        }catch (Exception ex){
+                            simpleClick(AppiumBy.xpath("(//android.view.View[@content-desc='Photo']/following::android.widget.ImageView)[1]"));
+                        }
                     }
                     waitForElementToBeVisible(accessibilityId("Document"));
                     clickOn(documentBtn);
@@ -883,6 +941,240 @@ public class MyRequests extends MobileBasePage {
         }catch (Exception attachment){
             fail("Upload attachment issue!");
         }
+
+    }
+
+    public void chnagePersonalData(String type, boolean photo, String firstNameE, String secondNameE, String thirdNameE, String familyNameE,
+                                   String firstNameAr, String secondNameAr, String thirdNameAr, String familyNameAr, String nationality,
+                                   String gender, String religion, String mobile, String email, String birthDate, String notes, String extNumber,
+                                   boolean submit, boolean checkAlert){
+
+        waitLoadingElement();
+        waitLoadingElement();
+        waitLoadingElement();
+        waitLoadingElement();
+        waitLoadingElement();
+        waitLoadingElement();
+
+        if(!type.isEmpty()){
+            clickOn(chnagePersonalDataTypeF);
+            hold(200);
+            clickOn(accessibilityId(type));
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            hold(500);
+        }
+
+        if(photo){
+            uploadAttachment(1);
+        }
+
+        if(!firstNameE.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[1]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[1]"), firstNameE, true);
+            closeKeyboard();
+        }
+        if(!secondNameE.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[2]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[2]"), secondNameE, true);
+            closeKeyboard();
+        }
+        if(!thirdNameE.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[3]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[3]"), thirdNameE, true);
+            closeKeyboard();
+        }
+        if(!familyNameE.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[4]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name English']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[4]"), familyNameE, true);
+            closeKeyboard();
+        }
+
+        verticalSwipeByPercentages(70, 55, 50);
+
+        if(!firstNameAr.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[2]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[2]"), firstNameAr, true);
+            closeKeyboard();
+        }
+        if(!secondNameAr.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[1]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[1]"), secondNameAr, true);
+            closeKeyboard();
+        }
+        if(!thirdNameAr.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[4]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[4]"), thirdNameAr, true);
+            closeKeyboard();
+        }
+        if(!familyNameAr.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[3]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Name Arabic']/following::android.view.View[@content-desc='First Name']/following::android.widget.EditText)[3]"), familyNameAr, true);
+            closeKeyboard();
+        }
+
+        if(!nationality.isEmpty()){
+            clickOn(nationalityF);
+            hold(200);
+            clickOn(accessibilityId(nationality));
+            hold(500);
+        }
+        if(!gender.isEmpty()){
+            clickOn(genderF);
+            hold(300);
+            clickOn(accessibilityId(gender), true);
+            hold(500);
+        }
+        if(!religion.isEmpty()){
+            clickOn(religionF);
+            hold(200);
+            clickOn(accessibilityId(religion));
+            hold(500);
+        }
+
+        //verticalSwipeByPercentages(70, 50, 50);
+
+        if(!mobile.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Mobile']/following::android.widget.EditText)[1]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Mobile']/following::android.widget.EditText)[1]"), mobile, true);
+            closeKeyboard();
+        }
+        if(!email.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='E-Mail']/following::android.widget.EditText)[1]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='E-Mail']/following::android.widget.EditText)[1]"), email, true);
+            closeKeyboard();
+        }
+        if(!birthDate.isEmpty()){
+            clickOn(birthDateE);
+            hold(500);
+            timePicker(birthDate);
+            waitLoadingElement();
+            hold(500);
+        }
+
+        verticalSwipeByPercentages(70, 30, 50);
+
+        if(!notes.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Notes']/following::android.widget.EditText)[1]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Notes']/following::android.widget.EditText)[1]"), notes, true);
+            closeKeyboard();
+        }
+        if(!extNumber.isEmpty()){
+            clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Ext. Number']/following::android.widget.EditText)[1]"));
+            setText(AppiumBy.xpath("(//android.view.View[@content-desc='Ext. Number']/following::android.widget.EditText)[1]"), extNumber, true);
+            closeKeyboard();
+        }
+
+        if(submit){
+            verticalSwipeByPercentages(70, 30, 50);
+            clickOn(submitRequestBtn);
+            waitLoadingElement();
+            hold(500);
+
+            if(!checkAlert){
+                closeAlert();
+                hold(500);
+                back();
+            }
+
+        }
+
+    }
+
+    public boolean checkEmployee(String empCode, String empName){
+        boolean check = false;
+        try {
+            check = listOfEmployees.get(0).getDomAttribute("content-desc").contains(empCode);
+        }catch (Exception e){
+            try {
+                check = appiumDriver.findElement(AppiumBy.xpath("//*[@content-desc='"+empName+"']")).isDisplayed();
+            }catch (Exception ee){
+                return check;
+            }
+        }
+        return check;
+    }
+
+    public void loanRequest(String loanType, String date, String loanAmount, String noOfPayments, boolean calculate, String days, String timeTheTotalSalary,
+                            String guarantor, boolean attachment, String reason, boolean submit, boolean checkAlert){
+
+        waitLoadingElement();
+        waitForElementToBeClickable(accessibilityId("Choose"));
+        clickOn(typeF);
+        hold(200);
+        clickOn(AppiumBy.accessibilityId(loanType));
+        hold(1000);
+        waitLoadingElement();
+        if(!date.isEmpty()){
+            clickOn(loanDateF);
+            hold(500);
+            datePicker(date);
+        }
+        if(!loanAmount.isEmpty()){
+            clickOn(loanAmountF);
+            loanAmountF.clear();
+            setText(loanAmountF, loanAmount);
+            closeKeyboard();
+        }
+        if(!noOfPayments.isEmpty()){
+            clickOn(noOfPaymentsF);
+            noOfPaymentsF.clear();
+            setText(noOfPaymentsF, noOfPayments);
+            closeKeyboard();
+        }
+        if(calculate){
+            clickOn(calculateBtn);
+            waitForElementToBeVisible(AppiumBy.accessibilityId("Days"));
+            if(!days.isEmpty()){
+                clickOn(daysRadioButton);
+                setText(daysF, days);
+            }else if(!timeTheTotalSalary.isEmpty()){
+                clickOn(timeTheTotalSalaryRadioButton);
+                setText(timeTheTotalSalaryF, timeTheTotalSalary);
+            }
+            clickOn(calculateBtn);
+            hold(3500);
+            waitLoadingElement();
+            waitLoadingElement();
+            clickOn(okBtn);
+        }
+        if(!guarantor.isEmpty()){
+            try {
+                clickOn(guarantorList);
+                hold(200);
+                clickOn(AppiumBy.accessibilityId(guarantor));
+            }catch (Exception e){
+                clickOn(AppiumBy.xpath("(//android.view.View[@content-desc='Guarantor']/following::android.view.View)[1]"));
+                hold(200);
+                clickOn(AppiumBy.accessibilityId(guarantor));
+            }
+        }
+        verticalSwipeByPercentages(70, 30, 50);
+        if(attachment){
+            uploadAttachment(1);
+            verticalSwipeByPercentages(70, 30, 50);
+        }
+        if(!reason.isEmpty()){
+            clickOn(reasonF);
+            setText(reasonF, reason);
+            closeKeyboard();
+        }
+        if(submit){
+            clickOn(submitBtn);
+            waitLoadingElement();
+            hold(500);
+
+            if(!checkAlert){
+                closeAlert();
+                hold(500);
+                back();
+            }
+        }
+
 
     }
 

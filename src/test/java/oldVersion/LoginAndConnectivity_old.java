@@ -214,7 +214,7 @@ public class LoginAndConnectivity_old extends BaseTest {
         loginMob.skipPage();
         loginMob.connectivity("automation", "auto_auto", "https://qc.menaitech.com/menas01_08_2022_sql2016666/");
 
-        Assert.assertTrue(loginMob.alertPopup.getAttribute("content-desc").contains("Invalid URL"), "Issue In Alert popup when URL is wrong!");
+        Assert.assertTrue(loginMob.alertPopup.getDomAttribute("content-desc").contains("Invalid URL"), "Issue In Alert popup when URL is wrong!");
 
     }
 
@@ -231,7 +231,7 @@ public class LoginAndConnectivity_old extends BaseTest {
         mainScreen.openChangePassword();
         mainScreen.changePassword("55555", "222", "222");
 
-        Assert.assertTrue(mainScreen.attentionAlertPopup.getAttribute("content-desc").contains("Wrong Old Password"), "Attention Alert Issue, should be contain: Wrong Old Password!");
+        Assert.assertTrue(mainScreen.attentionAlertPopup.getDomAttribute("content-desc").contains("Wrong Old Password"), "Attention Alert Issue, should be contain: Wrong Old Password!");
 
     }
 
@@ -288,7 +288,7 @@ public class LoginAndConnectivity_old extends BaseTest {
         mainScreen.openChangePassword();
         mainScreen.changePassword("1", "55555", "55555");
 
-        Assert.assertTrue(mainScreen.successAlertPopup.getAttribute("content-desc").contains("Password has been changed successfully"), "Successfully Alert Issue, should be contain: Password has been changed successfully");
+        Assert.assertTrue(mainScreen.successAlertPopup.getDomAttribute("content-desc").contains("Password has been changed successfully"), "Successfully Alert Issue, should be contain: Password has been changed successfully");
 
     }
 

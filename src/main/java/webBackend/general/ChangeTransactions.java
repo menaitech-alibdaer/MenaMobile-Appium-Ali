@@ -93,7 +93,7 @@ public class ChangeTransactions extends WebBase {
         hold(500);
         goToFrame(frame);
         elementWaitAdvanced(By.id("site_1"));
-        if(empCode.getAttribute("value").isEmpty()){
+        if(empCode.getDomAttribute("value").isEmpty()){
             setText(empCode, employeeCode);
             hold(300);
             setText(empCode, Keys.TAB);
@@ -107,7 +107,7 @@ public class ChangeTransactions extends WebBase {
         goToFrame(frame);
         hold(200);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
-        getTransactionDate = transactionDateE.getAttribute("value");
+        getTransactionDate = transactionDateE.getDomAttribute("value");
         if(!transactionReference.isEmpty()){
             setText(transactionReferenceE, transactionReference);
             setText(transactionReferenceE, Keys.TAB);
@@ -196,7 +196,7 @@ public class ChangeTransactions extends WebBase {
         clickOn(classificationTab);
         hold(500);
         elementWaitAdvanced(By.name("classification"));
-        if(empCode.getAttribute("value").isEmpty()){
+        if(empCode.getDomAttribute("value").isEmpty()){
             setText(empCode, employeeCode);
             hold(300);
             setText(empCode, Keys.TAB);
@@ -210,7 +210,7 @@ public class ChangeTransactions extends WebBase {
         goToFrame(frame);
         hold(300);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
-        getTransactionDate = transactionDateE.getAttribute("value");
+        getTransactionDate = transactionDateE.getDomAttribute("value");
         if(!transactionReference.isEmpty()){
             setText(transactionReferenceE, transactionReference);
             setText(transactionReferenceE, Keys.TAB);
@@ -277,7 +277,7 @@ public class ChangeTransactions extends WebBase {
         clickOn(directManagerTab);
         hold(500);
         elementWaitAdvanced(By.name("manager_code"));
-        if(empCode.getAttribute("value").isEmpty()){
+        if(empCode.getDomAttribute("value").isEmpty()){
             setText(empCode, employeeCode);
             hold(300);
             setText(empCode, Keys.TAB);
@@ -291,7 +291,7 @@ public class ChangeTransactions extends WebBase {
         goToFrame(frame);
         hold(300);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
-        getTransactionDate = transactionDateE.getAttribute("value");
+        getTransactionDate = transactionDateE.getDomAttribute("value");
         if(!transactionReference.isEmpty()){
             setText(transactionReferenceE, transactionReference);
             setText(transactionReferenceE, Keys.TAB);
@@ -343,7 +343,7 @@ public class ChangeTransactions extends WebBase {
         clickOn(jobContractTab);
         hold(500);
         elementWaitAdvanced(By.id("transaction_date"));
-        if(empCode.getAttribute("value").isEmpty()){
+        if(empCode.getDomAttribute("value").isEmpty()){
             setText(empCode, employeeCode);
             hold(300);
             setText(empCode, Keys.TAB);
@@ -357,7 +357,7 @@ public class ChangeTransactions extends WebBase {
         goToFrame(frame);
         hold(300);
         elementWaitAdvanced(By.xpath("//font[@color='maroon']"));
-        getTransactionDate = transactionDateE.getAttribute("value");
+        getTransactionDate = transactionDateE.getDomAttribute("value");
         if(!transactionReference.isEmpty()){
             setText(transactionReferenceE, transactionReference);
             setText(transactionReferenceE, Keys.TAB);
@@ -413,7 +413,7 @@ public class ChangeTransactions extends WebBase {
         clickOn(cardIdTab);
         hold(500);
         elementWaitAdvanced(By.id("transaction_date"));
-        if(empCode.getAttribute("value").isEmpty()){
+        if(empCode.getDomAttribute("value").isEmpty()){
             setText(empCode, employeeCode);
             hold(300);
             setText(empCode, Keys.TAB);

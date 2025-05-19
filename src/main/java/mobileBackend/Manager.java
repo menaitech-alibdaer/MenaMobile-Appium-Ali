@@ -115,13 +115,13 @@ public class Manager extends MobileBasePage {
     }
 
     public String transaction(String employeeCode){
-        return appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'COD:') and contains(@content-desc, '"+employeeCode+"')])[1]")).getAttribute("content-desc");
+        return appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, 'COD:') and contains(@content-desc, '"+employeeCode+"')])[1]")).getDomAttribute("content-desc");
     }
 
     public String transactionDetails(String type){
         String textAfterNewline = null;
         try{
-           String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+           String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 textAfterNewline = det.substring(det.indexOf("\n") + 1);
             }
@@ -135,13 +135,21 @@ public class Manager extends MobileBasePage {
             }
             hold(200);
             try {
-                String det = appiumDriver.findElement(AppiumBy.xpath("//*[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     textAfterNewline = det.substring(det.indexOf("\n") + 1);
                 }
                 return textAfterNewline;
             }catch (Exception ee){
-                return type+": NOT FOUND!";
+                try {
+                    String det = appiumDriver.findElement(AppiumBy.xpath("//*[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
+                    if (det != null) {
+                        textAfterNewline = det.substring(det.indexOf("\n") + 1);
+                    }
+                    return textAfterNewline;
+                }catch (Exception eee){
+                    return type+": NOT FOUND!";
+                }
             }
         }
     }
@@ -149,7 +157,7 @@ public class Manager extends MobileBasePage {
     public String getApprovalCommittee(String managerName){
         String textBetweenNewlines = null;
         try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
 
             if(containsMoreThanOneNewline){
@@ -164,7 +172,7 @@ public class Manager extends MobileBasePage {
             try {
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
 
                 if(containsMoreThanOneNewline){
@@ -178,7 +186,7 @@ public class Manager extends MobileBasePage {
             }catch (Exception ex){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 boolean containsMoreThanOneNewline = det.indexOf("\n") != -1 && det.indexOf("\n", det.indexOf("\n") + 1) != -1;
 
                 if(containsMoreThanOneNewline){
@@ -196,7 +204,7 @@ public class Manager extends MobileBasePage {
     public String getApprovalComments(String managerName){
         String textAfterSecondNewline = null;
         try{
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 int firstNewline = det.indexOf("\n");
                 int secondNewline = det.indexOf("\n", firstNewline + 1);
@@ -206,7 +214,7 @@ public class Manager extends MobileBasePage {
         }catch (Exception e){
             scrollToElement(approvalCommitteeText, true);
             hold(200);
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 int firstNewline = det.indexOf("\n");
                 int secondNewline = det.indexOf("\n", firstNewline + 1);
@@ -219,7 +227,7 @@ public class Manager extends MobileBasePage {
     public String getApprovalDate(String managerName){
         String date = null;
         try {
-            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+            String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
             if (det != null) {
                 int lastNewline = det.lastIndexOf("\n");
                 String textAfterLastNewline = det.substring(lastNewline + 1).trim();
@@ -230,7 +238,7 @@ public class Manager extends MobileBasePage {
             try {
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     int lastNewline = det.lastIndexOf("\n");
                     String textAfterLastNewline = det.substring(lastNewline + 1).trim();
@@ -240,7 +248,7 @@ public class Manager extends MobileBasePage {
             }catch (Exception ex){
                 scrollToElement(approvalCommitteeText, true);
                 hold(200);
-                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+                String det = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
                 if (det != null) {
                     int lastNewline = det.lastIndexOf("\n");
                     String textAfterLastNewline = det.substring(lastNewline + 1).trim();
@@ -423,7 +431,7 @@ public class Manager extends MobileBasePage {
     public String getManagerCommentDelegate(String managerName){
         scrollToElement(approvalCommitteeText, true);
         String textAfterNewline = null;
-        String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Manager Comment']/following::android.view.View[contains(@content-desc, '"+managerName+"')]")).getAttribute("content-desc");
+        String det = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Manager Comment']/following::android.view.View[contains(@content-desc, '"+managerName+"')]")).getDomAttribute("content-desc");
         if (det != null) {
             textAfterNewline = det.substring(det.indexOf("\n") + 1);
         }
@@ -438,7 +446,7 @@ public class Manager extends MobileBasePage {
     }
 
     public String getConsultComment(String name) {
-        String history = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@content-desc='Consultation History']//android.view.View//android.view.View//android.view.View")).getAttribute("content-desc");
+        String history = appiumDriver.findElement(AppiumBy.xpath("//android.widget.ImageView[@content-desc='Consultation History']//android.view.View//android.view.View//android.view.View")).getDomAttribute("content-desc");
         // Define regex pattern to capture the specified name and its associated comment
         String regex = "(?m)" + Pattern.quote(name) + "\\n\\d{2}/\\d{2}/\\d{4}.*?\\n(.*?)(?=\\n[A-Z]{2}|$)";
         Pattern pattern = Pattern.compile(regex);

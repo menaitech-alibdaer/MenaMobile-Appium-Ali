@@ -5,34 +5,60 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="bf79c3d9-19ad-46bd-a9fe-70575407e8c8" name="Changes" comment="Ali Test">
-      <change afterPath="$PROJECT_DIR$/src/test/java/newVersion/MyProfilePersonalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/newVersion/LoanRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/oldVersion/MyProfilePersonalTest_old.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Reports/ExtentReport.html" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/ExtentReport.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Reports/spark/spark-script.js" beforeDir="false" afterPath="$PROJECT_DIR$/Reports/spark/spark-script.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/apiBackend/AllEmployeeTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/apiBackend/AllEmployeeTransactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/apiBackend/Employees.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/apiBackend/Employees.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/apiBackend/SalaryCalculation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/apiBackend/SalaryCalculation.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/apiBackend/Settings.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/apiBackend/Settings.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/ApiBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/ApiBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/BaseTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/bases/Listener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/Listener.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/MobileBasePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/bases/WebBase.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bases/WebBase.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MainScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/Manager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MobileLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyProfilePersonal.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyProfilePersonal.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyRequests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/MyTransactions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/SalarySlipBE.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MssqlConnect.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/PDFReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/PDFReader.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/VersionGetter.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/VersionGetter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/WebHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/WebHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/RevampTest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/RevampTest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/LeaveRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/LeaveRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/mobileBackend/TimeAttendance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/mobileBackend/TimeAttendance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/Devices.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/Devices.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utilities/MobileHelper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/financialInformation/FinancialPackage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/financialInformation/FinancialPackage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/financialInformation/Insurance.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/financialInformation/Insurance.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/ChangeTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/ChangeTransactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeeTermination.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeeTermination.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeesTransactions.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/EmployeesTransactions.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/general/VacationsBalances.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/general/VacationsBalances.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/AddressAndContacts.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/AddressAndContacts.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/AssetsAndDocuments.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/AssetsAndDocuments.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Certificate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Certificate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Children.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Children.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Competencies.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Competencies.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Dependents.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Dependents.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Education.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Education.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Experience.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Experience.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Languages.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Languages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Other.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Other.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonalInformation_OCT.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonalInformation_OCT.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonnelInformation.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/PersonnelInformation.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Spouse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Spouse.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Training.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/webBackend/personnelInformation/Training.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/TestRuner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/TestRuner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/LoginAndConnectivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/LoginAndConnectivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/MainScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/MainScreenTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/NewClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/NewClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/OvertimeRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/OvertimeRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/SalarySlip.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/SalarySlip.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/newVersion/VacationRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/newVersion/VacationRequest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/oldVersion/LoginAndConnectivity_old.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oldVersion/LoginAndConnectivity_old.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/oldVersion/MainScreenTest_old.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oldVersion/MainScreenTest_old.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/oldVersion/VacationRequest_old.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/oldVersion/VacationRequest_old.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,6 +142,18 @@
     "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfEveningDay.executor": "Run",
     "TestNG.LeaveRequest.option_LeaveHoursSettingForMenaMERequestsOnly_HalfMorningDay.executor": "Run",
     "TestNG.LeaveRequest.option_PreventThisLeaveRequestIn_Sunday.executor": "Run",
+    "TestNG.LeaveRequest_old.linkEmployeeOnShiftAndRequestLeaveWithinShift.executor": "Run",
+    "TestNG.LoanRequest.checkAllowAGuarantorToGuaranteeTheLoanIfTheyHaveAPreviousActiveGuarantee.executor": "Run",
+    "TestNG.LoanRequest.checkAllowOverlappingOption.executor": "Run",
+    "TestNG.LoanRequest.checkAllowSupportingDocuments.executor": "Run",
+    "TestNG.LoanRequest.checkGuarantorsAreRequiredForThisLoanType.executor": "Run",
+    "TestNG.LoanRequest.checkMaxInstallmentLoanAmount.executor": "Run",
+    "TestNG.LoanRequest.checkMaxInstallmentsNumber.executor": "Run",
+    "TestNG.LoanRequest.checkMaxLoanAmount.executor": "Run",
+    "TestNG.LoanRequest.checkMaximumEmployeeAge.executor": "Run",
+    "TestNG.LoanRequest.employeeCannotRequestLoanFromMenaME.executor": "Run",
+    "TestNG.LoanRequest.fastLoanRequest.executor": "Run",
+    "TestNG.LoanRequest.fastLoanRequestWithAttachmentAndReason.executor": "Run",
     "TestNG.LoginAndConnectivity.changePassword_Success.executor": "Run",
     "TestNG.LoginAndConnectivity.changePassword_WrongOldPassword.executor": "Run",
     "TestNG.LoginAndConnectivity.checkNotMenaMeUser.executor": "Run",
@@ -147,6 +185,7 @@
     "TestNG.LoginTest.validLoginWithRememberMeAndLogout.executor": "Run",
     "TestNG.LoginTest.validLoginWithRememberMeAndLogout22222.executor": "Run",
     "TestNG.MainScreenTest.checkAllTheBoxInHomeScreen.executor": "Run",
+    "TestNG.MainScreenTest_old.checkAllTheBoxInHomeScreen.executor": "Run",
     "TestNG.MainScreenTest_old.testBoxesInHomeScreen.executor": "Run",
     "TestNG.MssqlConnect.test.executor": "Run",
     "TestNG.MssqlConnect.test1.executor": "Run",
@@ -155,6 +194,8 @@
     "TestNG.MyProfilePersonalTest.myProfile_Personal_AddContactInformation.executor": "Run",
     "TestNG.MyProfilePersonalTest.myProfile_Personal_AddContactInformation_ApproveByManager_AndRecheck.executor": "Run",
     "TestNG.MyProfilePersonalTest.myProfile_Personal_CheckContactInformation.executor": "Run",
+    "TestNG.MyProfilePersonalTest_old.myProfile_Personal_AddContactInformationAndRecheck.executor": "Run",
+    "TestNG.MyProfilePersonalTest_old.myProfile_Personal_CheckContactInformation.executor": "Run",
     "TestNG.NewClass.dddd.executor": "Run",
     "TestNG.NewClass.dddddd.executor": "Run",
     "TestNG.NewClass.employeeWithDirectManager.executor": "Run",
@@ -197,6 +238,8 @@
     "TestNG.SalarySlip.checkSalarySlipTabIfNotHavePermissionFromMenameSecuritySetup.executor": "Run",
     "TestNG.SalarySlip.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
     "TestNG.SalarySlip.test.executor": "Run",
+    "TestNG.TokenCreator.dddd.executor": "Run",
+    "TestNG.TokenCreator.ddds.executor": "Run",
     "TestNG.VacationRequest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
     "TestNG.VacationRequest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
     "TestNG.VacationRequest.checkOptionVacationCannotBeEnteredInMenaMe.executor": "Run",
@@ -228,8 +271,21 @@
     "TestNG.VacationRequest.ssss.executor": "Run",
     "TestNG.VacationRequest.testNewVersionWithApi.executor": "Run",
     "TestNG.VacationRequest.wqwwww.executor": "Run",
+    "TestNG.VacationRequest_old.checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup.executor": "Run",
+    "TestNG.VacationRequest_old.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
     "TestNG.VacationRequest_old.checkOption_AbilityToRequestInAdvanceVacationSettlementAndNotifyHROfficerAboutAutomaticallyCalculatedInAdvanceVacationSettlement.executor": "Run",
+    "TestNG.VacationRequest_old.checkOption_PreventTakingVacationsInSpecificPeriods.executor": "Run",
+    "TestNG.VacationRequest_old.checkOption_preventWithdrawTransactionAfterFirstApproval.executor": "Run",
+    "TestNG.VacationRequest_old.checkRequestToCancelAfterApprovedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
+    "TestNG.VacationRequest_old.checkRequestToCancelAfterRejectedTransaction_request_approveByManager_RecheckStatusInEmployeeSide.executor": "Run",
+    "TestNG.VacationRequest_old.checkTheDocumentIsMandatoryContinuousDays_SuccessValidation_Upload2Attachment.executor": "Run",
+    "TestNG.VacationRequest_old.checkValidationForEmployeeWithoutVacationBalance.executor": "Run",
+    "TestNG.VacationRequest_old.checkValidation_NeverExceedVacationSuggestedBalance.executor": "Run",
+    "TestNG.VacationRequest_old.executor": "Run",
     "TestNG.VacationRequest_old.requestUnpaidVacationWithAttachmentAndReason.executor": "Run",
+    "TestNG.VacationRequest_old.requestUnpaidVacationWithAttachmentAndReason_And_Approve_ByDirectManager.executor": "Run",
+    "TestNG.VacationRequest_old.requestUnpaidVacationWithAttachmentAndReason_And_Reject_ByDirectManager.executor": "Run",
+    "TestNG.VacationRequest_old.ssssssssssssssssssssssssssssssssssssssssssssssssssssssss.executor": "Run",
     "TestNG.VacationTest.checkAlertWhenRequestVacationsInPreviousDateAndFutureDate_WhenOptionsChecked.executor": "Run",
     "TestNG.VacationTest.checkDelegateAndConsultButtonsWhenOptionsNotCheckedInWorkflowSetup.executor": "Run",
     "TestNG.VacationTest.checkDelegatePopupAndCheckTheResultWhenType_EmployeeSubstitutes.executor": "Run",
@@ -304,12 +360,13 @@
       <recent name="" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="oldVersion" />
       <recent name="newVersion" />
       <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.MyProfilePersonalTest.myProfile_Personal_CheckContactInformation">
-    <configuration name="MainScreenTest.checkAllTheBoxInHomeScreen" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.LoanRequest.fastLoanRequestWithAttachmentAndReason">
+    <configuration name="LoanRequest.checkAllowAGuarantorToGuaranteeTheLoanIfTheyHaveAPreviousActiveGuarantee" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <extension name="coverage">
         <pattern>
@@ -318,8 +375,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="newVersion" />
-      <option name="MAIN_CLASS_NAME" value="newVersion.MainScreenTest" />
-      <option name="METHOD_NAME" value="checkAllTheBoxInHomeScreen" />
+      <option name="MAIN_CLASS_NAME" value="newVersion.LoanRequest" />
+      <option name="METHOD_NAME" value="checkAllowAGuarantorToGuaranteeTheLoanIfTheyHaveAPreviousActiveGuarantee" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -327,7 +384,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyProfilePersonalTest.myProfile_Personal_AddContactInformation" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoanRequest.checkAllowOverlappingOption" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <extension name="coverage">
         <pattern>
@@ -336,8 +393,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="newVersion" />
-      <option name="MAIN_CLASS_NAME" value="newVersion.MyProfilePersonalTest" />
-      <option name="METHOD_NAME" value="myProfile_Personal_AddContactInformation" />
+      <option name="MAIN_CLASS_NAME" value="newVersion.LoanRequest" />
+      <option name="METHOD_NAME" value="checkAllowOverlappingOption" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -345,7 +402,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyProfilePersonalTest.myProfile_Personal_AddContactInformation_ApproveByManager_AndRecheck" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoanRequest.checkGuarantorsAreRequiredForThisLoanType" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <extension name="coverage">
         <pattern>
@@ -354,8 +411,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="newVersion" />
-      <option name="MAIN_CLASS_NAME" value="newVersion.MyProfilePersonalTest" />
-      <option name="METHOD_NAME" value="myProfile_Personal_AddContactInformation_ApproveByManager_AndRecheck" />
+      <option name="MAIN_CLASS_NAME" value="newVersion.LoanRequest" />
+      <option name="METHOD_NAME" value="checkGuarantorsAreRequiredForThisLoanType" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -363,7 +420,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MyProfilePersonalTest.myProfile_Personal_CheckContactInformation" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="LoanRequest.fastLoanRequestWithAttachmentAndReason" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <extension name="coverage">
         <pattern>
@@ -372,8 +429,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="newVersion" />
-      <option name="MAIN_CLASS_NAME" value="newVersion.MyProfilePersonalTest" />
-      <option name="METHOD_NAME" value="myProfile_Personal_CheckContactInformation" />
+      <option name="MAIN_CLASS_NAME" value="newVersion.LoanRequest" />
+      <option name="METHOD_NAME" value="fastLoanRequestWithAttachmentAndReason" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -381,7 +438,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="NewClass.dddd" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="NewClass.testNewVersionWithApi" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="menamobile-appium" />
       <extension name="coverage">
         <pattern>
@@ -391,7 +448,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="newVersion" />
       <option name="MAIN_CLASS_NAME" value="newVersion.NewClass" />
-      <option name="METHOD_NAME" value="dddd" />
+      <option name="METHOD_NAME" value="testNewVersionWithApi" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -401,11 +458,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.MyProfilePersonalTest.myProfile_Personal_CheckContactInformation" />
-        <item itemvalue="TestNG.MyProfilePersonalTest.myProfile_Personal_AddContactInformation_ApproveByManager_AndRecheck" />
-        <item itemvalue="TestNG.MyProfilePersonalTest.myProfile_Personal_AddContactInformation" />
-        <item itemvalue="TestNG.NewClass.dddd" />
-        <item itemvalue="TestNG.MainScreenTest.checkAllTheBoxInHomeScreen" />
+        <item itemvalue="TestNG.LoanRequest.fastLoanRequestWithAttachmentAndReason" />
+        <item itemvalue="TestNG.LoanRequest.checkAllowOverlappingOption" />
+        <item itemvalue="TestNG.NewClass.testNewVersionWithApi" />
+        <item itemvalue="TestNG.LoanRequest.checkAllowAGuarantorToGuaranteeTheLoanIfTheyHaveAPreviousActiveGuarantee" />
+        <item itemvalue="TestNG.LoanRequest.checkGuarantorsAreRequiredForThisLoanType" />
       </list>
     </recent_temporary>
   </component>
@@ -762,7 +819,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741001383545</updated>
     </task>
-    <option name="localTasksCounter" value="44" />
+    <task id="LOCAL-00044" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1745238613757</created>
+      <option name="number" value="00044" />
+      <option name="presentableId" value="LOCAL-00044" />
+      <option name="project" value="LOCAL" />
+      <updated>1745238613757</updated>
+    </task>
+    <task id="LOCAL-00045" summary="Ali Test">
+      <option name="closed" value="true" />
+      <created>1745238738786</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1745238738786</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">

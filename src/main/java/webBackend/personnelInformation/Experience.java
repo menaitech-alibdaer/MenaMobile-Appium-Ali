@@ -147,12 +147,12 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        empHiringDate = personnelInformation.hiring_dateE.getAttribute("value");
+        empHiringDate = personnelInformation.hiring_dateE.getDomAttribute("value");
         String lastSite = personnelInformation.siteE.getText();
         String lastDepartment = personnelInformation.departmentE.getText();
         String lastSection = personnelInformation.sectionE.getText();
         String lastPosition = personnelInformation.positionE.getText();
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         hold(500);
         driver.switchTo().defaultContent();
@@ -209,20 +209,20 @@ public class Experience extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), empHiringDate, "- Not Same Hiring Date");
-        softAssert.assertEquals(toDate.getAttribute("value"), changeTransactions.getTransactionDate, "Not Same Transaction Date");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), empHiringDate, "- Not Same Hiring Date");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), changeTransactions.getTransactionDate, "Not Same Transaction Date");
 
         if(!newSite.isEmpty()){
-            softAssert.assertEquals(siteJob.getAttribute("value"), lastSite, "- Site");
+            softAssert.assertEquals(siteJob.getDomAttribute("value"), lastSite, "- Site");
         }
         if(!newDepartment.isEmpty()){
-            softAssert.assertEquals(departmentJob.getAttribute("value"), lastDepartment, "- Department");
+            softAssert.assertEquals(departmentJob.getDomAttribute("value"), lastDepartment, "- Department");
         }
         if(!newSection.isEmpty()){
-            softAssert.assertEquals(sectionJob.getAttribute("value"), lastSection, "- section");
+            softAssert.assertEquals(sectionJob.getDomAttribute("value"), lastSection, "- section");
         }
         if(!newPosition.isEmpty()){
-            softAssert.assertEquals(positionJob.getAttribute("value"), lastPosition, "- position");
+            softAssert.assertEquals(positionJob.getDomAttribute("value"), lastPosition, "- position");
         }
 
         softAssert.assertAll();
@@ -249,7 +249,7 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         hold(500);
         driver.switchTo().defaultContent();
@@ -280,22 +280,22 @@ public class Experience extends WebBase {
         clickOn(items.get(0));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "01/01/2021");
-        softAssert.assertEquals(toDate.getAttribute("value"), "01/01/2022");
-        softAssert.assertEquals(siteJob.getAttribute("value"), "Amman");
-        softAssert.assertEquals(departmentJob.getAttribute("value"), "Development");
-        softAssert.assertEquals(sectionJob.getAttribute("value"), "Mobile Development");
-        softAssert.assertEquals(positionJob.getAttribute("value"), "Flutter Developer");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "01/01/2021");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "01/01/2022");
+        softAssert.assertEquals(siteJob.getDomAttribute("value"), "Amman");
+        softAssert.assertEquals(departmentJob.getDomAttribute("value"), "Development");
+        softAssert.assertEquals(sectionJob.getDomAttribute("value"), "Mobile Development");
+        softAssert.assertEquals(positionJob.getDomAttribute("value"), "Flutter Developer");
 
         clickOn(items.get(1));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "01/01/2020");
-        softAssert.assertEquals(toDate.getAttribute("value"), "01/01/2021");
-        softAssert.assertEquals(siteJob.getAttribute("value"), "Amman");
-        softAssert.assertEquals(departmentJob.getAttribute("value"), "Development");
-        softAssert.assertEquals(sectionJob.getAttribute("value"), "PHP Development");
-        softAssert.assertEquals(positionJob.getAttribute("value"), "PHP Developer");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "01/01/2020");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "01/01/2021");
+        softAssert.assertEquals(siteJob.getDomAttribute("value"), "Amman");
+        softAssert.assertEquals(departmentJob.getDomAttribute("value"), "Development");
+        softAssert.assertEquals(sectionJob.getDomAttribute("value"), "PHP Development");
+        softAssert.assertEquals(positionJob.getDomAttribute("value"), "PHP Developer");
 
         softAssert.assertAll();
 
@@ -322,10 +322,10 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        empHiringDate = personnelInformation.hiring_dateE.getAttribute("value");
+        empHiringDate = personnelInformation.hiring_dateE.getDomAttribute("value");
         String lastClass = "";
         String lastDegree = "";
-        String lastStep = personnelInformation.stepE.getAttribute("value");
+        String lastStep = personnelInformation.stepE.getDomAttribute("value");
         String lastCategory1 = "";
         String lastCategory2 = "";
 
@@ -342,7 +342,7 @@ public class Experience extends WebBase {
             lastCategory2 = personnelInformation.category2E.getText();
         }
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(500);
         driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
@@ -364,7 +364,7 @@ public class Experience extends WebBase {
             softAssert.assertEquals(personnelInformation.degreeE.getText(), newDegree, "- Degree");
         }
         if(!newStep.isEmpty()){
-            softAssert.assertEquals(personnelInformation.stepE.getAttribute("value"), newStep, "- Step");
+            softAssert.assertEquals(personnelInformation.stepE.getDomAttribute("value"), newStep, "- Step");
         }
         if(!newCategory1.isEmpty()){
             softAssert.assertEquals(personnelInformation.category1E.getText(), newCategory1, "- Category 1");
@@ -380,23 +380,23 @@ public class Experience extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), empHiringDate, "- Not Same Hiring Date");
-        softAssert.assertEquals(toDate.getAttribute("value"), changeTransactions.getTransactionDate, "Not Same Transaction Date");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), empHiringDate, "- Not Same Hiring Date");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), changeTransactions.getTransactionDate, "Not Same Transaction Date");
 
         if(!newClass.isEmpty()){
-            softAssert.assertEquals(classJob.getAttribute("value").replace("\u00a0",""), lastClass, "- last Class");
+            softAssert.assertEquals(classJob.getDomAttribute("value").replace("\u00a0",""), lastClass, "- last Class");
         }
         if(!newDegree.isEmpty()){
-            softAssert.assertEquals(degreeJob.getAttribute("value").replace("\u00a0",""), lastDegree, "- last Degree");
+            softAssert.assertEquals(degreeJob.getDomAttribute("value").replace("\u00a0",""), lastDegree, "- last Degree");
         }
         if(!newStep.isEmpty()){
-            softAssert.assertEquals(stepJob.getAttribute("value").replace("\u00a0",""), lastStep, "- last Step");
+            softAssert.assertEquals(stepJob.getDomAttribute("value").replace("\u00a0",""), lastStep, "- last Step");
         }
         if(!newCategory1.isEmpty()){
-            softAssert.assertEquals(category1Job.getAttribute("value").replace("\u00a0",""), lastCategory1, "- last Category1");
+            softAssert.assertEquals(category1Job.getDomAttribute("value").replace("\u00a0",""), lastCategory1, "- last Category1");
         }
         if(!newCategory2.isEmpty()){
-            softAssert.assertEquals(category2Job.getAttribute("value").replace("\u00a0",""), lastCategory2, "- last Category2");
+            softAssert.assertEquals(category2Job.getDomAttribute("value").replace("\u00a0",""), lastCategory2, "- last Category2");
         }
 
         softAssert.assertAll();
@@ -423,7 +423,7 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         hold(500);
         driver.switchTo().defaultContent();
@@ -444,7 +444,7 @@ public class Experience extends WebBase {
 
         softAssert.assertEquals(personnelInformation.classificationE.getText(), "Class 1", "- New Class");
         softAssert.assertEquals(personnelInformation.degreeE.getText(), "Degree 1", "- New Degree");
-        softAssert.assertEquals(personnelInformation.stepE.getAttribute("value"), "1", "- New Step");
+        softAssert.assertEquals(personnelInformation.stepE.getDomAttribute("value"), "1", "- New Step");
         softAssert.assertEquals(personnelInformation.category1E.getText(), "Category 1", "- New Category 1");
         softAssert.assertEquals(personnelInformation.category2E.getText(), "Category 2", "- New Category 2");
 
@@ -455,24 +455,24 @@ public class Experience extends WebBase {
         clickOn(items.get(0));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "05/05/2021");
-        softAssert.assertEquals(toDate.getAttribute("value"), "03/03/2022");
-        softAssert.assertEquals(classJob.getAttribute("value").replace("\u00a0",""), "Class 2");
-        softAssert.assertEquals(degreeJob.getAttribute("value").replace("\u00a0",""), "Degree 2");
-        softAssert.assertEquals(stepJob.getAttribute("value").replace("\u00a0",""), "2");
-        softAssert.assertEquals(category1Job.getAttribute("value").replace("\u00a0",""), "Category 1");
-        softAssert.assertEquals(category2Job.getAttribute("value").replace("\u00a0",""), "Category 2");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "05/05/2021");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "03/03/2022");
+        softAssert.assertEquals(classJob.getDomAttribute("value").replace("\u00a0",""), "Class 2");
+        softAssert.assertEquals(degreeJob.getDomAttribute("value").replace("\u00a0",""), "Degree 2");
+        softAssert.assertEquals(stepJob.getDomAttribute("value").replace("\u00a0",""), "2");
+        softAssert.assertEquals(category1Job.getDomAttribute("value").replace("\u00a0",""), "Category 1");
+        softAssert.assertEquals(category2Job.getDomAttribute("value").replace("\u00a0",""), "Category 2");
 
         clickOn(items.get(1));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "01/01/2020");
-        softAssert.assertEquals(toDate.getAttribute("value"), "05/05/2021");
-        softAssert.assertEquals(classJob.getAttribute("value").replace("\u00a0",""), "");
-        softAssert.assertEquals(degreeJob.getAttribute("value").replace("\u00a0",""), "");
-        softAssert.assertEquals(stepJob.getAttribute("value").replace("\u00a0",""), "0");
-        softAssert.assertEquals(category1Job.getAttribute("value").replace("\u00a0",""), "");
-        softAssert.assertEquals(category2Job.getAttribute("value").replace("\u00a0",""), "");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "01/01/2020");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "05/05/2021");
+        softAssert.assertEquals(classJob.getDomAttribute("value").replace("\u00a0",""), "");
+        softAssert.assertEquals(degreeJob.getDomAttribute("value").replace("\u00a0",""), "");
+        softAssert.assertEquals(stepJob.getDomAttribute("value").replace("\u00a0",""), "0");
+        softAssert.assertEquals(category1Job.getDomAttribute("value").replace("\u00a0",""), "");
+        softAssert.assertEquals(category2Job.getDomAttribute("value").replace("\u00a0",""), "");
 
         softAssert.assertAll();
 
@@ -498,13 +498,13 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        empHiringDate = personnelInformation.hiring_dateE.getAttribute("value");
+        empHiringDate = personnelInformation.hiring_dateE.getDomAttribute("value");
         hold(300);
         clickOn(personnelInformation.backToPersonalInformationTab);
         hold(500);
-        String lastDirectManager = personnelInformation.directManagerName.getAttribute("value").trim();
+        String lastDirectManager = personnelInformation.directManagerName.getDomAttribute("value").trim();
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(500);
         driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
@@ -518,7 +518,7 @@ public class Experience extends WebBase {
         elementWaitAdvanced(By.id("first_name_e"));
 
         if(!newDirectManager.isEmpty()){
-            softAssert.assertEquals(personnelInformation.manager_code.getAttribute("value"), newDirectManager, "- Direct Manager");
+            softAssert.assertEquals(personnelInformation.manager_code.getDomAttribute("value"), newDirectManager, "- Direct Manager");
         }
 
         hold(500);
@@ -528,11 +528,11 @@ public class Experience extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), empHiringDate, "- Not Same Hiring Date");
-        softAssert.assertEquals(toDate.getAttribute("value"), changeTransactions.getTransactionDate, "Not Same Transaction Date");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), empHiringDate, "- Not Same Hiring Date");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), changeTransactions.getTransactionDate, "Not Same Transaction Date");
 
         if(!newDirectManager.isEmpty()){
-            softAssert.assertEquals(managerJob.getAttribute("value").trim(), lastDirectManager, "- last Direct Manager");
+            softAssert.assertEquals(managerJob.getDomAttribute("value").trim(), lastDirectManager, "- last Direct Manager");
         }
         softAssert.assertAll();
 
@@ -558,11 +558,11 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        empHiringDate = personnelInformation.hiring_dateE.getAttribute("value");
+        empHiringDate = personnelInformation.hiring_dateE.getDomAttribute("value");
         hold(300);
         clickOn(personnelInformation.backToPersonalInformationTab);
         hold(500);
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(500);
         driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
@@ -576,7 +576,7 @@ public class Experience extends WebBase {
         personnelInformation.goToEmployeeByCode(employeeCode);
         elementWaitAdvanced(By.id("first_name_e"));
 
-        softAssert.assertEquals(personnelInformation.manager_code.getAttribute("value"), "auto000002", "- New Direct Manager");
+        softAssert.assertEquals(personnelInformation.manager_code.getDomAttribute("value"), "auto000002", "- New Direct Manager");
 
         hold(500);
         clickOn(experiencesTab);
@@ -585,16 +585,16 @@ public class Experience extends WebBase {
         clickOn(items.get(0));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "04/04/2021");
-        softAssert.assertEquals(toDate.getAttribute("value"), "07/07/2022");
-        softAssert.assertEquals(managerJob.getAttribute("value").trim(), "auto000000 auto000000");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "04/04/2021");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "07/07/2022");
+        softAssert.assertEquals(managerJob.getDomAttribute("value").trim(), "auto000000 auto000000");
 
         clickOn(items.get(1));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "01/01/2020");
-        softAssert.assertEquals(toDate.getAttribute("value"), "04/04/2021");
-        softAssert.assertEquals(managerJob.getAttribute("value").trim(), "auto000001 auto000001");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "01/01/2020");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "04/04/2021");
+        softAssert.assertEquals(managerJob.getDomAttribute("value").trim(), "auto000001 auto000001");
 
         softAssert.assertAll();
 
@@ -620,14 +620,14 @@ public class Experience extends WebBase {
                 "", "", "", "PHP Developer", "01/01/2020",
                 "01/01/2020", "", "", "", "");
 
-        empHiringDate = personnelInformation.hiring_dateE.getAttribute("value");
+        empHiringDate = personnelInformation.hiring_dateE.getDomAttribute("value");
         String lastContract = "";
 
         if(!personnelInformation.classificationE.getText().equals("Choose")){
             lastContract = personnelInformation.contract_typeE.getText();
         }
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(500);
         driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
@@ -654,7 +654,7 @@ public class Experience extends WebBase {
         hold(300);
 
         if(!newContractType.isEmpty()){
-            softAssert.assertEquals(contractJob.getAttribute("value").replace("\u00a0",""), lastContract, "- last Contract");
+            softAssert.assertEquals(contractJob.getDomAttribute("value").replace("\u00a0",""), lastContract, "- last Contract");
         }
 
         softAssert.assertAll();
@@ -682,7 +682,7 @@ public class Experience extends WebBase {
                 "01/01/2020", "", "", "", "");
 
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(500);
         driver.switchTo().defaultContent();
         mainMenu.mainMenu("Workforce Management","Change Transactions");
@@ -699,7 +699,7 @@ public class Experience extends WebBase {
         elementWaitAdvanced(By.id("select2-site_1-container"));
 
         softAssert.assertEquals(personnelInformation.contract_typeE.getText(), "Contract Type 1", "- New Contract Type");
-        softAssert.assertEquals(personnelInformation.contract_start_dateE.getAttribute("value"), "06/06/2022", "- New Contract Start Date");
+        softAssert.assertEquals(personnelInformation.contract_start_dateE.getDomAttribute("value"), "06/06/2022", "- New Contract Start Date");
 
         hold(500);
         clickOn(experiencesTab);
@@ -708,16 +708,16 @@ public class Experience extends WebBase {
         clickOn(items.get(0));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "01/01/2021");
-        softAssert.assertEquals(toDate.getAttribute("value"), "");
-        softAssert.assertEquals(contractJob.getAttribute("value").replace("\u00a0",""), "Contract Type 1");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "01/01/2021");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "");
+        softAssert.assertEquals(contractJob.getDomAttribute("value").replace("\u00a0",""), "Contract Type 1");
 
         clickOn(items.get(1));
         hold(300);
 
-        softAssert.assertEquals(fromDate.getAttribute("value"), "01/01/2020");
-        softAssert.assertEquals(toDate.getAttribute("value"), "31/12/2020");
-        softAssert.assertEquals(contractJob.getAttribute("value").replace("\u00a0",""), "Contract Type 2");
+        softAssert.assertEquals(fromDate.getDomAttribute("value"), "01/01/2020");
+        softAssert.assertEquals(toDate.getDomAttribute("value"), "31/12/2020");
+        softAssert.assertEquals(contractJob.getDomAttribute("value").replace("\u00a0",""), "Contract Type 2");
 
         softAssert.assertAll();
 
@@ -796,25 +796,25 @@ public class Experience extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), startDate, "- Start Date!");
-        softAssert.assertEquals(endDateE.getAttribute("value"), endDate, "- End Date");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), startDate, "- Start Date!");
+        softAssert.assertEquals(endDateE.getDomAttribute("value"), endDate, "- End Date");
         softAssert.assertEquals(untilNowE.isSelected(), untilNow, "- Until Now");
-        softAssert.assertEquals(previousEmployerE.getAttribute("value"), previousEmployer, "- Previous Employer");
-        softAssert.assertEquals(previousPositionE.getAttribute("value"), previousPosition, "- Previous Position");
-        softAssert.assertEquals(salaryE.getAttribute("value"), salary, "- Salary");
+        softAssert.assertEquals(previousEmployerE.getDomAttribute("value"), previousEmployer, "- Previous Employer");
+        softAssert.assertEquals(previousPositionE.getDomAttribute("value"), previousPosition, "- Previous Position");
+        softAssert.assertEquals(salaryE.getDomAttribute("value"), salary, "- Salary");
         softAssert.assertEquals(salaryCurrencyE.getText(), salaryCurrency, "- Salary Currency");
-        softAssert.assertEquals(contactPersonE.getAttribute("value"), contactPerson, "- Contact Person");
-        softAssert.assertEquals(contactPhoneE.getAttribute("value"), contactPhone, "- Contact Phone");
-        softAssert.assertEquals(contactPositionE.getAttribute("value"), contactPosition, "- Contact Position");
+        softAssert.assertEquals(contactPersonE.getDomAttribute("value"), contactPerson, "- Contact Person");
+        softAssert.assertEquals(contactPhoneE.getDomAttribute("value"), contactPhone, "- Contact Phone");
+        softAssert.assertEquals(contactPositionE.getDomAttribute("value"), contactPosition, "- Contact Position");
         softAssert.assertEquals(countryE.getText(), country, "- Country");
-        softAssert.assertEquals(jobPlaceE.getAttribute("value"), jobPlace, "- Job Place");
-        softAssert.assertEquals(quitReasonE.getAttribute("value"), quitReason, "- Quit Reason");
+        softAssert.assertEquals(jobPlaceE.getDomAttribute("value"), jobPlace, "- Job Place");
+        softAssert.assertEquals(quitReasonE.getDomAttribute("value"), quitReason, "- Quit Reason");
         softAssert.assertEquals(experiencePlaceE.getText(), experiencePlace, "- Experience Place");
         softAssert.assertEquals(experienceTypeE.getText(), experienceType, "- Experience Type");
         softAssert.assertEquals(natureOfWorkE.getText(), natureOfWork, "- Nature Of Work");
         softAssert.assertEquals(jobClassificationE.getText(), jobClassification, "- Job Classification");
         softAssert.assertEquals(relevanceE.getText(), relevance, "- Relevance");
-        softAssert.assertEquals(responsibilitiesE.getAttribute("value"), responsibilities, "- Responsibilities");
+        softAssert.assertEquals(responsibilitiesE.getDomAttribute("value"), responsibilities, "- Responsibilities");
 
         softAssert.assertAll();
 
@@ -886,14 +886,14 @@ public class Experience extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), "05/05/2018", "- Start Date!");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), "05/05/2018", "- Start Date!");
         softAssert.assertEquals(untilNowE.isSelected(), true, "- Until Now");
-        softAssert.assertEquals(previousEmployerE.getAttribute("value"), "Employer Edited", "- Previous Employer");
-        softAssert.assertEquals(previousPositionE.getAttribute("value"), "Position Edited", "- Previous Position");
-        softAssert.assertEquals(salaryE.getAttribute("value"), "1500.000", "- Salary");
-        softAssert.assertEquals(jobPlaceE.getAttribute("value"), "Zarqa Edited", "- Job Place");
+        softAssert.assertEquals(previousEmployerE.getDomAttribute("value"), "Employer Edited", "- Previous Employer");
+        softAssert.assertEquals(previousPositionE.getDomAttribute("value"), "Position Edited", "- Previous Position");
+        softAssert.assertEquals(salaryE.getDomAttribute("value"), "1500.000", "- Salary");
+        softAssert.assertEquals(jobPlaceE.getDomAttribute("value"), "Zarqa Edited", "- Job Place");
         softAssert.assertEquals(relevanceE.getText(), "Choose", "- Relevance");
-        softAssert.assertEquals(responsibilitiesE.getAttribute("value"), "Test Edited", "- Responsibilities");
+        softAssert.assertEquals(responsibilitiesE.getDomAttribute("value"), "Test Edited", "- Responsibilities");
 
         softAssert.assertAll();
 
@@ -1008,7 +1008,7 @@ public class Experience extends WebBase {
                 "", "", "");
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Start Date Validation!");
-        softAssert.assertTrue(startDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(startDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
 
         clickOn(okBtnAlert);
         hold(500);
@@ -1018,7 +1018,7 @@ public class Experience extends WebBase {
         hold(300);
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Salary Validation!");
-        softAssert.assertTrue(salaryE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(salaryE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
 
         softAssert.assertAll();
     }
@@ -1055,7 +1055,7 @@ public class Experience extends WebBase {
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Should Only Contain Decimal Values.");
-        softAssert.assertTrue(salaryE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(salaryE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1092,7 +1092,7 @@ public class Experience extends WebBase {
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The End Date Can Not Be Before The Start Date! Please Re-enter The End Date");
-        softAssert.assertTrue(endDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(endDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1188,10 +1188,10 @@ public class Experience extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(practicalExperienceDateE.getAttribute("value"), date, "- Date");
+        softAssert.assertEquals(practicalExperienceDateE.getDomAttribute("value"), date, "- Date");
         softAssert.assertEquals(practicalExperienceShowInE.getText(), showIn, "- Show In");
-        softAssert.assertEquals(practicalExperienceEnglishE.getAttribute("value").trim(), english, "- English");
-        softAssert.assertEquals(practicalExperienceArabicE.getAttribute("value").trim(), arabic, "- Arabic");
+        softAssert.assertEquals(practicalExperienceEnglishE.getDomAttribute("value").trim(), english, "- English");
+        softAssert.assertEquals(practicalExperienceArabicE.getDomAttribute("value").trim(), arabic, "- Arabic");
         softAssert.assertAll();
 
     }
@@ -1241,10 +1241,10 @@ public class Experience extends WebBase {
         clickOn(saveBtn);
         hold(300);
 
-        softAssert.assertEquals(practicalExperienceDateE.getAttribute("value"), "05/05/2018", "- Date");
+        softAssert.assertEquals(practicalExperienceDateE.getDomAttribute("value"), "05/05/2018", "- Date");
         softAssert.assertEquals(practicalExperienceShowInE.getText(), "Brief Resume", "- Show In");
-        softAssert.assertEquals(practicalExperienceEnglishE.getAttribute("value").trim(), "English Edit", "- English");
-        softAssert.assertEquals(practicalExperienceArabicE.getAttribute("value").trim(), "تعديل عربي", "- Arabic");
+        softAssert.assertEquals(practicalExperienceEnglishE.getDomAttribute("value").trim(), "English Edit", "- English");
+        softAssert.assertEquals(practicalExperienceArabicE.getDomAttribute("value").trim(), "تعديل عربي", "- Arabic");
         softAssert.assertAll();
 
     }
@@ -1317,7 +1317,7 @@ public class Experience extends WebBase {
                 "هذا النص هو مثال لنص يمكن أن يستبدل في نفس المساحة، لقد تم توليد هذا النص من مولد النص العربى، حيث يمكنك أن تولد مثل هذا النص أو العديد من النصوص الأخرى إضافة إلى زيادة عدد الحروف التى يولدها التطبيق. إذا كنت تحتاج إلى عدد أكبر من الفقرات يتيح لك مولد النص العربى زيادة عدد الفقرات كما تريد، النص لن يبدو مقسما ولا يحوي أخطاء لغوية، مولد النص العربى مفيد لمصممي المواقع على وجه الخصوص، حيث يحتاج العميل فى كثير من الأحيان أن يطلع على صورة حقيقية لتصميم الموقع.");
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Practical Experience Date");
-        softAssert.assertTrue(practicalExperienceDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(practicalExperienceDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
 
         softAssert.assertAll();
 

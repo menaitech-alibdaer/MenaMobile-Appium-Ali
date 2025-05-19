@@ -62,7 +62,7 @@ public class TimeAttendance extends MobileBasePage {
 
     public String getTimeAttendanceButtonTitle(){
         try {
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='TimeAttendanceButton']//android.widget.Button[1]")).getAttribute("content-desc");
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='TimeAttendanceButton']//android.widget.Button[1]")).getDomAttribute("content-desc");
         }catch (Exception e){
             return "Not Found Button!";
         }
@@ -101,10 +101,10 @@ public class TimeAttendance extends MobileBasePage {
     public boolean checkAlertPopup(String alertText){
         hold(500);
         try{
-            return successAlertPopup.getAttribute("content-desc").contains(alertText);
+            return successAlertPopup.getDomAttribute("content-desc").contains(alertText);
         }catch (Exception e){
             try {
-                return attentionAlertPopup.getAttribute("content-desc").contains(alertText);
+                return attentionAlertPopup.getDomAttribute("content-desc").contains(alertText);
             }catch (Exception ex){
                 return false;
             }
@@ -194,10 +194,10 @@ public class TimeAttendance extends MobileBasePage {
 
         String str = null;
         try{
-            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
         }catch (Exception e){
             scrollToElement(approvalCommitteeText, true);
-            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getAttribute("content-desc");
+            str = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+type+"')]")).getDomAttribute("content-desc");
         }
 
         if(str != null && !str.isEmpty()){

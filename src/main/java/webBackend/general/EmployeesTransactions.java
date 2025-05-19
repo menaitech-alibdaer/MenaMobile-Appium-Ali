@@ -600,7 +600,8 @@ public class EmployeesTransactions extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("employee_code"));
         clickOn(loans);
-        hold(500);
+        hold(1000);
+        elementWait(empCode);
         setText(empCode, employeeCode, Keys.TAB);
         hold(1500);
         closeIFrame();
@@ -659,6 +660,10 @@ public class EmployeesTransactions extends WebBase {
         hold(500);
         alert.accept();
         hold(3500);
+        closeIFrame();
+        goToFrame(bodyFrame);
+        waitForElementToBeDisabled(typeE);
+        hold(500);
         closeIFrame();
 
         setLog("Loans Transaction"+" - Employee Code: "+ employeeCode+" - Date: "+date+" - Loan Type: "+loanType+" - amount: "+amount+" - installments: "+installments+" - Note: "+note);
@@ -763,11 +768,11 @@ public class EmployeesTransactions extends WebBase {
     }
 
     public String getGuarantorEmployeeCode(){
-        return guarantorEmployee1.getAttribute("value");
+        return guarantorEmployee1.getDomAttribute("value");
     }
 
     public String getTotalAmountLoan(){
-        return totalAmount_loan.getAttribute("value");
+        return totalAmount_loan.getDomAttribute("value");
     }
 
     public void openLoanGuarantors(){
@@ -817,14 +822,14 @@ public class EmployeesTransactions extends WebBase {
         return String.valueOf(dueDate_list.size());
     }
     public String getNumberOfInstallments(){
-        return installmentsE.getAttribute("value");
+        return installmentsE.getDomAttribute("value");
     }
 
     public String dueDate_loan(int index){
-        return dueDate_list.get(index).getAttribute("value");
+        return dueDate_list.get(index).getDomAttribute("value");
     }
     public String dueAmount_loan(int index){
-        return dueAmount_list.get(index).getAttribute("value");
+        return dueAmount_list.get(index).getDomAttribute("value");
     }
 
     public void goToOtherDeductions(String employeeCode){
@@ -1303,20 +1308,20 @@ public class EmployeesTransactions extends WebBase {
     }
 
     public String OI_CheckAmountByTransactionType(String transactionType){
-        return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_amount')]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_amount')]")).getDomAttribute("value");
     }
     public String OI_CheckDateByTransactionType(String transactionType){
-        return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_date')]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//option[text()='"+transactionType+"' and @selected]/../../..)[1]//input[contains(@name, 'transaction_date')]")).getDomAttribute("value");
     }
 
     public String getFromDate(int transactionOrder){
-        return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_date')])["+transactionOrder+"]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_date')])["+transactionOrder+"]")).getDomAttribute("value");
     }
     public String getToDate(int transactionOrder){
-        return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_end_date')])["+transactionOrder+"]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//input[contains(@id, 'transaction_end_date')])["+transactionOrder+"]")).getDomAttribute("value");
     }
     public String getAmount(int transactionOrder){
-        return driver.findElement(By.xpath("(//input[contains(@name, 'transaction_amount')])["+transactionOrder+"]")).getAttribute("value");
+        return driver.findElement(By.xpath("(//input[contains(@name, 'transaction_amount')])["+transactionOrder+"]")).getDomAttribute("value");
     }
     public String getVacationType(int transactionOrder){
         WebElement selectElement = driver.findElement(By.xpath("(//select[contains(@id, 'transaction_internal_type')])["+transactionOrder+"]"));

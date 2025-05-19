@@ -60,7 +60,8 @@ public class SalaryCalculation extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/SalaryCalculation/CalculateSalary") // Replace with your endpoint like that -> /Employee/get-max-employee-code
@@ -85,7 +86,8 @@ public class SalaryCalculation extends ApiBase {
                 int monthInt = Integer.parseInt(month);
 
                 Response responsePosted = given()
-                        .contentType(ContentType.JSON)
+                        //.contentType(ContentType.JSON)
+                        .spec(SpecBuilder())
                         .queryParam("year", yearInt)
                         .queryParam("month", monthInt)
                         .queryParam("actionType", 1)
@@ -106,7 +108,8 @@ public class SalaryCalculation extends ApiBase {
                     }
 
                     Response responseReleased = given()
-                            .contentType(ContentType.JSON)
+                            //.contentType(ContentType.JSON)
+                            .spec(SpecBuilder())
                             .queryParam("year", yearInt) // Example query parameters
                             .queryParam("month", monthInt)
                             .queryParam("actionType", 8)
@@ -140,6 +143,7 @@ public class SalaryCalculation extends ApiBase {
         RestAssured.baseURI = baseUrlApiGetter();
 
         Response response = given()
+                .spec(SpecBuilder())
                 .queryParam("employeeId", getIdByEmployeeCode(employeeCode)) // Pass integer as query param
                 .queryParam("month", month)
                 .queryParam("year", year)
@@ -262,7 +266,8 @@ public class SalaryCalculation extends ApiBase {
             String jsonPayload = objectMapper.writeValueAsString(payload);
 
             Response response = given()
-                    .header("Content-Type", "application/json")
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
                     .body(jsonPayload)
                     .when()
                     .post("/Employee/save-employee-tax-info") // Replace with your endpoint like that -> /Employee/get-max-employee-code

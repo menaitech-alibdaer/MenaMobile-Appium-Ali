@@ -201,26 +201,26 @@ public class Education extends WebBase {
         softAssert.assertTrue(item.isDisplayed(), "- item not appear");
         clickOn(item);
         hold(300);
-        softAssert.assertEquals(startDateE.getAttribute("value"), startDate, "- Start Date");
-        softAssert.assertEquals(endDateE.getAttribute("value"), endDate, "- End Date");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), startDate, "- Start Date");
+        softAssert.assertEquals(endDateE.getDomAttribute("value"), endDate, "- End Date");
         softAssert.assertEquals(untilNowE.isSelected(), untilNow, "- Until Now");
         softAssert.assertEquals(countryE.getText(), country, "- Country");
         softAssert.assertEquals(cityE.getText(), city, "- City");
         softAssert.assertEquals(schoolE.getText(), school, "- School");
-        softAssert.assertEquals(otherSchoolE.getAttribute("value"), otherSchool, "- Other School");
+        softAssert.assertEquals(otherSchoolE.getDomAttribute("value"), otherSchool, "- Other School");
         softAssert.assertEquals(facultyE.getText(), faculty, "- Faculty");
-        softAssert.assertEquals(otherFacultyE.getAttribute("value"), otherFaculty, "- Other Faculty");
+        softAssert.assertEquals(otherFacultyE.getDomAttribute("value"), otherFaculty, "- Other Faculty");
         softAssert.assertEquals(qualificationE.getText(), qualification, "- Qualification");
-        softAssert.assertEquals(otherQualificationE.getAttribute("value"), otherQualification, "- Other Qualification");
+        softAssert.assertEquals(otherQualificationE.getDomAttribute("value"), otherQualification, "- Other Qualification");
         softAssert.assertEquals(majorE.getText(), major, "- Major");
-        softAssert.assertEquals(otherMajorE.getAttribute("value"), otherMajor, "- Other Major");
+        softAssert.assertEquals(otherMajorE.getDomAttribute("value"), otherMajor, "- Other Major");
         softAssert.assertEquals(universityAverageE.getText(), universityAverage, "- University Average");
-        softAssert.assertEquals(gradeE.getAttribute("value"), grade, "- Grade");
+        softAssert.assertEquals(gradeE.getDomAttribute("value"), grade, "- Grade");
         softAssert.assertEquals(graduationYearE.getText(), graduationYear, "- Graduation Year");
-        softAssert.assertEquals(educationNotesE.getAttribute("value"), educationNotes, "- Education Notes");
+        softAssert.assertEquals(educationNotesE.getDomAttribute("value"), educationNotes, "- Education Notes");
         if(!liteGetter()){
             softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-            softAssert.assertFalse(checkAttachmentFile.getAttribute("onclick").isEmpty(), "- Attachment File");
+            softAssert.assertFalse(checkAttachmentFile.getDomAttribute("onclick").isEmpty(), "- Attachment File");
         }
         if(educationMinor.equalsIgnoreCase("Yes")){
             softAssert.assertTrue(educationMinorYes.isSelected(), "Education Minor: Yes");
@@ -286,15 +286,15 @@ public class Education extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), "10/10/2012");
-        softAssert.assertEquals(endDateE.getAttribute("value"), "05/05/2017");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), "10/10/2012");
+        softAssert.assertEquals(endDateE.getDomAttribute("value"), "05/05/2017");
         softAssert.assertEquals(schoolE.getText(), "Schools 2");
         softAssert.assertEquals(facultyE.getText(), "Faculties 2");
         softAssert.assertEquals(majorE.getText(), "Majors 2");
         softAssert.assertEquals(universityAverageE.getText(), "Excellent");
-        softAssert.assertEquals(gradeE.getAttribute("value"), "85.700");
+        softAssert.assertEquals(gradeE.getDomAttribute("value"), "85.700");
         softAssert.assertEquals(graduationYearE.getText(), "2017");
-        softAssert.assertEquals(educationNotesE.getAttribute("value"), "Edited Edu");
+        softAssert.assertEquals(educationNotesE.getDomAttribute("value"), "Edited Edu");
         softAssert.assertTrue(educationMinorNo.isSelected());
         softAssert.assertAll();
 
@@ -410,7 +410,7 @@ public class Education extends WebBase {
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The End Date Can Not Be Before The Start Date! Please Re-enter The End Date");
-        softAssert.assertTrue(endDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(endDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -479,7 +479,7 @@ public class Education extends WebBase {
 
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Should Only Contain Decimal Values.");
-        softAssert.assertTrue(gradeE.getAttribute("class").contains("validationErrorCSS"), "- The Grade Field Should be RED Border Appear!");
+        softAssert.assertTrue(gradeE.getDomAttribute("class").contains("validationErrorCSS"), "- The Grade Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -507,16 +507,16 @@ public class Education extends WebBase {
         clickOn(educationPage);
         hold(300);
 
-        softAssert.assertTrue(startDateE.getAttribute("validation").contains("required"), "Start Date Should be Mandatory!");
-        softAssert.assertTrue(endDateE.getAttribute("validation").contains("required"), "End Date Should be Mandatory!");
-        softAssert.assertTrue(driver.findElement(By.id("degree")).getAttribute("validation").contains("required"), "Qualification Should be Mandatory!");
-        softAssert.assertTrue(driver.findElement(By.id("major")).getAttribute("validation").contains("required"), "Major Should be Mandatory!");
+        softAssert.assertTrue(startDateE.getDomAttribute("validation").contains("required"), "Start Date Should be Mandatory!");
+        softAssert.assertTrue(endDateE.getDomAttribute("validation").contains("required"), "End Date Should be Mandatory!");
+        softAssert.assertTrue(driver.findElement(By.id("degree")).getDomAttribute("validation").contains("required"), "Qualification Should be Mandatory!");
+        softAssert.assertTrue(driver.findElement(By.id("major")).getDomAttribute("validation").contains("required"), "Major Should be Mandatory!");
 
         clickOn(saveBtn);
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Must Be Filled!");
-        softAssert.assertTrue(startDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(startDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         hold(500);
         clickOn(okBtnAlert);
         hold(200);
@@ -525,7 +525,7 @@ public class Education extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Must Be Filled!");
-        softAssert.assertTrue(endDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(endDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         hold(500);
         clickOn(okBtnAlert);
         hold(200);
@@ -596,7 +596,7 @@ public class Education extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -648,7 +648,7 @@ public class Education extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -770,7 +770,7 @@ public class Education extends WebBase {
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);

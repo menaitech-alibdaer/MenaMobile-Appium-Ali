@@ -155,13 +155,13 @@ public class AssetsAndDocuments extends WebBase {
         hold(300);
 
         softAssert.assertEquals(attachmentTypeE.getText(), attachmentType, "attachmentType");
-        softAssert.assertEquals(attachmentDateE.getAttribute("value"), attachmentDate, "attachmentDate");
-        softAssert.assertEquals(documentNumberE.getAttribute("value"), documentNumber, "documentNumber");
-        softAssert.assertEquals(expireOnE.getAttribute("value"), expiresOn, "expiresOn");
+        softAssert.assertEquals(attachmentDateE.getDomAttribute("value"), attachmentDate, "attachmentDate");
+        softAssert.assertEquals(documentNumberE.getDomAttribute("value"), documentNumber, "documentNumber");
+        softAssert.assertEquals(expireOnE.getDomAttribute("value"), expiresOn, "expiresOn");
         softAssert.assertEquals(relatedToE.getText(), relatedTo, "relatedTo");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
-        softAssert.assertEquals(descriptionE.getAttribute("value").trim(), description, "description");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertEquals(descriptionE.getDomAttribute("value").trim(), description, "description");
         softAssert.assertAll();
 
     }
@@ -208,8 +208,8 @@ public class AssetsAndDocuments extends WebBase {
         hold(300);
 
         softAssert.assertEquals(attachmentTypeE.getText(), "Passport");
-        softAssert.assertEquals(attachmentDateE.getAttribute("value"), "01/01/2021");
-        softAssert.assertEquals(descriptionE.getAttribute("value").trim(), "Edited Description");
+        softAssert.assertEquals(attachmentDateE.getDomAttribute("value"), "01/01/2021");
+        softAssert.assertEquals(descriptionE.getDomAttribute("value").trim(), "Edited Description");
         softAssert.assertAll();
 
     }
@@ -327,7 +327,7 @@ public class AssetsAndDocuments extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -374,7 +374,7 @@ public class AssetsAndDocuments extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -485,7 +485,7 @@ public class AssetsAndDocuments extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);
@@ -620,20 +620,20 @@ public class AssetsAndDocuments extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(deliveryDateE.getAttribute("value"), deliveryDate, "deliveryDate");
-        softAssert.assertEquals(expireDateE.getAttribute("value"), expireDate, "expireDate");
-        softAssert.assertEquals(dropDateE.getAttribute("value"), dropDate, "dropDate");
+        softAssert.assertEquals(deliveryDateE.getDomAttribute("value"), deliveryDate, "deliveryDate");
+        softAssert.assertEquals(expireDateE.getDomAttribute("value"), expireDate, "expireDate");
+        softAssert.assertEquals(dropDateE.getDomAttribute("value"), dropDate, "dropDate");
         softAssert.assertEquals(assetDescriptionE.getText(), assetDescription, "assetDescription");
-        softAssert.assertEquals(costE.getAttribute("value"), cost, "cost");
-        softAssert.assertEquals(countE.getAttribute("value"), count, "count");
-        softAssert.assertEquals(modelE.getAttribute("value"), model, "model");
+        softAssert.assertEquals(costE.getDomAttribute("value"), cost, "cost");
+        softAssert.assertEquals(countE.getDomAttribute("value"), count, "count");
+        softAssert.assertEquals(modelE.getDomAttribute("value"), model, "model");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile2.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile2.getDomAttribute("href").isEmpty(), "- Attachment File");
         softAssert.assertTrue(deleteAttachmentBtn.get(0).isDisplayed(), "Delete Attachment Button NOT Appear");
-        softAssert.assertEquals(serialNumberE.getAttribute("value"), serialNumber, "serialNumber");
-        softAssert.assertEquals(locationE.getAttribute("value"), location, "location");
+        softAssert.assertEquals(serialNumberE.getDomAttribute("value"), serialNumber, "serialNumber");
+        softAssert.assertEquals(locationE.getDomAttribute("value"), location, "location");
         softAssert.assertEquals(decreasingE.isSelected(), decreasing, "decreasing");
-        softAssert.assertEquals(notesE.getAttribute("value"), notes, "notes");
+        softAssert.assertEquals(notesE.getDomAttribute("value"), notes, "notes");
         softAssert.assertAll();
 
     }
@@ -686,11 +686,11 @@ public class AssetsAndDocuments extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(deliveryDateE.getAttribute("value"), "02/02/2020", "deliveryDate");
-        softAssert.assertTrue(expireDateE.getAttribute("value").isEmpty(), "Expire Date Should be Empty");
-        softAssert.assertTrue(dropDateE.getAttribute("value").isEmpty(), "Drop Date Should be Empty");
+        softAssert.assertEquals(deliveryDateE.getDomAttribute("value"), "02/02/2020", "deliveryDate");
+        softAssert.assertTrue(expireDateE.getDomAttribute("value").isEmpty(), "Expire Date Should be Empty");
+        softAssert.assertTrue(dropDateE.getDomAttribute("value").isEmpty(), "Drop Date Should be Empty");
         softAssert.assertEquals(assetDescriptionE.getText(), "Asset 2");
-        softAssert.assertEquals(costE.getAttribute("value"), "30.500");
+        softAssert.assertEquals(costE.getDomAttribute("value"), "30.500");
         softAssert.assertEquals(decreasingE.isSelected(), false, "Decreasing Should be NOT Selected");
         softAssert.assertAll();
 
@@ -815,7 +815,7 @@ public class AssetsAndDocuments extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile2.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile2.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -864,7 +864,7 @@ public class AssetsAndDocuments extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile2.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile2.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -958,7 +958,7 @@ public class AssetsAndDocuments extends WebBase {
         hold(300);
 
         softAssert.assertTrue(checkAttachForUserDontHavePermission.isDisplayed(), "- LOCKED Attachment NOT appear");
-        softAssert.assertEquals(checkAttachForUserDontHavePermission.getAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
+        softAssert.assertEquals(checkAttachForUserDontHavePermission.getDomAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
         softAssert.assertAll();
 
     }
@@ -982,7 +982,7 @@ public class AssetsAndDocuments extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);
@@ -1167,9 +1167,9 @@ public class AssetsAndDocuments extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(noteDateE.getAttribute("value"), noteDate, "Note Date");
-        softAssert.assertEquals(noteE.getAttribute("value"), note, "Note Text");
-        softAssert.assertEquals(employeeCommentE.getAttribute("value"), employeeComment, "Employee Comment");
+        softAssert.assertEquals(noteDateE.getDomAttribute("value"), noteDate, "Note Date");
+        softAssert.assertEquals(noteE.getDomAttribute("value"), note, "Note Text");
+        softAssert.assertEquals(employeeCommentE.getDomAttribute("value"), employeeComment, "Employee Comment");
         softAssert.assertAll();
 
     }
@@ -1220,9 +1220,9 @@ public class AssetsAndDocuments extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(noteDateE.getAttribute("value"), "02/02/2022");
-        softAssert.assertEquals(noteE.getAttribute("value"), "Note Edited");
-        softAssert.assertEquals(employeeCommentE.getAttribute("value"), "Comment Edited");
+        softAssert.assertEquals(noteDateE.getDomAttribute("value"), "02/02/2022");
+        softAssert.assertEquals(noteE.getDomAttribute("value"), "Note Edited");
+        softAssert.assertEquals(employeeCommentE.getDomAttribute("value"), "Comment Edited");
         softAssert.assertAll();
 
     }
@@ -1299,7 +1299,7 @@ public class AssetsAndDocuments extends WebBase {
         hold(300);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Must Be Filled!");
-        softAssert.assertTrue(noteDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(noteDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         clickOn(okBtnAlert);
         hold(300);
         setText(noteDateE, "03/03/2022");
@@ -1307,7 +1307,7 @@ public class AssetsAndDocuments extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Must Be Filled!");
-        softAssert.assertTrue(noteE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(noteE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         clickOn(okBtnAlert);
         hold(300);
         setText(noteE, "Test Note TEXT");

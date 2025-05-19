@@ -23,6 +23,7 @@ public class MainScreenTest extends BaseTest {
     CompanyAndBranch companyAndBranch;
     Employees employees;
     apiBackend.SalaryCalculation salaryCalculation;
+    AllEmployeeTransactions allEmployeeTransactions;
     String employeeCode = null;
 
     @Test
@@ -50,6 +51,9 @@ public class MainScreenTest extends BaseTest {
         employees.addVacationBalance("Annual Vacation", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", true);
         employees.addVacationBalance("Sick Vacation", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", false);
 
+        allEmployeeTransactions = new AllEmployeeTransactions();
+        allEmployeeTransactions.loans(employeeCode, currentYear()+"-01-01", currentYear()+"-01-01", "Car Loan", "1000", "10", true);
+
         salaryCalculation = new apiBackend.SalaryCalculation();
         salaryCalculation.salaryCalculation(employeeCode, "2025", "3", true);
         salaryCalculation.getSalarySlip(employeeCode, 2025, 3);
@@ -72,9 +76,9 @@ public class MainScreenTest extends BaseTest {
         softAssert.assertEquals(mainScreen.getCurrentBalance_SickVacation(), SickCurrentBalance, "Sick Vacation - Current Balance!");
         softAssert.assertEquals(mainScreen.getUpToEndOfYear_SickVacation(), "14.000", "Sick Vacation - Up To End Of Year!");
         softAssert.assertTrue(mainScreen.loanBalanceBox(), "Loan Balance!");
-        softAssert.assertEquals(mainScreen.loanBalanceAmount(), "0.000", "Loan Balance Amount!");
+        softAssert.assertEquals(mainScreen.loanBalanceAmount(), "1000.00", "Loan Balance Amount!");
         softAssert.assertTrue(mainScreen.stbBalanceBox(), "STB Balance!");
-        softAssert.assertEquals(mainScreen.stbBalanceAmount(), "0.000", "STB Balance Amount!");
+        softAssert.assertEquals(mainScreen.stbBalanceAmount(), "0.00", "STB Balance Amount!");
         softAssert.assertTrue(mainScreen.lastSalaryBox(), "Last Salary!");
         softAssert.assertEquals(mainScreen.lastSalaryAmount(), "1400.000", "Last Salary Amount!");
         softAssert.assertAll();

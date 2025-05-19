@@ -287,7 +287,7 @@ public class FinancialPackage extends WebBase {
             empCode.clear();
             hold(100);
             setText(empCode, employeeCode, Keys.TAB);
-            hold(300);
+            hold(700);
             elementWaitAdvanced(By.xpath("//label[contains(text(),'Active Employee')]"));
 
         }else {
@@ -464,11 +464,14 @@ public class FinancialPackage extends WebBase {
 
         if(!versionGetter().equalsIgnoreCase("OCT")){
 
+            waitLoadingScreen();
             elementWaitAdvanced(By.id("basic_salary_amount"));
 
             if(!allowanceCode.isEmpty()){
+                hold(3500);
                 clickOn(addBtn);
-                hold(300);
+                waitLoadingScreen();
+                hold(1800);
                 selectOption(allowanceCode_last, allowanceCode);
                 hold(200);
                 if(!allowanceAmount.isEmpty()){
@@ -498,7 +501,7 @@ public class FinancialPackage extends WebBase {
                 }
                 scrollToElement(empCode);
                 clickOn(saveBtn);
-                hold(300);
+                hold(1500);
             }
 
         }else {
@@ -524,13 +527,15 @@ public class FinancialPackage extends WebBase {
         if(!versionGetter().equalsIgnoreCase("OCT")){
             elementWaitAdvanced(By.id("basic_salary_amount"));
             if(!basicSalary.isEmpty()){
+                hold(2000);
                 basicSalaryE.clear();
                 hold(300);
                 setText(basicSalaryE, basicSalary);
             }
             hold(300);
             clickOn(saveBtn);
-            hold(300);
+            hold(2000);
+            waitLoadingScreen();
         }else {
             financialDataOct = new FinancialData_OCT();
             financialDataOct.setBasicSalary(basicSalary);
@@ -1221,10 +1226,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceAmountE1(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceAmountE1.getAttribute("value");
+            str = allowanceAmountE1.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceAmountE1.getAttribute("value");
+            str = financialDataOct.allowanceAmountE1.getDomAttribute("value");
         }
         return str;
     }
@@ -1232,10 +1237,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceAmountE2(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceAmountE2.getAttribute("value");
+            str = allowanceAmountE2.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceAmountE2.getAttribute("value");
+            str = financialDataOct.allowanceAmountE2.getDomAttribute("value");
         }
         return str;
     }
@@ -1243,10 +1248,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceFromDateE1(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceFromDateE1.getAttribute("value");
+            str = allowanceFromDateE1.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceFromDateE1.getAttribute("value");
+            str = financialDataOct.allowanceFromDateE1.getDomAttribute("value");
         }
         return str;
     }
@@ -1254,10 +1259,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceFromDateE2(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceFromDateE2.getAttribute("value");
+            str = allowanceFromDateE2.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceFromDateE2.getAttribute("value");
+            str = financialDataOct.allowanceFromDateE2.getDomAttribute("value");
         }
         return str;
     }
@@ -1265,10 +1270,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceToDateE1(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceToDateE1.getAttribute("value");
+            str = allowanceToDateE1.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceToDateE1.getAttribute("value");
+            str = financialDataOct.allowanceToDateE1.getDomAttribute("value");
         }
         return str;
     }
@@ -1276,10 +1281,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceToDateE2(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceToDateE2.getAttribute("value");
+            str = allowanceToDateE2.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceToDateE2.getAttribute("value");
+            str = financialDataOct.allowanceToDateE2.getDomAttribute("value");
         }
         return str;
     }
@@ -1287,10 +1292,10 @@ public class FinancialPackage extends WebBase {
     public String childAllowanceAmount(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = childAllowanceAmount.getAttribute("value");
+            str = childAllowanceAmount.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.childAllowanceAmount.getAttribute("value");
+            str = financialDataOct.childAllowanceAmount.getDomAttribute("value");
         }
         return str;
     }
@@ -1298,10 +1303,10 @@ public class FinancialPackage extends WebBase {
     public String spouseAllowanceAmount(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = spouseAllowanceAmount.getAttribute("value");
+            str = spouseAllowanceAmount.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.spouseAllowanceAmount.getAttribute("value");
+            str = financialDataOct.spouseAllowanceAmount.getDomAttribute("value");
         }
         return str;
     }
@@ -1309,10 +1314,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceNoteE1(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceNoteE1.getAttribute("value");
+            str = allowanceNoteE1.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceNoteE1.getAttribute("value");
+            str = financialDataOct.allowanceNoteE1.getDomAttribute("value");
         }
         return str;
     }
@@ -1320,10 +1325,10 @@ public class FinancialPackage extends WebBase {
     public String allowanceWithholdE1(){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = allowanceWithholdE1.getAttribute("value");
+            str = allowanceWithholdE1.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            str = financialDataOct.allowanceWithholdE1.getAttribute("value");
+            str = financialDataOct.allowanceWithholdE1.getDomAttribute("value");
         }
         return str;
     }

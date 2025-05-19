@@ -766,12 +766,16 @@ public class PersonnelInformation extends WebBase {
             if(!Email.isEmpty()){
                 setText(emailE, Email);
             }
+
+            setText(birth_date, BirthDate);
+
             if(!DirectManager.isEmpty()){
                 setText(manager_code, DirectManager);
                 manager_code.sendKeys(Keys.TAB);
-                hold(500);
+                hold(3500);
+                waitLoad();
             }
-            setText(birth_date, BirthDate);
+
             //employeePicture.sendKeys(uploadRandomImage());
             hold(300);
             scrollToElement(empCode);
@@ -876,12 +880,15 @@ public class PersonnelInformation extends WebBase {
             if(!Email.isEmpty()){
                 setText(emailE, Email);
             }
+
+            setText(birth_date, BirthDate);
+
             if(!DirectManager.isEmpty()){
                 setText(manager_code, DirectManager);
                 manager_code.sendKeys(Keys.TAB);
-                hold(500);
+                hold(2500);
+                waitLoad();
             }
-            setText(birth_date, BirthDate);
             //employeePicture.sendKeys(uploadRandomImage());
             hold(300);
             scrollToElement(empCode);
@@ -985,12 +992,16 @@ public class PersonnelInformation extends WebBase {
         if(!Email.isEmpty()){
             setText(emailE, Email);
         }
+
+        setText(birth_date, BirthDate);
+
         if(!DirectManager.isEmpty()){
             setText(manager_code, DirectManager);
             manager_code.sendKeys(Keys.TAB);
-            hold(500);
+            hold(2500);
+            waitLoad();
         }
-        setText(birth_date, BirthDate);
+
         employeePicture.sendKeys(uploadRandomImage());
         hold(300);
 
@@ -1032,7 +1043,7 @@ public class PersonnelInformation extends WebBase {
 
         goToFrame(frame);
         elementWaitAdvanced(By.id("employee_code"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         setText(fNameEng, firstName);
         setText(sNameEng, secondName);
@@ -1175,7 +1186,7 @@ public class PersonnelInformation extends WebBase {
             clickOn(saveBtn);
             waitTextAppear(activeEmployee_aug, "Active Employee");
             empName = FirstAndLastName.getText().trim();
-            employeeCode = empCode.getAttribute("value");
+            employeeCode = empCode.getDomAttribute("value");
 
         }else {
 
@@ -1270,12 +1281,12 @@ public class PersonnelInformation extends WebBase {
             waitTextAppear(activeEmployee_oct, "Active Employee");
 
             try {
-                empName = personalInformationOct.fNameEng.getAttribute("value") + " " + personalInformationOct.sNameEng.getAttribute("value") + " " + personalInformationOct.tNameEng.getAttribute("value") + " " + personalInformationOct.familyNameEng.getAttribute("value");
+                empName = personalInformationOct.fNameEng.getDomAttribute("value") + " " + personalInformationOct.sNameEng.getDomAttribute("value") + " " + personalInformationOct.tNameEng.getDomAttribute("value") + " " + personalInformationOct.familyNameEng.getDomAttribute("value");
             }catch (Exception e){
                 empName = driver.findElement(By.xpath("(//label[@class = 'empNameAndStatus'])[1]")).getText().trim();
             }
 
-            employeeCode = empCode.getAttribute("value");
+            employeeCode = empCode.getDomAttribute("value");
 
         }
 
@@ -1805,7 +1816,7 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Birth Date Can Not Be Before The Maximum Age For Hiring!");
-        softAssert.assertTrue(birth_date.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(birth_date.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         clickOn(alertOkBtn);
         hold(200);
         clickOn(personalAndEmploymentTab);
@@ -1884,7 +1895,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Birth Date Can Not Be Before The Maximum Age For Hiring!");
-        softAssert.assertTrue(birth_date.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(birth_date.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         clickOn(alertOkBtn);
         hold(200);
         clickOn(personalAndEmploymentTab);
@@ -1961,8 +1972,8 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", directManager, "01/01/1989");
 
         hold(300);
-        //softAssert.assertEquals(directManagerName.getAttribute("value").trim(),"ab00000092first ab00000092last", "-Issue - Direct Manager Name Not Appear");
-        Assert.assertFalse(directManagerName.getAttribute("value").trim().isEmpty(), "-Issue - Direct Manager Name Not Appear");
+        //softAssert.assertEquals(directManagerName.getDomAttribute("value").trim(),"ab00000092first ab00000092last", "-Issue - Direct Manager Name Not Appear");
+        Assert.assertFalse(directManagerName.getDomAttribute("value").trim().isEmpty(), "-Issue - Direct Manager Name Not Appear");
 
     }
 
@@ -1985,7 +1996,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", directManager, "01/01/1989");
 
         hold(300);
-        Assert.assertEquals(directManagerName.getAttribute("value").trim(),"", "-Issue - Direct Manager Name Appear, Should be NOT appear because the manager is terminated");
+        Assert.assertEquals(directManagerName.getDomAttribute("value").trim(),"", "-Issue - Direct Manager Name Appear, Should be NOT appear because the manager is terminated");
 
     }
 
@@ -2016,9 +2027,9 @@ public class PersonnelInformation extends WebBase {
         hold(300);
 
         if(dataBaseFlag == 0){
-            Assert.assertEquals(directManagerName.getAttribute("value").trim(),"", "-Issue - Direct Manager Name Appear, Should be NOT appear because the manager from another branch and DB flag = "+dataBaseFlag);
+            Assert.assertEquals(directManagerName.getDomAttribute("value").trim(),"", "-Issue - Direct Manager Name Appear, Should be NOT appear because the manager from another branch and DB flag = "+dataBaseFlag);
         }else{
-            Assert.assertFalse(directManagerName.getAttribute("value").trim().isEmpty(), "-Issue - Direct Manager Name Not Appear, Should be appear normally because the DB flag = "+dataBaseFlag);
+            Assert.assertFalse(directManagerName.getDomAttribute("value").trim().isEmpty(), "-Issue - Direct Manager Name Not Appear, Should be appear normally because the DB flag = "+dataBaseFlag);
         }
 
     }
@@ -2290,7 +2301,7 @@ public class PersonnelInformation extends WebBase {
         clickOn(previousButton);
         hold(300);
         elementWaitAdvanced(By.id("first_name_e"));
-        softAssert.assertTrue(imgPath.getAttribute("src").contains("Image/import.svg"));
+        softAssert.assertTrue(imgPath.getDomAttribute("src").contains("Image/import.svg"));
         softAssert.assertTrue(checkElementIfNotAppear(checkImgDeleteBtn), "- Delete Button is still appear");
         softAssert.assertAll();
     }
@@ -2313,7 +2324,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         mainMenu.mainMenu("Employees","Personnel Information");
@@ -2321,7 +2332,7 @@ public class PersonnelInformation extends WebBase {
 
         scrollToElement(imgPath);
 
-        if(imgPath.getAttribute("src").contains("Image/import.svg")){
+        if(imgPath.getDomAttribute("src").contains("Image/import.svg")){
             softAssert.assertTrue(checkElementIfNotAppear(checkImgDeleteBtn), "- Delete Button is still appear");
         }else{
             hold(300);
@@ -2449,7 +2460,7 @@ public class PersonnelInformation extends WebBase {
             DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
             String afterConvert = ld.format(formatters);
             //System.out.println(afterConvert);
-            softAssert.assertEquals(birth_date.getAttribute("value"), afterConvert, "- Incorrect Date after convert!");
+            softAssert.assertEquals(birth_date.getDomAttribute("value"), afterConvert, "- Incorrect Date after convert!");
 
             softAssert.assertAll();
     }
@@ -2472,7 +2483,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         closeIFrame();
 
         mainMenu.mainMenu("Employees","Personnel Information");
@@ -2512,7 +2523,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         closeIFrame();
 
         mainMenu.mainMenu("Employees","Personnel Information");
@@ -2603,7 +2614,7 @@ public class PersonnelInformation extends WebBase {
             String contractDate = newDate.format(cal.getTime());
 
             hold(500);
-            softAssert.assertEquals(contract_end_dateE.getAttribute("value"), contractDate, "- Incorrect Contract End Date - Type: "+contractType);
+            softAssert.assertEquals(contract_end_dateE.getDomAttribute("value"), contractDate, "- Incorrect Contract End Date - Type: "+contractType);
 
         } else if (contractType.contains("3 Years") || contractType.equalsIgnoreCase("Contract Date - 3 Years Based On Employment Date")) {
 
@@ -2617,17 +2628,17 @@ public class PersonnelInformation extends WebBase {
             String contractDate = newDate.format(cal.getTime());
 
             hold(500);
-            softAssert.assertEquals(contract_end_dateE.getAttribute("value"), contractDate, "- Incorrect Contract End Date - Type: "+contractType);
+            softAssert.assertEquals(contract_end_dateE.getDomAttribute("value"), contractDate, "- Incorrect Contract End Date - Type: "+contractType);
 
         } else if (contractType.contains("Permanent Based On Hiring Date") || contractType.equalsIgnoreCase("Contract Date - Permanent Based On Hiring Date")) {
 
             hold(500);
-            softAssert.assertEquals(contract_start_dateE.getAttribute("value"), hiringDate, "- Contract Start Date NOT Same Hiring Date");
+            softAssert.assertEquals(contract_start_dateE.getDomAttribute("value"), hiringDate, "- Contract Start Date NOT Same Hiring Date");
 
         } else if (contractType.contains("Permanent Based On Employment Date") || contractType.equalsIgnoreCase("Contract Date - Permanent Based On Employment Date")) {
 
             hold(500);
-            softAssert.assertEquals(contract_start_dateE.getAttribute("value"), employmentDate, "- Contract Start Date NOT Same Employment Date");
+            softAssert.assertEquals(contract_start_dateE.getDomAttribute("value"), employmentDate, "- Contract Start Date NOT Same Employment Date");
 
         }
 
@@ -3012,7 +3023,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "Software Test Engineer", "01/01/2019",
                 "01/01/2019", "", "", "", "");
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(300);
         clickOn(alertOkBtn);
         hold(300);
@@ -3058,23 +3069,23 @@ public class PersonnelInformation extends WebBase {
         hold(300);
         elementWait(fNameEng);
 
-        softAssert.assertEquals(fNameEng.getAttribute("value"), "emptotestsyncF1", " - GeneralInfo");
-        softAssert.assertEquals(sNameEng.getAttribute("value"), "emptotestsyncS1", " - GeneralInfo");
-        softAssert.assertEquals(tNameEng.getAttribute("value"), "emptotestsyncT1", " - GeneralInfo");
-        softAssert.assertEquals(familyNameEng.getAttribute("value"), "emptotestsyncL1", " - GeneralInfo");
-        softAssert.assertEquals(fNameAr.getAttribute("value"), "emptotestsyncFA1", " - GeneralInfo");
-        softAssert.assertEquals(sNameAr.getAttribute("value"), "emptotestsyncSA1", " - GeneralInfo");
-        softAssert.assertEquals(tNameAr.getAttribute("value"), "emptotestsyncTA1", " - GeneralInfo");
-        softAssert.assertEquals(familyNameAr.getAttribute("value"), "emptotestsyncLA1", " - GeneralInfo");
+        softAssert.assertEquals(fNameEng.getDomAttribute("value"), "emptotestsyncF1", " - GeneralInfo");
+        softAssert.assertEquals(sNameEng.getDomAttribute("value"), "emptotestsyncS1", " - GeneralInfo");
+        softAssert.assertEquals(tNameEng.getDomAttribute("value"), "emptotestsyncT1", " - GeneralInfo");
+        softAssert.assertEquals(familyNameEng.getDomAttribute("value"), "emptotestsyncL1", " - GeneralInfo");
+        softAssert.assertEquals(fNameAr.getDomAttribute("value"), "emptotestsyncFA1", " - GeneralInfo");
+        softAssert.assertEquals(sNameAr.getDomAttribute("value"), "emptotestsyncSA1", " - GeneralInfo");
+        softAssert.assertEquals(tNameAr.getDomAttribute("value"), "emptotestsyncTA1", " - GeneralInfo");
+        softAssert.assertEquals(familyNameAr.getDomAttribute("value"), "emptotestsyncLA1", " - GeneralInfo");
         softAssert.assertEquals(marital_StatusE.getText(), "Married", " - GeneralInfo");
         softAssert.assertEquals(sexE.getText(), "Male", " - GeneralInfo");
         softAssert.assertEquals(nationalityE.getText(), "American", " - GeneralInfo");
         softAssert.assertEquals(relegionE.getText(), "Islam", " - GeneralInfo");
-        softAssert.assertTrue(mobileE.getAttribute("value").isEmpty(), " - GeneralInfo");
-        softAssert.assertEquals(birth_date.getAttribute("value"), "01/10/1993", " - GeneralInfo");
-        softAssert.assertTrue(emailE.getAttribute("value").isEmpty(), " - GeneralInfo");
-        softAssert.assertTrue(manager_code.getAttribute("value").isEmpty(), " - GeneralInfo");
-        softAssert.assertTrue(checkPicture.getAttribute("src").contains(".jpg"), " - GeneralInfo");
+        softAssert.assertTrue(mobileE.getDomAttribute("value").isEmpty(), " - GeneralInfo");
+        softAssert.assertEquals(birth_date.getDomAttribute("value"), "01/10/1993", " - GeneralInfo");
+        softAssert.assertTrue(emailE.getDomAttribute("value").isEmpty(), " - GeneralInfo");
+        softAssert.assertTrue(manager_code.getDomAttribute("value").isEmpty(), " - GeneralInfo");
+        softAssert.assertTrue(checkPicture.getDomAttribute("src").contains(".jpg"), " - GeneralInfo");
 
     }
 
@@ -3100,21 +3111,21 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(firstNameSpouse.getAttribute("value"), "testSyncSpouseF1", " - Spouses");
-        softAssert.assertEquals(secondNameSpouse.getAttribute("value"), "testSyncSpouseS1", " - Spouses");
-        softAssert.assertEquals(thirdNameSpouse.getAttribute("value"), "testSyncSpouseT1", " - Spouses");
-        softAssert.assertEquals(familyNameSpouse.getAttribute("value"), "testSyncSpouseL1", " - Spouses");
-        softAssert.assertEquals(firstNameArSpouse.getAttribute("value"), "testSyncSpouseLA1", " - Spouses");
-        softAssert.assertEquals(secondNameArSpouse.getAttribute("value"), "testSyncSpouseTA1", " - Spouses");
-        softAssert.assertEquals(thirdNameArSpouse.getAttribute("value"), "testSyncSpouseSA1", " - Spouses");
-        softAssert.assertEquals(familyNameArSpouse.getAttribute("value"), "testSyncSpouseFA1", " - Spouses");
-        softAssert.assertEquals(birthDateSpouse.getAttribute("value"), "01/01/1989", " - Spouses");
-        softAssert.assertEquals(marryDateSpouse.getAttribute("value"), "20/03/2020", " - Spouses");
+        softAssert.assertEquals(firstNameSpouse.getDomAttribute("value"), "testSyncSpouseF1", " - Spouses");
+        softAssert.assertEquals(secondNameSpouse.getDomAttribute("value"), "testSyncSpouseS1", " - Spouses");
+        softAssert.assertEquals(thirdNameSpouse.getDomAttribute("value"), "testSyncSpouseT1", " - Spouses");
+        softAssert.assertEquals(familyNameSpouse.getDomAttribute("value"), "testSyncSpouseL1", " - Spouses");
+        softAssert.assertEquals(firstNameArSpouse.getDomAttribute("value"), "testSyncSpouseLA1", " - Spouses");
+        softAssert.assertEquals(secondNameArSpouse.getDomAttribute("value"), "testSyncSpouseTA1", " - Spouses");
+        softAssert.assertEquals(thirdNameArSpouse.getDomAttribute("value"), "testSyncSpouseSA1", " - Spouses");
+        softAssert.assertEquals(familyNameArSpouse.getDomAttribute("value"), "testSyncSpouseFA1", " - Spouses");
+        softAssert.assertEquals(birthDateSpouse.getDomAttribute("value"), "01/01/1989", " - Spouses");
+        softAssert.assertEquals(marryDateSpouse.getDomAttribute("value"), "20/03/2020", " - Spouses");
         softAssert.assertEquals(birthPlaceSpouse.getText(), "Birth Place 1", " - Spouses");
         softAssert.assertEquals(nationalitySpouse.getText(), "American", " - Spouses");
         softAssert.assertTrue(insuredSpouse.isEnabled(), " - Spouses");
         softAssert.assertTrue(workerSpouse.isEnabled(), " - Spouses");
-        softAssert.assertEquals(allowanceAmountSpouse.getAttribute("value"), "10.000", " - Spouses");
+        softAssert.assertEquals(allowanceAmountSpouse.getDomAttribute("value"), "10.000", " - Spouses");
         softAssert.assertEquals(notesSpouse.getText(), "testSyncSpouse", " - Spouses");
         softAssert.assertEquals(driver.findElement(By.xpath("//label[contains(@class,'font-size-19 bold mar-left-20px')]")).getText().trim(), "10.000", " - Spouses");
 
@@ -3142,23 +3153,23 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(firstNameChildren.getAttribute("value"), "ChildrenSyncF1", " - Children");
-        softAssert.assertEquals(secondNameChildren.getAttribute("value"), "ChildrenSyncS1", " - Children");
-        softAssert.assertEquals(thirdNameChildren.getAttribute("value"), "ChildrenSyncT1", " - Children");
-        softAssert.assertEquals(familyNameChildren.getAttribute("value"), "ChildrenSyncL1", " - Children");
-        softAssert.assertEquals(firstNameArChildren.getAttribute("value"), "ChildrenSyncLA1", " - Children");
-        softAssert.assertEquals(secondNameArChildren.getAttribute("value"), "ChildrenSyncTA1", " - Children");
-        softAssert.assertEquals(thirdNameArChildren.getAttribute("value"), "ChildrenSyncSA1", " - Children");
-        softAssert.assertEquals(familyNameArChildren.getAttribute("value"), "ChildrenSyncFA1", " - Children");
-        softAssert.assertEquals(birthDateChildren.getAttribute("value"), "04/04/2022", " - Children");
+        softAssert.assertEquals(firstNameChildren.getDomAttribute("value"), "ChildrenSyncF1", " - Children");
+        softAssert.assertEquals(secondNameChildren.getDomAttribute("value"), "ChildrenSyncS1", " - Children");
+        softAssert.assertEquals(thirdNameChildren.getDomAttribute("value"), "ChildrenSyncT1", " - Children");
+        softAssert.assertEquals(familyNameChildren.getDomAttribute("value"), "ChildrenSyncL1", " - Children");
+        softAssert.assertEquals(firstNameArChildren.getDomAttribute("value"), "ChildrenSyncLA1", " - Children");
+        softAssert.assertEquals(secondNameArChildren.getDomAttribute("value"), "ChildrenSyncTA1", " - Children");
+        softAssert.assertEquals(thirdNameArChildren.getDomAttribute("value"), "ChildrenSyncSA1", " - Children");
+        softAssert.assertEquals(familyNameArChildren.getDomAttribute("value"), "ChildrenSyncFA1", " - Children");
+        softAssert.assertEquals(birthDateChildren.getDomAttribute("value"), "04/04/2022", " - Children");
         softAssert.assertEquals(genderChildren.getText(), "Male", " - Children");
         softAssert.assertEquals(maritalStatusChildren.getText(), "Single", " - Children");
         softAssert.assertEquals(birthPlaceChildren.getText(), "Birth Place 1", " - Children");
         softAssert.assertEquals(nationalityChildren.getText(), "American", " - Children");
-        softAssert.assertEquals(allowanceAmountChildren.getAttribute("value"), "20.000", " - Children");
+        softAssert.assertEquals(allowanceAmountChildren.getDomAttribute("value"), "20.000", " - Children");
         softAssert.assertTrue(studentChildren.isEnabled(), " - Children");
-        softAssert.assertEquals(educationLevelChildren.getAttribute("title").trim(), "School Student", " - Children");
-        softAssert.assertEquals(schoolChildren.getAttribute("title").trim(), "Schools 1", " - Children");
+        softAssert.assertEquals(educationLevelChildren.getDomAttribute("title").trim(), "School Student", " - Children");
+        softAssert.assertEquals(schoolChildren.getDomAttribute("title").trim(), "Schools 1", " - Children");
         softAssert.assertTrue(insuredChildren.isEnabled(), " - Children");
 
     }
@@ -3185,24 +3196,24 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(firstNameDependents.getAttribute("value"), "DependentsSyncF1", " - Dependents");
-        softAssert.assertEquals(secondNameDependents.getAttribute("value"), "DependentsSyncS1", " - Dependents");
-        softAssert.assertEquals(thirdNameDependents.getAttribute("value"), "DependentsSyncT1", " - Dependents");
-        softAssert.assertEquals(familyNameDependents.getAttribute("value"), "DependentsSyncL1", " - Dependents");
-        softAssert.assertEquals(firstNameArDependents.getAttribute("value"), "DependentsSyncLA1", " - Dependents");
-        softAssert.assertEquals(secondNameArDependents.getAttribute("value"), "DependentsSyncTA1", " - Dependents");
-        softAssert.assertEquals(thirdNameArDependents.getAttribute("value"), "DependentsSyncSA1", " - Dependents");
-        softAssert.assertEquals(familyNameArDependents.getAttribute("value"), "DependentsSyncFA1", " - Dependents");
+        softAssert.assertEquals(firstNameDependents.getDomAttribute("value"), "DependentsSyncF1", " - Dependents");
+        softAssert.assertEquals(secondNameDependents.getDomAttribute("value"), "DependentsSyncS1", " - Dependents");
+        softAssert.assertEquals(thirdNameDependents.getDomAttribute("value"), "DependentsSyncT1", " - Dependents");
+        softAssert.assertEquals(familyNameDependents.getDomAttribute("value"), "DependentsSyncL1", " - Dependents");
+        softAssert.assertEquals(firstNameArDependents.getDomAttribute("value"), "DependentsSyncLA1", " - Dependents");
+        softAssert.assertEquals(secondNameArDependents.getDomAttribute("value"), "DependentsSyncTA1", " - Dependents");
+        softAssert.assertEquals(thirdNameArDependents.getDomAttribute("value"), "DependentsSyncSA1", " - Dependents");
+        softAssert.assertEquals(familyNameArDependents.getDomAttribute("value"), "DependentsSyncFA1", " - Dependents");
         softAssert.assertEquals(relationshipsDependents.getText(), "Father", " - Dependents");
-        softAssert.assertEquals(birthDateDependents.getAttribute("value"), "07/07/1970", " - Dependents");
+        softAssert.assertEquals(birthDateDependents.getDomAttribute("value"), "07/07/1970", " - Dependents");
         softAssert.assertEquals(genderDependents.getText(), "Male", " - Dependents");
         softAssert.assertEquals(nationalityDependents.getText(), "American", " - Dependents");
         softAssert.assertEquals(religionDependents.getText(), "Islam", " - Dependents");
         softAssert.assertTrue(medicalClaimCoverageDependents.isEnabled(), " - Dependents");
         softAssert.assertTrue(insuredDependents.isEnabled(), " - Dependents");
-        softAssert.assertEquals(streetDependents.getAttribute("value"), "amman amman", " - Dependents");
-        softAssert.assertEquals(zipCodeDependents.getAttribute("value"), "00962", " - Dependents");
-        softAssert.assertEquals(cityDependents.getAttribute("value"), "khalda", " - Dependents");
+        softAssert.assertEquals(streetDependents.getDomAttribute("value"), "amman amman", " - Dependents");
+        softAssert.assertEquals(zipCodeDependents.getDomAttribute("value"), "00962", " - Dependents");
+        softAssert.assertEquals(cityDependents.getDomAttribute("value"), "khalda", " - Dependents");
         softAssert.assertEquals(commentsDependents.getText(), "Comment Dependents", " - Dependents");
 
     }
@@ -3230,7 +3241,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
 
         softAssert.assertEquals(contactsTypes.getText(), "Contacts 1", " - Contacts");
-        softAssert.assertEquals(contactValue.getAttribute("value"), "ContactSync555", " - Contacts");
+        softAssert.assertEquals(contactValue.getDomAttribute("value"), "ContactSync555", " - Contacts");
 
     }
 
@@ -3256,7 +3267,7 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(noteDateNotes.getAttribute("value"), "05/10/2022", " - Notes");
+        softAssert.assertEquals(noteDateNotes.getDomAttribute("value"), "05/10/2022", " - Notes");
         softAssert.assertEquals(noteTextNotes.getText(), "Note Note Note Note Note", " - Notes");
         softAssert.assertEquals(employeeCommentNotes.getText(), "Employee Comment Employee Comment Employee Comment", " - Notes");
 
@@ -3282,21 +3293,21 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(startDateEducation.getAttribute("value"), "01/01/2013", " - Education");
-        softAssert.assertEquals(endDateEducation.getAttribute("value"), "01/01/2015", " - Education");
+        softAssert.assertEquals(startDateEducation.getDomAttribute("value"), "01/01/2013", " - Education");
+        softAssert.assertEquals(endDateEducation.getDomAttribute("value"), "01/01/2015", " - Education");
         softAssert.assertEquals(countryEducation.getText(), "Jordan", " - Education");
         softAssert.assertEquals(schoolEducation.getText(), "Schools 2", " - Education");
         softAssert.assertEquals(facultyEducation.getText(), "Faculties 1", " - Education");
         softAssert.assertEquals(qualificationEducation.getText(), "Other", "-Issue in Qualification, - Education");
-        softAssert.assertEquals(otherQualificationEducation.getAttribute("value"), "Qualification", "-Issue in Other Qualification, - Education");
+        softAssert.assertEquals(otherQualificationEducation.getDomAttribute("value"), "Qualification", "-Issue in Other Qualification, - Education");
         softAssert.assertEquals(majorEducation.getText(), "Other", "-Issue in Major, - Education");
-        softAssert.assertEquals(otherMajorEducation.getAttribute("value"), "Major", "-Issue in Other Major, - Education");
+        softAssert.assertEquals(otherMajorEducation.getDomAttribute("value"), "Major", "-Issue in Other Major, - Education");
         softAssert.assertEquals(universityAverageEducation.getText(), "Very Good", " - Education");
-        softAssert.assertEquals(gradeEducation.getAttribute("value"), "90.000", "-Issue in Grade, - Education");
+        softAssert.assertEquals(gradeEducation.getDomAttribute("value"), "90.000", "-Issue in Grade, - Education");
         softAssert.assertEquals(graduationYearEducation.getText(), "2015", " - Education");
-        softAssert.assertEquals(notesEducation.getAttribute("value"), "Education Notes", " - Education");
-        softAssert.assertTrue(attachFileEdu.getAttribute("src").contains(".jpg"), "-Attached File NOT Found, - Education");
-        softAssert.assertEquals(educationMinor.getAttribute("value"), "2", "-Issue in Education Minor - Education");
+        softAssert.assertEquals(notesEducation.getDomAttribute("value"), "Education Notes", " - Education");
+        softAssert.assertTrue(attachFileEdu.getDomAttribute("src").contains(".jpg"), "-Attached File NOT Found, - Education");
+        softAssert.assertEquals(educationMinor.getDomAttribute("value"), "2", "-Issue in Education Minor - Education");
 
     }
 
@@ -3326,7 +3337,7 @@ public class PersonnelInformation extends WebBase {
         softAssert.assertEquals(competencies.getText(), "Competency 1", "- Competencies");
         softAssert.assertEquals(experienceYears.getText(), "4", "- Competencies");
         softAssert.assertEquals(levelSkill.getText(), "2", "- Competencies");
-        softAssert.assertEquals(clasSkill.getAttribute("value"), "Class", "- Competencies");
+        softAssert.assertEquals(clasSkill.getDomAttribute("value"), "Class", "- Competencies");
         softAssert.assertEquals(skillSource.getText(), "Education", "- Competencies");
         softAssert.assertEquals(showInSkill.getText(), "Generic Resume", "- Competencies");
         softAssert.assertEquals(commentSkill.getText(), "Comments", "- Competencies");
@@ -3355,18 +3366,18 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(startDateCertificate.getAttribute("value"), "25/07/2022", "- Certificate");
-        softAssert.assertEquals(endDateCertificate.getAttribute("value"), "25/09/2022", "- Certificate");
+        softAssert.assertEquals(startDateCertificate.getDomAttribute("value"), "25/07/2022", "- Certificate");
+        softAssert.assertEquals(endDateCertificate.getDomAttribute("value"), "25/09/2022", "- Certificate");
         softAssert.assertEquals(certificateType.getText(), "Other", "- Certificate");
-        softAssert.assertEquals(certificateTypeOther.getAttribute("value"), "Certificate Type", "- Certificate");
+        softAssert.assertEquals(certificateTypeOther.getDomAttribute("value"), "Certificate Type", "- Certificate");
         softAssert.assertEquals(certificateName.getText(), "Other", "- Certificate");
-        softAssert.assertEquals(certificateNameOther.getAttribute("value"), "Certificate Name", "- Certificate");
-        softAssert.assertEquals(issueDateCertificate.getAttribute("value"), "25/06/2022", "- Certificate");
-        softAssert.assertEquals(certificateSerial.getAttribute("value"), "Certificate Serial", "- Certificate");
-        softAssert.assertEquals(gradeCertificate.getAttribute("value"), "80.000", "- Certificate");
-        softAssert.assertEquals(certificateNumber.getAttribute("value"), "Certificate Number", "- Certificate");
+        softAssert.assertEquals(certificateNameOther.getDomAttribute("value"), "Certificate Name", "- Certificate");
+        softAssert.assertEquals(issueDateCertificate.getDomAttribute("value"), "25/06/2022", "- Certificate");
+        softAssert.assertEquals(certificateSerial.getDomAttribute("value"), "Certificate Serial", "- Certificate");
+        softAssert.assertEquals(gradeCertificate.getDomAttribute("value"), "80.000", "- Certificate");
+        softAssert.assertEquals(certificateNumber.getDomAttribute("value"), "Certificate Number", "- Certificate");
         softAssert.assertEquals(certificateShowIn.getText(), "Detailed Resume", "- Certificate");
-        softAssert.assertTrue(certificateAttached.getAttribute("value").contains(".jpg"), "- Certificate");
+        softAssert.assertTrue(certificateAttached.getDomAttribute("value").contains(".jpg"), "- Certificate");
         softAssert.assertTrue(statusCertificate.isSelected(), "- Certificate");
         softAssert.assertEquals(notesCertificate.getText(), "Notes", "- Certificate");
 
@@ -3394,12 +3405,12 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(startDateJobHistory.getAttribute("value"), "10/01/2018", "- Job History");
-        softAssert.assertEquals(endDateJobHistory.getAttribute("value"), "20/10/2022", "- Job History");
-        softAssert.assertEquals(siteJobHistory.getAttribute("value"), "Amman", "- JobHistory");
-        softAssert.assertEquals(departmentJobHistory.getAttribute("value"), "Development", "- Job History");
-        softAssert.assertEquals(sectionJobHistory.getAttribute("value"), "PHP Development", "- Job History");
-        softAssert.assertEquals(positionJobHistory.getAttribute("value"), "PHP Developer", "- Job History");
+        softAssert.assertEquals(startDateJobHistory.getDomAttribute("value"), "10/01/2018", "- Job History");
+        softAssert.assertEquals(endDateJobHistory.getDomAttribute("value"), "20/10/2022", "- Job History");
+        softAssert.assertEquals(siteJobHistory.getDomAttribute("value"), "Amman", "- JobHistory");
+        softAssert.assertEquals(departmentJobHistory.getDomAttribute("value"), "Development", "- Job History");
+        softAssert.assertEquals(sectionJobHistory.getDomAttribute("value"), "PHP Development", "- Job History");
+        softAssert.assertEquals(positionJobHistory.getDomAttribute("value"), "PHP Developer", "- Job History");
 
     }
 
@@ -3425,9 +3436,9 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(contactNameReferences.getAttribute("value"), "ReferencesSync", "- References");
+        softAssert.assertEquals(contactNameReferences.getDomAttribute("value"), "ReferencesSync", "- References");
         softAssert.assertEquals(relationshipsReferences.getText(), "Brother", "- References");
-        softAssert.assertEquals(cityReferences.getAttribute("value"), "zarqa", "- References");
+        softAssert.assertEquals(cityReferences.getDomAttribute("value"), "zarqa", "- References");
 
     }
 
@@ -3456,7 +3467,7 @@ public class PersonnelInformation extends WebBase {
         Select field = new Select(fieldNameAdditionalInfo);
         WebElement fieldOption = field.getFirstSelectedOption();
         softAssert.assertEquals(fieldOption.getText().trim(), "Additional Number", "- Additional Info");
-        softAssert.assertEquals(englishDescriptionAdditionalInfo.getAttribute("value"), "1122112211", "- Additional Info");
+        softAssert.assertEquals(englishDescriptionAdditionalInfo.getDomAttribute("value"), "1122112211", "- Additional Info");
 
     }
 
@@ -3482,18 +3493,18 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(startDateExperiences.getAttribute("value"), "01/01/2016", "- Experiences");
-        softAssert.assertEquals(endDateExperiences.getAttribute("value"), "01/01/2017", "- Experiences");
-        softAssert.assertEquals(previousEmployerExperiences.getAttribute("value"), "Previous Employer", "- Experiences");
-        softAssert.assertEquals(previousPositionExperiences.getAttribute("value"), "Previous Position", "- Experiences");
-        softAssert.assertEquals(salaryExperiences.getAttribute("value"), "2000.000", "- Experiences");
+        softAssert.assertEquals(startDateExperiences.getDomAttribute("value"), "01/01/2016", "- Experiences");
+        softAssert.assertEquals(endDateExperiences.getDomAttribute("value"), "01/01/2017", "- Experiences");
+        softAssert.assertEquals(previousEmployerExperiences.getDomAttribute("value"), "Previous Employer", "- Experiences");
+        softAssert.assertEquals(previousPositionExperiences.getDomAttribute("value"), "Previous Position", "- Experiences");
+        softAssert.assertEquals(salaryExperiences.getDomAttribute("value"), "2000.000", "- Experiences");
         softAssert.assertEquals(salaryCurrencyExperiences.getText(), "Jordanian Dinar", "- Experiences");
-        softAssert.assertEquals(contactPersonExperiences.getAttribute("value"), "Contact Person", "- Experiences");
-        softAssert.assertEquals(contactPhoneExperiences.getAttribute("value"), "Contact Phone", "- Experiences");
-        softAssert.assertEquals(contactPositionExperiences.getAttribute("value"), "Contact Position", "- Experiences");
+        softAssert.assertEquals(contactPersonExperiences.getDomAttribute("value"), "Contact Person", "- Experiences");
+        softAssert.assertEquals(contactPhoneExperiences.getDomAttribute("value"), "Contact Phone", "- Experiences");
+        softAssert.assertEquals(contactPositionExperiences.getDomAttribute("value"), "Contact Position", "- Experiences");
         softAssert.assertEquals(countryExperiences.getText(), "Jordan", "- Experiences");
-        softAssert.assertEquals(jobPlaceExperiences.getAttribute("value"), "Job Place", "- Experiences");
-        softAssert.assertEquals(quitReasonExperiences.getAttribute("value"), "Quit Reason", "- Experiences");
+        softAssert.assertEquals(jobPlaceExperiences.getDomAttribute("value"), "Job Place", "- Experiences");
+        softAssert.assertEquals(quitReasonExperiences.getDomAttribute("value"), "Quit Reason", "- Experiences");
         softAssert.assertEquals(experiencePlaceExperiences.getText(), "Experience Place 1", "- Experiences");
         softAssert.assertEquals(experienceTypeExperiences.getText(), "Experience Type 1", "- Experiences");
         softAssert.assertEquals(natureOfWorkExperiences.getText(), "Nature Of Work 1", "- Experiences");
@@ -3525,7 +3536,7 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(datePracticalExperience.getAttribute("value"), "25/10/2022", "- Practical Experiences");
+        softAssert.assertEquals(datePracticalExperience.getDomAttribute("value"), "25/10/2022", "- Practical Experiences");
         softAssert.assertEquals(showInPracticalExperience.getText(), "Both", "- Practical Experiences");
         softAssert.assertEquals(englishPracticalExperience.getText().trim(), "Practical Experience - English", "- Practical Experiences");
         softAssert.assertEquals(arabicPracticalExperience.getText().trim(), "Practical Experience - Arabic", "- Practical Experiences");
@@ -3552,10 +3563,10 @@ public class PersonnelInformation extends WebBase {
         clickOn(item);
         hold(500);
 
-        softAssert.assertEquals(fromDateAddresses.getAttribute("value"), "01/01/2022", "- Addresses");
-        softAssert.assertEquals(toDateAddresses.getAttribute("value"), "01/10/2022", "- Addresses");
+        softAssert.assertEquals(fromDateAddresses.getDomAttribute("value"), "01/01/2022", "- Addresses");
+        softAssert.assertEquals(toDateAddresses.getDomAttribute("value"), "01/10/2022", "- Addresses");
         softAssert.assertEquals(countryAddresses.getText(), "Jordan", "- Addresses");
-        softAssert.assertEquals(townAddresses.getAttribute("value"), "Amman City", "- Addresses");
+        softAssert.assertEquals(townAddresses.getDomAttribute("value"), "Amman City", "- Addresses");
 
     }
 
@@ -3580,11 +3591,11 @@ public class PersonnelInformation extends WebBase {
         hold(500);
 
         softAssert.assertEquals(attachmentTypeAttachments.getText(), "Personal Identification", "- Attachments");
-        softAssert.assertEquals(attachmentDateAttachments.getAttribute("value"), "01/02/2022", "- Attachments");
-        softAssert.assertEquals(documentNumberAttachments.getAttribute("value"), "4545", "- Attachments");
-        softAssert.assertEquals(expiresOnAttachments.getAttribute("value"), "25/10/2032", "- Attachments");
+        softAssert.assertEquals(attachmentDateAttachments.getDomAttribute("value"), "01/02/2022", "- Attachments");
+        softAssert.assertEquals(documentNumberAttachments.getDomAttribute("value"), "4545", "- Attachments");
+        softAssert.assertEquals(expiresOnAttachments.getDomAttribute("value"), "25/10/2032", "- Attachments");
         softAssert.assertEquals(relatedToAttachments.getText(), "Employee", "- Attachments");
-        softAssert.assertTrue(attachedFileAttachments.getAttribute("href").contains("download_page_direct"), "- Attachments");
+        softAssert.assertTrue(attachedFileAttachments.getDomAttribute("href").contains("download_page_direct"), "- Attachments");
         softAssert.assertEquals(descriptionAttachments.getText().trim(), "Description", "- Attachments");
 
     }
@@ -3613,8 +3624,8 @@ public class PersonnelInformation extends WebBase {
         hold(500);
 
         softAssert.assertEquals(statusTypeMedicalProfile.getText(), "Medical Status 1", "- Medical Profile");
-        softAssert.assertEquals(statusDateMedicalProfile.getAttribute("value"), "08/10/2022", "- Medical Profile");
-        softAssert.assertTrue(medicalFileMedicalProfile.getAttribute("href").contains(".jpg"), "- Medical Profile");
+        softAssert.assertEquals(statusDateMedicalProfile.getDomAttribute("value"), "08/10/2022", "- Medical Profile");
+        softAssert.assertTrue(medicalFileMedicalProfile.getDomAttribute("href").contains(".jpg"), "- Medical Profile");
         softAssert.assertEquals(statusMedicalProfile.getText().trim(), "Status", "- Medical Profile");
         softAssert.assertEquals(notesMedicalProfile.getText().trim(), "Notes", "- Medical Profile");
 
@@ -3635,22 +3646,22 @@ public class PersonnelInformation extends WebBase {
         setText(empCode, Keys.TAB);
         hold(500);
 
-        softAssert.assertEquals(residenceNumber.getAttribute("value"), "123456", "- Residences");
-        softAssert.assertEquals(dateOfIssueDateResidences.getAttribute("value"), "01/09/2022", "- Residences");
-        softAssert.assertEquals(periodResidences.getAttribute("value"), "53.000", "- Residences");
-        softAssert.assertEquals(salaryInIqamaResidences.getAttribute("value"), ".500", "- Residences");
-        softAssert.assertEquals(cancellationDateResidences.getAttribute("value"), "01/09/2022", "- Residences");
+        softAssert.assertEquals(residenceNumber.getDomAttribute("value"), "123456", "- Residences");
+        softAssert.assertEquals(dateOfIssueDateResidences.getDomAttribute("value"), "01/09/2022", "- Residences");
+        softAssert.assertEquals(periodResidences.getDomAttribute("value"), "53.000", "- Residences");
+        softAssert.assertEquals(salaryInIqamaResidences.getDomAttribute("value"), ".500", "- Residences");
+        softAssert.assertEquals(cancellationDateResidences.getDomAttribute("value"), "01/09/2022", "- Residences");
         try {
             implicitWaitChanging(200);
-            softAssert.assertTrue(attachedFileResidences.getAttribute("value").contains(".jpg"), "- Residences");
+            softAssert.assertTrue(attachedFileResidences.getDomAttribute("value").contains(".jpg"), "- Residences");
         }catch (Exception e){
             softAssert.fail("Attached File NOT Found!,- Residences");
             implicitWaitChanging(10000);
         }
-        softAssert.assertEquals(placeOfIssueResidences.getAttribute("value"), "Place Of Issue", "- Residences");
-        softAssert.assertEquals(endDateDateResidences.getAttribute("value"), "23/10/2022", "- Residences");
-        softAssert.assertEquals(requestedWorkPeriodResidences.getAttribute("value"), "2", "- Residences");
-        softAssert.assertEquals(permitNumberResidences.getAttribute("value"), "231658", "- Residences");
+        softAssert.assertEquals(placeOfIssueResidences.getDomAttribute("value"), "Place Of Issue", "- Residences");
+        softAssert.assertEquals(endDateDateResidences.getDomAttribute("value"), "23/10/2022", "- Residences");
+        softAssert.assertEquals(requestedWorkPeriodResidences.getDomAttribute("value"), "2", "- Residences");
+        softAssert.assertEquals(permitNumberResidences.getDomAttribute("value"), "231658", "- Residences");
 
     }
 
@@ -3736,7 +3747,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "Software Test Engineer", "01/01/2019",
                 "01/01/2019", "", "", "", "");
 
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         hold(300);
         clickOn(alertOkBtn);
         hold(300);
@@ -3819,7 +3830,7 @@ public class PersonnelInformation extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         closeIFrame();
 
         mainMenu.mainMenu("Employees", "Lock Employees Data");
@@ -4268,7 +4279,7 @@ public class PersonnelInformation extends WebBase {
         setText(empCode, employeeCode);
         setText(empCode, Keys.TAB);
         hold(300);
-        String endDate = driver.findElement(By.id("first_date")).getAttribute("value");
+        String endDate = driver.findElement(By.id("first_date")).getDomAttribute("value");
         clickOn(terminationType);
         hold(500);
         clickOn(driver.findElement(By.xpath("//*[@id=\"termination_type\"]/option[4]")));
@@ -4345,8 +4356,8 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         elementWaitAdvanced(By.id("btok"));
         clickOn(alertOkBtn);
-        softAssert.assertEquals(hiring_dateE.getAttribute("readonly"), "true", "- Hiring Date is NOT Disabled");
-        softAssert.assertEquals(moving_dateE.getAttribute("readonly"), "true", "- Employment Date is NOT Disabled");
+        softAssert.assertEquals(hiring_dateE.getDomAttribute("readonly"), "true", "- Hiring Date is NOT Disabled");
+        softAssert.assertEquals(moving_dateE.getDomAttribute("readonly"), "true", "- Employment Date is NOT Disabled");
         softAssert.assertAll();
 
     }
@@ -4373,111 +4384,111 @@ public class PersonnelInformation extends WebBase {
         setText(empCode, employeeCode, Keys.TAB);
         hold(700);
 
-        if(!sNameEng.getAttribute("validation").contains("required")){
+        if(!sNameEng.getDomAttribute("validation").contains("required")){
             new Actions(driver).doubleClick(sNameEng).perform();
             hold(1200);
         }
-        if (!tNameEng.getAttribute("validation").contains("required")) {
+        if (!tNameEng.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(tNameEng).perform();
             hold(1200);
         }
-        if (!familyNameEng.getAttribute("validation").contains("required")) {
+        if (!familyNameEng.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(familyNameEng).perform();
             hold(1200);
         }
-        if(!fNameAr.getAttribute("validation").contains("required")){
+        if(!fNameAr.getDomAttribute("validation").contains("required")){
             new Actions(driver).doubleClick(fNameAr).perform();
             hold(1200);
         }
-        if (!sNameAr.getAttribute("validation").contains("required")) {
+        if (!sNameAr.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(sNameAr).perform();
             hold(1200);
         }
-        if (!tNameAr.getAttribute("validation").contains("required")) {
+        if (!tNameAr.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(tNameAr).perform();
             hold(1200);
         }
-        if (!familyNameAr.getAttribute("validation").contains("required")) {
+        if (!familyNameAr.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(familyNameAr).perform();
             hold(1200);
         }
 
         hold(500);
-        softAssert.assertTrue(sNameEng.getAttribute("validation").contains("required"), "- Validation In 'Second Name' NOT required");
-        softAssert.assertTrue(tNameEng.getAttribute("validation").contains("required"), "- Validation In 'Third Name' NOT required");
-        softAssert.assertTrue(familyNameEng.getAttribute("validation").contains("required"), "- Validation In 'Family Name' NOT required");
-        softAssert.assertTrue(sNameAr.getAttribute("validation").contains("required"), "- Validation In 'Second Name Arabic' NOT required");
-        softAssert.assertTrue(tNameAr.getAttribute("validation").contains("required"), "- Validation In 'Third Name Arabic' NOT required");
-        softAssert.assertTrue(familyNameAr.getAttribute("validation").contains("required"), "- Validation In 'Family Name Arabic' NOT required");
+        softAssert.assertTrue(sNameEng.getDomAttribute("validation").contains("required"), "- Validation In 'Second Name' NOT required");
+        softAssert.assertTrue(tNameEng.getDomAttribute("validation").contains("required"), "- Validation In 'Third Name' NOT required");
+        softAssert.assertTrue(familyNameEng.getDomAttribute("validation").contains("required"), "- Validation In 'Family Name' NOT required");
+        softAssert.assertTrue(sNameAr.getDomAttribute("validation").contains("required"), "- Validation In 'Second Name Arabic' NOT required");
+        softAssert.assertTrue(tNameAr.getDomAttribute("validation").contains("required"), "- Validation In 'Third Name Arabic' NOT required");
+        softAssert.assertTrue(familyNameAr.getDomAttribute("validation").contains("required"), "- Validation In 'Family Name Arabic' NOT required");
 
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(fNameEng.getAttribute("class").contains("validationErrorCSS"), "- 'First Name' Border Color should be 'RED'");
+        softAssert.assertTrue(fNameEng.getDomAttribute("class").contains("validationErrorCSS"), "- 'First Name' Border Color should be 'RED'");
         hold(200);
         setText(fNameEng, employeeCode+"first");
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(sNameEng.getAttribute("class").contains("validationErrorCSS"), "- 'Second Name' Border Color should be 'RED'");
+        softAssert.assertTrue(sNameEng.getDomAttribute("class").contains("validationErrorCSS"), "- 'Second Name' Border Color should be 'RED'");
         hold(200);
         setText(sNameEng, employeeCode);
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(tNameEng.getAttribute("class").contains("validationErrorCSS"), "- 'Third Name' Border Color should be 'RED'");
+        softAssert.assertTrue(tNameEng.getDomAttribute("class").contains("validationErrorCSS"), "- 'Third Name' Border Color should be 'RED'");
         hold(200);
         setText(tNameEng, employeeCode);
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(familyNameEng.getAttribute("class").contains("validationErrorCSS"), "- 'Family Name' Border Color should be 'RED'");
+        softAssert.assertTrue(familyNameEng.getDomAttribute("class").contains("validationErrorCSS"), "- 'Family Name' Border Color should be 'RED'");
         hold(200);
         setText(familyNameEng, employeeCode+"last");
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(fNameAr.getAttribute("class").contains("validationErrorCSS"), "- 'First Name Arabic' Border Color should be 'RED'");
+        softAssert.assertTrue(fNameAr.getDomAttribute("class").contains("validationErrorCSS"), "- 'First Name Arabic' Border Color should be 'RED'");
         hold(200);
         setText(fNameAr, employeeCode+"firstAr");
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(sNameAr.getAttribute("class").contains("validationErrorCSS"), "- 'Second Name Arabic' Border Color should be 'RED'");
+        softAssert.assertTrue(sNameAr.getDomAttribute("class").contains("validationErrorCSS"), "- 'Second Name Arabic' Border Color should be 'RED'");
         hold(200);
         setText(sNameAr, employeeCode);
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(tNameAr.getAttribute("class").contains("validationErrorCSS"), "- 'Third Name Arabic' Border Color should be 'RED'");
+        softAssert.assertTrue(tNameAr.getDomAttribute("class").contains("validationErrorCSS"), "- 'Third Name Arabic' Border Color should be 'RED'");
         hold(200);
         setText(tNameAr, employeeCode);
         clickOn(nextButton);
         hold(300);
         clickOn(alertOkBtn);
-        softAssert.assertTrue(familyNameAr.getAttribute("class").contains("validationErrorCSS"), "- 'Family Name Arabic' Border Color should be 'RED'");
+        softAssert.assertTrue(familyNameAr.getDomAttribute("class").contains("validationErrorCSS"), "- 'Family Name Arabic' Border Color should be 'RED'");
         hold(200);
         setText(familyNameAr, employeeCode+"lastAr");
 
-        softAssert.assertTrue(driver.findElement(By.name("social_status")).getAttribute("validation").equals("required"), "- Validation In 'Marital Status' NOT required");
-        softAssert.assertTrue(driver.findElement(By.name("sex")).getAttribute("validation").equals("required"), "- Validation In 'Gender' NOT required");
-        softAssert.assertTrue(birth_date.getAttribute("validation").contains("required"), "- Validation In 'Birth Date' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("social_status")).getDomAttribute("validation").equals("required"), "- Validation In 'Marital Status' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("sex")).getDomAttribute("validation").equals("required"), "- Validation In 'Gender' NOT required");
+        softAssert.assertTrue(birth_date.getDomAttribute("validation").contains("required"), "- Validation In 'Birth Date' NOT required");
 
         scrollToElement(birth_date);
 
-        if(!driver.findElement(By.name("nationality")).getAttribute("validation").contains("required")){
+        if(!driver.findElement(By.name("nationality")).getDomAttribute("validation").contains("required")){
             new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_nationality"))).perform();
             hold(1200);
         }
-        if (!driver.findElement(By.name("relegion")).getAttribute("validation").contains("required")) {
+        if (!driver.findElement(By.name("relegion")).getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_relegion"))).perform();
             hold(1200);
         }
-        if (!mobileE.getAttribute("validation").contains("required")) {
+        if (!mobileE.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_mobile"))).perform();
             hold(1200);
         }
-        if (!emailE.getAttribute("validation").contains("required")) {
+        if (!emailE.getDomAttribute("validation").contains("required")) {
             new Actions(driver).doubleClick(driver.findElement(By.id("pay_employees_Email"))).perform();
             hold(1200);
         }
@@ -4500,10 +4511,10 @@ public class PersonnelInformation extends WebBase {
         selectOption(nationalityE, "Jordanian");
         hold(200);
 
-        softAssert.assertTrue(driver.findElement(By.name("nationality")).getAttribute("validation").contains("required"), "- Validation In 'Nationality' NOT required");
-        softAssert.assertTrue(driver.findElement(By.name("relegion")).getAttribute("validation").contains("required"), "- Validation In 'Religion' NOT required");
-        softAssert.assertTrue(mobileE.getAttribute("validation").contains("required"), "- Validation In 'Mobile' NOT required");
-        softAssert.assertTrue(emailE.getAttribute("validation").contains("required"), "- Validation In 'Email' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("nationality")).getDomAttribute("validation").contains("required"), "- Validation In 'Nationality' NOT required");
+        softAssert.assertTrue(driver.findElement(By.name("relegion")).getDomAttribute("validation").contains("required"), "- Validation In 'Religion' NOT required");
+        softAssert.assertTrue(mobileE.getDomAttribute("validation").contains("required"), "- Validation In 'Mobile' NOT required");
+        softAssert.assertTrue(emailE.getDomAttribute("validation").contains("required"), "- Validation In 'Email' NOT required");
 
         clickOn(nextButton);
         hold(300);
@@ -4596,86 +4607,86 @@ public class PersonnelInformation extends WebBase {
 
         if(englishOrArabic.equalsIgnoreCase("English")){
 
-            softAssert.assertTrue(fNameEng.getAttribute("validation").contains("required"), "- The English First Name is NOT Mandatory!");
+            softAssert.assertTrue(fNameEng.getDomAttribute("validation").contains("required"), "- The English First Name is NOT Mandatory!");
             clickOn(spousePage);
             hold(300);
             elementWait(firstNameSpouse);
-            softAssert.assertTrue(firstNameSpouse.getAttribute("validation").contains("required"), "- The English First Name Spouse is NOT Mandatory!");
+            softAssert.assertTrue(firstNameSpouse.getDomAttribute("validation").contains("required"), "- The English First Name Spouse is NOT Mandatory!");
             clickOn(childrenPage);
             hold(300);
             elementWait(firstNameChildren);
-            softAssert.assertTrue(firstNameChildren.getAttribute("validation").contains("required"), "- The English First Name Children is NOT Mandatory!");
+            softAssert.assertTrue(firstNameChildren.getDomAttribute("validation").contains("required"), "- The English First Name Children is NOT Mandatory!");
             clickOn(dependentsPage);
             hold(300);
             elementWait(firstNameDependents);
-            softAssert.assertTrue(firstNameDependents.getAttribute("validation").contains("required"), "- The English First Name Dependents is NOT Mandatory!");
+            softAssert.assertTrue(firstNameDependents.getDomAttribute("validation").contains("required"), "- The English First Name Dependents is NOT Mandatory!");
             clickOn(experiencesTab);
             hold(300);
             clickOn(practicalExperiencesPage);
             hold(500);
             elementWait(englishPracticalExperience);
-            softAssert.assertTrue(englishPracticalExperience.getAttribute("validation").contains("required"), "- The English Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
+            softAssert.assertTrue(englishPracticalExperience.getDomAttribute("validation").contains("required"), "- The English Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
             clickOn(otherTab);
             hold(300);
             clickOn(AdditionalInfoPage);
             hold(500);
             elementWait(englishDescriptionAdditionalInfo);
-            softAssert.assertTrue(englishDescriptionAdditionalInfo.getAttribute("validation").contains("required"), "- The English Description in 'Other - Additional Information' is NOT Mandatory!");
+            softAssert.assertTrue(englishDescriptionAdditionalInfo.getDomAttribute("validation").contains("required"), "- The English Description in 'Other - Additional Information' is NOT Mandatory!");
 
         } else if (englishOrArabic.equalsIgnoreCase("Arabic")) {
 
-            softAssert.assertTrue(fNameAr.getAttribute("validation").contains("required"), "- The Arabic First Name is NOT Mandatory!");
+            softAssert.assertTrue(fNameAr.getDomAttribute("validation").contains("required"), "- The Arabic First Name is NOT Mandatory!");
             clickOn(spousePage);
             hold(300);
             elementWait(firstNameArSpouse);
-            softAssert.assertTrue(firstNameArSpouse.getAttribute("validation").contains("required"), "- The Arabic First Name Spouse is NOT Mandatory!");
+            softAssert.assertTrue(firstNameArSpouse.getDomAttribute("validation").contains("required"), "- The Arabic First Name Spouse is NOT Mandatory!");
             clickOn(childrenPage);
             hold(300);
             elementWait(firstNameArChildren);
-            softAssert.assertTrue(firstNameArChildren.getAttribute("validation").contains("required"), "- The Arabic First Name Children is NOT Mandatory!");
+            softAssert.assertTrue(firstNameArChildren.getDomAttribute("validation").contains("required"), "- The Arabic First Name Children is NOT Mandatory!");
             clickOn(dependentsPage);
             hold(300);
             elementWait(firstNameArDependents);
-            softAssert.assertTrue(firstNameArDependents.getAttribute("validation").contains("required"), "- The Arabic First Name Dependents is NOT Mandatory!");
+            softAssert.assertTrue(firstNameArDependents.getDomAttribute("validation").contains("required"), "- The Arabic First Name Dependents is NOT Mandatory!");
             clickOn(experiencesTab);
             hold(300);
             clickOn(practicalExperiencesPage);
             hold(500);
             elementWait(arabicPracticalExperience);
-            softAssert.assertTrue(arabicPracticalExperience.getAttribute("validation").contains("required"), "- The Arabic Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
+            softAssert.assertTrue(arabicPracticalExperience.getDomAttribute("validation").contains("required"), "- The Arabic Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
 
         } else if(englishOrArabic.equalsIgnoreCase("Both")){
 
-            softAssert.assertTrue(fNameEng.getAttribute("validation").contains("required"), "- The English First Name is NOT Mandatory!");
-            softAssert.assertTrue(fNameAr.getAttribute("validation").contains("required"), "- The Arabic First Name is NOT Mandatory!");
+            softAssert.assertTrue(fNameEng.getDomAttribute("validation").contains("required"), "- The English First Name is NOT Mandatory!");
+            softAssert.assertTrue(fNameAr.getDomAttribute("validation").contains("required"), "- The Arabic First Name is NOT Mandatory!");
             clickOn(spousePage);
             hold(300);
             elementWait(firstNameSpouse);
-            softAssert.assertTrue(firstNameSpouse.getAttribute("validation").contains("required"), "- The English First Name Spouse is NOT Mandatory!");
-            softAssert.assertTrue(firstNameArSpouse.getAttribute("validation").contains("required"), "- The Arabic First Name Spouse is NOT Mandatory!");
+            softAssert.assertTrue(firstNameSpouse.getDomAttribute("validation").contains("required"), "- The English First Name Spouse is NOT Mandatory!");
+            softAssert.assertTrue(firstNameArSpouse.getDomAttribute("validation").contains("required"), "- The Arabic First Name Spouse is NOT Mandatory!");
             clickOn(childrenPage);
             hold(300);
             elementWait(firstNameChildren);
-            softAssert.assertTrue(firstNameChildren.getAttribute("validation").contains("required"), "- The English First Name Children is NOT Mandatory!");
-            softAssert.assertTrue(firstNameArChildren.getAttribute("validation").contains("required"), "- The Arabic First Name Children is NOT Mandatory!");
+            softAssert.assertTrue(firstNameChildren.getDomAttribute("validation").contains("required"), "- The English First Name Children is NOT Mandatory!");
+            softAssert.assertTrue(firstNameArChildren.getDomAttribute("validation").contains("required"), "- The Arabic First Name Children is NOT Mandatory!");
             clickOn(dependentsPage);
             hold(300);
             elementWait(firstNameDependents);
-            softAssert.assertTrue(firstNameDependents.getAttribute("validation").contains("required"), "- The English First Name Dependents is NOT Mandatory!");
-            softAssert.assertTrue(firstNameArDependents.getAttribute("validation").contains("required"), "- The Arabic First Name Dependents is NOT Mandatory!");
+            softAssert.assertTrue(firstNameDependents.getDomAttribute("validation").contains("required"), "- The English First Name Dependents is NOT Mandatory!");
+            softAssert.assertTrue(firstNameArDependents.getDomAttribute("validation").contains("required"), "- The Arabic First Name Dependents is NOT Mandatory!");
             clickOn(experiencesTab);
             hold(300);
             clickOn(practicalExperiencesPage);
             hold(500);
             elementWait(englishPracticalExperience);
-            softAssert.assertTrue(englishPracticalExperience.getAttribute("validation").contains("required"), "- The English Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
-            softAssert.assertTrue(arabicPracticalExperience.getAttribute("validation").contains("required"), "- The Arabic Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
+            softAssert.assertTrue(englishPracticalExperience.getDomAttribute("validation").contains("required"), "- The English Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
+            softAssert.assertTrue(arabicPracticalExperience.getDomAttribute("validation").contains("required"), "- The Arabic Practical Experience in 'Experience - Practical Experience' is NOT Mandatory!");
             clickOn(otherTab);
             hold(300);
             clickOn(AdditionalInfoPage);
             hold(500);
             elementWait(englishDescriptionAdditionalInfo);
-            softAssert.assertTrue(englishDescriptionAdditionalInfo.getAttribute("validation").contains("required"), "- The English Description in 'Other - Additional Information' is NOT Mandatory!");
+            softAssert.assertTrue(englishDescriptionAdditionalInfo.getDomAttribute("validation").contains("required"), "- The English Description in 'Other - Additional Information' is NOT Mandatory!");
 
         }
 
@@ -4747,7 +4758,7 @@ public class PersonnelInformation extends WebBase {
 
         softAssert.assertEquals(classificationE.getText(), "Class 1", "- Issue in Class, NOT same Position details");
         softAssert.assertEquals(degreeE.getText(), "Degree 1", "- Issue in Degree, NOT same Position details");
-        softAssert.assertEquals(stepE.getAttribute("value"), "1", "- Issue in Step, NOT same Position details");
+        softAssert.assertEquals(stepE.getDomAttribute("value"), "1", "- Issue in Step, NOT same Position details");
 
         softAssert.assertAll();
 
@@ -4801,64 +4812,64 @@ public class PersonnelInformation extends WebBase {
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000000");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "Active Employee", "- Title NOT Contain 'Active Employee'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-image-1.svg"), "- Incorrect status Icon for Active Employee");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "Active Employee", "- Title NOT Contain 'Active Employee'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-image-1.svg"), "- Incorrect status Icon for Active Employee");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000145");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "Employee Transfer", "- Title NOT Contain 'Employee Transfer'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("transferd.svg"), "- Incorrect status Icon for Employee Transfer");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "Employee Transfer", "- Title NOT Contain 'Employee Transfer'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("transferd.svg"), "- Incorrect status Icon for Employee Transfer");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000003");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "Terminated", "- Title NOT Contain 'Terminated'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-image-4.svg"), "- Incorrect status Icon for Employee Terminated");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "Terminated", "- Title NOT Contain 'Terminated'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-image-4.svg"), "- Incorrect status Icon for Employee Terminated");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000146");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "Stopped", "- Title NOT Contain 'Stopped'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-img-2.svg"), "- Incorrect status Icon for Employee Stopped");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "Stopped", "- Title NOT Contain 'Stopped'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-img-2.svg"), "- Incorrect status Icon for Employee Stopped");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000148");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "In Business Trip", "- Title NOT Contain 'In Business Trip'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-image-3.svg"), "- Incorrect status Icon for Employee In Business Trip");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "In Business Trip", "- Title NOT Contain 'In Business Trip'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-image-3.svg"), "- Incorrect status Icon for Employee In Business Trip");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000149");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "Vacation", "- Title NOT Contain 'Vacation'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-image-3.svg"), "- Incorrect status Icon for Employee In Vacation");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "Vacation", "- Title NOT Contain 'Vacation'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-image-3.svg"), "- Incorrect status Icon for Employee In Vacation");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000147");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "In Notice Period", "- Title NOT Contain 'In Notice Period'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-img-2.svg"), "- Incorrect status Icon for Employee In Notice Period");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "In Notice Period", "- Title NOT Contain 'In Notice Period'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-img-2.svg"), "- Incorrect status Icon for Employee In Notice Period");
         hold(500);
         clickOn(smartSearchClearBtn);
         hold(300);
         clickOn(smartSearchFiled);
         setText(smartSearchFiled, "auto000150");
         hold(1000);
-        softAssert.assertEquals(smartSearchStatusImg.getAttribute("title").trim(), "Suspended", "- Title NOT Contain 'Suspended'");
-        softAssert.assertTrue(smartSearchStatusImg.getAttribute("src").contains("drop-down-img-2.svg"), "- Incorrect status Icon for Employee Suspended");
+        softAssert.assertEquals(smartSearchStatusImg.getDomAttribute("title").trim(), "Suspended", "- Title NOT Contain 'Suspended'");
+        softAssert.assertTrue(smartSearchStatusImg.getDomAttribute("src").contains("drop-down-img-2.svg"), "- Incorrect status Icon for Employee Suspended");
 
         softAssert.assertAll();
 
@@ -5207,7 +5218,7 @@ public class PersonnelInformation extends WebBase {
         hold(500);
         elementWaitAdvanced(By.id("employee_code"));
         hold(300);
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         setText(fNameEng, employeeCode);
         setText(sNameEng, employeeCode);
@@ -5233,12 +5244,16 @@ public class PersonnelInformation extends WebBase {
         if(!Email.isEmpty()){
             setText(emailE, Email);
         }
+
+        setText(birth_date, BirthDate);
+
         if(!DirectManager.isEmpty()){
             setText(manager_code, DirectManager);
             manager_code.sendKeys(Keys.TAB);
-            hold(500);
+            hold(2500);
+            waitLoad();
         }
-        setText(birth_date, BirthDate);
+
         employeePicture.sendKeys(uploadRandomImage());
         hold(300);
         scrollToElement(empCode);

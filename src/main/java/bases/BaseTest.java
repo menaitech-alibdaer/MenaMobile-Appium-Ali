@@ -23,8 +23,11 @@ import java.net.URL;
 import java.time.Duration;
 import java.util.*;
 
+import static bases.ApiBase.fastTokenCreator;
 import static utilities.Colors.*;
 import static utilities.Devices.*;
+import static utilities.MobileHelper.terminateApp;
+import static utilities.MobileHelper.terminateAppAndroid;
 import static utilities.VersionGetter.*;
 
 public class BaseTest {
@@ -56,7 +59,7 @@ public class BaseTest {
 
     @BeforeClass(alwaysRun = true)
     @Parameters({"version", "lite"})
-    public void setVersion(@Optional("AUG") String version, @Optional("false") boolean lite){
+    public void setVersion(@Optional("Revamp") String version, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
@@ -88,6 +91,10 @@ public class BaseTest {
         iniBrowser = browser;
         iniPlatform = platform;
 
+        if(testType == TestType.API){
+            fastTokenCreator();
+        }
+
         softAssert = null;
         softAssert = new SoftAssert();
 
@@ -99,10 +106,10 @@ public class BaseTest {
         try{
             softAssert = null;
             if(appiumDriver.get() != null) {
-                //System.gc();
-                //appiumDriver.get().quit();
+                System.gc();
+                appiumDriver.get().quit();
             }
-            //appiumDriver.remove();
+            appiumDriver.remove();
         }catch (Exception e){
             softAssert = null;
             e.printStackTrace();
@@ -153,8 +160,8 @@ public class BaseTest {
             caps.setCapability("platformName", "Android");
             caps.setCapability("automationName", "UiAutomator2");
             //caps.setCapability("app", "app.apk");
-            caps.setCapability("appPackage", "com.menaitech.mename");
-            caps.setCapability("appActivity", "com.menaitech.mename.MainActivity");
+            caps.setCapability("appPackage", appPackage);
+            caps.setCapability("appActivity", appActivity);
             caps.setCapability("noReset", false);
             caps.setCapability("newCommandTimeout", 300);
             caps.setCapability("enforceXPath1", true);
@@ -213,6 +220,10 @@ public class BaseTest {
                 options.setExperimentalOption("excludeSwitches", Collections.singletonList("enable-automation"));
                 options.setExperimentalOption("useAutomationExtension", false);
                 options.addArguments("--start-maximized");
+                options.addArguments("--disable-extensions");
+                options.addArguments("--disable-notifications");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--remote-allow-origins=*");
 
                 Map<String, Object> prefs = new HashMap<>();
@@ -227,6 +238,10 @@ public class BaseTest {
                 WebDriverManager.chromedriver().setup();
                 options.addArguments("--remote-allow-origins=*");
                 options.addArguments("--start-maximized");
+                options.addArguments("--disable-extensions");
+                options.addArguments("--disable-notifications");
+                options.addArguments("--disable-gpu");
+                options.addArguments("--disable-dev-shm-usage");
                 options.addArguments("--headless", "--window-size=1920,1080");
                 Map<String, Object> prefs = new HashMap<>();
                 prefs.put("credentials_enable_service", false);

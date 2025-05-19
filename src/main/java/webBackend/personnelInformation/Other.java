@@ -299,29 +299,29 @@ public class Other extends WebBase {
                 motherName, birthPlace, marriageDate, personalNumber);
 
         softAssert.assertEquals(documentTypeE.getText(), documentType);
-        softAssert.assertEquals(documentCodeE.getAttribute("value"), documentCode);
-        softAssert.assertEquals(documentIssueE.getAttribute("value"), documentIssue);
-        softAssert.assertEquals(documentExpiryE.getAttribute("value"), documentExpiry);
-        softAssert.assertEquals(placeOfIssueE.getAttribute("value"), placeOfIssue);
-        softAssert.assertEquals(insuranceCodeE.getAttribute("value"), insuranceCode);
-        softAssert.assertEquals(keyWordE.getAttribute("value"), keyWord);
+        softAssert.assertEquals(documentCodeE.getDomAttribute("value"), documentCode);
+        softAssert.assertEquals(documentIssueE.getDomAttribute("value"), documentIssue);
+        softAssert.assertEquals(documentExpiryE.getDomAttribute("value"), documentExpiry);
+        softAssert.assertEquals(placeOfIssueE.getDomAttribute("value"), placeOfIssue);
+        softAssert.assertEquals(insuranceCodeE.getDomAttribute("value"), insuranceCode);
+        softAssert.assertEquals(keyWordE.getDomAttribute("value"), keyWord);
         if(!liteGetter()){
-            softAssert.assertEquals(universalCodeE.getAttribute("value"), universalCode);
+            softAssert.assertEquals(universalCodeE.getDomAttribute("value"), universalCode);
         }
-        softAssert.assertEquals(nationalCodeE.getAttribute("value"), nationalCode);
-        softAssert.assertEquals(socialCodeGOSIE.getAttribute("value"), socialSecurityGOSICode);
-        softAssert.assertEquals(taxCodeE.getAttribute("value"), taxCode);
-        softAssert.assertEquals(extNumberE.getAttribute("value"), extNumber);
-        softAssert.assertEquals(graduationYearE.getAttribute("value"), graduationYear);
-        softAssert.assertEquals(motherNameE.getAttribute("value"), motherName);
+        softAssert.assertEquals(nationalCodeE.getDomAttribute("value"), nationalCode);
+        softAssert.assertEquals(socialCodeGOSIE.getDomAttribute("value"), socialSecurityGOSICode);
+        softAssert.assertEquals(taxCodeE.getDomAttribute("value"), taxCode);
+        softAssert.assertEquals(extNumberE.getDomAttribute("value"), extNumber);
+        softAssert.assertEquals(graduationYearE.getDomAttribute("value"), graduationYear);
+        softAssert.assertEquals(motherNameE.getDomAttribute("value"), motherName);
         softAssert.assertEquals(birthPlaceE.getText(), birthPlace);
         if(personnelInformation.maritalStatus.equalsIgnoreCase("Single")){
-            softAssert.assertEquals(marriageDateE.getAttribute("disabled"), "true", "- Marriage Date Field Should be Disabled when employee status is: Single!");
+            softAssert.assertEquals(marriageDateE.getDomAttribute("disabled"), "true", "- Marriage Date Field Should be Disabled when employee status is: Single!");
         }else{
-            softAssert.assertEquals(marriageDateE.getAttribute("disabled"), null, "- Marriage Date Field Should be NOT Disabled when employee status NOT Single!");
+            softAssert.assertEquals(marriageDateE.getDomAttribute("disabled"), null, "- Marriage Date Field Should be NOT Disabled when employee status NOT Single!");
         }
-        softAssert.assertEquals(marriageDateE.getAttribute("value"), marriageDate);
-        softAssert.assertEquals(personalNumberE.getAttribute("value"), personalNumber);
+        softAssert.assertEquals(marriageDateE.getDomAttribute("value"), marriageDate);
+        softAssert.assertEquals(personalNumberE.getDomAttribute("value"), personalNumber);
         softAssert.assertAll();
 
     }
@@ -367,9 +367,9 @@ public class Other extends WebBase {
         clickOn(saveBtn);
         hold(300);
         softAssert.assertEquals(documentTypeE.getText(), "Passport");
-        softAssert.assertEquals(documentCodeE.getAttribute("value"), rand, "Document Code!");
-        softAssert.assertEquals(documentIssueE.getAttribute("value"), "03/03/2019");
-        softAssert.assertEquals(insuranceCodeE.getAttribute("value"), "3235845");
+        softAssert.assertEquals(documentCodeE.getDomAttribute("value"), rand, "Document Code!");
+        softAssert.assertEquals(documentIssueE.getDomAttribute("value"), "03/03/2019");
+        softAssert.assertEquals(insuranceCodeE.getDomAttribute("value"), "3235845");
         softAssert.assertAll();
 
     }
@@ -428,29 +428,29 @@ public class Other extends WebBase {
         hold(500);
 
         softAssert.assertEquals(documentTypeE.getText(), "Choose");
-        softAssert.assertTrue(documentCodeE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(documentIssueE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(documentExpiryE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(placeOfIssueE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(insuranceCodeE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(keyWordE.getAttribute("value").isEmpty());
+        softAssert.assertTrue(documentCodeE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(documentIssueE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(documentExpiryE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(placeOfIssueE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(insuranceCodeE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(keyWordE.getDomAttribute("value").isEmpty());
         if(!liteGetter()){
-            softAssert.assertTrue(universalCodeE.getAttribute("value").isEmpty());
+            softAssert.assertTrue(universalCodeE.getDomAttribute("value").isEmpty());
         }
-        softAssert.assertTrue(nationalCodeE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(socialCodeGOSIE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(taxCodeE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(extNumberE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(graduationYearE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(motherNameE.getAttribute("value").isEmpty());
+        softAssert.assertTrue(nationalCodeE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(socialCodeGOSIE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(taxCodeE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(extNumberE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(graduationYearE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(motherNameE.getDomAttribute("value").isEmpty());
         softAssert.assertEquals(birthPlaceE.getText(), "Choose");
         if(personnelInformation.maritalStatus.equalsIgnoreCase("Single")){
-            softAssert.assertEquals(marriageDateE.getAttribute("disabled"), "true", "- Marriage Date Field Should be Disabled when employee status is: Single!");
+            softAssert.assertEquals(marriageDateE.getDomAttribute("disabled"), "true", "- Marriage Date Field Should be Disabled when employee status is: Single!");
         }else{
-            softAssert.assertEquals(marriageDateE.getAttribute("disabled"), null, "- Marriage Date Field Should be NOT Disabled when employee status NOT Single!");
+            softAssert.assertEquals(marriageDateE.getDomAttribute("disabled"), null, "- Marriage Date Field Should be NOT Disabled when employee status NOT Single!");
         }
-        softAssert.assertTrue(marriageDateE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(personalNumberE.getAttribute("value").isEmpty());
+        softAssert.assertTrue(marriageDateE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(personalNumberE.getDomAttribute("value").isEmpty());
         softAssert.assertAll();
 
     }
@@ -487,7 +487,7 @@ public class Other extends WebBase {
         hold(200);
         clickOn(confirmOkBtn);
         hold(1500);
-        softAssert.assertEquals(documentExpiryE.getAttribute("value"), "12/12/2021");
+        softAssert.assertEquals(documentExpiryE.getDomAttribute("value"), "12/12/2021");
         softAssert.assertAll();
 
     }
@@ -501,7 +501,7 @@ public class Other extends WebBase {
             hold(500);
             elementWaitAdvanced(By.id("card_id"));
             if(cardId.isEmpty()){
-                setText(cardIdE, empCode.getAttribute("value"));
+                setText(cardIdE, empCode.getDomAttribute("value"));
             }else{
                 setText(cardIdE, cardId);
             }
@@ -521,7 +521,7 @@ public class Other extends WebBase {
 
             elementWaitAdvanced(By.id("card_id"));
             if(cardId.isEmpty()){
-                setText(personalInformationOct.cardIdE, personalInformationOct.empCode.getAttribute("value"));
+                setText(personalInformationOct.cardIdE, personalInformationOct.empCode.getDomAttribute("value"));
             }else{
                 setText(personalInformationOct.cardIdE, cardId);
             }
@@ -594,9 +594,9 @@ public class Other extends WebBase {
         addShiftDetails(cardId, rosterOrRegular, shiftType, shift);
         elementWaitAdvanced(By.id("card_id"));
         if(cardId.isEmpty()){
-            softAssert.assertEquals(cardIdE.getAttribute("value"), empCode.getAttribute("value"));
+            softAssert.assertEquals(cardIdE.getDomAttribute("value"), empCode.getDomAttribute("value"));
         }else{
-            softAssert.assertEquals(cardIdE.getAttribute("value"), cardId);
+            softAssert.assertEquals(cardIdE.getDomAttribute("value"), cardId);
         }
         if(rosterOrRegular.equalsIgnoreCase("Roster")){
             softAssert.assertTrue(rosterE.isSelected());
@@ -648,10 +648,10 @@ public class Other extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("card_id"));
 
-        softAssert.assertEquals(cardIdE.getAttribute("value"), rand, "- Card ID");
+        softAssert.assertEquals(cardIdE.getDomAttribute("value"), rand, "- Card ID");
         softAssert.assertTrue(rosterE.isSelected(), "Roster NOT Selected");
-        softAssert.assertEquals(driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[2]")).getAttribute("aria-disabled"), "true", "- Shift Type NOT Disabled");
-        softAssert.assertEquals(driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[3]")).getAttribute("aria-disabled"), "true", "- Shift NOT Disabled");
+        softAssert.assertEquals(driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[2]")).getDomAttribute("aria-disabled"), "true", "- Shift Type NOT Disabled");
+        softAssert.assertEquals(driver.findElement(By.xpath("(//span[@class='select2-selection select2-selection--single'])[3]")).getDomAttribute("aria-disabled"), "true", "- Shift NOT Disabled");
         softAssert.assertAll();
 
     }
@@ -689,7 +689,7 @@ public class Other extends WebBase {
         clickOn(saveBtn);
         hold(300);
         elementWaitAdvanced(By.id("card_id"));
-        softAssert.assertTrue(cardIdE.getAttribute("value").isEmpty());
+        softAssert.assertTrue(cardIdE.getDomAttribute("value").isEmpty());
         softAssert.assertEquals(shiftTypeE.getText(), "Choose");
         softAssert.assertEquals(shiftCode.getText(), "Choose");
         softAssert.assertAll();
@@ -753,20 +753,20 @@ public class Other extends WebBase {
         clickOn(extraDatesAndInfoPage);
         hold(500);
         addExtraDatesAndInfo(extraDate1, extraDate2, extraDate3, classificationDate, militaryServiceClassifiedPeriod, militaryServiceUnclassifiedPeriod, civilServiceNumber);
-        softAssert.assertEquals(extraDate1E.getAttribute("value"), extraDate1);
-        softAssert.assertEquals(extraDate2E.getAttribute("value"), extraDate2);
-        softAssert.assertEquals(extraDate3E.getAttribute("value"), extraDate3);
-        //softAssert.assertEquals(upgradeDateE.getAttribute("value"), upgradeDate);
-        softAssert.assertEquals(classificationDateE.getAttribute("value"), classificationDate);
+        softAssert.assertEquals(extraDate1E.getDomAttribute("value"), extraDate1);
+        softAssert.assertEquals(extraDate2E.getDomAttribute("value"), extraDate2);
+        softAssert.assertEquals(extraDate3E.getDomAttribute("value"), extraDate3);
+        //softAssert.assertEquals(upgradeDateE.getDomAttribute("value"), upgradeDate);
+        softAssert.assertEquals(classificationDateE.getDomAttribute("value"), classificationDate);
         if(militaryServiceClassifiedPeriod.isEmpty()){
-            softAssert.assertEquals(militaryServiceClassifiedPeriodE.getAttribute("value"), "0.000");
+            softAssert.assertEquals(militaryServiceClassifiedPeriodE.getDomAttribute("value"), "0.000");
         }else{
-            softAssert.assertEquals(militaryServiceClassifiedPeriodE.getAttribute("value"), militaryServiceClassifiedPeriod);
+            softAssert.assertEquals(militaryServiceClassifiedPeriodE.getDomAttribute("value"), militaryServiceClassifiedPeriod);
         }
         if(militaryServiceUnclassifiedPeriod.isEmpty()){
-            softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getAttribute("value"), "0.000");
+            softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getDomAttribute("value"), "0.000");
         }else{
-            softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getAttribute("value"), militaryServiceUnclassifiedPeriod);
+            softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getDomAttribute("value"), militaryServiceUnclassifiedPeriod);
         }
         softAssert.assertAll();
 
@@ -829,13 +829,13 @@ public class Other extends WebBase {
         clickOn(extraDatesAndInfoPage);
         hold(300);
         elementWaitAdvanced(By.id("extra_date1"));
-        softAssert.assertEquals(extraDate1E.getAttribute("value"), "02/02/2018");
-        softAssert.assertEquals(extraDate2E.getAttribute("value"), "02/02/2019");
-        softAssert.assertEquals(extraDate3E.getAttribute("value"), "02/02/2020");
-        //softAssert.assertEquals(upgradeDateE.getAttribute("value"), "02/02/2021");
-        softAssert.assertEquals(militaryServiceClassifiedPeriodE.getAttribute("value"), "1.500");
-        softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getAttribute("value"), "1.100");
-        softAssert.assertEquals(civilServiceNumberE.getAttribute("value"), "121200");
+        softAssert.assertEquals(extraDate1E.getDomAttribute("value"), "02/02/2018");
+        softAssert.assertEquals(extraDate2E.getDomAttribute("value"), "02/02/2019");
+        softAssert.assertEquals(extraDate3E.getDomAttribute("value"), "02/02/2020");
+        //softAssert.assertEquals(upgradeDateE.getDomAttribute("value"), "02/02/2021");
+        softAssert.assertEquals(militaryServiceClassifiedPeriodE.getDomAttribute("value"), "1.500");
+        softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getDomAttribute("value"), "1.100");
+        softAssert.assertEquals(civilServiceNumberE.getDomAttribute("value"), "121200");
         softAssert.assertAll();
 
     }
@@ -881,13 +881,13 @@ public class Other extends WebBase {
         clickOn(extraDatesAndInfoPage);
         hold(300);
         elementWaitAdvanced(By.id("extra_date1"));
-        softAssert.assertTrue(extraDate1E.getAttribute("value").isEmpty());
-        softAssert.assertTrue(extraDate2E.getAttribute("value").isEmpty());
-        softAssert.assertTrue(extraDate3E.getAttribute("value").isEmpty());
-        softAssert.assertTrue(upgradeDateE.getAttribute("value").isEmpty());
-        softAssert.assertEquals(militaryServiceClassifiedPeriodE.getAttribute("value"), "0.000");
-        softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getAttribute("value"), "0.000");
-        softAssert.assertTrue(civilServiceNumberE.getAttribute("value").isEmpty());
+        softAssert.assertTrue(extraDate1E.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(extraDate2E.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(extraDate3E.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(upgradeDateE.getDomAttribute("value").isEmpty());
+        softAssert.assertEquals(militaryServiceClassifiedPeriodE.getDomAttribute("value"), "0.000");
+        softAssert.assertEquals(militaryServiceUnclassifiedPeriodE.getDomAttribute("value"), "0.000");
+        softAssert.assertTrue(civilServiceNumberE.getDomAttribute("value").isEmpty());
         softAssert.assertAll();
 
     }
@@ -1142,12 +1142,12 @@ public class Other extends WebBase {
         clickOn(eventsPage);
         addEvents(eventDate, eventEnglish, eventArabic, remindBefore, notesEnglish, notesArabic);
         elementWaitAdvanced(By.id("event_date"));
-        softAssert.assertEquals(eventDateE.getAttribute("value"), eventDate);
-        softAssert.assertEquals(eventEnglishE.getAttribute("value"), eventEnglish);
-        softAssert.assertEquals(eventArabicE.getAttribute("value"), eventArabic);
+        softAssert.assertEquals(eventDateE.getDomAttribute("value"), eventDate);
+        softAssert.assertEquals(eventEnglishE.getDomAttribute("value"), eventEnglish);
+        softAssert.assertEquals(eventArabicE.getDomAttribute("value"), eventArabic);
         softAssert.assertEquals(remindBeforeE.getText(), remindBefore);
-        softAssert.assertEquals(notesEnglishE.getAttribute("value"), notesEnglish);
-        softAssert.assertEquals(notesArabicE.getAttribute("value"), notesArabic);
+        softAssert.assertEquals(notesEnglishE.getDomAttribute("value"), notesEnglish);
+        softAssert.assertEquals(notesArabicE.getDomAttribute("value"), notesArabic);
         softAssert.assertAll();
 
     }
@@ -1204,12 +1204,12 @@ public class Other extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("event_date"));
 
-        softAssert.assertEquals(eventDateE.getAttribute("value"), "05/05/2027");
-        softAssert.assertEquals(eventEnglishE.getAttribute("value"), "Event English Edited");
-        softAssert.assertEquals(eventArabicE.getAttribute("value"), "Event Arabic Edited");
+        softAssert.assertEquals(eventDateE.getDomAttribute("value"), "05/05/2027");
+        softAssert.assertEquals(eventEnglishE.getDomAttribute("value"), "Event English Edited");
+        softAssert.assertEquals(eventArabicE.getDomAttribute("value"), "Event Arabic Edited");
         softAssert.assertEquals(remindBeforeE.getText(), "3");
-        softAssert.assertTrue(notesEnglishE.getAttribute("value").isEmpty());
-        softAssert.assertTrue(notesArabicE.getAttribute("value").isEmpty());
+        softAssert.assertTrue(notesEnglishE.getDomAttribute("value").isEmpty());
+        softAssert.assertTrue(notesArabicE.getDomAttribute("value").isEmpty());
         softAssert.assertAll();
 
     }
@@ -1384,11 +1384,11 @@ public class Other extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("medical_date"));
         softAssert.assertEquals(statusTypeE.getText(), statusType);
-        softAssert.assertEquals(statusDateE.getAttribute("value"), statusDate);
+        softAssert.assertEquals(statusDateE.getDomAttribute("value"), statusDate);
         softAssert.assertEquals(VerifyImage(checkAttachment), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentURL.getAttribute("href").isEmpty(), "- Attachment File");
-        softAssert.assertEquals(statusE.getAttribute("value"), status);
-        softAssert.assertEquals(notesE.getAttribute("value"), notes);
+        softAssert.assertFalse(checkAttachmentURL.getDomAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertEquals(statusE.getDomAttribute("value"), status);
+        softAssert.assertEquals(notesE.getDomAttribute("value"), notes);
         softAssert.assertAll();
 
     }
@@ -1442,9 +1442,9 @@ public class Other extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("medical_date"));
 
-        softAssert.assertEquals(statusDateE.getAttribute("value"), "05/05/2022");
-        softAssert.assertEquals(statusE.getAttribute("value"), "Test Edited Status");
-        softAssert.assertEquals(notesE.getAttribute("value"), "Test Edited Notes");
+        softAssert.assertEquals(statusDateE.getDomAttribute("value"), "05/05/2022");
+        softAssert.assertEquals(statusE.getDomAttribute("value"), "Test Edited Status");
+        softAssert.assertEquals(notesE.getDomAttribute("value"), "Test Edited Notes");
         softAssert.assertAll();
 
     }
@@ -1571,7 +1571,7 @@ public class Other extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachment), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentURL.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentURL.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -1621,7 +1621,7 @@ public class Other extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachment), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentURL.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentURL.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -1715,7 +1715,7 @@ public class Other extends WebBase {
         hold(300);
 
         softAssert.assertTrue(checkAttachForUserDontHavePermission.isDisplayed(), "- LOCKED Attachment NOT appear");
-        softAssert.assertEquals(checkAttachForUserDontHavePermission.getAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
+        softAssert.assertEquals(checkAttachForUserDontHavePermission.getDomAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
         softAssert.assertAll();
 
     }
@@ -1739,7 +1739,7 @@ public class Other extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);
@@ -1864,12 +1864,12 @@ public class Other extends WebBase {
         hold(300);
         elementWaitAdvanced(By.id("condition_date"));
 
-        softAssert.assertEquals(caseDateE.getAttribute("value"), caseDate);
-        softAssert.assertEquals(caseEndDateE.getAttribute("value"), endDate);
+        softAssert.assertEquals(caseDateE.getDomAttribute("value"), caseDate);
+        softAssert.assertEquals(caseEndDateE.getDomAttribute("value"), endDate);
         softAssert.assertEquals(caseTypeE.getText(), caseType);
         softAssert.assertEquals(VerifyImage(checkAttachment), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentURL.getAttribute("href").isEmpty(), "- Attachment File");
-        softAssert.assertEquals(notesE.getAttribute("value"), notes);
+        softAssert.assertFalse(checkAttachmentURL.getDomAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertEquals(notesE.getDomAttribute("value"), notes);
         softAssert.assertAll();
 
     }
@@ -1917,9 +1917,9 @@ public class Other extends WebBase {
         elementWaitAdvanced(By.id("condition_date"));
         clickOn(item);
         hold(300);
-        softAssert.assertEquals(caseDateE.getAttribute("value"), "06/06/2021");
-        softAssert.assertTrue(caseEndDateE.getAttribute("value").isEmpty(), "End Date NOT Empty");
-        softAssert.assertEquals(notesE.getAttribute("value"), "Edited Notes");
+        softAssert.assertEquals(caseDateE.getDomAttribute("value"), "06/06/2021");
+        softAssert.assertTrue(caseEndDateE.getDomAttribute("value").isEmpty(), "End Date NOT Empty");
+        softAssert.assertEquals(notesE.getDomAttribute("value"), "Edited Notes");
         softAssert.assertAll();
 
     }
@@ -2076,7 +2076,7 @@ public class Other extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachment), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentURL.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentURL.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -2127,7 +2127,7 @@ public class Other extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachment), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentURL.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentURL.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -2221,7 +2221,7 @@ public class Other extends WebBase {
         hold(300);
 
         softAssert.assertTrue(checkAttachForUserDontHavePermission.isDisplayed(), "- LOCKED Attachment NOT appear");
-        softAssert.assertEquals(checkAttachForUserDontHavePermission.getAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
+        softAssert.assertEquals(checkAttachForUserDontHavePermission.getDomAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
         softAssert.assertAll();
 
     }
@@ -2245,7 +2245,7 @@ public class Other extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);
@@ -2389,16 +2389,16 @@ public class Other extends WebBase {
         WebElement optionSelected = fieldType.getFirstSelectedOption();
         if(fieldName.equalsIgnoreCase("Additional Number")){
             softAssert.assertEquals(optionSelected.getText(), fieldName);
-            softAssert.assertEquals(fieldNumberE.getAttribute("value"), englishDescription);
-            softAssert.assertTrue(fieldNumberE.getAttribute("validation").contains("decimal"), "Validation NOT Contain 'decimal'");
+            softAssert.assertEquals(fieldNumberE.getDomAttribute("value"), englishDescription);
+            softAssert.assertTrue(fieldNumberE.getDomAttribute("validation").contains("decimal"), "Validation NOT Contain 'decimal'");
         }else if(fieldName.equalsIgnoreCase("Additional Text")){
             softAssert.assertEquals(optionSelected.getText(), fieldName);
-            softAssert.assertEquals(fieldTextEn.getAttribute("value"), englishDescription);
-            softAssert.assertEquals(fieldTextAr.getAttribute("value"), arabicDescription);
+            softAssert.assertEquals(fieldTextEn.getDomAttribute("value"), englishDescription);
+            softAssert.assertEquals(fieldTextAr.getDomAttribute("value"), arabicDescription);
         }else if(fieldName.equalsIgnoreCase("Additional Date")){
             softAssert.assertEquals(optionSelected.getText(), fieldName);
-            softAssert.assertEquals(fieldDateE.getAttribute("value"), englishDescription);
-            softAssert.assertTrue(fieldDateE.getAttribute("validation").contains("valid_date"), "Validation NOT Contain 'valid_date'");
+            softAssert.assertEquals(fieldDateE.getDomAttribute("value"), englishDescription);
+            softAssert.assertTrue(fieldDateE.getDomAttribute("validation").contains("valid_date"), "Validation NOT Contain 'valid_date'");
         }else if(fieldName.equalsIgnoreCase("Additional Combo Box")){
             softAssert.assertEquals(optionSelected.getText(), fieldName);
             Select fieldCombo = new Select(fieldComboBoxE);

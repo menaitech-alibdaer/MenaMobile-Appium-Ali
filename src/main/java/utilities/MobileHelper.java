@@ -12,6 +12,7 @@ import java.util.Map;
 
 import static bases.BaseTest.getAppiumDriver;
 import static bases.BaseTest.iniPlatform;
+import static utilities.Devices.appPackage;
 import static utilities.WebHelper.hold;
 
 public class MobileHelper {
@@ -35,6 +36,10 @@ public class MobileHelper {
         }
 
         hold(800);
+    }
+
+    public static void terminateAppAndroid(){
+        ((AndroidDriver) getAppiumDriver()).terminateApp(appPackage);
     }
 
     public static void launchApp(){

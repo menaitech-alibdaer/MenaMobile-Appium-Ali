@@ -114,7 +114,7 @@ public class Dependents extends WebBase {
 
         hold(500);
         elementWaitAdvanced(By.id("dep_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameDependents, employeeCode+"FD");
         setText(secondNameDependents, employeeCode+"SD");
         setText(thirdNameDependents, employeeCode+"TD");
@@ -176,7 +176,7 @@ public class Dependents extends WebBase {
 
         hold(500);
         elementWaitAdvanced(By.id("dep_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameDependents, employeeCode+"FD");
         setText(secondNameDependents, employeeCode+"SD");
         setText(thirdNameDependents, employeeCode+"TD");
@@ -243,7 +243,7 @@ public class Dependents extends WebBase {
             hold(500);
             clickOn(dependentsPage);
             elementWaitAdvanced(By.id("dep_name_man1"));
-            employeeCode = empCode.getAttribute("value");
+            employeeCode = empCode.getDomAttribute("value");
             setText(firstNameDependents, firstName());
             setText(secondNameDependents, "");
             setText(thirdNameDependents, "");
@@ -315,7 +315,7 @@ public class Dependents extends WebBase {
 
         hold(500);
         elementWaitAdvanced(By.id("dep_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameDependents, firstName);
         setText(familyNameDependents, lastName);
         setText(firstArNameDependents, firstName);
@@ -402,37 +402,37 @@ public class Dependents extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(firstNameDependents.getAttribute("value"), employeeCode+"FD");
-        softAssert.assertEquals(secondNameDependents.getAttribute("value"), employeeCode+"SD");
-        softAssert.assertEquals(thirdNameDependents.getAttribute("value"), employeeCode+"TD");
-        softAssert.assertEquals(familyNameDependents.getAttribute("value"), employeeCode+"LD");
-        softAssert.assertEquals(firstArNameDependents.getAttribute("value"), employeeCode+"FAD");
-        softAssert.assertEquals(secondArNameDependents.getAttribute("value"), employeeCode+"SAD");
-        softAssert.assertEquals(thirdArNameDependents.getAttribute("value"), employeeCode+"TAD");
-        softAssert.assertEquals(familyArNameDependents.getAttribute("value"), employeeCode+"LAD");
+        softAssert.assertEquals(firstNameDependents.getDomAttribute("value"), employeeCode+"FD");
+        softAssert.assertEquals(secondNameDependents.getDomAttribute("value"), employeeCode+"SD");
+        softAssert.assertEquals(thirdNameDependents.getDomAttribute("value"), employeeCode+"TD");
+        softAssert.assertEquals(familyNameDependents.getDomAttribute("value"), employeeCode+"LD");
+        softAssert.assertEquals(firstArNameDependents.getDomAttribute("value"), employeeCode+"FAD");
+        softAssert.assertEquals(secondArNameDependents.getDomAttribute("value"), employeeCode+"SAD");
+        softAssert.assertEquals(thirdArNameDependents.getDomAttribute("value"), employeeCode+"TAD");
+        softAssert.assertEquals(familyArNameDependents.getDomAttribute("value"), employeeCode+"LAD");
         softAssert.assertEquals(relationship.getText(), relationships);
         softAssert.assertEquals(genderE.getText(), gender);
-        softAssert.assertEquals(nationalCodeE.getAttribute("value"), nationalCode);
-        softAssert.assertEquals(GOSIe.getAttribute("value"), GOSI);
+        softAssert.assertEquals(nationalCodeE.getDomAttribute("value"), nationalCode);
+        softAssert.assertEquals(GOSIe.getDomAttribute("value"), GOSI);
         scrollToElement(checkPicture);
-        softAssert.assertEquals(birthDateE.getAttribute("value"), birthDate);
+        softAssert.assertEquals(birthDateE.getDomAttribute("value"), birthDate);
         softAssert.assertEquals(relegionE.getText(), religion);
         softAssert.assertEquals(nationalityE.getText(), nationality);
         softAssert.assertEquals(insuredCheckbox.isSelected(), insured);
         if(insured){
-            softAssert.assertEquals(insuranceStartDateE.getAttribute("value"), insuranceStartDate);
-            softAssert.assertEquals(insuranceCardExpiryE.getAttribute("value"), insuranceCardExpiry);
+            softAssert.assertEquals(insuranceStartDateE.getDomAttribute("value"), insuranceStartDate);
+            softAssert.assertEquals(insuranceCardExpiryE.getDomAttribute("value"), insuranceCardExpiry);
         }
         if(!liteGetter()){
             softAssert.assertEquals(medicalClaimCoverageCheckbox.isSelected(), medicalClaimCoverage);
             if(medicalClaimCoverage){
-                softAssert.assertEquals(medicalClaimStartDateE.getAttribute("value"), medicalClaimStartDate);
+                softAssert.assertEquals(medicalClaimStartDateE.getDomAttribute("value"), medicalClaimStartDate);
             }
         }
-//        if(checkPicture.getAttribute("src").contains("Image/import.svg")){
+//        if(checkPicture.getDomAttribute("src").contains("Image/import.svg")){
 //            softAssert.fail("The Photo Not Uploaded");
 //        }else{
-//            softAssert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getAttribute("src"));
+//            softAssert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getDomAttribute("src"));
 //        }
 
         softAssert.assertAll();
@@ -543,22 +543,22 @@ public class Dependents extends WebBase {
         clickOn(saveBtn);
         hold(500);
 
-        softAssert.assertEquals(firstNameDependents.getAttribute("value"), employeeCode+"Edited");
-        softAssert.assertEquals(familyNameDependents.getAttribute("value"), employeeCode+"Edited");
+        softAssert.assertEquals(firstNameDependents.getDomAttribute("value"), employeeCode+"Edited");
+        softAssert.assertEquals(familyNameDependents.getDomAttribute("value"), employeeCode+"Edited");
         softAssert.assertEquals(relationship.getText(), "Brother");
-        softAssert.assertEquals(nationalCodeE.getAttribute("value"), nationalCodeEdit);
-        softAssert.assertEquals(GOSIe.getAttribute("value"), GOSIEdit);
-        softAssert.assertEquals(birthDateE.getAttribute("value"), "10/10/1971");
+        softAssert.assertEquals(nationalCodeE.getDomAttribute("value"), nationalCodeEdit);
+        softAssert.assertEquals(GOSIe.getDomAttribute("value"), GOSIEdit);
+        softAssert.assertEquals(birthDateE.getDomAttribute("value"), "10/10/1971");
         softAssert.assertEquals(nationalityE.getText(), "Egyptian");
         if(!liteGetter()){
             softAssert.assertEquals(medicalClaimCoverageCheckbox.isSelected(), medicalClaimCoverage);
         }
         softAssert.assertEquals(insuredCheckbox.isSelected(), insured);
         if(insured){
-            softAssert.assertEquals(insuranceStartDateE.getAttribute("value"), "02/02/2022");
+            softAssert.assertEquals(insuranceStartDateE.getDomAttribute("value"), "02/02/2022");
         }
-        softAssert.assertEquals(homePhoneE.getAttribute("value"), homePhoneEdit);
-        softAssert.assertEquals(streetE.getAttribute("value"), streetEdit);
+        softAssert.assertEquals(homePhoneE.getDomAttribute("value"), homePhoneEdit);
+        softAssert.assertEquals(streetE.getDomAttribute("value"), streetEdit);
         softAssert.assertAll();
 
     }
@@ -625,7 +625,7 @@ public class Dependents extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         hold(300);
         clickOn(dependentsPage);
@@ -670,7 +670,7 @@ public class Dependents extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);
@@ -712,7 +712,7 @@ public class Dependents extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         hold(300);
         clickOn(dependentsPage);
@@ -731,7 +731,7 @@ public class Dependents extends WebBase {
         hold(100);
         clickOn(saveBtn);
         hold(300);
-        Assert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getAttribute("src"));
+        Assert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getDomAttribute("src"));
 
     }
 
@@ -805,9 +805,9 @@ public class Dependents extends WebBase {
         scrollToElement(checkPicture);
 
         if(flag.equals("0")){
-            softAssert.assertEquals(medicalClaimCoverageCheckbox.getAttribute("disabled"), "true", "- Medical Claim Coverage Should be Hidden");
+            softAssert.assertEquals(medicalClaimCoverageCheckbox.getDomAttribute("disabled"), "true", "- Medical Claim Coverage Should be Hidden");
         }else{
-            softAssert.assertEquals(medicalClaimCoverageCheckbox.getAttribute("disabled"), null, "- Medical Claim Coverage Should be Appear");
+            softAssert.assertEquals(medicalClaimCoverageCheckbox.getDomAttribute("disabled"), null, "- Medical Claim Coverage Should be Appear");
         }
         MssqlConnect.sqlQuery("update adm_company set is_claim = 1 where company_code = 'automation'");
         softAssert.assertAll();
@@ -835,7 +835,7 @@ public class Dependents extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         hold(300);
         clickOn(dependentsPage);

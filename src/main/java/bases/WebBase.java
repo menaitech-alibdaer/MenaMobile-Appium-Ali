@@ -7,6 +7,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.openqa.selenium.*;
 import org.openqa.selenium.NoSuchElementException;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.MoveTargetOutOfBoundsException;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
@@ -29,25 +30,34 @@ public class WebBase {
     }
 
     int secondWait = 50;
+    WebElement iframeMemory = null;
     @FindBy(className = "select2-search__field")
     WebElement selectSearchField;
     @FindBy(id = "LoadingElement")
     WebElement loadingElement;
     private static String checkBranch = "branch";
 
-
     protected void clickOn(WebElement element){
 
         try {
-            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
-            wait.until(ExpectedConditions.elementToBeClickable(element));
+            waitLoad();
+            elementWait(element);
+            waitElementClickable(element);
+            //moveToElement(element);
             element.click();
-        } catch (ElementNotInteractableException | MoveTargetOutOfBoundsException e){
+            //hold(500);
+        } catch (Exception e){
             try {
+                //hold(500);
+                waitLoad();
+                waitLoadingScreen();
                 System.out.println("Try Again by scrolling to element");
+                elementWait(element);
                 scrollToElement(element);
+                moveToElement(element);
+                waitElementClickable(element);
                 element.click();
-            } catch (ElementClickInterceptedException ee){
+            } catch (Exception ee){
                 System.out.println(ee);
             }
         }
@@ -57,10 +67,16 @@ public class WebBase {
     protected void setText(WebElement element,String text){
         if(!text.isEmpty()){
             try {
+                waitLoad();
                 elementWait(element);
+                //moveToElement(element);
                 element.sendKeys(text);
-            }catch (ElementNotInteractableException | MoveTargetOutOfBoundsException e){
+            }catch (Exception e){
+                hold(500);
+                waitLoad();
+                waitLoadingScreen();
                 scrollToElement(element);
+                moveToElement(element);
                 element.sendKeys(text);
             }
         }
@@ -68,38 +84,65 @@ public class WebBase {
 
     protected void setText(WebElement element,Keys key){
         try {
+            waitLoad();
             elementWait(element);
+            //moveToElement(element);
             element.sendKeys(key);
-        }catch (ElementNotInteractableException | MoveTargetOutOfBoundsException e){
-            scrollToElement(element);
-            element.sendKeys(key);
+        } catch (Exception ee){
+            try {
+                hold(600);
+                waitLoad();
+                elementWait(element);
+                moveToElement(element);
+                element.click();
+            }catch (Exception eee){
+                System.out.println(eee);
+            }
         }
     }
 
     protected void setText(WebElement element,String text,Keys key){
         if(!text.isEmpty()){
             try {
+                waitLoad();
                 elementWait(element);
+                //moveToElement(element);
                 element.sendKeys(text);
                 hold(200);
                 element.sendKeys(key);
-            }catch (ElementNotInteractableException | MoveTargetOutOfBoundsException e){
-                scrollToElement(element);
-                element.sendKeys(text);
-                hold(200);
-                element.sendKeys(key);
+            } catch (Exception ee){
+                try {
+                    hold(600);
+                    waitLoad();
+                    elementWait(element);
+                    moveToElement(element);
+                    element.click();
+                }catch (Exception eee){
+                    System.out.println(eee);
+                }
             }
         }
     }
 
     protected void elementWait(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
-        wait.until(ExpectedConditions.visibilityOf(element));
+        try {
+            WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(secondWait / 2));
+            wait1.until(ExpectedConditions.visibilityOfAllElements(element));
+        }catch (Exception e){
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait / 2));
+            wait.until(ExpectedConditions.visibilityOf(element));
+        }
     }
 
     protected void waitFrameAndWindow(){
+        waitLoad();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
         wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(By.id("body_frame")));
+    }
+
+    protected void waitFrameAndWindow(WebElement element){
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     protected void elementWaitAdvanced(By by){
@@ -111,8 +154,13 @@ public class WebBase {
         wait.until(ExpectedConditions.elementToBeClickable(by));
     }
     protected void waitElementClickable(WebElement element){
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
-        wait.until(ExpectedConditions.elementToBeClickable(element));
+        try {
+            WebDriverWait wait1 = new WebDriverWait(driver, Duration.ofSeconds(secondWait / 2));
+            wait1.until(ExpectedConditions.visibilityOfAllElements(element));
+        }catch (Exception e){
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait / 2));
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+        }
     }
     protected void waitTextAppear(WebElement element, String text){
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(180));
@@ -162,18 +210,20 @@ public class WebBase {
 
         if(!text.isEmpty()){
             try {
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
-                wait.until(ExpectedConditions.elementToBeClickable(element));
-                element.click();
+                waitElementClickable(element);
+                clickOn(element);
                 hold(100);
                 selectSearchField.sendKeys(text);
                 hold(100);
                 selectSearchField.sendKeys(Keys.ENTER);
             } catch (ElementNotInteractableException | MoveTargetOutOfBoundsException e){
+                waitLoad();
+                waitLoadingScreen();
                 //e.printStackTrace();
+                waitElementClickable(element);
                 scrollToElement(element);
                 hold(500);
-                element.click();
+                clickOn(element);
                 hold(100);
                 selectSearchField.sendKeys(text);
                 hold(100);
@@ -189,9 +239,8 @@ public class WebBase {
 
         if(!text.isEmpty()){
             try {
-                WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
-                wait.until(ExpectedConditions.elementToBeClickable(element));
-                element.click();
+                waitElementClickable(element);
+                clickOn(element);
                 hold(100);
                 selectSearchField.sendKeys(text);
                 hold(100);
@@ -199,10 +248,13 @@ public class WebBase {
                 hold(100);
                 selectSearchField.sendKeys(Keys.ENTER);
             }catch(ElementNotInteractableException | MoveTargetOutOfBoundsException e){
+                waitLoad();
+                waitLoadingScreen();
                 //e.printStackTrace();
+                waitElementClickable(element);
                 scrollToElement(element);
                 hold(500);
-                element.click();
+                clickOn(element);
                 hold(100);
                 selectSearchField.sendKeys(text);
                 hold(100);
@@ -219,15 +271,30 @@ public class WebBase {
     protected void normalSelect(WebElement element, String text){
 
         if(!text.isEmpty()){
-            elementWait(element);
-            Select select = new Select(element);
-            select.selectByVisibleText(text);
-            hold(100);
+            try {
+                elementWait(element);
+                //moveToElement(element);
+                Select select = new Select(element);
+                select.selectByVisibleText(text);
+                hold(100);
+            }catch (Exception e){
+                waitLoad();
+                hold(600);
+                moveToElement(element);
+                elementWait(element);
+                Select select = new Select(element);
+                select.selectByVisibleText(text);
+                hold(100);
+            }
         }
 
     }
 
     protected void selectAllText(WebElement element){
+        try {
+            waitLoad();
+        }catch (Exception ignored){}
+        moveToElement(element);
         ((JavascriptExecutor) driver).executeScript("arguments[0].focus();arguments[0].select();", element);
     }
 
@@ -250,11 +317,16 @@ public class WebBase {
 
     public void goToFrame(WebElement element){
 
+        iframeMemory = element;
+        waitLoad();
+//        waitLoadingScreen();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
         wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+        //waitLoad();
+        hold(1000);
 
         //elementWait(element);
-        //driver.switchTo().frame(element);
+        //getDriver().switchTo().frame(element);
         //hold(500);
 
     }
@@ -299,7 +371,7 @@ public class WebBase {
     public int VerifyImage(WebElement element){
 
         CloseableHttpClient client = HttpClientBuilder.create().build();
-        HttpGet request = new HttpGet(element.getAttribute("src"));
+        HttpGet request = new HttpGet(element.getDomAttribute("src"));
 
         try {
             HttpResponse response = client.execute(request);
@@ -363,6 +435,7 @@ public class WebBase {
 
     public void closeIFrame(){
         driver.switchTo().defaultContent();
+        iframeMemory = null;
     }
     public void backToParentIFrame(){
         driver.switchTo().parentFrame();
@@ -383,6 +456,7 @@ public class WebBase {
     public boolean checkElementIfPresent(By locatorKey, boolean inFrame){
         if(inFrame){
             goToFrame(driver.findElement(By.id("body_frame")));
+            waitLoad();
         }
         try {
             implicitWaitChanging(3000);
@@ -398,6 +472,7 @@ public class WebBase {
     public boolean checkElementIfPresent(WebElement element, boolean inFrame){
         if(inFrame){
             goToFrame(driver.findElement(By.id("body_frame")));
+            waitLoad();
         }
         boolean check;
         try {
@@ -450,5 +525,51 @@ public class WebBase {
     public void maximizeWindow(){
         driver.manage().window().maximize();
     }
+
+    protected void waitLoad(){
+        new WebDriverWait(driver, Duration.ofSeconds(secondWait))
+                .until(driver -> ((JavascriptExecutor) driver)
+                        .executeScript("return document.readyState").equals("complete"));
+    }
+
+    protected void waitForElementToBeDisabled(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(90));
+        wait.until((ExpectedCondition<Boolean>) d -> !element.isEnabled());
+    }
+
+    public void waitLoadingScreen() {
+
+        try {
+            String display = loadingElement.getCssValue("display");
+            if ("none".equals(display)) {
+            } else {
+                System.out.println("Loading Element is visible (display: " + display + ").");
+                hold(1000);
+                waitLoadingScreenToInvisible();
+            }
+        } catch (Exception ignored) {
+        }
+
+    }
+
+    protected void iframeReset(){
+        //System.out.println("Reset iframe(close and reopen)!");
+        if(iframeMemory == null){
+            closeIFrame();
+        }else{
+            //closeIFrame();
+            driver.switchTo().defaultContent();
+            hold(500);
+            WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(secondWait));
+            wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(iframeMemory));
+        }
+    }
+
+    protected void moveToElement(WebElement element){
+        Actions action = new Actions(driver);
+        action.moveToElement(element).perform();
+    }
+
+
 
 }

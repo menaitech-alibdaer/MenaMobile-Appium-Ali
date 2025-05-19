@@ -29,7 +29,7 @@ public class ExtentReport {
         	html.config().setReportName("HRMS System");
         	html.config().setTheme(Theme.DARK);
             //html.config().setProtocol(Protocol.HTTP);
-            html.config().setOfflineMode(true);
+            html.config().setOfflineMode(false);
             html.viewConfigurer().viewOrder().as(new ViewName[]{
                 ViewName.DASHBOARD, ViewName.TEST,
                 ViewName.EXCEPTION, ViewName.DEVICE,

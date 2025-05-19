@@ -176,7 +176,7 @@ public class Children extends WebBase {
 
         hold(500);
         elementWaitAdvanced(By.id("son_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameChildren, firstNC);
         setText(secondNameChildren, secondNC);
         setText(thirdNameChildren, thirdNC);
@@ -298,7 +298,7 @@ public class Children extends WebBase {
             clickOn(childrenPage);
             elementWaitAdvanced(By.id("son_name_man1"));
             hold(500);
-            employeeCode = empCode.getAttribute("value");
+            employeeCode = empCode.getDomAttribute("value");
             setText(firstNameChildren, firstName());
             setText(secondNameChildren, secondName());
             setText(thirdNameChildren, thirdName());
@@ -466,7 +466,7 @@ public class Children extends WebBase {
 
         hold(500);
         elementWaitAdvanced(By.id("son_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameChildren, firstName);
         setText(familyNameChildren, lastName);
         setText(firstArNameChildren, lastName);
@@ -580,7 +580,7 @@ public class Children extends WebBase {
 
         hold(500);
         elementWaitAdvanced(By.id("son_name_man1"));
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
         setText(firstNameChildren, employeeCode+"FC");
         setText(secondNameChildren, employeeCode+"SC");
         setText(thirdNameChildren, employeeCode+"TC");
@@ -734,29 +734,29 @@ public class Children extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(firstNameChildren.getAttribute("value"), firstNC);
-        softAssert.assertEquals(secondNameChildren.getAttribute("value"), secondNC);
-        softAssert.assertEquals(thirdNameChildren.getAttribute("value"), thirdNC);
-        softAssert.assertEquals(familyNameChildren.getAttribute("value"), lastNC);
-        softAssert.assertEquals(firstArNameChildren.getAttribute("value"), firstNC);
-        softAssert.assertEquals(secondArNameChildren.getAttribute("value"), secondNC);
-        softAssert.assertEquals(thirdArNameChildren.getAttribute("value"), thirdNC);
-        softAssert.assertEquals(familyArNameChildren.getAttribute("value"), lastNC);
-        softAssert.assertEquals(birthDateE.getAttribute("value"), birthDate);
-        softAssert.assertEquals(deathDateE.getAttribute("value"), deathDate);
+        softAssert.assertEquals(firstNameChildren.getDomAttribute("value"), firstNC);
+        softAssert.assertEquals(secondNameChildren.getDomAttribute("value"), secondNC);
+        softAssert.assertEquals(thirdNameChildren.getDomAttribute("value"), thirdNC);
+        softAssert.assertEquals(familyNameChildren.getDomAttribute("value"), lastNC);
+        softAssert.assertEquals(firstArNameChildren.getDomAttribute("value"), firstNC);
+        softAssert.assertEquals(secondArNameChildren.getDomAttribute("value"), secondNC);
+        softAssert.assertEquals(thirdArNameChildren.getDomAttribute("value"), thirdNC);
+        softAssert.assertEquals(familyArNameChildren.getDomAttribute("value"), lastNC);
+        softAssert.assertEquals(birthDateE.getDomAttribute("value"), birthDate);
+        softAssert.assertEquals(deathDateE.getDomAttribute("value"), deathDate);
         softAssert.assertEquals(genderE.getText(), gender);
         softAssert.assertEquals(maritalStatusChildren.getText(), maritalStatus);
         softAssert.assertEquals(birthPlaceChildren.getText(), birthPlace);
         if(!nationality.equals("Jordanian")){ //// Because the 'Jordanian' is Citizen ////
-            softAssert.assertEquals(residenceNumberE.getAttribute("value"), residenceNumber);
-            softAssert.assertEquals(residenceExpiryDateE.getAttribute("value"), residenceExpiryDate);
+            softAssert.assertEquals(residenceNumberE.getDomAttribute("value"), residenceNumber);
+            softAssert.assertEquals(residenceExpiryDateE.getDomAttribute("value"), residenceExpiryDate);
         }
         softAssert.assertEquals(nationalityE.getText(), nationality);
         scrollToElement(checkPicture);
-        softAssert.assertEquals(nationalCodeE.getAttribute("value"), nationalCode);
-        softAssert.assertEquals(nationalCodeExpireDateE.getAttribute("value"), nationalCodeExpiryDate);
-        softAssert.assertEquals(passportNumberE.getAttribute("value"), passportNumber);
-        softAssert.assertEquals(passportExpireDateE.getAttribute("value"), passportExpiryDate);
+        softAssert.assertEquals(nationalCodeE.getDomAttribute("value"), nationalCode);
+        softAssert.assertEquals(nationalCodeExpireDateE.getDomAttribute("value"), nationalCodeExpiryDate);
+        softAssert.assertEquals(passportNumberE.getDomAttribute("value"), passportNumber);
+        softAssert.assertEquals(passportExpireDateE.getDomAttribute("value"), passportExpiryDate);
 
         hold(500);
         clickOn(otherInformationList);
@@ -764,9 +764,9 @@ public class Children extends WebBase {
         scrollToElement(permanentDisabilityCheckbox);
         hold(200);
 
-        softAssert.assertEquals(alowanceAmountE.getAttribute("value"), allowanceAmount);
-        softAssert.assertEquals(alowanceStartingFrom.getAttribute("value"), allowanceStartingFrom);
-        softAssert.assertEquals(alowanceToDate.getAttribute("value"), allowanceToDate);
+        softAssert.assertEquals(alowanceAmountE.getDomAttribute("value"), allowanceAmount);
+        softAssert.assertEquals(alowanceStartingFrom.getDomAttribute("value"), allowanceStartingFrom);
+        softAssert.assertEquals(alowanceToDate.getDomAttribute("value"), allowanceToDate);
         softAssert.assertEquals(studentCheckbox.isSelected(), student);
         if(!liteGetter()){
             if(student){
@@ -777,21 +777,21 @@ public class Children extends WebBase {
         }
         softAssert.assertEquals(insuredCheckbox.isSelected(), insured);
         if(insured){
-            softAssert.assertEquals(insuranceStartDateE.getAttribute("value"), insuranceStartDate);
-            softAssert.assertEquals(insuranceCodeE.getAttribute("value"), insuranceCode);
-            softAssert.assertEquals(insuranceCardExpiryE.getAttribute("value"), insuranceCardExpiry);
+            softAssert.assertEquals(insuranceStartDateE.getDomAttribute("value"), insuranceStartDate);
+            softAssert.assertEquals(insuranceCodeE.getDomAttribute("value"), insuranceCode);
+            softAssert.assertEquals(insuranceCardExpiryE.getDomAttribute("value"), insuranceCardExpiry);
         }
         if(!liteGetter()){
             softAssert.assertEquals(medicalClaimCoverageCheckbox.isSelected(), medicalClaimCoverage);
             if(medicalClaimCoverage){
-                softAssert.assertEquals(medicalClaimStartDateE.getAttribute("value"), medicalClaimStartDate);
+                softAssert.assertEquals(medicalClaimStartDateE.getDomAttribute("value"), medicalClaimStartDate);
             }
         }
         softAssert.assertEquals(permanentDisabilityCheckbox.isSelected(), permanentDisability);
-        if(checkPicture.getAttribute("src").contains("Image/import.svg")){
+        if(checkPicture.getDomAttribute("src").contains("Image/import.svg")){
             softAssert.fail("The Photo Not Uploaded");
         }else{
-            softAssert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getAttribute("src"));
+            softAssert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getDomAttribute("src"));
         }
         softAssert.assertAll();
 
@@ -923,16 +923,16 @@ public class Children extends WebBase {
         clickOn(saveBtn);
         hold(500);
 
-        softAssert.assertEquals(firstNameChildren.getAttribute("value"), employeeCode+"Edited");
-        softAssert.assertEquals(familyNameChildren.getAttribute("value"), employeeCode+"Edited");
-        softAssert.assertEquals(birthDateE.getAttribute("value"), "10/10/2021");
+        softAssert.assertEquals(firstNameChildren.getDomAttribute("value"), employeeCode+"Edited");
+        softAssert.assertEquals(familyNameChildren.getDomAttribute("value"), employeeCode+"Edited");
+        softAssert.assertEquals(birthDateE.getDomAttribute("value"), "10/10/2021");
         softAssert.assertEquals(nationalityE.getText(), "Egyptian");
-        softAssert.assertEquals(nationalCodeE.getAttribute("value"), nationalCodeEdit);
-        softAssert.assertEquals(nationalCodeExpireDateE.getAttribute("value"), "06/06/2026");
-        softAssert.assertEquals(passportNumberE.getAttribute("value"), passportNumberEdit);
-        softAssert.assertEquals(passportExpireDateE.getAttribute("value"), "10/05/2025");
-        softAssert.assertEquals(alowanceAmountE.getAttribute("value"), "13.000");
-        softAssert.assertEquals(alowanceStartingFrom.getAttribute("value"), "01/01/2022");
+        softAssert.assertEquals(nationalCodeE.getDomAttribute("value"), nationalCodeEdit);
+        softAssert.assertEquals(nationalCodeExpireDateE.getDomAttribute("value"), "06/06/2026");
+        softAssert.assertEquals(passportNumberE.getDomAttribute("value"), passportNumberEdit);
+        softAssert.assertEquals(passportExpireDateE.getDomAttribute("value"), "10/05/2025");
+        softAssert.assertEquals(alowanceAmountE.getDomAttribute("value"), "13.000");
+        softAssert.assertEquals(alowanceStartingFrom.getDomAttribute("value"), "01/01/2022");
         softAssert.assertEquals(studentCheckbox.isSelected(), student);
         softAssert.assertEquals(insuredCheckbox.isSelected(), insured);
         softAssert.assertEquals(permanentDisabilityCheckbox.isSelected(), permanentDisability);
@@ -941,8 +941,8 @@ public class Children extends WebBase {
             softAssert.assertEquals(schoolE.getText(), "Schools 2");
         }
         if(insured){
-            softAssert.assertEquals(insuranceStartDateE.getAttribute("value"), "02/02/2022");
-            softAssert.assertEquals(insuranceCodeE.getAttribute("value"), insuranceCodeEdit);
+            softAssert.assertEquals(insuranceStartDateE.getDomAttribute("value"), "02/02/2022");
+            softAssert.assertEquals(insuranceCodeE.getDomAttribute("value"), insuranceCodeEdit);
         }
         softAssert.assertAll();
 
@@ -1019,7 +1019,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1041,7 +1041,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Death Date Can Not Be Before The Birth Date!");
-        softAssert.assertTrue(deathDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(deathDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1065,7 +1065,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1087,7 +1087,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Child Birth Date Can Not Be Before The Marriage Date!");
-        softAssert.assertTrue(birthDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(birthDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1133,7 +1133,7 @@ public class Children extends WebBase {
         hold(300);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Child Birth Date Can Not Be After The Spouse Death Date!");
-        softAssert.assertTrue(deathDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(deathDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
 
         ///// Back To Spouse te remove spouse death date ///// just optional /////
         clickOn(spousePageTab);
@@ -1168,7 +1168,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1190,7 +1190,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Allowance Start Date Can Not Be Before The Birth Date!");
-        softAssert.assertTrue(alowanceStartingFrom.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(alowanceStartingFrom.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1214,7 +1214,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1236,7 +1236,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The End Date Can Not Be Before The Start Date! Please Re-enter The End Date");
-        softAssert.assertTrue(alowanceToDate.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(alowanceToDate.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1260,7 +1260,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1282,7 +1282,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "The Insurance Date Can Not Be Before The Birth Date!");
-        softAssert.assertTrue(insuranceStartDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(insuranceStartDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1306,7 +1306,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1328,7 +1328,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Insurance Start Date Can Not Be After The Insurance Card End Date!");
-        softAssert.assertTrue(insuranceCardExpiryE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(insuranceCardExpiryE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1352,7 +1352,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1374,7 +1374,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Medical Claim Start Date Can Not Be Before Hiring Date!");
-        softAssert.assertTrue(medicalClaimStartDateE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(medicalClaimStartDateE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1403,7 +1403,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1420,7 +1420,7 @@ public class Children extends WebBase {
         clickOn(otherInformationList);
         hold(200);
         scrollToElement(insuredCheckbox);
-        Assert.assertEquals(alowanceAmountE.getAttribute("value"), childrenAllowanceAmount, "Allowance Amount NOT Same System Parameters!");
+        Assert.assertEquals(alowanceAmountE.getDomAttribute("value"), childrenAllowanceAmount, "Allowance Amount NOT Same System Parameters!");
 
     }
 
@@ -1443,7 +1443,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1465,7 +1465,7 @@ public class Children extends WebBase {
         hold(500);
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "This Field Should Only Contain Decimal Values.");
-        softAssert.assertTrue(alowanceAmountE.getAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
+        softAssert.assertTrue(alowanceAmountE.getDomAttribute("class").contains("validationErrorCSS"), "- The Field Should be RED Border Appear!");
         softAssert.assertAll();
 
     }
@@ -1489,7 +1489,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1542,7 +1542,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1569,7 +1569,7 @@ public class Children extends WebBase {
         hold(100);
         clickOn(saveBtn);
         hold(300);
-        Assert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getAttribute("src"));
+        Assert.assertEquals(VerifyImage(checkPicture), 200,"This image is broken : "+checkPicture.getDomAttribute("src"));
 
     }
 
@@ -1655,7 +1655,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1690,7 +1690,7 @@ public class Children extends WebBase {
         DateTimeFormatter formatters = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         String afterConvert = ld.format(formatters);
         //System.out.println(afterConvert);
-        Assert.assertEquals(birthDateE.getAttribute("value"), afterConvert, "- Incorrect Date after convert!");
+        Assert.assertEquals(birthDateE.getDomAttribute("value"), afterConvert, "- Incorrect Date after convert!");
 
     }
 
@@ -1737,13 +1737,13 @@ public class Children extends WebBase {
         for (int i = 1; i <= 4; i++){
 
             if(i == 1){
-                softAssert.assertEquals(alowanceAmountE.getAttribute("value"), "20.000", "- Allowance Amount For First Children Should be: 20.000");
+                softAssert.assertEquals(alowanceAmountE.getDomAttribute("value"), "20.000", "- Allowance Amount For First Children Should be: 20.000");
             }else if(i == 2){
-                softAssert.assertEquals(alowanceAmountE.getAttribute("value"), "15.000", "- Allowance Amount For Second Children Should be: 15.000");
+                softAssert.assertEquals(alowanceAmountE.getDomAttribute("value"), "15.000", "- Allowance Amount For Second Children Should be: 15.000");
             }else if(i == 3){
-                softAssert.assertEquals(alowanceAmountE.getAttribute("value"), "10.000", "- Allowance Amount For Third Children Should be: 10.000");
+                softAssert.assertEquals(alowanceAmountE.getDomAttribute("value"), "10.000", "- Allowance Amount For Third Children Should be: 10.000");
             }else{
-                softAssert.assertEquals(alowanceAmountE.getAttribute("value"), "0.000", "- Allowance Amount For any Children after third Children Should be: 0.000");
+                softAssert.assertEquals(alowanceAmountE.getDomAttribute("value"), "0.000", "- Allowance Amount For any Children after third Children Should be: 0.000");
             }
 
             addChildrenWithFirstAndLast(firstName(), lastName(), "01/01/2022", "", "Male", "Single",
@@ -1782,7 +1782,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1798,9 +1798,9 @@ public class Children extends WebBase {
                 "", false);
 
         if(flag.equals("0")){
-            softAssert.assertEquals(medicalClaimCoverageCheckbox.getAttribute("disabled"), "true", "- Medical Claim Coverage Should be NOT Active");
+            softAssert.assertEquals(medicalClaimCoverageCheckbox.getDomAttribute("disabled"), "true", "- Medical Claim Coverage Should be NOT Active");
         }else{
-            softAssert.assertEquals(medicalClaimCoverageCheckbox.getAttribute("disabled"), null, "- Medical Claim Coverage Should be Active");
+            softAssert.assertEquals(medicalClaimCoverageCheckbox.getDomAttribute("disabled"), null, "- Medical Claim Coverage Should be Active");
         }
         MssqlConnect.sqlQuery("update adm_company set is_claim = 1 where company_code = 'automation'");
         softAssert.assertAll();
@@ -1828,7 +1828,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1877,7 +1877,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1924,7 +1924,7 @@ public class Children extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
 
         spouse = new Spouse();
@@ -1950,10 +1950,10 @@ public class Children extends WebBase {
     public String alowanceAmountE(String attribute){
         String str = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            str = alowanceAmountE.getAttribute(attribute);
+            str = alowanceAmountE.getDomAttribute(attribute);
         }else {
             personalInformationOct = new PersonalInformation_OCT();
-            str = personalInformationOct.alowanceAmountE.getAttribute(attribute);
+            str = personalInformationOct.alowanceAmountE.getDomAttribute(attribute);
         }
         return str;
     }

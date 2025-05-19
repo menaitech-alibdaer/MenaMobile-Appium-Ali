@@ -217,11 +217,11 @@ public class MyProfilePersonal extends MobileBasePage {
     public String getContactInformation(String type){
         waitLoadingElement();
         try {
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getAttribute("content-desc").trim();
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getDomAttribute("content-desc").trim();
         }catch (Exception e){
             try {
                 scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]"), true, 6);
-                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getAttribute("content-desc").trim();
+                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getDomAttribute("content-desc").trim();
             }catch (Exception ignored){
                 verticalSwipeByPercentages(45, 85, 50);
                 return "Not Found!";
@@ -262,27 +262,39 @@ public class MyProfilePersonal extends MobileBasePage {
         }
     }
 
+    public void addContactInformation(){
+        waitLoadingElement();
+        waitLoadingElement();
+        try {
+            simpleClick(contactInformation_AddBtn, 2);
+        }catch (Exception e){
+            simpleClick(AppiumBy.xpath("//android.view.View[@content-desc='Contact Information']/following::android.widget.ImageView[1]"), 2);
+        }
+        waitLoadingElement();
+        hold(800);
+    }
+
     ///////// Address ////////
 
     public String getAddress(String type){
         waitLoadingElement();
         try {
             if(type.equalsIgnoreCase("P.O.Box") || type.equalsIgnoreCase("Floor No.") || type.equalsIgnoreCase("Bldg NO.")){
-                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[3]")).getAttribute("content-desc").trim();
+                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[3]")).getDomAttribute("content-desc").trim();
             }else if(type.equalsIgnoreCase("Zip Code") || type.equalsIgnoreCase("State")){
-                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[2]")).getAttribute("content-desc").trim();
+                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[2]")).getDomAttribute("content-desc").trim();
             }else{
-                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getAttribute("content-desc").trim();
+                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getDomAttribute("content-desc").trim();
             }
         }catch (Exception e){
             try {
                 scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]"), true, 6);
                 if(type.equalsIgnoreCase("P.O.Box") || type.equalsIgnoreCase("Floor No.") || type.equalsIgnoreCase("Bldg NO.")){
-                    return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[3]")).getAttribute("content-desc").trim();
+                    return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[3]")).getDomAttribute("content-desc").trim();
                 }else if(type.equalsIgnoreCase("Zip Code") || type.equalsIgnoreCase("State")){
-                    return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[2]")).getAttribute("content-desc").trim();
+                    return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[2]")).getDomAttribute("content-desc").trim();
                 }else{
-                    return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getAttribute("content-desc").trim();
+                    return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getDomAttribute("content-desc").trim();
                 }
             }catch (Exception ignored){
                 verticalSwipeByPercentages(45, 85, 50);
@@ -346,11 +358,11 @@ public class MyProfilePersonal extends MobileBasePage {
     public String getBankInformation(String type){
         waitLoadingElement();
         try {
-            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getAttribute("content-desc").trim();
+            return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getDomAttribute("content-desc").trim();
         }catch (Exception e){
             try {
                 scrollToElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]"), true, 6);
-                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getAttribute("content-desc").trim();
+                return appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='"+type+"']/following::android.view.View[1]")).getDomAttribute("content-desc").trim();
             }catch (Exception ignored){
                 verticalSwipeByPercentages(45, 85, 50);
                 return "Not Found!";
@@ -365,7 +377,7 @@ public class MyProfilePersonal extends MobileBasePage {
         waitLoadingElement();
         hold(800);
         if(!bankName.isEmpty()){
-            if(bankNameList.getAttribute("content-desc").equalsIgnoreCase("*")){
+            if(bankNameList.getDomAttribute("content-desc").equalsIgnoreCase("*")){
                 bankNameList = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Bank Name']/following::android.view.View[2]"));
             }
             clickOn(bankNameList);
@@ -374,7 +386,7 @@ public class MyProfilePersonal extends MobileBasePage {
             hold(700);
         }
         if(!bankBranch.isEmpty()){
-            if(bankBranchList.getAttribute("content-desc").equalsIgnoreCase("*")){
+            if(bankBranchList.getDomAttribute("content-desc").equalsIgnoreCase("*")){
                 bankBranchList = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[@content-desc='Bank Branch']/following::android.view.View[2]"));
             }
             clickOn(bankBranchList);
@@ -465,11 +477,11 @@ public class MyProfilePersonal extends MobileBasePage {
 
     public String getEducation(int major){
         waitLoadingElement();
-        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Major')])["+major+"]")).getAttribute("content-desc").trim();
+        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Major')])["+major+"]")).getDomAttribute("content-desc").trim();
     }
     public String getCertificates(int certificate){
         waitLoadingElement();
-        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Certificate Name')])["+certificate+"]")).getAttribute("content-desc").trim();
+        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Certificate Name')])["+certificate+"]")).getDomAttribute("content-desc").trim();
     }
     public void addCertificate(String validityDate1, String validityDate2, String certificateType, String certificateTypeOther, String certificateName, String certificateNameOther,
                                String grade, String status, String certificateNo, boolean certificateFile, String notes){
@@ -565,7 +577,7 @@ public class MyProfilePersonal extends MobileBasePage {
 
     public String getAttachments(int attachment){
         waitLoadingElement();
-        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Document name')])["+attachment+"]")).getAttribute("content-desc").trim();
+        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Document name')])["+attachment+"]")).getDomAttribute("content-desc").trim();
     }
 
     public boolean checkAttachmentFileFromAttachment(int attachment){
@@ -650,7 +662,7 @@ public class MyProfilePersonal extends MobileBasePage {
 
     public String getHrLetters(int hrLetter){
         waitLoadingElement();
-        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Letter Name')])["+hrLetter+"]")).getAttribute("content-desc").trim();
+        return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Letter Name')])["+hrLetter+"]")).getDomAttribute("content-desc").trim();
     }
 
     public boolean checkHrLetterAttachment(int hrLetter){
@@ -700,7 +712,7 @@ public class MyProfilePersonal extends MobileBasePage {
         waitForElementToBeVisible(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category')]"));
         verticalSwipeByPercentages(70, 20, 50);
         //scrollToElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category') and contains(@content-desc, '"+date+"')]"), true, 5);
-        String input = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category') and contains(@content-desc, '"+date+"')]")).getAttribute("content-desc");
+        String input = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, 'Date') and contains(@content-desc, 'Category') and contains(@content-desc, '"+date+"')]")).getDomAttribute("content-desc");
         // Split the string into lines
         String[] lines = input.split("\n");
         // Create a map to store key-value pairs

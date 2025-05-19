@@ -128,23 +128,23 @@ public class Competencies extends WebBase {
         hold(300);
 
         softAssert.assertEquals(skillClassificationE.getText(), skillClassification, "- Skill Classification");
-        softAssert.assertEquals(otherSkillClassificationE.getAttribute("value"), otherSkillClassification, "- Other Skill Classification");
+        softAssert.assertEquals(otherSkillClassificationE.getDomAttribute("value"), otherSkillClassification, "- Other Skill Classification");
         softAssert.assertEquals(skillTypeE.getText(), skillType, "- Skill Type");
-        softAssert.assertEquals(otherSkillTypeE.getAttribute("value"), otherSkillType, "- Other Skill Type");
+        softAssert.assertEquals(otherSkillTypeE.getDomAttribute("value"), otherSkillType, "- Other Skill Type");
         softAssert.assertEquals(competenciesE.getText(), competencies, "- Competencies");
-        softAssert.assertEquals(otherCompetenciesE.getAttribute("value"), otherCompetencies, "- Other Competencies");
+        softAssert.assertEquals(otherCompetenciesE.getDomAttribute("value"), otherCompetencies, "- Other Competencies");
         softAssert.assertEquals(experienceYearsE.getText(), experienceYears, "- Experience Years");
         softAssert.assertEquals(levelE.getText(), level, "- Level");
-        softAssert.assertEquals(classE.getAttribute("value"), Class, "- Class");
+        softAssert.assertEquals(classE.getDomAttribute("value"), Class, "- Class");
         softAssert.assertEquals(skillSourceE.getText(), skillSource, "- Skill Source");
         softAssert.assertEquals(showInE.getText(), showIn, "- Show In");
-        softAssert.assertEquals(commentsE.getAttribute("value"), comments, "- Comments");
+        softAssert.assertEquals(commentsE.getDomAttribute("value"), comments, "- Comments");
         if(!skillClassification.equalsIgnoreCase("Other"))
-            softAssert.assertEquals(otherSkillClassificationE.getAttribute("disabled"), "true");
+            softAssert.assertEquals(otherSkillClassificationE.getDomAttribute("disabled"), "true");
         if(!skillType.equalsIgnoreCase("Other"))
-            softAssert.assertEquals(otherSkillTypeE.getAttribute("disabled"), "true");
+            softAssert.assertEquals(otherSkillTypeE.getDomAttribute("disabled"), "true");
         if(!competencies.equalsIgnoreCase("Other"))
-            softAssert.assertEquals(otherCompetenciesE.getAttribute("disabled"), "true");
+            softAssert.assertEquals(otherCompetenciesE.getDomAttribute("disabled"), "true");
         softAssert.assertAll();
 
     }
@@ -207,17 +207,17 @@ public class Competencies extends WebBase {
         hold(300);
 
         softAssert.assertEquals(skillClassificationE.getText(), "Other", "- skillClassification");
-        softAssert.assertEquals(otherSkillClassificationE.getAttribute("value"), "Other Skill Classification", "Other Skill Classification");
+        softAssert.assertEquals(otherSkillClassificationE.getDomAttribute("value"), "Other Skill Classification", "Other Skill Classification");
         softAssert.assertEquals(skillTypeE.getText(), "Other", "- Skill Type");
-        softAssert.assertEquals(otherSkillTypeE.getAttribute("value"), "Other Skill Type", "Other Skill Type");
+        softAssert.assertEquals(otherSkillTypeE.getDomAttribute("value"), "Other Skill Type", "Other Skill Type");
         softAssert.assertEquals(competenciesE.getText(), "Other", "- competencies");
-        softAssert.assertEquals(otherCompetenciesE.getAttribute("value"), "Other Competencies", "- Other Competencies");
+        softAssert.assertEquals(otherCompetenciesE.getDomAttribute("value"), "Other Competencies", "- Other Competencies");
         softAssert.assertEquals(experienceYearsE.getText(), "10", "- experienceYears");
         softAssert.assertEquals(levelE.getText(), "3", "");
-        softAssert.assertEquals(classE.getAttribute("value"), "Class Edited", "- Class");
+        softAssert.assertEquals(classE.getDomAttribute("value"), "Class Edited", "- Class");
         softAssert.assertEquals(skillSourceE.getText(), "Training", "- skillSource");
         softAssert.assertEquals(showInE.getText(), "Not Shown", "showIn");
-        softAssert.assertEquals(commentsE.getAttribute("value"), "Comments Edited", "- Comments");
+        softAssert.assertEquals(commentsE.getDomAttribute("value"), "Comments Edited", "- Comments");
         softAssert.assertAll();
 
     }

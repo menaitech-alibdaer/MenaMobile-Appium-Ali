@@ -43,6 +43,9 @@ public class NewClass extends BaseTest {
         employeeCode = employees.getEmployeeCode();
         employees.entitledToOvertime(employeeCode);
         employees.setBasicSalary("1000");
+        allEmployeeTransactions = new AllEmployeeTransactions();
+        //allEmployeeTransactions.loans(employeeCode, "2025-04-01", "2025-04-01", "Car Loan", "2500", "7", true);
+
 //        employees.addVacationBalance("Annual Vacation", "0", "14", "2025", "2025-01-01", "2025-12-31", true);
 //        allEmployeeTransactions = new AllEmployeeTransactions();
 //        allEmployeeTransactions.loans(employeeCode, "2025-04-01", "2025-04-01", "Car Loan", "1200", "12", true);
@@ -53,9 +56,9 @@ public class NewClass extends BaseTest {
 //        employees.addVacationBalance("Annual Vacation", "0", "14", "2024", "2024-01-01", "2024-12-31", true);
 //        employees.addExtraSalary(employeeCode, "Extra Salary 14");
 
-//        salaryCalculation = new SalaryCalculation();
-//        salaryCalculation.salaryCalculation(employeeCode, "2025", "1", true);
-//        salaryCalculation.getSalarySlip(employeeCode, 2025, 1);
+        salaryCalculation = new SalaryCalculation();
+        salaryCalculation.salaryCalculation(employeeCode, "2025", "1", true);
+        salaryCalculation.getSalarySlip(employeeCode, 2025, 1);
 //        salaryCalculation.taxable(true, "Tax", true, false);
 //
 //        System.out.println("Basic Salary = "+salaryCalculation.basicSalary());

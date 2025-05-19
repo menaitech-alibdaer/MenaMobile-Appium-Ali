@@ -823,10 +823,10 @@ public class Insurance extends WebBase {
 
         String value = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            value = insuranceStartDateE.getAttribute("value");
+            value = insuranceStartDateE.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            value = financialDataOct.insuranceStartDateE.getAttribute("value");
+            value = financialDataOct.insuranceStartDateE.getDomAttribute("value");
         }
         return value;
 
@@ -836,10 +836,10 @@ public class Insurance extends WebBase {
 
         String value = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            value = GOSISecurityStartDateE.getAttribute("value");
+            value = GOSISecurityStartDateE.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            value = financialDataOct.GOSISecurityStartDateE.getAttribute("value");
+            value = financialDataOct.GOSISecurityStartDateE.getDomAttribute("value");
         }
         return value;
 
@@ -849,10 +849,10 @@ public class Insurance extends WebBase {
 
         String value = null;
         if(!versionGetter().equalsIgnoreCase("OCT")){
-            value = GOSISecuritySalaryE.getAttribute("value");
+            value = GOSISecuritySalaryE.getDomAttribute("value");
         }else {
             financialDataOct = new FinancialData_OCT();
-            value = financialDataOct.GOSISecuritySalaryE.getAttribute("value");
+            value = financialDataOct.GOSISecuritySalaryE.getDomAttribute("value");
         }
         return value;
 

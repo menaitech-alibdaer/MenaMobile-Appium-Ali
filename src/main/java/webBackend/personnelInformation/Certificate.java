@@ -159,19 +159,19 @@ public class Certificate extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), startDate, "startDate");
-        softAssert.assertEquals(toDateE.getAttribute("value"), toDate, "toDate");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), startDate, "startDate");
+        softAssert.assertEquals(toDateE.getDomAttribute("value"), toDate, "toDate");
         softAssert.assertEquals(certificateTypeE.getText(), certificateType, "certificateType");
-        softAssert.assertEquals(otherCertificateTypeE.getAttribute("value"), otherCertificateType, "otherCertificateType");
+        softAssert.assertEquals(otherCertificateTypeE.getDomAttribute("value"), otherCertificateType, "otherCertificateType");
         softAssert.assertEquals(certificateNameE.getText(), certificateName, "certificateName");
-        softAssert.assertEquals(otherCertificateNameE.getAttribute("value"), otherCertificateName, "otherCertificateName");
-        softAssert.assertEquals(issueDateE.getAttribute("value"), issueDate, "issueDate");
-        softAssert.assertEquals(certificateSerialE.getAttribute("value"), certificateSerial, "certificateSerial");
-        softAssert.assertEquals(gradeE.getAttribute("value"), grade, "grade");
-        softAssert.assertEquals(certificateNumberE.getAttribute("value"), certificateNumber, "certificateNumber");
+        softAssert.assertEquals(otherCertificateNameE.getDomAttribute("value"), otherCertificateName, "otherCertificateName");
+        softAssert.assertEquals(issueDateE.getDomAttribute("value"), issueDate, "issueDate");
+        softAssert.assertEquals(certificateSerialE.getDomAttribute("value"), certificateSerial, "certificateSerial");
+        softAssert.assertEquals(gradeE.getDomAttribute("value"), grade, "grade");
+        softAssert.assertEquals(certificateNumberE.getDomAttribute("value"), certificateNumber, "certificateNumber");
         softAssert.assertEquals(showInE.getText(), showIn, "showIn");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
         if(status.equalsIgnoreCase("Passed")){
             softAssert.assertTrue(statusPassed.isSelected());
         }else if(status.equalsIgnoreCase("Failed")){
@@ -179,7 +179,7 @@ public class Certificate extends WebBase {
         }else if(status.equalsIgnoreCase("Pending")){
             softAssert.assertTrue(statusPending.isSelected());
         }
-        softAssert.assertEquals(notesE.getAttribute("value"), notes);
+        softAssert.assertEquals(notesE.getDomAttribute("value"), notes);
         softAssert.assertAll();
 
     }
@@ -238,13 +238,13 @@ public class Certificate extends WebBase {
         clickOn(item);
         hold(300);
 
-        softAssert.assertEquals(startDateE.getAttribute("value"), "05/05/2019", "Start date");
+        softAssert.assertEquals(startDateE.getDomAttribute("value"), "05/05/2019", "Start date");
         softAssert.assertEquals(certificateTypeE.getText(), "Other", "certificateType");
-        softAssert.assertEquals(otherCertificateTypeE.getAttribute("value"), "Other Certificate Type", "Other Certificate Type");
+        softAssert.assertEquals(otherCertificateTypeE.getDomAttribute("value"), "Other Certificate Type", "Other Certificate Type");
         softAssert.assertEquals(certificateNameE.getText(), "Other", "certificateName");
-        softAssert.assertEquals(otherCertificateNameE.getAttribute("value"), "Other Certificate Name", "Other Certificate Name");
-        softAssert.assertEquals(issueDateE.getAttribute("value"), "05/04/2019", "issueDate");
-        softAssert.assertEquals(gradeE.getAttribute("value"), "2.000", "grade");
+        softAssert.assertEquals(otherCertificateNameE.getDomAttribute("value"), "Other Certificate Name", "Other Certificate Name");
+        softAssert.assertEquals(issueDateE.getDomAttribute("value"), "05/04/2019", "issueDate");
+        softAssert.assertEquals(gradeE.getDomAttribute("value"), "2.000", "grade");
         softAssert.assertAll();
 
     }
@@ -376,7 +376,7 @@ public class Certificate extends WebBase {
         hold(500);
 
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(deleteBtn);
         hold(200);
@@ -430,7 +430,7 @@ public class Certificate extends WebBase {
         softAssert.assertTrue(alertBox.isDisplayed(), "- Alert Box Not Appear!");
         softAssert.assertEquals(alertText.getText().trim(), "Please Note The Maximum Size To Upload Here Is 2 MB");
         softAssert.assertEquals(VerifyImage(checkAttachmentImg), 200, "- Attachment Thumbnail");
-        softAssert.assertFalse(checkAttachmentFile.getAttribute("href").isEmpty(), "- Attachment File");
+        softAssert.assertFalse(checkAttachmentFile.getDomAttribute("href").isEmpty(), "- Attachment File");
 
         clickOn(okBtnAlert);
         hold(200);
@@ -532,7 +532,7 @@ public class Certificate extends WebBase {
         hold(300);
 
         softAssert.assertTrue(checkAttachForUserDontHavePermission.isDisplayed(), "- LOCKED Attachment NOT appear");
-        softAssert.assertEquals(checkAttachForUserDontHavePermission.getAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
+        softAssert.assertEquals(checkAttachForUserDontHavePermission.getDomAttribute("alt"), "Sorry You Do Not Have Permission To Access Uploaded Files !");
         softAssert.assertAll();
 
     }
@@ -556,7 +556,7 @@ public class Certificate extends WebBase {
                 "", "", "", "", "", "", "", "",
                 "", "", "", "", "", "Software Test Engineer",
                 "01/01/2020", "01/01/2020", "", "", "", "");
-        employeeCode = empCode.getAttribute("value");
+        employeeCode = empCode.getDomAttribute("value");
 
         closeIFrame();
         clickOn(personnelInformation.logout);

@@ -364,6 +364,34 @@ public class MobileBasePage {
         }
     }
 
+    public void setText(By locator, String text){
+        try {
+            appiumDriver.findElement(locator).sendKeys(text);
+            hold(100);
+        }catch (Exception e){
+            waitForElementToBeVisible(locator);
+            appiumDriver.findElement(locator).sendKeys(text);
+            hold(100);
+        }
+    }
+
+    public void setText(By locator, String text, boolean clear){
+        try {
+            if(clear){
+                appiumDriver.findElement(locator).clear();
+            }
+            appiumDriver.findElement(locator).sendKeys(text);
+            hold(100);
+        }catch (Exception e){
+            waitForElementToBeVisible(locator);
+            if(clear){
+                appiumDriver.findElement(locator).clear();
+            }
+            appiumDriver.findElement(locator).sendKeys(text);
+            hold(100);
+        }
+    }
+
     public void hold(int millis){
         try {
             Thread.sleep(millis);
@@ -694,7 +722,7 @@ public class MobileBasePage {
 
         WebElement yearBtn = appiumDriver.findElement(AppiumBy.xpath("(//android.view.View[contains(@content-desc, '20')])[1]"));
 
-        int currentYear = Integer.parseInt(yearBtn.getAttribute("content-desc").trim());
+        int currentYear = Integer.parseInt(yearBtn.getDomAttribute("content-desc").trim());
 
         if(currentYear != year){
 
@@ -733,7 +761,7 @@ public class MobileBasePage {
         WebElement leftRow = appiumDriver.findElement(AppiumBy.xpath("//android.widget.Button[1]"));
         WebElement rightRow = appiumDriver.findElement(AppiumBy.xpath("//android.widget.Button[2]"));
 
-        String getCurrentMonth = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getAttribute("content-desc");
+        String getCurrentMonth = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, ', ')]")).getDomAttribute("content-desc");
 
         int currentMonth = 1;
 
