@@ -39,7 +39,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login("auto_mobile1", "1111", "automobile", false);
+        loginMob.login("auto_mobile1", "1111", "automobile", false, false);
 
         Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("Wrong Username Or Password"), "Error Alert Not contains: Wrong Username Or Password, The alert that appears is: "+loginMob.checkErrorLoginAlert());
 
@@ -53,7 +53,7 @@ public class LoginAndConnectivity extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", true);
+        loginMob.login("auto_mobile1", "sa", "automobile", true, false);
 
         hold(7000);
 
@@ -76,7 +76,7 @@ public class LoginAndConnectivity extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", true);
+        loginMob.login("auto_mobile1", "sa", "automobile", true, false);
 
         mainScreen = new MainScreen();
         mainScreen.logout();
@@ -235,7 +235,7 @@ public class LoginAndConnectivity extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
@@ -253,7 +253,7 @@ public class LoginAndConnectivity extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
@@ -285,7 +285,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
@@ -317,7 +317,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openChangePassword();
@@ -326,7 +326,7 @@ public class LoginAndConnectivity extends BaseTest {
         mainScreen.logout();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "Ali&$%#@*3658", "automobile", false);
+        loginMob.login(employeeCode, "Ali&$%#@*3658", "automobile", false, false);
 
         mainScreen = new MainScreen();
 
@@ -355,7 +355,7 @@ public class LoginAndConnectivity extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         Assert.assertTrue(loginMob.checkErrorLoginAlert().contains("You Do Not Have Permissions to Use The Employee"), "Issue In Alert: should be appear : You Are Not Authorized To Login!");
 

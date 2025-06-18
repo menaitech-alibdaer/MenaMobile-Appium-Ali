@@ -12,7 +12,6 @@ import webBackend.general.*;
 import webBackend.personnelInformation.Other;
 import webBackend.personnelInformation.PersonnelInformation;
 
-import static utilities.MssqlConnect.menaMeRestPassword;
 import static utilities.MssqlConnect.setMenaMePassword;
 import static utilities.WebHelper.currentDateMinusDays;
 
@@ -226,7 +225,7 @@ public class OvertimeRequest extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -263,7 +262,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -307,7 +306,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -350,7 +349,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -388,7 +387,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -426,7 +425,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -464,7 +463,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -504,7 +503,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -547,7 +546,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -590,7 +589,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -633,7 +632,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -658,7 +657,7 @@ public class OvertimeRequest extends BaseTest {
         myRequests.overtimeRequest("17/10/2024", "Hours Per Month Should Not Exceed 20", "", "", "",
                 "8:00 AM", "3:00 PM", false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+        Assert.assertTrue(myRequests.checkAlertPopup("You exceeded the maximum overtime hours per month"), "Alert Issue: Shoud be alert contain--> You exceeded the maximum overtime hours per month");
 
     }
 
@@ -686,7 +685,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -696,7 +695,7 @@ public class OvertimeRequest extends BaseTest {
         myRequests.overtimeRequest("17/10/2024", "Hours Per Day Should Not Exceed 6", "", "", "",
                 "8:00 AM", "3:00 PM", false, "", true, true);
 
-        Assert.assertTrue(myRequests.checkAlertPopup("Overtime Amount Can Not Exceed The Upper Limit"), "Alert Issue: Shoud be alert contain--> Overtime Amount Can Not Exceed The Upper Limit");
+        Assert.assertTrue(myRequests.checkAlertPopup("You exceeded the maximum overtime hours per day"), "Alert Issue: Shoud be alert contain--> You exceeded the maximum overtime hours per day");
 
     }
 
@@ -724,7 +723,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -772,7 +771,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -820,7 +819,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -863,7 +862,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -911,7 +910,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -965,7 +964,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1025,7 +1024,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1075,7 +1074,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1119,7 +1118,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1174,7 +1173,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1229,7 +1228,7 @@ public class OvertimeRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();

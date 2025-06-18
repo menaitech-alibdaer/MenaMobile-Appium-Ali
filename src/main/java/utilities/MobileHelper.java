@@ -12,7 +12,7 @@ import java.util.Map;
 
 import static bases.BaseTest.getAppiumDriver;
 import static bases.BaseTest.iniPlatform;
-import static utilities.Devices.appPackage;
+import static utilities.Devices.*;
 import static utilities.WebHelper.hold;
 
 public class MobileHelper {
@@ -39,7 +39,11 @@ public class MobileHelper {
     }
 
     public static void terminateAppAndroid(){
-        ((AndroidDriver) getAppiumDriver()).terminateApp(appPackage);
+        try {
+            ((AndroidDriver) getAppiumDriver()).terminateApp(appActivity_MenaMEPro);
+        }catch (Exception e){
+            ((AndroidDriver) getAppiumDriver()).terminateApp(appActivity_MenaME);
+        }
     }
 
     public static void launchApp(){

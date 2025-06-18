@@ -60,11 +60,11 @@ public class MyProfilePersonal extends MobileBasePage {
     WebElement maritalStatusValue;
     @AndroidFindBy(accessibility = "AddButton")
     WebElement contactInformation_AddBtn;
-    @AndroidFindBy(accessibility = "AddButton")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Address']/following::android.widget.ImageView[1]")
     WebElement address_AddBtn;
-    @AndroidFindBy(accessibility = "AddButton")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Bank Information']/following::android.widget.ImageView[1]")
     WebElement bankInformation_EditBtn;
-    @AndroidFindBy(accessibility = "AddButton")
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Ooops']/../preceding::android.widget.ImageView[1]")
     WebElement certificates_AddBtn;
     @AndroidFindBy(accessibility = "AddButton")
     WebElement attachment_AddBtn;
@@ -311,37 +311,52 @@ public class MyProfilePersonal extends MobileBasePage {
         hold(800);
 
         if(!p_o_Box.isEmpty()){
+            clickOn(p_o_BoxField);
             setText(p_o_BoxField, p_o_Box);
         }
-        if(!p_o_Box.isEmpty()){
+        if(!floorNo.isEmpty()){
+            clickOn(floorNoField);
             setText(floorNoField, floorNo);
         }
-        if(!p_o_Box.isEmpty()){
+        if(!bldgNo.isEmpty()){
+            clickOn(bldgNoField);
             setText(bldgNoField, bldgNo);
+            closeKeyboard();
         }
-        if(!p_o_Box.isEmpty()){
+        if(!streetName.isEmpty()){
+            clickOn(streetNameField);
             setText(streetNameField, streetName);
+            closeKeyboard();
         }
-        if(!p_o_Box.isEmpty()){
+        if(!neighborhood.isEmpty()){
+            clickOn(neighborhoodField);
             setText(neighborhoodField, neighborhood);
+            closeKeyboard();
         }
         if(!fromCountry.isEmpty()){
+            verticalSwipeByPercentages(60, 10, 50);
             clickOn(fromCountryList);
             hold(200);
             clickOn(accessibilityId(fromCountry));
-            hold(700);
+            hold(300);
+            closeKeyboard();
         }
         if(!fromCity.isEmpty()){
+            //verticalSwipeByPercentages(60, 10, 50);
             clickOn(fromCityList);
             hold(200);
             clickOn(accessibilityId(fromCity));
-            hold(700);
+            hold(300);
+            closeKeyboard();
         }
         if(!zipCode.isEmpty()){
+            clickOn(zipCodeField);
             setText(zipCodeField, zipCode);
         }
         if(!state.isEmpty()){
+            clickOn(stateField);
             setText(stateField, state);
+            closeKeyboard();
         }
 
         verticalSwipeByPercentages(70, 10, 50);
@@ -396,18 +411,26 @@ public class MyProfilePersonal extends MobileBasePage {
         }
         if(!accountNumber.isEmpty()){
             try {
+                clickOn(accountNumberField);
                 setText(accountNumberField, accountNumber);
+                closeKeyboard();
             }catch (Exception e){
                 scrollToElement(accountNumberField, true);
+                clickOn(accountNumberField);
                 setText(accountNumberField, accountNumber);
+                closeKeyboard();
             }
         }
         if(!ibanNumber.isEmpty()){
             try {
+                clickOn(IBANNumberField);
                 setText(IBANNumberField, ibanNumber);
+                closeKeyboard();
             }catch (Exception e){
                 scrollToElement(IBANNumberField, true);
+                clickOn(IBANNumberField);
                 setText(IBANNumberField, ibanNumber);
+                closeKeyboard();
             }
         }
 
@@ -456,10 +479,14 @@ public class MyProfilePersonal extends MobileBasePage {
 
         if(!notes.isEmpty()){
             try {
+                clickOn(bankInformationNotes);
                 setText(bankInformationNotes, notes);
+                closeKeyboard();
             }catch (Exception e){
                 scrollToElement(bankInformationNotes, true);
+                clickOn(bankInformationNotes);
                 setText(bankInformationNotes, notes);
+                closeKeyboard();
             }
         }
 
@@ -483,6 +510,7 @@ public class MyProfilePersonal extends MobileBasePage {
         waitLoadingElement();
         return appiumDriver.findElement(AppiumBy.xpath("(//*[contains(@content-desc, 'Certificate Name')])["+certificate+"]")).getDomAttribute("content-desc").trim();
     }
+
     public void addCertificate(String validityDate1, String validityDate2, String certificateType, String certificateTypeOther, String certificateName, String certificateNameOther,
                                String grade, String status, String certificateNo, boolean certificateFile, String notes){
         waitLoadingElement();
@@ -490,31 +518,46 @@ public class MyProfilePersonal extends MobileBasePage {
         hold(500);
         waitLoadingElement();
         waitLoadingElement();
-        setText(validity_firstDate, validityDate1);
-        hold(800);
-        setText(validity_secondDate, validityDate2);
-        hold(800);
-        clickOn(certificateTypeList);
-        hold(1000);
-        clickOn(AppiumBy.accessibilityId(certificateType));
-        hold(700);
-        waitLoadingElement();
-        if(certificateType.equalsIgnoreCase("Other") && !certificateTypeOther.isEmpty()){
-            setText(certificateType_otherFiled, certificateTypeOther);
+        if(!validityDate1.isEmpty()){
+            clickOn(validity_firstDate);
+            hold(500);
+            datePicker(validityDate1);
         }
-        clickOn(certificateNameList);
-        hold(1000);
-        clickOn(AppiumBy.accessibilityId(certificateName));
-        hold(700);
-        waitLoadingElement();
-        if(certificateName.equalsIgnoreCase("Other") && !certificateNameOther.isEmpty()){
-            setText(certificateName_otherFiled, certificateNameOther);
+        hold(200);
+        if(!validityDate2.isEmpty()){
+            clickOn(validity_secondDate);
+            hold(500);
+            datePicker(validityDate2);
+        }
+        hold(200);
+        if(!certificateType.isEmpty()){
+            clickOn(certificateTypeList);
+            hold(1000);
+            clickOn(AppiumBy.accessibilityId(certificateType));
+            hold(700);
+            waitLoadingElement();
+            if(certificateType.equalsIgnoreCase("Other") && !certificateTypeOther.isEmpty()){
+                setText(certificateType_otherFiled, certificateTypeOther);
+            }
+        }
+
+        if(!certificateName.isEmpty()){
+            clickOn(certificateNameList);
+            hold(1000);
+            clickOn(AppiumBy.accessibilityId(certificateName));
+            hold(700);
+            waitLoadingElement();
+            if(certificateName.equalsIgnoreCase("Other") && !certificateNameOther.isEmpty()){
+                setText(certificateName_otherFiled, certificateNameOther);
+            }
         }
 
         verticalSwipeByPercentages(70, 10, 50);
 
         if(!grade.isEmpty()){
+            clickOn(gradeF);
             setText(gradeF, grade);
+            closeKeyboard();
         }
         if(!status.isEmpty()){
             clickOn(statusList);
@@ -523,7 +566,9 @@ public class MyProfilePersonal extends MobileBasePage {
             hold(700);
         }
         if(!certificateNo.isEmpty()){
+            clickOn(certificateNoF);
             setText(certificateNoF, certificateNo);
+            closeKeyboard();
         }
         if(certificateFile){
 
@@ -567,7 +612,9 @@ public class MyProfilePersonal extends MobileBasePage {
 
         }
         if(!notes.isEmpty()){
+            clickOn(certificateNoteF);
             setText(certificateNoteF, notes);
+            closeKeyboard();
         }
 
         hold(1000);

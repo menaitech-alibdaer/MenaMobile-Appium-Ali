@@ -56,6 +56,11 @@ public class MobileBasePage {
                 .until(ExpectedConditions.visibilityOf(element));
     }
 
+    public void waitForElementToBeVisible(WebElement element, int seconds){
+        new WebDriverWait(appiumDriver, Duration.ofSeconds(seconds))
+                .until(ExpectedConditions.visibilityOf(element));
+    }
+
     public void waitForElementToBeInvisible(By locator){
         new WebDriverWait(appiumDriver, Duration.ofSeconds(second))
                 .until(ExpectedConditions.invisibilityOfElementLocated(locator));
@@ -646,8 +651,8 @@ public class MobileBasePage {
     // Method to scroll horizontally by element location using W3C Actions
     public void horizontalScrollStartedFromElement(WebElement targetElement, boolean toRight) {
         Point location = targetElement.getLocation();
-        int startX = location.getX();
-        int startY = location.getY();
+        int startX = location.getX() + (targetElement.getSize().getWidth() / 2);
+        int startY = location.getY() + (targetElement.getSize().getHeight() / 2);
         int endX = !toRight ? startX + 1000 : startX - 1000; // Adjust the offset as needed
 
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
@@ -931,7 +936,7 @@ public class MobileBasePage {
     }
 
     public void closeKeyboard(){
-        hold(200);
+        //hold(200);
         if(iniPlatform.equalsIgnoreCase("Android")){
             try{
                 ((AndroidDriver) appiumDriver).hideKeyboard();

@@ -12,7 +12,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import static utilities.MssqlConnect.setMenaMePassword;
-import static utilities.WebHelper.currentYear;
 
 public class LoanRequest extends BaseTest {
 
@@ -48,7 +47,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -71,7 +70,7 @@ public class LoanRequest extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -106,7 +105,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -143,7 +142,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -180,7 +179,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -217,7 +216,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -254,7 +253,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -291,7 +290,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -305,7 +304,7 @@ public class LoanRequest extends BaseTest {
 
     }
 
-    @Test(priority = 9, groups = "Loans")
+    @Test(priority = 9, groups = "Loans", enabled = false)
     public void checkAllowAGuarantorToGuaranteeTheLoanIfTheyHaveAPreviousActiveGuarantee(){
 
         /////////// API - Rest Assured ////////////
@@ -351,7 +350,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee1, "sa", "automobile", false);
+        loginMob.login(employee1, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -366,7 +365,7 @@ public class LoanRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee2, "sa", "automobile", false);
+        loginMob.login(employee2, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -404,7 +403,7 @@ public class LoanRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();

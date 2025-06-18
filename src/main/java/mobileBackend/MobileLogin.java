@@ -1,5 +1,6 @@
 package mobileBackend;
 
+import bases.BaseTest;
 import bases.MobileBasePage;
 import com.google.common.collect.ImmutableMap;
 import io.appium.java_client.AppiumBy;
@@ -11,6 +12,7 @@ import io.appium.java_client.pagefactory.iOSXCUITFindBy;
 import org.openqa.selenium.*;
 import org.openqa.selenium.support.FindBy;
 
+import static bases.BaseTest.mobileVersion;
 import static bases.WebBase.setBranch;
 import static utilities.MssqlConnect.queryRestSetup;
 import static utilities.MssqlConnect.selectQuery;
@@ -25,10 +27,14 @@ public class MobileLogin extends MobileBasePage {
     WebElement skipBtn;
     @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Company Code']")
     WebElement companyCodeF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Company Code']/following::android.widget.EditText[1]")
+    WebElement companyCodeF_Pro;
     @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Branch Code']")
     WebElement branchCodeF;
     @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Connectivity URL']")
     WebElement connectivityURLF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Connectivity URL']/following::android.widget.EditText[1]")
+    WebElement connectivityURLF_Pro;
     @AndroidFindBy(accessibility = "Connect")
     WebElement connectBtn;
     @AndroidFindBy(accessibility = "Later")
@@ -37,11 +43,17 @@ public class MobileLogin extends MobileBasePage {
     WebElement updateBtn;
     @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Employee Code']")
     WebElement employeeCodeF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Employee Code']/following::android.widget.EditText[1]")
+    WebElement employeeCodeF_Pro;
     @AndroidFindBy(xpath = "//android.widget.EditText[@hint = 'Password']")
     WebElement passwordF;
+    @AndroidFindBy(xpath = "//android.view.View[@content-desc='Password']/following::android.widget.EditText[1]")
+    WebElement passwordF_Pro;
     @AndroidFindBy(accessibility = "Login")
     public WebElement loginBtn;
-    @AndroidFindBy (xpath = "//android.widget.ImageView[2]")
+    @AndroidFindBy(accessibility = "Login Button")
+    public WebElement loginBtn_Pro;
+    @AndroidFindBy (xpath = "//android.view.View[@content-desc='Arabic']/following::android.widget.ImageView[1]")
     WebElement connectivityBtn;
     @AndroidFindBy(accessibility = "Back")
     WebElement backConnectivityBtn;
@@ -123,7 +135,7 @@ public class MobileLogin extends MobileBasePage {
 
     public void login(String employeeCode, String password, String branchCode, String companyCode, boolean rememberMe){
 
-        if(checkIfFirstRun()){
+        if(checkIfFirstRun(2000)){
             skipPage();
             connectivity(companyCode, branchCode, urlGetter());
         }else{
@@ -183,57 +195,118 @@ public class MobileLogin extends MobileBasePage {
 
     }
 
-    public void login(String employeeCode, String password, String companyCode, boolean rememberMe){
+    public void login(String employeeCode, String password, String companyCode, boolean rememberMe, boolean afterLogout){
 
-        if(checkIfFirstRun()){
-            skipPage();
-            connectivity(companyCode, urlGetter());
-        }else{
+        if(mobileVersion == BaseTest.MobileVersion.MenaMEPro){
 
-            waitLoadingElement();
+            if(!afterLogout){
+                if(checkIfFirstRun(9)){
+                    skipPage();
+                    connectivity(companyCode, urlGetter());
+                }else{
 
-            clickOn(connectivityBtn);
-            waitForElementToBeVisible(AppiumBy.accessibilityId("Connect"));
+                    waitLoadingElement();
 
-            if("automobile".equalsIgnoreCase(companyCodeF.getText()) && urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
-                clickOn(backConnectivityBtn);
-                waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
-            }else{
+                    clickOn(connectivityBtn);
+                    waitForElementToBeVisible(AppiumBy.accessibilityId("Connect"));
 
-                if(!"automobile".equalsIgnoreCase(companyCodeF.getText())){
-                    clickOn(companyCodeF);
-                    companyCodeF.clear();
-                    setText(companyCodeF, "automobile");
+                    if("automobile".equalsIgnoreCase(companyCodeF_Pro.getText()) && urlGetter().equalsIgnoreCase(connectivityURLF_Pro.getText())){
+                        clickOn(backConnectivityBtn);
+                        waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
+                    }else{
+
+                        if(!"automobile".equalsIgnoreCase(companyCodeF_Pro.getText())){
+                            clickOn(companyCodeF_Pro);
+                            companyCodeF_Pro.clear();
+                            setText(companyCodeF_Pro, "automobile");
+                        }
+
+                        if(!urlGetter().equalsIgnoreCase(connectivityURLF_Pro.getText())){
+                            clickOn(connectivityURLF_Pro);
+                            connectivityURLF_Pro.clear();
+                            setText(connectivityURLF_Pro, urlGetter());
+                        }
+
+                        clickOn(connectBtn);
+                        waitLoadingElement();
+                    }
+
                 }
-
-                if(!urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
-                    clickOn(connectivityURLF);
-                    connectivityURLF.clear();
-                    setText(connectivityURLF, urlGetter());
-                }
-
-                clickOn(connectBtn);
-                waitLoadingElement();
             }
 
-        }
+            waitForElementToBeVisible(By.xpath("//android.view.View[@content-desc='Employee Code']"));
+            clickOn(employeeCodeF_Pro);
+            employeeCodeF_Pro.clear();
+            setText(employeeCodeF_Pro, employeeCode);
+            clickOn(passwordF_Pro);
+            passwordF_Pro.clear();
+            setText(passwordF_Pro, password);
+            hold(100);
+            if(rememberMe){
+                clickOn(rememberMeCheckbox);
+            }
+            clickOn(loginBtn_Pro);
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            hold(1000);
 
-        waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Employee Code']"));
-        clickOn(employeeCodeF);
-        employeeCodeF.clear();
-        setText(employeeCodeF, employeeCode);
-        clickOn(passwordF);
-        passwordF.clear();
-        setText(passwordF, password);
-        hold(100);
-        if(rememberMe){
-            clickOn(rememberMeCheckbox);
+        }else{
+
+            if(!afterLogout){
+                if(checkIfFirstRun(2000)){
+                    skipPage();
+                    connectivity(companyCode, urlGetter());
+                }else{
+
+                    waitLoadingElement();
+
+                    clickOn(connectivityBtn);
+                    waitForElementToBeVisible(AppiumBy.accessibilityId("Connect"));
+
+                    if("automobile".equalsIgnoreCase(companyCodeF.getText()) && urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
+                        clickOn(backConnectivityBtn);
+                        waitForElementToBeVisible(AppiumBy.accessibilityId("Login"));
+                    }else{
+
+                        if(!"automobile".equalsIgnoreCase(companyCodeF.getText())){
+                            clickOn(companyCodeF);
+                            companyCodeF.clear();
+                            setText(companyCodeF, "automobile");
+                        }
+
+                        if(!urlGetter().equalsIgnoreCase(connectivityURLF.getText())){
+                            clickOn(connectivityURLF);
+                            connectivityURLF.clear();
+                            setText(connectivityURLF, urlGetter());
+                        }
+
+                        clickOn(connectBtn);
+                        waitLoadingElement();
+                    }
+
+                }
+            }
+
+            waitLoadingElement();
+            waitForElementToBeVisible(By.xpath("//android.widget.EditText[@hint = 'Employee Code']"));
+            clickOn(employeeCodeF);
+            employeeCodeF.clear();
+            setText(employeeCodeF, employeeCode);
+            clickOn(passwordF);
+            passwordF.clear();
+            setText(passwordF, password);
+            hold(100);
+            if(rememberMe){
+                clickOn(rememberMeCheckbox);
+            }
+            clickOn(loginBtn);
+            waitLoadingElement();
+            waitLoadingElement();
+            waitLoadingElement();
+            hold(1000);
+
         }
-        clickOn(loginBtn);
-        waitLoadingElement();
-        waitLoadingElement();
-        waitLoadingElement();
-        hold(1000);
 
     }
 
@@ -391,13 +464,11 @@ public class MobileLogin extends MobileBasePage {
 //        return check;
 //    }
 
-    public boolean checkIfFirstRun() {
+    public boolean checkIfFirstRun(int second) {
         boolean check = false;
         try {
-            hold(1000);
-            if(skipBtn.isDisplayed()){
-                check = true;
-            }
+            waitForElementToBeVisible(skipBtn, second);
+            check = true;
         } catch (Exception e) {
             System.out.println("this is NOT first run for app!");
         }

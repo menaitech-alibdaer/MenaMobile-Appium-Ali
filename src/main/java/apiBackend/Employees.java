@@ -6,6 +6,9 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
@@ -17,6 +20,7 @@ import static org.testng.Assert.fail;
 import static utilities.MssqlConnect.*;
 import static utilities.WebHelper.*;
 import static utilities.WebHelper.thirdName;
+import static utilities.apiHelper.getCurrentDate;
 
 public class Employees extends ApiBase {
 
@@ -382,6 +386,9 @@ public class Employees extends ApiBase {
         payload.put("IsDisableCardId", false);
         payload.put("terminated", false);
         payload.put("isGeneralInfoDataLock", false);
+        payload.put("hasSuspended", false);
+        payload.put("hasStop", false);
+        payload.put("hasPostedTerminationSalary", false);
 
         if(!governmentClassification.isEmpty()){
             int governmentId = Integer.parseInt(
@@ -574,6 +581,21 @@ public class Employees extends ApiBase {
         if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("entitledToExtraSalaryFlag")){
             payload.put("entitledToExtraSalaryFlag", true);
             payload.put("extraSalaryId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("extraSalaryId"));
+        }
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("stbFlag")){
+
+            payload.put("stbFlag", true);
+
+            List<Map<String, Object>> employeeSTBs = new ArrayList<>();
+            Map<String, Object> employeeSTB = new HashMap<>();
+
+            employeeSTB.put("EmployeeId", employeeIdGetter());
+            employeeSTB.put("stbTypeId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("employeeSTBs[0].stbTypeId"));
+            employeeSTB.put("startDate", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("employeeSTBs[0].startDate"));
+            employeeSTBs.add(employeeSTB);
+            payload.put("employeeSTBs", employeeSTBs);
+
         }
 
         payload.put("insuranceId", employeeInsuranceIdGetter());
@@ -900,8 +922,93 @@ public class Employees extends ApiBase {
             return "Not Found!";
         }
 
+    }
 
+    public String getFromVacationBalance(String employeeCode, String vacationType, int year, String filed){
 
+        String value = null;
+
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        Response response = given()
+                .spec(SpecBuilder())
+                .queryParam("employeeId", getIdByEmployeeCode(employeeCode))
+                .queryParam("year", year)
+                .when()
+                .get("/EmployeeVacationBalance/GetAll")
+                .then()
+                .statusCode(200) // Validate response
+                .extract()
+                .response();
+
+        if(filed.equalsIgnoreCase("Current Balance")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.currentBalance").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Year")){
+            try {
+                value = response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.year").trim();
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Previous Balance")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.previousBalance").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("New Balance")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.newBalance").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Up To End Of Year Balance") || filed.equalsIgnoreCase("Up To End Of Year")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.upToEndOfYear").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Remaining Previous")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.remainingPrevious").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Days Taken")){
+            try {
+                value = response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.daysTaken").trim();
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Adjustment Days")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.adjustmentDays").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Compensation Days")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.compensationDays").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Posted Days Taken")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.postedDaysTaken").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }else if(filed.equalsIgnoreCase("Days Amount")){
+            try {
+                value = formatToThreeFractionDigits(response.jsonPath().getString("find { it.vacationName == '"+vacationType+"' }.daysAmount").trim());
+            }catch (Exception ignored){
+                value = "Not Found!";
+            }
+        }
+        return value;
     }
 
     public void addSubstitute(String employeeCode, String substituteCode, boolean isDirectManager){
@@ -1107,6 +1214,139 @@ public class Employees extends ApiBase {
 
     }
 
+    public void addSTB(String stbType, String startDate){
+
+        Map<String, Object> payload = new HashMap<>();
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("insuredFlag")){
+            payload.put("insuredFlag", true);
+            payload.put("insuranceProgramId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("insuranceProgramId"));
+            payload.put("insuranceStartDate", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("insuranceStartDate"));
+            //payload.put("insuranceCardExpiry", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("insuranceCardExpiry"));
+        }
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("subjectToSocialSecurityFlag")){
+
+            payload.put("subjectToSocialSecurityFlag", true);
+            payload.put("retirementFlag", getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("retirementFlag"));
+
+            List<Map<String, Object>> employeeSocialSecurities = new ArrayList<>();
+            Map<String, Object> employeeSocialSecurity = new HashMap<>();
+
+            employeeSocialSecurity.put("EmployeeId", employeeIdGetter());
+            employeeSocialSecurity.put("socialSecurityTypeId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("employeeSocialSecurities[0].socialSecurityTypeId"));
+            employeeSocialSecurity.put("socialSecurityStartDate", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("employeeSocialSecurities[0].socialSecurityStartDate"));
+            employeeSocialSecurity.put("socialSecuritySalary", getEmployeeInsurance(employeeIdGetter()).jsonPath().getString("employeeSocialSecurities[0].socialSecuritySalary"));
+            employeeSocialSecurities.add(employeeSocialSecurity);
+            payload.put("employeeSocialSecurities", employeeSocialSecurities);
+
+        }
+
+        if(getEmployeeInsurance(employeeIdGetter()).jsonPath().getBoolean("entitledToExtraSalaryFlag")){
+            payload.put("entitledToExtraSalaryFlag", true);
+            payload.put("extraSalaryId", getEmployeeInsurance(employeeIdGetter()).jsonPath().getInt("extraSalaryId"));
+        }
+
+        payload.put("insuranceId", employeeInsuranceIdGetter());
+        payload.put("EmployeeId", employeeIdGetter());
+        payload.put("stbFlag", true);
+        payload.put("employeeStatusFlag", true);
+        payload.put("entitledToOvertimeFlag", true);
+
+        List<Map<String, Object>> employeeSTBs = new ArrayList<>();
+        Map<String, Object> employeeSTB = new HashMap<>();
+
+        employeeSTB.put("EmployeeId", employeeIdGetter());
+
+        if(!stbType.isEmpty()){
+            int stbTypeId = Integer.parseInt(
+                    selectQuery("select id from STBProfiles where NameEn = '"+stbType+"' and BranchId = '"+getBranchId()+"'").trim()
+            );
+            employeeSTB.put("stbTypeId", stbTypeId);
+        }
+
+        if(!startDate.isEmpty()){
+            employeeSTB.put("startDate", startDate);
+        }else{
+            String hiringDate = selectQuery("select HiringDate from EmployeeGeneralInfo where EmployeeId = '"+employeeIdGetter()+"'").trim();
+            // Remove the time part (just keep the date)
+            String dateOnlyStr = hiringDate.split(" ")[0];  // Take the part before the space
+            employeeSTB.put("startDate", dateOnlyStr);
+        }
+
+        employeeSTBs.add(employeeSTB);
+        payload.put("employeeSTBs", employeeSTBs);
+
+        ////////////////////////////////////////////////////////////////////
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
+                    .body(jsonPayload)
+                    .when()
+                    .post("/EmployeeFinancialInsurance/save-employee-insurance")
+                    .then()
+//                    .statusCode(200) // Assert status code
+                    .extract()
+                    .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("STB added successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public String getSTBAmount(String employeeCode, String stbType, String endDate){
+
+        int stbTypeId = Integer.parseInt(
+                selectQuery("select id from STBProfiles where NameEn = '"+stbType+"' and BranchId = '"+getBranchId()+"'").trim()
+        );
+
+        String date = null;
+
+        if(!endDate.isEmpty()){
+            date = endDate;
+        }else{
+            date = getCurrentDate();
+        }
+
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        Response response = given()
+                .spec(SpecBuilder())
+                .queryParam("profileId", stbTypeId)
+                .queryParam("employeeId", getIdByEmployeeCode(employeeCode))
+                .queryParam("endDate", date)
+                .when()
+                .get("/STBTransaction/GetSTBWithdrawAmounts")
+                .then()
+                .statusCode(200) // Validate response
+                .extract()
+                .response();
+
+        try {
+            return formatToThreeFractionDigits(response.jsonPath().getString("stbAmount").trim());
+        }catch (Exception ignored){
+            return "Not Found!";
+        }
+
+    }
+
     public void addEmployeeToPermissionList(int employeeId, int isManager){
 
         LocalDateTime now = LocalDateTime.now();
@@ -1115,6 +1355,387 @@ public class Employees extends ApiBase {
 
         int menaMeSecuritySetupId = Integer.parseInt(selectQuery("select id from MenaMeSecuritySetups where BranchId = "+getBranchId() + " and TitleEn = 'MenaME Users'").trim());
         sqlQuery("INSERT INTO MenaMeSecurityEmployeePermissions (MenaMeSecuritySetupId, EmployeeId, IsManager, CreatedById, CreationDate) VALUES ("+menaMeSecuritySetupId+", "+employeeId+", "+isManager+", 1, '"+formattedDate+"');");
+    }
+
+    public void addAddress(String employeeCode, String startDate, String endDate, String country, String city, String neighborhood, String street, String buildingName, String floor,
+                           String poBox, String zipCode){
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("employeeId", getIdByEmployeeCode(employeeCode));
+
+        if(!startDate.isEmpty()){
+            payload.put("fromYear", startDate);
+        }else{
+            payload.put("fromYear", getCurrentDate());
+        }
+        if(!endDate.isEmpty()){
+            payload.put("toYear", endDate);
+        }else{
+            payload.put("toYear", getCurrentDate());
+        }
+        if(!country.isEmpty()){
+            int countryId = Integer.parseInt(
+                    selectQuery("SELECT c.CountryId FROM Countries c " +
+                            "JOIN BranchCountries bc ON c.CountryId = bc.CountryId " +
+                            "WHERE c.CountryNameEn = '"+country+"' AND bc.BranchId = "+getBranchId()+";").trim()
+            );
+            payload.put("countryId", countryId);
+
+            if(!city.isEmpty()){
+                int cityId = Integer.parseInt(selectQuery("select CityId from Cities where CountryId = "+countryId+" and CityNameEn = '"+city+"'").trim());
+                payload.put("cityId", cityId);
+            }
+
+        }
+        if(!neighborhood.isEmpty()){
+            payload.put("neighborhood", neighborhood);
+        }
+        if(!street.isEmpty()){
+            payload.put("street", street);
+        }
+        if(!buildingName.isEmpty()){
+            payload.put("buildingName", buildingName);
+        }
+        if(!floor.isEmpty()){
+            payload.put("floor", floor);
+        }
+        if(!poBox.isEmpty()){
+            payload.put("poBox", poBox);
+        }
+        if(!zipCode.isEmpty()){
+            payload.put("zipCode", zipCode);
+        }
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
+                    .body(jsonPayload)
+                    .when()
+                    .post("/EmployeeAddress/create")
+                    .then()
+//                    .statusCode(200) // Assert status code
+                    .extract()
+                    .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("Address added successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addPaymentMethod(String employeeCode, String paymentType, String bank, String bankBranch, String accountNumber, String ibanNumber){
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("employeeId", getIdByEmployeeCode(employeeCode));
+
+        if(paymentType.equalsIgnoreCase("Cash")){
+            payload.put("paymentMethodId", 1);
+        }else if(paymentType.equalsIgnoreCase("Check")){
+            payload.put("paymentMethodId", 2);
+        }else if(paymentType.equalsIgnoreCase("Bank")){
+            payload.put("paymentMethodId", 3);
+        }else{
+            payload.put("paymentMethodId", 1);
+        }
+
+        int bankIdG = 0;
+
+        if(!bank.isEmpty()){
+            int bankId = Integer.parseInt(
+                    selectQuery("select b.BankId from Banks b " +
+                    "JOIN BranchBanks bb ON b.BankId = bb.BankId " +
+                    "where b.BankNameEn = '"+bank+"' and bb.BranchId = "+getBranchId()+";").trim()
+            );
+            bankIdG = bankId;
+            payload.put("bankId", bankId);
+        }
+
+        if(!bankBranch.isEmpty()){
+            int bankBranchId = Integer.parseInt(
+                    selectQuery("select BankBranchId from BankBranches where BankBranchNameEn = '"+bankBranch+"' and BankId = "+bankIdG).trim()
+            );
+            payload.put("bankBranchId", bankBranchId);
+
+        }
+        if(!accountNumber.isEmpty()){
+            payload.put("accountNumber", accountNumber);
+        }
+        if(!ibanNumber.isEmpty()){
+            payload.put("ibanNumber", ibanNumber);
+        }
+        payload.put("active", true);
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
+                    .body(jsonPayload)
+                    .when()
+                    .post("/EmployeePaymentMethod/create")
+                    .then()
+//                    .statusCode(200) // Assert status code
+                    .extract()
+                    .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("Payment Information added successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addEducation(String employeeCode, String startDate, String endDate, boolean untilNow, String country, String city, String institute, String faculty, String major,
+                             String academicDegree, String grading, String universityAverage, String graduationYear, String educationNotes, boolean educationMinor){
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("employeeId", getIdByEmployeeCode(employeeCode));
+
+        payload.put("startDate", startDate);
+        if(!untilNow){
+            payload.put("endDate", endDate);
+        }
+        payload.put("untilNow", untilNow);
+
+        if(!country.isEmpty()){
+            int countryId = Integer.parseInt(
+                    selectQuery("SELECT c.CountryId FROM Countries c " +
+                            "JOIN BranchCountries bc ON c.CountryId = bc.CountryId " +
+                            "WHERE c.CountryNameEn = '"+country+"' AND bc.BranchId = "+getBranchId()+";").trim()
+            );
+            payload.put("countryId", countryId);
+
+            if(!city.isEmpty()){
+                int cityId = Integer.parseInt(selectQuery("select CityId from Cities where CountryId = "+countryId+" and CityNameEn = '"+city+"'").trim());
+                payload.put("cityId", cityId);
+            }
+
+        }
+
+        if(!institute.isEmpty()){
+            int instituteId = Integer.parseInt(selectQuery("select i.InstituteId from Institutes i " +
+                    "JOIN BranchInstitutes bi ON i.InstituteId = bi.InstituteId " +
+                    "where i.InstituteNameEn = '"+institute+"' and bi.BranchId = "+getBranchId()).trim()
+            );
+            payload.put("instituteId", instituteId);
+        }
+        if(!faculty.isEmpty()){
+            int facultyId = Integer.parseInt(selectQuery("select f.facultyId from Faculties f " +
+                    "JOIN BranchFaculties bf ON f.facultyId = bf.facultyId " +
+                    "where f.FacultyNameEn = '"+faculty+"' and bf.BranchId = "+getBranchId()).trim()
+            );
+            payload.put("facultyId", facultyId);
+        }
+        if(!major.isEmpty()){
+            int majorId = Integer.parseInt(selectQuery("select m.MajorId from Majors m " +
+                    "JOIN BranchMajors mb ON m.MajorId = mb.MajorId " +
+                    "where m.MajorNameEn = '"+major+"' and mb.BranchId = "+getBranchId()).trim()
+            );
+            payload.put("majorId", majorId);
+        }
+        if(!academicDegree.isEmpty()){
+            int academicDegreeId = Integer.parseInt(selectQuery("select ad.AcademicDegreeId from AcademicDegrees ad " +
+                    "JOIN BranchAcademicDegrees bad ON ad.AcademicDegreeId = bad.AcademicDegreeId " +
+                    "where ad.AcademicDegreeNameEn = '"+academicDegree+"' and bad.BranchId = "+getBranchId()).trim()
+            );
+            payload.put("academicDegreeId", academicDegreeId);
+        }
+        if(!grading.isEmpty()){
+            if(grading.equalsIgnoreCase("Accepted")){
+                payload.put("gradingId", 1);
+            }else if(grading.equalsIgnoreCase("Good")){
+                payload.put("gradingId", 2);
+            }else if(grading.equalsIgnoreCase("Very Good")){
+                payload.put("gradingId", 3);
+            }else if(grading.equalsIgnoreCase("Excellent")){
+                payload.put("gradingId", 4);
+            }else{
+                payload.put("gradingId", 4);
+            }
+        }
+
+        if(!universityAverage.isEmpty()){
+            payload.put("universityAverage", universityAverage);
+        }
+        if(!graduationYear.isEmpty()){
+            payload.put("graduationYear", graduationYear);
+        }
+        if(!educationNotes.isEmpty()){
+            payload.put("educationNotes", educationNotes);
+        }
+        payload.put("educationMinor", educationMinor);
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
+                    .body(jsonPayload)
+                    .when()
+                    .post("/EmployeeEducation/create")
+                    .then()
+//                    .statusCode(200) // Assert status code
+                    .extract()
+                    .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("Education added successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void addCertificate(String employeeCode, String fromDate, String toDate, String certificateType, String certificate, String certificateSerial, String showIn,
+                               String status, String issueDate, String grade, String certificateNumber, String notes){
+
+        Map<String, Object> payload = new HashMap<>();
+        payload.put("employeeId", getIdByEmployeeCode(employeeCode));
+        payload.put("fromDate", fromDate);
+        payload.put("toDate", toDate);
+
+        int ctG = 0;
+
+        if(!certificateType.isEmpty()){
+            int certificateTypeId = Integer.parseInt(selectQuery("select ct.CertificateTypeId from CertificateTypes ct " +
+                    "JOIN BranchCertificateTypes bct ON ct.CertificateTypeId = bct.CertificateTypeId " +
+                    "where ct.CertificateTypeNameEn = '"+certificateType+"' and bct.BranchId = "+getBranchId()).trim()
+            );
+            ctG = certificateTypeId;
+            payload.put("certificateTypeId", certificateTypeId);
+
+            if(!certificate.isEmpty()){
+                int certificateId = Integer.parseInt(selectQuery("select CertificateId from Certificates where CertificateTypeId = "+ctG+" and CertificateNameEn = '"+certificate+"'").trim()
+                );
+                payload.put("certificateId", certificateId);
+            }
+        }
+
+        if(!certificateSerial.isEmpty()){
+            payload.put("certificateSerial", certificateSerial);
+        }
+        if(!showIn.isEmpty()){
+            if(showIn.equalsIgnoreCase("Generic Resume")){
+                payload.put("showInId", 1);
+            }else if(showIn.equalsIgnoreCase("Detailed Resume")){
+                payload.put("showInId", 2);
+            }else if(showIn.equalsIgnoreCase("Not Shown")){
+                payload.put("showInId", 3);
+            }else if(showIn.equalsIgnoreCase("Both")){
+                payload.put("showInId", 4);
+            }else{
+                payload.put("showInId", 1);
+            }
+        }
+        if(!status.isEmpty()){
+            if(status.equalsIgnoreCase("Passed")){
+                payload.put("statusId", 1);
+            }else if(status.equalsIgnoreCase("Failed")){
+                payload.put("statusId", 2);
+            }else if(status.equalsIgnoreCase("Pending")){
+                payload.put("statusId", 3);
+            }else{
+                payload.put("statusId", 1);
+            }
+        }
+
+        if(!issueDate.isEmpty()){
+            payload.put("issueDate", issueDate);
+        }
+        if(!grade.isEmpty()){
+            payload.put("grade", grade);
+        }
+        if(!certificateNumber.isEmpty()){
+            payload.put("certificateNumber", certificateNumber);
+        }
+        if(!certificateNumber.isEmpty()){
+            payload.put("certificateNumber", certificateNumber);
+        }
+        if(!notes.isEmpty()){
+            payload.put("notes", notes);
+        }
+//        if(attachment){
+//            File file = new File("src/main/resources/testUpload.jpg");
+//            byte[] fileContent = null;
+//            try {
+//                fileContent = Files.readAllBytes(file.toPath());
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+//            String base64Encoded = Base64.getEncoder().encodeToString(fileContent);
+//            System.out.println(base64Encoded);
+//
+//            payload.put("attachment", base64Encoded);
+//        }
+
+        // Set the base URI
+        RestAssured.baseURI = baseUrlApiGetter();
+
+        try {
+            // Convert the map to a JSON string using Jackson
+            ObjectMapper objectMapper = new ObjectMapper();
+            String jsonPayload = objectMapper.writeValueAsString(payload);
+
+            Response response = given()
+                    //.header("Content-Type", "application/json")
+                    .spec(SpecBuilder())
+                    .body(jsonPayload)
+                    .when()
+                    .post("/EmployeeCertificate/create")
+                    .then()
+//                    .statusCode(200) // Assert status code
+                    .extract()
+                    .response();
+
+//            System.out.println("Response Status Code: " + response.getStatusCode());
+//            System.out.println("Response Body: " + response.getBody().asString());
+
+            if(response.statusCode() == 200 || response.statusCode() == 201){
+                System.out.println("Certificate added successfully - Response Status Code: " + response.statusCode());
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 

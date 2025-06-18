@@ -95,7 +95,7 @@ public class ApiBase {
 
     public static String formatToThreeFractionDigits(String numberStr) {
         double number = Double.parseDouble(numberStr);
-        DecimalFormat decimalFormat = new DecimalFormat("#.000");
+        DecimalFormat decimalFormat = new DecimalFormat("0.000");
         return decimalFormat.format(number);
     }
 

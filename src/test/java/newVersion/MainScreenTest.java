@@ -6,13 +6,6 @@ import apiBackend.Employees;
 import bases.BaseTest;
 import mobileBackend.*;
 import org.testng.annotations.Test;
-import webBackend.financialInformation.FinancialPackage;
-import webBackend.general.Login;
-import webBackend.general.MainMenu;
-import webBackend.general.MenaModules;
-import webBackend.general.VacationsBalances;
-import webBackend.personnelInformation.Other;
-import webBackend.personnelInformation.PersonnelInformation;
 
 import static utilities.WebHelper.currentYear;
 
@@ -26,7 +19,7 @@ public class MainScreenTest extends BaseTest {
     AllEmployeeTransactions allEmployeeTransactions;
     String employeeCode = null;
 
-    @Test
+    @Test(priority = 1, groups = "MainScreen")
     public void checkAllTheBoxInHomeScreen(){
 
         /////////// API - Rest Assured ////////////
@@ -51,6 +44,8 @@ public class MainScreenTest extends BaseTest {
         employees.addVacationBalance("Annual Vacation", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", true);
         employees.addVacationBalance("Sick Vacation", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", false);
 
+        employees.addSTB("STB 1", "");
+
         allEmployeeTransactions = new AllEmployeeTransactions();
         allEmployeeTransactions.loans(employeeCode, currentYear()+"-01-01", currentYear()+"-01-01", "Car Loan", "1000", "10", true);
 
@@ -60,12 +55,13 @@ public class MainScreenTest extends BaseTest {
 
         String annualCurrentBalance = employees.getVacationCurrentBalance(employeeCode, "Annual Vacation", Integer.parseInt(currentYear()));
         String SickCurrentBalance = employees.getVacationCurrentBalance(employeeCode, "Sick Vacation", Integer.parseInt(currentYear()));
+        String stbAmount = employees.getSTBAmount(employeeCode, "STB 1", "");
 
         /////////////// Mobile Initialize //////////////
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
 
@@ -78,7 +74,7 @@ public class MainScreenTest extends BaseTest {
         softAssert.assertTrue(mainScreen.loanBalanceBox(), "Loan Balance!");
         softAssert.assertEquals(mainScreen.loanBalanceAmount(), "1000.00", "Loan Balance Amount!");
         softAssert.assertTrue(mainScreen.stbBalanceBox(), "STB Balance!");
-        softAssert.assertEquals(mainScreen.stbBalanceAmount(), "0.00", "STB Balance Amount!");
+        softAssert.assertEquals(mainScreen.stbBalanceAmount(), stbAmount, "STB Balance Amount!");
         softAssert.assertTrue(mainScreen.lastSalaryBox(), "Last Salary!");
         softAssert.assertEquals(mainScreen.lastSalaryAmount(), "1400.000", "Last Salary Amount!");
         softAssert.assertAll();

@@ -1,5 +1,6 @@
 package mobileBackend;
 
+import bases.BaseTest;
 import bases.MobileBasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
@@ -7,6 +8,8 @@ import org.openqa.selenium.WebElement;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static bases.BaseTest.mobileVersion;
 
 public class Manager extends MobileBasePage {
 
@@ -462,7 +465,11 @@ public class Manager extends MobileBasePage {
     public void myTeam(String employeeName){
         clickOn(seeAllBtn, true);
         hold(1000);
-        clickOn(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]"), true);
+        try {
+            clickOn(AppiumBy.xpath("//android.widget.ImageView[contains(@content-desc, '"+employeeName+"')]"), true);
+        }catch (Exception e){
+            clickOn(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+employeeName+"')]"), true);
+        }
         waitLoadingElement();
         hold(800);
     }

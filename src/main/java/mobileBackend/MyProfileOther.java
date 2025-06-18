@@ -3,6 +3,7 @@ package mobileBackend;
 import bases.MobileBasePage;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.pagefactory.AndroidFindBy;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 public class MyProfileOther extends MobileBasePage {
@@ -59,6 +60,48 @@ public class MyProfileOther extends MobileBasePage {
         waitLoadingElement();
         waitLoadingElement();
         hold(1000);
+    }
+
+    public String getVacationBalance(String vacationType, String key) {
+
+        String input = null;
+
+        try {
+            appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]")).isDisplayed();
+            input = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]")).getDomAttribute("content-desc").trim();
+        }catch (Exception e){
+            try {
+                scrollToElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]"), true, 5);
+                appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]")).isDisplayed();
+                input = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]")).getDomAttribute("content-desc").trim();
+            }catch (Exception ee){
+                verticalSwipeByPercentages(70, 10, 50);
+                appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]")).isDisplayed();
+                input = appiumDriver.findElement(AppiumBy.xpath("//android.view.View[contains(@content-desc, '"+vacationType+"')]")).getDomAttribute("content-desc").trim();
+            }
+        }
+
+        String[] lines = input.split("\\n");
+
+        for (int i = 0; i < lines.length; i++) {
+            String line = lines[i].trim();
+
+            // Special case: "Up-to-date-Balance" — value comes before
+            if (key.equalsIgnoreCase("Up-to-date-Balance") && line.equalsIgnoreCase(key) && i > 0) {
+                return lines[i - 1].trim();
+            }
+
+            // Special case: "Year" — return the line number 2 - after Vacation Name
+            if (key.equalsIgnoreCase("Year")) {
+                return lines[1].trim();
+            }
+
+            // Default case — value comes after
+            if (line.equalsIgnoreCase(key) && i < lines.length - 1) {
+                return lines[i + 1].trim();
+            }
+        }
+        return null;
     }
 
     public void viewCompanyDocuments(String search, String type, String classification, String level, String fromDate, String toDate){

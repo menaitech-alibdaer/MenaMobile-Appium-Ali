@@ -39,7 +39,7 @@
     <inspection_tool class="groupsTestNG" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="groups">
         <value>
-          <list size="8">
+          <list size="9">
             <item index="0" class="java.lang.String" itemvalue="Login" />
             <item index="1" class="java.lang.String" itemvalue="Login_Mobile" />
             <item index="2" class="java.lang.String" itemvalue="Vacations" />
@@ -48,6 +48,7 @@
             <item index="5" class="java.lang.String" itemvalue="MyProfilePersonal" />
             <item index="6" class="java.lang.String" itemvalue="MainScreen" />
             <item index="7" class="java.lang.String" itemvalue="Loans" />
+            <item index="8" class="java.lang.String" itemvalue="STB_Balance" />
           </list>
         </value>
       </option>

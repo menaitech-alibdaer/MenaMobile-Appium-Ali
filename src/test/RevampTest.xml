@@ -5,27 +5,30 @@
         <listener class-name="bases.Listener" />
     </listeners>
 
-<!--    <test name="Login And Connectivity" parallel="classes">-->
-<!--        <parameter name="version" value="Revamp" />-->
-<!--        <parameter name="platform" value="Android" />-->
+    <test name="Login And Connectivity" parallel="classes">
+        <parameter name="version" value="Revamp" />
+        <parameter name="platform" value="Android" />
+        <parameter name="appVersion" value="MenaMEPro" />
 
-<!--        <classes>-->
-<!--            <class name="newVersion.LoginAndConnectivity" />-->
-<!--        </classes>-->
-<!--    </test>-->
+        <classes>
+            <class name="newVersion.LoginAndConnectivity" />
+        </classes>
+    </test>
 
-<!--    <test name="Vacation Request" parallel="classes">-->
-<!--        <parameter name="version" value="Revamp" />-->
-<!--        <parameter name="platform" value="Android" />-->
+    <test name="Vacation Request" parallel="classes">
+        <parameter name="version" value="Revamp" />
+        <parameter name="platform" value="Android" />
+        <parameter name="appVersion" value="MenaMEPro" />
 
-<!--        <classes>-->
-<!--            <class name="newVersion.VacationRequest" />-->
-<!--        </classes>-->
-<!--    </test>-->
+        <classes>
+            <class name="newVersion.VacationRequest" />
+        </classes>
+    </test>
 
     <test name="Leave Request" parallel="classes">
         <parameter name="version" value="Revamp" />
         <parameter name="platform" value="Android" />
+        <parameter name="appVersion" value="MenaMEPro" />
 
         <classes>
             <class name="newVersion.LeaveRequest" />

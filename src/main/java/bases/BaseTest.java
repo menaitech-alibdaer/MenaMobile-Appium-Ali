@@ -26,8 +26,6 @@ import java.util.*;
 import static bases.ApiBase.fastTokenCreator;
 import static utilities.Colors.*;
 import static utilities.Devices.*;
-import static utilities.MobileHelper.terminateApp;
-import static utilities.MobileHelper.terminateAppAndroid;
 import static utilities.VersionGetter.*;
 
 public class BaseTest {
@@ -54,12 +52,13 @@ public class BaseTest {
     public  static String iniBrowser = null;
     public static String iniPlatform = null;
     public TestType testType = null;
+    public static MobileVersion mobileVersion = null;
 
     //protected TestDataReader data;
 
     @BeforeClass(alwaysRun = true)
-    @Parameters({"version", "lite"})
-    public void setVersion(@Optional("Revamp") String version, @Optional("false") boolean lite){
+    @Parameters({"version", "appVersion", "lite"})
+    public void setVersion(@Optional("Revamp") String version, @Optional("MenaMEPro") String appVersion, @Optional("false") boolean lite){
 
         if(version.equalsIgnoreCase("AUG")){
             versionSetter("AUG");
@@ -79,6 +78,12 @@ public class BaseTest {
             versionURL = urlGetter();
             menaMeURL = urlMenaMeGetter();
             liteSetter(lite);
+        }
+
+        if(appVersion.equalsIgnoreCase("MenaMEPro")){
+            mobileVersion = MobileVersion.MenaMEPro;
+        }else{
+            mobileVersion = MobileVersion.MenaME;
         }
 
     }
@@ -135,6 +140,11 @@ public class BaseTest {
         API,
     }
 
+    public enum MobileVersion{
+        MenaME,
+        MenaMEPro
+    }
+
     ////////////////////////////////////////////////////
 
     public void initializeAppiumDriver(String platform){
@@ -160,8 +170,8 @@ public class BaseTest {
             caps.setCapability("platformName", "Android");
             caps.setCapability("automationName", "UiAutomator2");
             //caps.setCapability("app", "app.apk");
-            caps.setCapability("appPackage", appPackage);
-            caps.setCapability("appActivity", appActivity);
+            caps.setCapability("appPackage", appPackage_MenaMEPro);
+            caps.setCapability("appActivity", appActivity_MenaMEPro);
             caps.setCapability("noReset", false);
             caps.setCapability("newCommandTimeout", 300);
             caps.setCapability("enforceXPath1", true);

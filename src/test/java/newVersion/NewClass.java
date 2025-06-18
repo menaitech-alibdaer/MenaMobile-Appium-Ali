@@ -9,10 +9,10 @@ import mobileBackend.SalarySlipBE;
 import org.testng.annotations.Test;
 import utilities.PDFReader;
 
+import static utilities.MssqlConnect.selectQuery;
 import static utilities.MssqlConnect.setMenaMePassword;
 import static utilities.PDFReader.pdfFileReader;
-import static utilities.WebHelper.currentYear;
-import static utilities.WebHelper.mobile;
+import static utilities.WebHelper.*;
 
 public class NewClass extends BaseTest {
 
@@ -43,22 +43,32 @@ public class NewClass extends BaseTest {
         employeeCode = employees.getEmployeeCode();
         employees.entitledToOvertime(employeeCode);
         employees.setBasicSalary("1000");
-        allEmployeeTransactions = new AllEmployeeTransactions();
+        employees.addVacationBalance("Annual Vacation", "2.5", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", true);
+        employees.addVacationBalance("Sick Vacation", "0", "14", currentYear(), currentYear()+"-01-01", currentYear()+"-12-31", false);
+
+
+        employees.addSocialSecurity("Social Security", "", "", false);
+        employees.healthInsurance("Health insurance - Fixed", "", "");
+        //employees.addSTB("STB 1", "");
+
+        //System.out.println(employees.getSTBAmount(employeeCode, "STB 1", ""));
+
+        //allEmployeeTransactions = new AllEmployeeTransactions();
         //allEmployeeTransactions.loans(employeeCode, "2025-04-01", "2025-04-01", "Car Loan", "2500", "7", true);
 
 //        employees.addVacationBalance("Annual Vacation", "0", "14", "2025", "2025-01-01", "2025-12-31", true);
 //        allEmployeeTransactions = new AllEmployeeTransactions();
 //        allEmployeeTransactions.loans(employeeCode, "2025-04-01", "2025-04-01", "Car Loan", "1200", "12", true);
 
-//        employees.addAllowance("Fixed Allowance", "250", "", "", "", true);
+        employees.addAllowance("Fixed Allowance", "250", "", "", "", true);
 //        employees.addSocialSecurity("Social Security", "", "", false);
 //        employees.healthInsurance("Health insurance - Fixed", "", "");
 //        employees.addVacationBalance("Annual Vacation", "0", "14", "2024", "2024-01-01", "2024-12-31", true);
 //        employees.addExtraSalary(employeeCode, "Extra Salary 14");
 
-        salaryCalculation = new SalaryCalculation();
-        salaryCalculation.salaryCalculation(employeeCode, "2025", "1", true);
-        salaryCalculation.getSalarySlip(employeeCode, 2025, 1);
+//        salaryCalculation = new SalaryCalculation();
+//        salaryCalculation.salaryCalculation(employeeCode, "2025", "1", true);
+//        salaryCalculation.getSalarySlip(employeeCode, 2025, 1);
 //        salaryCalculation.taxable(true, "Tax", true, false);
 //
 //        System.out.println("Basic Salary = "+salaryCalculation.basicSalary());
@@ -136,19 +146,7 @@ public class NewClass extends BaseTest {
     @Test
     public void zzzzzzzzz(){
 
-        ////////// API - Rest Assured ////////////
-        companyAndBranch = new CompanyAndBranch();
-        companyAndBranch.setCompanyId("automobile");
-        companyAndBranch.setBranchId("auto_mob1");
-
-        allEmployeeTransactions = new AllEmployeeTransactions();
-        //allEmployeeTransactions.vacation("hxpx95368", "2025-03-24", "2025-03-24", "Unpaid Vacation", true);
-        //allEmployeeTransactions.leave("hxpx95368", "2025-04-01", "2025-04-01", "Unpaid Leave", "5", true);
-        //allEmployeeTransactions.overtime("hxpx95368", "2025-05-01", "2025-05-01", "Holiday Overtime", "3", true);
-        //allEmployeeTransactions.loans("hxpx95368", "2025-07-01", "2025-07-01", "Car Loan", "1200", "12", true);
-        //allEmployeeTransactions.otherIncome("hxpx95368", "2025-08-01", false, "", "Other Income 1", "100", true);
-        allEmployeeTransactions.otherDeductions("hxpx95368", "2025-09-01", "Other Deduction 1", "200", false, "", true);
-
+        System.out.println(selectQuery("select id from STBProfiles where NameEn = 'STB 1' and BranchId = '646'").trim());
 
     }
 

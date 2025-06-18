@@ -64,7 +64,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -110,7 +110,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -153,7 +153,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -194,7 +194,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -224,7 +224,7 @@ public class VacationRequest extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -246,7 +246,7 @@ public class VacationRequest extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -269,7 +269,7 @@ public class VacationRequest extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -307,7 +307,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -347,7 +347,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -385,7 +385,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -428,7 +428,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -477,7 +477,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -528,7 +528,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -571,7 +571,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -621,7 +621,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -659,7 +659,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -707,7 +707,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(emp1, "sa", "automobile", false);
+        loginMob.login(emp1, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -758,7 +758,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -809,7 +809,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -861,7 +861,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -880,7 +880,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -919,7 +919,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
 
         mainScreen.myTransactions();
@@ -968,7 +968,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -987,7 +987,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1026,7 +1026,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
         myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.01.2023");
@@ -1072,7 +1072,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1120,7 +1120,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1171,7 +1171,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1219,7 +1219,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1242,7 +1242,7 @@ public class VacationRequest extends BaseTest {
 
         loginMob = new MobileLogin();
         setMenaMePassword("auto_mobile1", "Revamp");
-        loginMob.login("auto_mobile1", "sa", "automobile", false);
+        loginMob.login("auto_mobile1", "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1286,7 +1286,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1298,7 +1298,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1353,7 +1353,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1365,7 +1365,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1377,7 +1377,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
 
@@ -1389,7 +1389,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1399,7 +1399,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
         myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.03.2024");
@@ -1445,7 +1445,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1457,7 +1457,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1469,7 +1469,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
 
@@ -1481,7 +1481,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1491,7 +1491,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
         myTransactions.openTransactionInMyTransactions("Financial Transactions", "Vacations", "Unpaid Vacation", "10.03.2024");
@@ -1551,7 +1551,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1563,7 +1563,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1576,7 +1576,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(thirdEmployee, "sa", "automobile", false);
+        loginMob.login(thirdEmployee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.openNotifications();
 
@@ -1587,7 +1587,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1651,7 +1651,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1663,7 +1663,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -1676,7 +1676,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(thirdEmployee, "sa", "automobile", false);
+        loginMob.login(thirdEmployee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.openNotifications();
 
@@ -1692,7 +1692,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
 
         mainScreen.myTransactions();
@@ -1729,7 +1729,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1782,7 +1782,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1825,7 +1825,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1875,7 +1875,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1945,7 +1945,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -1957,7 +1957,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -2016,7 +2016,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -2028,7 +2028,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(directManager, "sa", "automobile", false);
+        loginMob.login(directManager, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.openManager();
@@ -2042,7 +2042,7 @@ public class VacationRequest extends BaseTest {
 
         mainScreen.logout();
 
-        loginMob.login(employee, "sa", "automobile", false);
+        loginMob.login(employee, "sa", "automobile", false, false);
         mainScreen = new MainScreen();
         mainScreen.myTransactions();
 
@@ -2093,7 +2093,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -2147,7 +2147,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -2248,7 +2248,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -2295,7 +2295,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
@@ -2338,7 +2338,7 @@ public class VacationRequest extends BaseTest {
         mobileInitialize();
 
         loginMob = new MobileLogin();
-        loginMob.login(employeeCode, "sa", "automobile", false);
+        loginMob.login(employeeCode, "sa", "automobile", false, false);
 
         mainScreen = new MainScreen();
         mainScreen.myRequests();
